@@ -1,0 +1,203 @@
+<p-toast></p-toast>
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text">
+</p-confirmDialog>
+<!-- <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "red" type="square-jelly-box" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner> -->
+
+<!-- <ngx-spinner name="sp5" [fullScreen]="true" type="square-jelly-box" size="medium"></ngx-spinner> -->
+<app-dashboard-sidemenu></app-dashboard-sidemenu>
+
+<!-- ********************** Main Content ******************** -->
+
+<div class="main-content d-flex flex-column">
+
+  <!-- <app-dashboard-navbar></app-dashboard-navbar> -->
+  <app-navbar-style-one></app-navbar-style-one>
+
+  <!-- ********************** Breadcrumb Area  ******************** -->
+
+  <div class="breadcrumb-area" *ngFor="let Content of breadcrumb;">
+    <h1>{{Content.title}}</h1>
+    <ol class="breadcrumb">
+      <li class="item"><a routerLink="/">Home</a></li>
+      <!-- <li class="item"><a routerLink="/dashboard">{{Content.subTitle}}</a></li> -->
+      <li class="item">{{Content.title}}</li>
+    </ol>
+  </div>
+
+  <!-- ********************** End Breadcrumb Area  ******************** -->
+
+  <!-- ********************** Add Master Form Area  ******************** -->
+
+  <div class="add-listings-box">
+    <form [formGroup]="awardConfigForm" (ngSubmit)="onSubmit(form)" #form="ngForm">
+      <div class="row mt-1">
+        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+          <div class="form-group">Award Name<span style="color: red;">*</span>:
+            <input formControlName="award_name" class="form-control" placeholder="Please enter award name"
+              [class.is-invalid]="(form.submitted && awardConfigForm.get('award_name')?.invalid) || awardConfigForm.get('award_name')?.invalid && awardConfigForm.get('award_name').touched" />
+            <!-- <option [value]="null" disabled>Please select award name</option>
+              <option [ngValue]="item.id" *ngFor="let item of awardCetagory">{{item?.award_title}}
+              </option>
+            </input> -->
+            <!-- <input type="text" class="form-control" placeholder="Description" formControlName="award_name"
+              required
+              [class.is-invalid]="(form.submitted && awardConfigForm.get('award_name')?.invalid) || awardConfigForm.get('award_name')?.invalid && awardConfigForm.get('award_name').touched"> -->
+            <div class="invalid-feedback">Award name is required</div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+          <div class="form-group">Classification Category<span style="color: red;">*</span>:
+            <select formControlName="category"
+              [class.is-invalid]="(form.submitted && awardConfigForm.get('category')?.invalid) || awardConfigForm.get('category')?.invalid && awardConfigForm.get('category')?.touched">
+              <option [value]="null" disabled>Please select classification category</option>
+              <option [value]="item.key" *ngFor="let item of classification | groupByPipe : 'category'">
+                {{item.key}}
+              </option>
+            </select>
+            <!-- <div class="invalid-feedback">Name is required</div> -->
+            <!-- <input type="text" class="form-control" placeholder="Name" formControlName="category" required
+              [class.is-invalid]="(form.submitted && awardConfigForm.get('category')?.invalid) || awardConfigForm.get('category')?.invalid && awardConfigForm.get('category')?.touched"> -->
+            <div class="invalid-feedback">Classification Category is required</div>
+          </div>
+        </div>
+        <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+          <div class="form-group">Service <span style="color: red;">*</span>:
+            <select formControlName="service_id"
+              [class.is-invalid]="(form.submitted && awardConfigForm.get('service_id')?.invalid) || awardConfigForm.get('service_id')?.invalid && awardConfigForm.get('service_id').touched">
+              <option [value]="null" disabled>Please select service</option>
+              <option [ngValue]="item.id" *ngFor="let item of service">{{item.name}}</option>
+            </select>
+            <div class="invalid-feedback">Service is required</div>
+          </div>
+        </div> -->
+        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+          <div class="form-group">Turnover <span style="color: red;">*</span>:
+
+            <select formControlName="turnover_id"
+              [class.is-invalid]="(form.submitted && awardConfigForm.get('turnover_id')?.invalid) || awardConfigForm.get('turnover_id')?.invalid && awardConfigForm.get('turnover_id').touched">
+              <option [value]="null" disabled>Please select turnover</option>
+              <option [ngValue]="item.id" *ngFor="let item of turnover">{{item?.component}}
+              </option>
+            </select>
+            <!-- <input type="text" class="form-control" placeholder="Description" formControlName="turnover_id" required
+              [class.is-invalid]="(form.submitted && awardConfigForm.get('turnover_id')?.invalid) || awardConfigForm.get('turnover_id')?.invalid && awardConfigForm.get('turnover_id').touched"> -->
+            <div class="invalid-feedback">Turnover is required</div>
+          </div>
+        </div>
+
+        <!-- <div class="col-lg-1 col-md-4 col-sm-4 col-xs-12"></div> -->
+        <div class="col-lg-3 col-md-2 col-sm-2 col-xs-12" style="text-align: right;">
+          <div class="add-listings-btn">
+            <button type="submit">Add</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="Master-view-box">
+    <div class="theader">
+      <!-- <ng-template pTemplate="caption"> -->
+      <div class="d-flex">
+        <span class="p-input-icon-left ml-auto mr-2">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')"
+            placeholder="Search keyword" [(ngModel)]="filterVal" />
+        </span>
+        <p-button type="button" class="ml-2" (click)="reset(dt1)" icon="bx bx-reset"></p-button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+        <p-table #dt1 [value]="awardMetrix" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
+          styleClass="p-datatable-sm p-datatable-customers" [rowsPerPageOptions]="[10,25,50]" editMode="row"
+          responsiveLayout="scroll" [paginator]="true"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [globalFilterFields]="['award_name', 'category', 'component', 'turnover.component']">
+          <ng-template pTemplate="header" style="min-height: 500px;">
+            <tr>
+              <th style="max-width: 100px; text-align: center;">S. No.</th>
+              <th style="min-width: 160px;">Award Name</th>
+              <!-- <th style="min-width: 130px;">Award Service</th> -->
+              <th style="min-width: 130px;">Classification Category</th>
+              <th style="min-width: 130px;">Turnover</th>
+              <!-- <th style="min-width: 100px;">Action</th> -->
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="body" let-item let-i="rowIndex" let-editing="editing">
+            <tr [pEditableRow]="item" *ngIf="item.category !== 'Social Enterprise' && item.category !== 'CSR'">
+              <td style="text-align: center;">
+                {{i+1}}
+              </td>
+              <td>
+                <p-cellEditor editingRowKeys="item.id">
+                  <ng-template pTemplate="input">
+                    <select formControlName="turnover_id" [(ngModel)]="item.awardcategory.award_name">
+                      <option [value]="null" disabled>Please select turnover</option>
+                      <option [ngValue]="item.id" *ngFor="let item of turnover">{{item?.component}}
+                      </option>
+                    </select>
+                    <!-- <input pInputText type="text" [(ngModel)]="item.awardcategory.award_title" required> -->
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{item?.award_name}}
+                  </ng-template>
+                </p-cellEditor>
+              </td>
+              <!-- <td>
+                <p-cellEditor editingRowKeys="item.id">
+                  <ng-template pTemplate="input">
+                    <input pInputText type="text" [(ngModel)]="item.awardservice.name" required>
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{item.awardservice?.name}}
+                  </ng-template>
+                </p-cellEditor>
+              </td> -->
+              <td>
+                <p-cellEditor editingRowKeys="item.id">
+                  <ng-template pTemplate="input">
+                    <input pInputText type="text" [(ngModel)]="item.classification.name" required>
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{item?.category}}
+                  </ng-template>
+                </p-cellEditor>
+              </td>
+              <td>
+                <p-cellEditor editingRowKeys="item.id">
+                  <ng-template pTemplate="input">
+                    <input pInputText type="text" [(ngModel)]="item.turnover.component" required>
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{item.turnover?.component}}
+                  </ng-template>
+                </p-cellEditor>
+              </td>
+              <!-- <td style="text-align: right;">
+                <button *ngIf="!editing" pButton pRipple icon="bx bx-pencil"
+                  class="p-button-rounded p-button-success p-button-text mr-2" pInitEditableRow
+                  (click)="editService(item)"></button>
+
+                <button *ngIf="!editing" pButton pRipple icon="bx bx-trash"
+                  class="p-button-rounded p-button-danger p-button-text" (click)="deleteService(item)"></button>
+
+                <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check"
+                  (click)="saveEditService(item)" class="p-button-rounded p-button-success p-button-text mr-2"></button>
+                <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times"
+                  (click)="onRowEditCancel(item, i)" class="p-button-rounded p-button-danger p-button-text"></button>
+              </td> -->
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="5">No Data Found.</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+</div>

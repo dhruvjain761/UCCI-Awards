@@ -1,0 +1,234 @@
+<!-- <ngx-spinner name="sp5" [fullScreen]="true" type="square-jelly-box" size="medium"></ngx-spinner> -->
+<p-toast></p-toast>
+<app-dashboard-sidemenu></app-dashboard-sidemenu>
+
+<!-- ********************** Main Content ******************** -->
+
+<div class="main-content d-flex flex-column">
+
+  <!-- <app-dashboard-navbar></app-dashboard-navbar> -->
+  <app-navbar-style-one></app-navbar-style-one>
+
+  <!-- ********************** Breadcrumb Area  ******************** -->
+
+  <div class="breadcrumb-area" *ngFor="let Content of breadcrumb;">
+    <h1>{{Content.title}}</h1>
+    <ol class="breadcrumb">
+      <li class="item"><a routerLink="/">Home</a></li>
+      <!-- <li class="item"><a routerLink="/dashboard">{{Content.subTitle}}</a></li> -->
+      <li class="item">{{Content.title}}</li>
+    </ol>
+  </div>
+
+  <!-- ********************** End Breadcrumb Area  ******************** -->
+
+  <!-- ********************** Add Master Form Area  ******************** -->
+
+  <div class="Master-view-box">
+    <div class="theader">
+      <!-- <ng-template pTemplate="caption"> -->
+      <div class="d-flex">
+        <span class="p-input-icon-left ml-auto mr-2">
+          <i class="pi pi-search"></i>
+          <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')"
+            placeholder="Search keyword" [(ngModel)]="filterVal" />
+        </span>
+        <p-button type="button" class="ml-2" (click)="reset(dt1)" icon="bx bx-reset"></p-button>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+        <p-table #dt1 [value]="users" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
+          styleClass="p-datatable-sm p-datatable-customers" [rowsPerPageOptions]="[10,25,50]" editMode="row"
+          responsiveLayout="scroll" [loading]="loading" [paginator]="true"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [globalFilterFields]="['name', 'status', 'company_name', 'award.award_name']">
+          <ng-template pTemplate="header" style="min-height: 500px;">
+            <tr>
+              <th style="max-width: 100px; text-align: center;">S. No.</th>
+              <th style="max-width: 170px; width: 170px;  text-align: center;">
+                Action
+              </th>
+              <th style="max-width: 150px; width: 150px;">Status</th>
+              <th style="min-width: 130px;">Contact Person</th>
+              <th style="min-width: 130px;">Company Name</th>
+              <th style="min-width: 130px;">Award Name</th>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="body" let-item let-i="rowIndex">
+            <tr>
+              <td style="text-align: center;">{{i+1}}</td>
+              <td>
+                <button pButton pRipple class="p-button-rounded
+                p-button-text
+                p-button-info" (click)="onViewPress(item)" pTooltip="View" tooltipPosition="bottom">
+                  <i class="far fa-eye"></i>
+                </button>
+                <button pButton pRipple icon="bx bx-check" class="p-button-rounded p-button-success p-button-text mr-2"
+                  (click)="onAprrovPress(item, 'approve')" [disabled]="item.status !== 'Pending'"
+                  *ngIf="localStorage?.role=='Admin'"></button>
+                <button pButton pRipple icon="bx bx-x" class="p-button-rounded
+                  p-button-danger p-button-text mr-2" (click)="onRejectPress(item, 'reject')"
+                  [disabled]="item.status !== 'Pending'" *ngIf="localStorage?.role=='Admin'"></button>
+              </td>
+              <td class="status"><span class="in-progress" *ngIf="item.status == 'Pending'">
+                  {{item.status}}
+                </span>
+                <span class="approved" *ngIf="item.status == 'Approved'">
+                  {{item.status}}
+                </span>
+                <span class="rejected" *ngIf="item.status == 'Rejected'">
+                  {{item.status}}
+                </span>
+              </td>
+              <td>{{item.name}}</td>
+              <td>{{item.company_name}}</td>
+              <td>{{item.award.award_name}}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+
+
+  <p-dialog header="User Deatils" [(visible)]="displayMaximizable" [modal]="true" [style]="{ width: '90vw' }"
+    [draggable]="false" [resizable]="false">
+    <!-- Start -->
+    <ng-container *ngFor="let data of details">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="my-profile-box">
+            <!-- <h3>User Details</h3> -->
+            <div class="row">
+              <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                  <label>Contact Person :</label>
+                  <input readonly class="form-control" [value]="data?.name | titlecase">
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                  <label>Company Name :</label>
+                  <input readonly class="form-control" [value]="data?.company_name | titlecase">
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                  <label>Mobile No. :</label>
+                  <input readonly class="form-control" [value]="data?.mobile_no">
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                  <label>Email :</label>
+                  <input readonly class="form-control" [value]="data?.email">
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                  <label>PAN No. :</label>
+                  <input readonly class="form-control" [value]="data?.company_PAN">
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                  <label>GST No. :</label>
+                  <input readonly class="form-control"
+                    [value]="data?.company_GST ? data?.company_GST : 'Not Available'">
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                  <label>Address :</label>
+                  <input readonly class="form-control" [value]="data?.company_address | titlecase" />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                  <label>City :</label>
+                  <input readonly class="form-control" [value]="data?.company_city | titlecase">
+                </div>
+              </div>
+              <!-- <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                  <label>Name :</label>
+                  <input readonly class="form-control" [value]="data?.company_name | titlecase ">
+                </div>
+              </div> -->
+              <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                  <label>State :</label>
+                  <input readonly class="form-control" [value]="data?.company_state | titlecase">
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                  <label>Pincode :</label>
+                  <input readonly class="form-control" [value]="data?.company_pincode">
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                  <label>Award Type :</label>
+                  <input readonly class="form-control" [value]="data?.award_type | titlecase">
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                  <label>Classification :</label>
+                  <input readonly class="form-control" [value]="data?.classification?.name | titlecase">
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                  <label>Turnover :</label>
+                  <input readonly class="form-control" [value]="data?.turnover?.component | titlecase">
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                  <label>Award Category :</label>
+                  <input readonly class="form-control" [value]="data?.award?.award_name | titlecase">
+                </div>
+              </div>
+              <!-- <div class="col-lg-6 col-md-12">
+                <div class="form-group">
+                  <label>Name :</label>
+                  <input readonly class="form-control" [value]="data?.company_name">
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </p-dialog>
+
+
+  <p-dialog header="Update Status" [(visible)]="statusModal" [modal]="true" [style]="{width: '50vw'}"
+    [draggable]="false" [resizable]="false">
+
+    <form [formGroup]="statusForm" #form="ngForm" (ngSubmit)="statusUpdate(form)">
+      <div class="row mt-1">
+        <div class="col-lg-12 col-xs-12">
+          <div class="form-group">{{status === 'reject'? 'Reason' : 'Remark'}}<span style="color: red;"
+              *ngIf="status === 'reject'">*</span>:
+            <textarea type="text" class="form-control" [placeholder]="status === 'reject' ? 'Reason' : 'Remark'"
+              formControlName="remark" required
+              [class.is-invalid]="(form.submitted && statusForm.get('remark')?.invalid) || statusForm.get('remark')?.invalid && statusForm.get('remark').touched"></textarea>
+            <div class="invalid-feedback">Reason is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="dialog-footer">
+
+        <button type="submit">Save</button>
+      </div>
+    </form>
+    <!-- <ng-template pTemplate="footer">
+      <p-button icon="pi pi-check" label="Ok" styleClass="p-button-text"></p-button>
+    </ng-template> -->
+  </p-dialog>

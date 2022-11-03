@@ -1,0 +1,98 @@
+@import "../dashboard.component.scss";
+
+.profile-box {
+    max-width: 300px;
+    position: relative;
+    border-radius: 5px;
+
+    img {
+        border-radius: 5px;
+    }
+
+    .file-upload {
+        display: inline-block;
+        position: absolute;
+        left: 15px;
+        bottom: 15px;
+
+        .inputfile {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .inputfile+label {
+            color: var(--blackColor);
+            background-color: var(--whiteColor);
+            display: inline-block;
+            margin-bottom: 0;
+            transition: var(--transition);
+            padding: 10px 25px 9px 48px;
+            position: relative;
+            border-radius: 30px;
+
+            font: {
+                size: var(--fontSize);
+                weight: 600;
+            }
+
+            ;
+        }
+
+        i {
+            position: absolute;
+            left: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 16.5px;
+            margin-top: -.5px;
+        }
+
+        .inputfile:focus+label,
+        .inputfile+label:hover {
+            background-color: var(--mainColor);
+            color: var(--whiteColor);
+        }
+
+        .inputfile+label {
+            cursor: pointer;
+        }
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width: 767px) {
+
+    .my-profile-box {
+        h3 {
+            padding: 15px 20px;
+        }
+
+        .profile-box {
+            max-width: 240px;
+        }
+
+        form {
+            padding: 20px;
+        }
+    }
+
+}
+
+/* Min width 576px to Max width 767px */
+@media only screen and (min-width: 576px) and (max-width: 767px) {}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width: 768px) and (max-width: 991px) {}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {}
+
+/* Min width 1200px to Max width 1355px */
+@media only screen and (min-width: 1200px) and (max-width: 1355px) {}
+
+/* Min width 1550px */
+@media only screen and (min-width: 1550px) {}

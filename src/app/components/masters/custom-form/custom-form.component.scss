@@ -1,0 +1,25 @@
+@import "../../pages/dashboard/dashboard.component.scss";
+
+:host ::ng-deep {
+  .flex {
+    .p-button {
+      margin-top: 10px;
+    }
+  }
+
+  @media (min-width: 370px) {
+    .flex {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+
+      .p-button {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+:host ::ng-deep .p-datatable-responsive-scroll > .p-datatable-wrapper {
+  min-height: 56vh;
+}

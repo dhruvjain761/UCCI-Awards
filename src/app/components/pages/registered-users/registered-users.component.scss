@@ -1,0 +1,152 @@
+@import '../dashboard/dashboard.component.scss';
+// @import '/src/app/components/pages/dashboard/dashboard-my-profile/dashboard-my-profile.component.scss';
+
+.profile-box {
+  max-width: 300px;
+  position: relative;
+  border-radius: 5px;
+
+  img {
+    border-radius: 5px;
+  }
+
+  .file-upload {
+    display: inline-block;
+    position: absolute;
+    left: 15px;
+    bottom: 15px;
+
+    .inputfile {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+    }
+
+    .inputfile+label {
+      color: var(--blackColor);
+      background-color: var(--whiteColor);
+      display: inline-block;
+      margin-bottom: 0;
+      transition: var(--transition);
+      padding: 10px 25px 9px 48px;
+      position: relative;
+      border-radius: 30px;
+
+      font: {
+        size: var(--fontSize);
+        weight: 600;
+      }
+
+      ;
+    }
+
+    i {
+      position: absolute;
+      left: 25px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16.5px;
+      margin-top: -.5px;
+    }
+
+    .inputfile:focus+label,
+    .inputfile+label:hover {
+      background-color: var(--mainColor);
+      color: var(--whiteColor);
+    }
+
+    .inputfile+label {
+      cursor: pointer;
+    }
+  }
+}
+
+:host ::ng-deep {
+  .flex {
+    .p-button {
+      margin-top: 10px;
+    }
+  }
+
+  @media (min-width: 370px) {
+    .flex {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+
+      .p-button {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+:host ::ng-deep .p-datatable-responsive-scroll>.p-datatable-wrapper {
+  min-height: 61vh;
+}
+
+:host ::ng-deep .p-cell-editing {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+:host ::ng-deep .p-inputtext {
+  background-color: #f9f9f9;
+  height: 30px;
+  width: 100%;
+  font-size: 0.8rem;
+}
+
+:host ::ng-deep {
+  .p-paginator .p-dropdown .p-dropdown-label {
+    height: 100%;
+    font-size: 1rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .p-dropdown .p-dropdown-trigger {
+    background-color: #f9f9f9 !important;
+  }
+}
+
+.form-group {
+  margin-bottom: 5px;
+
+  input {
+    margin-top: 5px;
+  }
+}
+
+.dialog-footer {
+  border-top: 1px solid #e9ecef;
+  background: #ffffff;
+  color: #212529;
+  padding: 1rem;
+  text-align: right;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  margin-top: 10px;
+
+  button {
+    margin: 0 0.3rem 0 0;
+    width: auto;
+    color: var(--mainColor);
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 5px;
+
+    &:hover {
+      color: var(--mainColor);
+      background-color: rgba(25, 222, 222, 0.0941176471);
+      border-color: transparent;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgb(14 198 198 / 28%) !important;
+    }
+  }
+}

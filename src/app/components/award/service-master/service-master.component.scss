@@ -1,0 +1,51 @@
+@import "../../pages/dashboard/dashboard.component.scss";
+
+
+:host ::ng-deep {
+  .flex {
+    .p-button {
+      margin-top: 10px;
+    }
+  }
+
+  @media (min-width: 370px) {
+    .flex {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+
+      .p-button {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+:host ::ng-deep .p-datatable-responsive-scroll>.p-datatable-wrapper {
+  min-height: 45vh;
+}
+
+:host ::ng-deep .p-cell-editing {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+:host ::ng-deep .p-inputtext {
+  background-color: #f9f9f9;
+  height: 30px;
+  width: 100%;
+  font-size: 0.8rem;
+}
+
+:host ::ng-deep {
+  .p-paginator .p-dropdown .p-dropdown-label {
+    height: 100%;
+    font-size: 1rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .p-dropdown .p-dropdown-trigger {
+    background-color: #f9f9f9 !important;
+  }
+}

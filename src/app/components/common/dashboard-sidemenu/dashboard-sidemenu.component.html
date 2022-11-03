@@ -1,0 +1,80 @@
+<!-- Start Sidemenu Area -->
+
+<!-- =====================  for admin role dashboard  ======================== -->
+<ng-container *ngIf="localStorage.role == 'Admin'">
+    <div class="sidemenu-area">
+        <div class="sidemenu-header" style="visibility:hidden">
+            <a routerLink="/dashboard" class="navbar-brand d-flex align-items-center">
+                <img src="https://ucciudaipur.com/wp-content/uploads/2021/11/ucci-logo-update-2.png" alt="logo">
+                <!-- <img src="assets/img/black-logo.png" alt="image"> -->
+            </a>
+            <div class="responsive-burger-menu d-block d-lg-none">
+                <span class="top-bar"></span>
+                <span class="middle-bar"></span>
+                <span class="bottom-bar"></span>
+            </div>
+        </div>
+        <div class="sidemenu-body">
+            <ul class="sidemenu-nav metisMenu h-100" id="sidemenu-nav" data-simplebar>
+                <li class="nav-item-title">
+                    Award Service
+                </li>
+                <li class="nav-item" routerLinkActive="active mm-active">
+                    <a routerLink="/award-configuration" class="nav-link">
+                        <span class="icon"><i class='bx bx-home-circle'></i></span>
+                        <span class="menu-title">Award Configuration</span>
+                    </a>
+                </li>
+                <li class="nav-item" routerLinkActive="active mm-active">
+                    <a routerLink="/registered-user" class="nav-link">
+                        <span class="icon"><i class='bx bx-home-circle'></i></span>
+                        <span class="menu-title">Registered User</span>
+                    </a>
+                </li>
+                <!-- <li class="nav-item-title">
+                    Award Service
+                </li> -->
+                <!-- <li class="nav-item" routerLinkActive="active mm-active">
+                    <a routerLink="/award-category" class="nav-link">
+                        <span class="icon"><i class='bx bx-home-circle'></i></span>
+                        <span class="menu-title">Award Category</span>
+                    </a>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+</ng-container>
+<!-- <ng-container *ngIf="localStorage.role == 'Admin'">
+
+</ng-container> -->
+
+<!-- =====================  for nominee role dashboard  ======================== -->
+<ng-container *ngIf="localStorage.role == 'User'">
+    <div class="sidemenu-area">
+        <div class="sidemenu-header" style="visibility:hidden">
+            <a routerLink="/dashboard" class="navbar-brand d-flex align-items-center">
+                <img src="https://ucciudaipur.com/wp-content/uploads/2021/11/ucci-logo-update-2.png" alt="logo">
+                <!-- <img src="assets/img/black-logo.png" alt="image"> -->
+            </a>
+            <div class="responsive-burger-menu d-block d-lg-none">
+                <span class="top-bar"></span>
+                <span class="middle-bar"></span>
+                <span class="bottom-bar"></span>
+            </div>
+        </div>
+        <div class="sidemenu-body">
+            <ul class="sidemenu-nav metisMenu h-100" id="sidemenu-nav" data-simplebar>
+                <!-- <li class="nav-item-title">
+                    Main
+                </li> -->
+                <li class="nav-item" routerLinkActive="active mm-active">
+                    <a routerLink="/registered-user" class="nav-link">
+                        <span class="icon"><i class='bx bx-home-circle'></i></span>
+                        <span class="menu-title">My Registrations</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</ng-container>
+<!-- End Sidemenu Area -->

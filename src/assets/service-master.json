@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "name": "Name 1",
+      "slug": "name1",
+      "sort_description": "Description 1"
+    },
+    {
+      "name": "Name 2",
+      "slug": "name2",
+      "sort_description": "Description 2"
+    },
+    {
+      "name": "Name 3",
+      "slug": "name3",
+      "sort_description": "Description 3"
+    }
+  ]
+}
