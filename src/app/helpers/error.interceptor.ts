@@ -45,7 +45,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           localStorage.removeItem('access_token');
         }
         if (err.status === 400) {
-          debugger;
+          // debugger;
           let message: any;
           if (err.error.error) {
             message = err.error.error;

@@ -56,21 +56,21 @@
                 <div>
                     <p-button type="button" class="ml-2" (click)="navigateToFormBuilder()" icon="bx bx-plus" label="Add"
                     iconPos="right"></p-button>
-                    <!-- <button type="submit" ><i class="fa fa-plus mx-1"></i>Add</button> -->
+                    <button type="submit" ><i class="fa fa-plus mx-1"></i>Add</button> -->
         <!-- </div>
             </div>
         </div> -->
-        <div class="theader">
-            <div class="flex">
-                <span class="p-input-icon-left ml-auto mr-2">
+        <div class="theader px-0">
+            <div class="flex align-items-center">
+                <span class="p-input-icon-left ml-auto d-flex align-items-center">
                     <i class="pi pi-search"></i>
                     <input pInputText type="text" (input)="dt2.filterGlobal($event.target.value, 'contains')"
                         placeholder="Search keyword" [(ngModel)]="filterVal" />
+                        <p-button type="button" class="ml-2" (click)="reset(dt2)" icon="bx bx-reset"></p-button>
                 </span>
                 <div>
-                    <p-button type="button" class="mr-2" routerLink="/form-builder" icon="bx bx-plus" label="Add"
+                    <p-button type="button" routerLink="/form-builder" icon="bx bx-plus" label="Add"
                         iconPos="right"></p-button>
-                    <p-button type="button" class="ml-2" (click)="reset(dt2)" icon="bx bx-reset"></p-button>
                 </div>
             </div>
         </div>
