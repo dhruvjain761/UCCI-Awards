@@ -79,6 +79,7 @@ import { ServiceMasterComponent } from './components/award/service-master/servic
 import { AwardCategoryComponent } from './components/masters/award-category/award-category.component';
 import { AwardConfigurationComponent } from './components/masters/award-configuration/award-configuration.component';
 import { RegisteredUsersComponent } from './components/pages/registered-users/registered-users.component';
+import { FormBuilderComponent } from './components/masters/form-builder/form-builder.component';
 // import { InterestAreaMasterComponent } from './components/masters/interest-area-master/interest-area-master.component';
 // import { SubcategoryMasterComponent } from './components/masters/marketplace-master/subcategory-master/subcategory-master.component';
 // import { CategoryMasterComponent } from './components/masters/marketplace-master/category-master/category-master.component';
@@ -144,11 +145,11 @@ const routes: Routes = [
   // {path: 'non-member-list', component:RegisteredNonMemberListComponent },
   // {path: 'certificate-of-origin-list', component: CertificateOfOriginListComponent},
   // {path: 'document-attestation-list', component: DocumentAttestationListComponent},
-  { path: 'custom-form', component: CustomFormComponent },
+  { path: 'custom-forms', component: CustomFormComponent },
   // {path: 'events-list', component: EventListingComponent},
   // {path: 'event-form', component: EventCreationFormComponent},
   // {path: 'event-form/:slug', component: EventCreationFormComponent},
-  // {path: 'form-builder', component: FormBuilderComponent},
+  {path: 'form-builder', component: FormBuilderComponent},
   // {path: 'form-builder/:slug', component: FormBuilderComponent},
   // Here add new pages component
 
