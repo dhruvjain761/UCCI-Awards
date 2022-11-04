@@ -239,6 +239,16 @@ p {
 
 /*form-control*/
 
+select {
+  &:focus {
+    background-color: #f9f9f9;
+  }
+
+  &.form-control {
+    padding: 0 33px 0 15px !important;
+  }
+}
+
 .form-control {
   border-radius: 0;
   background-color: #f5f5f5 !important;
@@ -2831,7 +2841,7 @@ textarea.form-control {
       .vesax-responsive-menu {
         &.mean-container {
           .mean-nav {
-            margin-top: 41px;
+            // margin-top: 74px !important;
           }
         }
       }
@@ -3259,7 +3269,18 @@ textarea.form-control {
       .vesax-responsive-menu {
         &.mean-container {
           .mean-nav {
-            margin-top: 41px;
+            margin-top: 74px;
+
+            ul:first-child {
+              border-top: 3px solid var(--mainColor) !important;
+
+              li:first-child {
+                a {
+                  border-top: none;
+                }
+              }
+            }
+
           }
         }
       }
@@ -3747,7 +3768,7 @@ select {
 
   &:focus {
     border-color: var(--mainColor);
-    background-color: transparent;
+    // background-color: transparent;
   }
 }
 
@@ -4980,6 +5001,32 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+// .p-toast .p-toast-message .p-toast-message-content{
+//   display: flex;
+//   align-items: center;
+
+//   .p-toast-detail {
+//     margin: 0;
+//   }
+// }
+.p-toast {
+  .p-toast-message {
+    .p-toast-message-content {
+      align-items: center;
+
+      .p-toast-detail {
+        margin: 0 !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 575.5px) {
+  .p-toast .p-toast-message {
+    width: 100%;
+  }
 }
 
 /*------ Dhruv Css Ends ------*/

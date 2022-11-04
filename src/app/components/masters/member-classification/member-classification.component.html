@@ -1,4 +1,6 @@
-<p-toast></p-toast>
+<p-toast
+    [breakpoints]="{'575px': {width: '100%', right: '0', left: '0', display: 'flex', 'justify-content': 'center', 'align-items': 'center'}}">
+</p-toast>
 <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text">
 </p-confirmDialog>
 <app-spinner [msg]="spinnerMsg"></app-spinner>

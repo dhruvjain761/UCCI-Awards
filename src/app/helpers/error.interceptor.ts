@@ -45,7 +45,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           localStorage.removeItem('access_token');
         }
         if (err.status === 400) {
-          debugger;
+          // debugger;
           let message: any;
           if (err.error.error) {
             message = err.error.error;
@@ -53,6 +53,8 @@ export class ErrorInterceptor implements HttpInterceptor {
             message = err.error.message;
           } else if (err.error.password) {
             message = err.error.password;
+          } else if (err.error.email) {
+            message = err.error.email;
           }
           if (Object.values(err.error)[0][0]) {
             this.messageService.add({
@@ -61,12 +63,14 @@ export class ErrorInterceptor implements HttpInterceptor {
               // detail: Object.values(err.error)[0][0],
 
               detail: message,
+              // sticky: true,
             });
           } else if (err.error.message.email) {
             this.messageService.add({
               severity: 'error',
 
               // summary: 'error',
+              // sticky: true,
               detail: err.error.message.email,
             });
           } else if (err.error) {
@@ -78,7 +82,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           } else {
             this.messageService.add({
               severity: 'error',
-              summary: 'error',
+              // summary: 'error',
               detail: err.error.message.email,
             });
           }
@@ -87,7 +91,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           if (err.error) {
             this.messageService.add({
               severity: 'error',
-              summary: 'error',
+              // summary: 'error',
               detail: err.error.message || err.statusText,
             });
           }
@@ -96,7 +100,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           if (err.error) {
             this.messageService.add({
               severity: 'error',
-              summary: 'error',
+              // summary: 'error',
               detail: err.error.message || err.statusText,
             });
           }
@@ -105,7 +109,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           if (err.error) {
             this.messageService.add({
               severity: 'error',
-              summary: 'error',
+              // summary: 'error',
               detail: err.error.message || err.statusText,
             });
           }

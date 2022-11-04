@@ -42,9 +42,13 @@ export class HomeDemoOneComponent implements OnInit {
 
   service: any = [];
 
+  passwordState: boolean = false;
   registerForm = this.fb.group({
     name: ['', [Validators.required]],
-    mobile_no: ['', [Validators.required]],
+    mobile_no: [
+      '',
+      [Validators.required, Validators.maxLength(10), Validators.minLength(10)],
+    ],
     email: ['', [Validators.required, Validators.email]],
     company_name: ['', Validators.required],
     company_GST: [''],
@@ -81,9 +85,11 @@ export class HomeDemoOneComponent implements OnInit {
   ngOnInit(): void {
     // this.registerForm.get('company_GST').setValidators([Validators.required]);
     if (localStorage.getItem('access_token')) {
+      // debugger;
       this.role = JSON.parse(localStorage?.getItem('access_token')).role;
+      this.router.navigateByUrl('/registered-user');
     }
-    console.log(this.role);
+    // console.log(this.role);
 
     // save user name or email in localstorage
     var access_token = localStorage.getItem('access_token');
@@ -104,6 +110,13 @@ export class HomeDemoOneComponent implements OnInit {
     this.getState();
   }
 
+  get c() {
+    return this.registerForm.controls;
+  }
+
+  onShowHidePasswordClick() {
+    this.passwordState = !this.passwordState;
+  }
   // user sign up function
   signUp(signupForm) {
     this.signUpSubmitted = true;
@@ -205,14 +218,14 @@ export class HomeDemoOneComponent implements OnInit {
             this.saveAccessToken(res);
             this.localStorage = this.commonFunction.getLocalStorage();
 
-            if (this.localStorage.role == 'Admin')
-              setTimeout(() => {
-                this.router.navigateByUrl('/dashboard');
-                this.spinner.hide();
-              }, 1500);
-            else if (this.localStorage.role != 'Admin')
-              this.router.navigateByUrl('/dashboard');
-            this.spinner.hide();
+            // if (this.localStorage.role == 'Admin')
+            setTimeout(() => {
+              this.router.navigateByUrl('/registered-user');
+              this.spinner.hide();
+            }, 1500);
+            // else if (this.localStorage.role != 'Admin')
+            //   this.router.navigateByUrl('/dashboard');
+            // this.spinner.hide();
           }
         },
         (error: HttpErrorResponse) => {
@@ -257,17 +270,18 @@ export class HomeDemoOneComponent implements OnInit {
   logout() {
     this.spinner.show();
     this.spinnerMsg = 'Loging Out';
-    debugger;
-    localStorage.removeItem('access_token');
-    this.messageService.add({
-      severity: 'success',
-      // summary: 'success',
-      detail: '',
-    });
-    this.spinner.hide();
+    // debugger;
+
     setTimeout(() => {
+      localStorage.removeItem('access_token');
+      this.messageService.add({
+        severity: 'success',
+        // summary: 'success',
+        detail: '',
+      });
       this.router.navigateByUrl('/');
-    }, 1500);
+      this.spinner.hide();
+    }, 2000);
     this.userName = '';
     this.localStorage = this.commonFunction.getLocalStorage();
     // this.apiservice.logoutUser().subscribe
@@ -316,7 +330,7 @@ export class HomeDemoOneComponent implements OnInit {
   // }
 
   onEmailEnter(event) {
-    console.log('dwqasw');
+    // console.log('dwqasw');
 
     if (event.target.value === '' || event.target.value === null) {
       this.blankEmailState = true;
@@ -399,32 +413,20 @@ export class HomeDemoOneComponent implements OnInit {
     }
   }
 
-  get gstNo() {
-    return this.registerForm.get('company_GST');
-  }
-
   onGstTypeSelection(string: any) {
     console.log(this.registerForm.value.gst_type);
     this.gstType = string;
 
     if (string == 'nonRegistered') {
-      console.log(string);
-      // this.gstNo.clearValidators();
-      // this.gstNo.updateValueAndValidity();
       this.registerForm.controls['company_GST'].clearValidators();
       this.registerForm.controls['company_GST'].updateValueAndValidity();
-      // this.registerForm.controls['company_GST'].clearValidators();
+
+      this.registerForm.patchValue({ company_GST: '' });
     } else if (string == 'registered') {
-      console.log(string);
-      // this.gstNo.setValidators([Validators.required]);
-      // this.gstNo.updateValueAndValidity();
       this.registerForm.controls['company_GST'].setValidators(
         Validators.required
       );
       this.registerForm.controls['company_GST'].updateValueAndValidity();
-      // this.registerForm.controls['company_GST'].addValidators([
-      //   Validators.required,
-      // ]);
     }
   }
 }
