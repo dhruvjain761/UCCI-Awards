@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import './assets/css/variables/variable.scss';
 
 :root {
   --fontFamily: "Work Sans", sans-serif;
@@ -14,8 +15,8 @@
 
 // Veriables
 
-$border: 1px solid rgb(192 179 179);
-$shadow-color: #0ec6c647;
+
+
 
 body {
   padding: 0;
@@ -3525,6 +3526,39 @@ textarea.form-control {
 .p-paginator .p-paginator-next,
 .p-paginator .p-paginator-last {
   color: var(--mainColor);
+}
+
+.p-inputnumber {
+  width: 100%;
+}
+
+.p-dialog-header {
+  align-items: flex-end;
+}
+
+.p-inputnumber-input {
+  height: 30px;
+  background-color: #f9f9f9f9;
+  font-size: $font-size;
+  margin-top: 5px;
+  width: 100%;
+  border: none;
+}
+
+.p-checkbox .p-checkbox-box.p-highlight {
+  border-color: var(--mainColor) !important;
+  background: var(--mainColor) !important;
+}
+
+// .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
+  box-shadow: 0 0 0 0.2rem $shadow-color !important;
+  border-color: var(--mainColor) !important;
+}
+
+p-inputnumber {
+  display: block !important;
+  width: 100%;
 }
 
 .p-column-filter-menu-button.p-column-filter-menu-button-active,

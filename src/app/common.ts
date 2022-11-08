@@ -1,24 +1,22 @@
 import { Injectable, OnInit } from '@angular/core';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class CommonClass implements OnInit {
-    ngOnInit() {
+  ngOnInit() {}
+  getLocalStorage() {
+    let local_id = localStorage.getItem('award_access_token');
+    if (local_id) {
+      // console.log(local_id)
+      return JSON.parse(local_id);
     }
-    getLocalStorage() {
-        let local_id = localStorage.getItem('access_token');
-        if (local_id) {
-            // console.log(local_id)
-            return JSON.parse(local_id);
-        }
+  }
+  inputMobile(event: any) {
+    if (event.keyCode != 8) {
+      if (!/^[0-9]$/.test(event.key)) {
+        event.preventDefault();
+      }
     }
-    inputMobile(event: any) {
-        if (event.keyCode != 8) {
-            if (!/^[0-9]$/.test(event.key)) {
-                event.preventDefault();
-            }
-        }
-    }
+  }
 }

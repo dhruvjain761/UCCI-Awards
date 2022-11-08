@@ -153,6 +153,8 @@ import { AwardConfigurationComponent } from './components/masters/award-configur
 import { RegisteredUsersComponent } from './components/pages/registered-users/registered-users.component';
 import { AwardCategoryComponent } from './components/masters/award-category/award-category.component';
 import { FormBuilderComponent } from './components/masters/form-builder/form-builder.component';
+import { AdminLoginComponent } from './components/pages/admin-login/admin-login.component';
+import { SuccessPageComponent } from './components/pages/success-page/success-page.component';
 // import { LibFBModule } from 'libFB';
 // import { InterestAreaMasterComponent } from './components/masters/interest-area-master/interest-area-master.component';
 // import { CategoryMasterComponent } from './components/masters/marketplace-master/category-master/category-master.component';
@@ -288,6 +290,8 @@ const ngWizardConfig: NgWizardConfig = {
     RegisteredUsersComponent,
     AwardCategoryComponent,
     FormBuilderComponent,
+    AdminLoginComponent,
+    SuccessPageComponent,
     // InterestAreaMasterComponent,
     // CategoryMasterComponent,
     // SubcategoryMasterComponent,

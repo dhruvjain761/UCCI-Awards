@@ -52,8 +52,8 @@
             <select formControlName="category"
               [class.is-invalid]="(form.submitted && awardConfigForm.get('category')?.invalid) || awardConfigForm.get('category')?.invalid && awardConfigForm.get('category')?.touched">
               <option [value]="null" disabled>Please select classification category</option>
-              <option [value]="item.key" *ngFor="let item of classification | groupByPipe : 'category'">
-                {{item.key}}
+              <option [value]="item.name" *ngFor="let item of classification | groupByPipe : 'category'">
+                {{item.name}}
               </option>
             </select>
             <!-- <div class="invalid-feedback">Name is required</div> -->
@@ -72,23 +72,63 @@
             <div class="invalid-feedback">Service is required</div>
           </div>
         </div> -->
+        <!-- <select formControlName="turnover_id"
+          [class.is-invalid]="(form.submitted && awardConfigForm.get('turnover_id')?.invalid) || awardConfigForm.get('turnover_id')?.invalid && awardConfigForm.get('turnover_id').touched">
+          <option [value]="null" disabled>Please select turnover</option>
+          <option [ngValue]="item.id" *ngFor="let item of turnover">{{item?.component}}
+          </option>
+        </select> -->
         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-          <div class="form-group">Turnover <span style="color: red;">*</span>:
+          <div class="form-group">Minimum Turnover <span style="color: red;">*</span>:
 
-            <select formControlName="turnover_id"
-              [class.is-invalid]="(form.submitted && awardConfigForm.get('turnover_id')?.invalid) || awardConfigForm.get('turnover_id')?.invalid && awardConfigForm.get('turnover_id').touched">
-              <option [value]="null" disabled>Please select turnover</option>
-              <option [ngValue]="item.id" *ngFor="let item of turnover">{{item?.component}}
-              </option>
-            </select>
-            <!-- <input type="text" class="form-control" placeholder="Description" formControlName="turnover_id" required
-              [class.is-invalid]="(form.submitted && awardConfigForm.get('turnover_id')?.invalid) || awardConfigForm.get('turnover_id')?.invalid && awardConfigForm.get('turnover_id').touched"> -->
-            <div class="invalid-feedback">Turnover is required</div>
+            <p-inputNumber inputId="locale-indian" mode="decimal" locale="en-IN" prefix="₹"
+              placeholder="Minimum Turnover" formControlName="min_turnover" required [class.is-invalid]="
+              (form.submitted && awardConfigForm.get('min_turnover')?.invalid) ||
+                                  awardConfigForm.get('min_turnover')?.invalid &&
+                                  awardConfigForm.get('min_turnover').touched">
+            </p-inputNumber>
+            <div *ngIf="form.submitted &&
+                        f.min_turnover.errors?.required ||
+                        f.min_turnover.touched" class="alert
+                        alert-danger">
+              <div *ngIf="f.min_turnover.errors?.required">
+                Mininum turnover is required
+              </div>
+              <div *ngIf="f.min_turnover.errors?.min" class="alert
+                                            alert-danger">
+                Turnover required upto 1 lakh or more than 1 lakh
+              </div>
+            </div>
+            <!-- <div class="invalid-feedback">Minimum turnover is required</div> -->
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+          <div class="form-group">Maximum Turnover <span style="color: red;">*</span>:
+
+            <p-inputNumber inputId="locale-indian" mode="decimal" locale="en-IN" prefix="₹"
+              placeholder="Maximum Turnover" formControlName="max_turnover" required [class.is-invalid]="
+              (form.submitted && awardConfigForm.get('max_turnover')?.invalid) ||
+                                  awardConfigForm.get('max_turnover')?.invalid &&
+                                  awardConfigForm.get('max_turnover').touched">
+            </p-inputNumber>
+            <div *ngIf="form.submitted &&
+                        f.max_turnover.errors?.required ||
+                        f.max_turnover.touched" class="alert
+                        alert-danger">
+              <div *ngIf="f.max_turnover.errors?.required">
+                Maximum turnover is required
+              </div>
+              <div *ngIf="f.max_turnover.errors?.min" class="alert
+                                            alert-danger">
+                Turnover required upto 1 lakh or more than 1 lakh
+              </div>
+            </div>
+            <!-- <div class="invalid-feedback">Minimum turnover is required</div> -->
           </div>
         </div>
 
         <!-- <div class="col-lg-1 col-md-4 col-sm-4 col-xs-12"></div> -->
-        <div class="col-lg-3 col-md-2 col-sm-2 col-xs-12" style="text-align: right;">
+        <div class="col-lg-12 col-md-2 col-sm-2 col-xs-12" style="text-align: right;">
           <div class="add-listings-btn">
             <button type="submit">Add</button>
           </div>
@@ -123,7 +163,8 @@
               <th style="min-width: 160px;">Award Name</th>
               <!-- <th style="min-width: 130px;">Award Service</th> -->
               <th style="min-width: 130px;">Classification Category</th>
-              <th style="min-width: 130px;">Turnover</th>
+              <th style="min-width: 130px;">Minimum Turnover</th>
+              <th style="min-width: 130px;">Maximum Turnover</th>
               <!-- <th style="min-width: 100px;">Action</th> -->
             </tr>
           </ng-template>
@@ -174,7 +215,17 @@
                     <input pInputText type="text" [(ngModel)]="item.turnover.component" required>
                   </ng-template>
                   <ng-template pTemplate="output">
-                    {{item.turnover?.component}}
+                    {{item.min_turnover}}
+                  </ng-template>
+                </p-cellEditor>
+              </td>
+              <td>
+                <p-cellEditor editingRowKeys="item.id">
+                  <ng-template pTemplate="input">
+                    <input pInputText type="text" [(ngModel)]="item.turnover.component" required>
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{item.max_turnover}}
                   </ng-template>
                 </p-cellEditor>
               </td>

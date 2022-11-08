@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { CommonClass } from 'src/app/common';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -9,7 +9,7 @@ import { ApiService } from 'src/app/services/api.service';
   selector: 'app-registered-users',
   templateUrl: './registered-users.component.html',
   styleUrls: ['./registered-users.component.scss'],
-  providers: [MessageService],
+  providers: [MessageService, ConfirmationService],
 })
 export class RegisteredUsersComponent implements OnInit {
   breadcrumb: any[];
@@ -34,13 +34,15 @@ export class RegisteredUsersComponent implements OnInit {
   });
   status: string;
   localStorage: any;
+  selectedUser: any[] = [];
 
   constructor(
     private apiService: ApiService,
     private fb: FormBuilder,
     private spinner: NgxSpinnerService,
     private messageService: MessageService,
-    private commonFunction: CommonClass
+    private commonFunction: CommonClass,
+    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
@@ -81,7 +83,36 @@ export class RegisteredUsersComponent implements OnInit {
     if (item.status === 'Pending') {
       this.id = item.id;
       this.status = status;
-      this.statusModal = true;
+      // this.statusModal = true;
+      let approvedId = [];
+      this.confirmationService.confirm({
+        message: 'Are you sure you want to approve this application?',
+        accept: () => {
+          this.spinner.show();
+          let id = this.id;
+          approvedId.push({ id });
+
+          console.log(approvedId);
+
+          let obj: any = {
+            // queue_approval: true,
+            award_registrations: approvedId,
+            status: 'Approved',
+          };
+          console.log(obj);
+
+          this.apiService.updateStatus(obj).subscribe((res: any) => {
+            console.log(res);
+            this.selectedUser = [];
+            this.spinner.hide();
+            this.messageService.add({
+              severity: 'success',
+              detail: res.message,
+            });
+            this.getUsers();
+          });
+        },
+      });
     }
 
     if (status === 'approve') {
@@ -102,20 +133,23 @@ export class RegisteredUsersComponent implements OnInit {
     }
     // debugger;
     if (this.statusForm.valid) {
+      let rejectObj = {
+        award_registrations: [{ id: this.id }],
+        status: this.statusForm.value.status,
+        remark: this.statusForm.value.remark,
+      };
       this.spinner.show();
-      this.apiService
-        .updateStatus(this.id, this.statusForm.value)
-        .subscribe((res: any) => {
-          console.log(res);
-          this.statusModal = false;
-          form.resetForm();
-          this.getUsers();
-          this.spinner.hide();
-          this.messageService.add({
-            severity: 'success',
-            detail: res.message,
-          });
+      this.apiService.updateStatus(rejectObj).subscribe((res: any) => {
+        console.log(res);
+        this.statusModal = false;
+        form.resetForm();
+        this.getUsers();
+        this.spinner.hide();
+        this.messageService.add({
+          severity: 'success',
+          detail: res.message,
         });
+      });
     } else if (this.statusForm.invalid) {
       this.messageService.add({
         severity: 'error',
@@ -150,5 +184,223 @@ export class RegisteredUsersComponent implements OnInit {
     this.displayMaximizable = true;
 
     console.log(this.details);
+  }
+
+  // Email sending function
+
+  onMailSentPress(item: any) {
+    console.clear();
+    console.log(item);
+  }
+
+  // Approve in bulk
+
+  bulkApproval() {
+    // debugger;
+    if (this.selectedUser.length !== 0) {
+      // let approvalObj = [
+      //   award_registrations: [{
+      //     id: 1
+      //   }]
+      // ]
+      let approvedId = [];
+      this.confirmationService.confirm({
+        message: 'Are you sure to approve to selected users?',
+        accept: () => {
+          this.spinner.show();
+          this.selectedUser.forEach((element) => {
+            if (
+              element.status !== 'Approved' &&
+              element.status !== 'Rejected'
+            ) {
+              var id = element.id;
+              approvedId.push({ id });
+            }
+          });
+
+          console.log(approvedId);
+
+          let obj: any = {
+            // queue_approval: true,
+            award_registrations: approvedId,
+            status: 'Approved',
+          };
+          console.log(obj);
+
+          this.apiService.updateStatus(obj).subscribe((res: any) => {
+            console.log(res);
+            this.selectedUser = [];
+            this.getUsers();
+            this.spinner.hide();
+            this.messageService.add({
+              severity: 'success',
+              detail: res.message,
+            });
+          });
+        },
+        // reject: ()
+      });
+    } else if (this.selectedUser.length === 0) {
+      this.messageService.add({
+        severity: 'error',
+        // summary: 'Error',
+        detail: 'Please select at least one field',
+      });
+    }
+    // this.apiService.postBulkApproval()
+  }
+
+  // Bulk reject
+  bulkReject() {
+    // debugger;
+    if (this.selectedUser.length !== 0) {
+      // let approvalObj = [
+      //   award_registrations: [{
+      //     id: 1
+      //   }]
+      // ]
+      let approvedId = [];
+      this.confirmationService.confirm({
+        message: 'Are you sure to reject to selected users?',
+        accept: () => {
+          this.spinner.show();
+          this.selectedUser.forEach((element) => {
+            if (
+              element.status !== 'Approved' &&
+              element.status !== 'Rejected'
+            ) {
+              var id = element.id;
+              approvedId.push({ id });
+            }
+          });
+
+          console.log(approvedId);
+
+          let obj: any = {
+            // queue_approval: true,
+            award_registrations: approvedId,
+            status: 'Rejected',
+          };
+          console.log(obj);
+
+          this.apiService.updateStatus(obj).subscribe((res: any) => {
+            console.log(res);
+            this.selectedUser = [];
+            this.spinner.hide();
+            this.messageService.add({
+              severity: 'success',
+              detail: res.message,
+            });
+            this.getUsers();
+          });
+        },
+        // reject: ()
+      });
+    } else if (this.selectedUser.length === 0) {
+      this.messageService.add({
+        severity: 'error',
+        // summary: 'Error',
+        detail: 'Please select at least one field',
+      });
+    }
+    // this.apiService.postBulkApproval()
+  }
+
+  // Bulk email sending function
+
+  sendEmail(string: string, item: any) {
+    if (string === 'bulk') {
+      if (this.selectedUser.length !== 0) {
+        // let approvalObj = [
+        //   award_registrations: [{
+        //     id: 1
+        //   }]
+        // ]
+        let approvedId = [];
+        var emailBoolean: boolean = false;
+        this.selectedUser.forEach((element) => {
+          if (element.status == 'Pending' || element.status == 'In Progress') {
+            // debugger;
+            emailBoolean = true;
+            // return false;
+          } else {
+            var id = element.id;
+            approvedId.push({ id });
+          }
+        });
+        console.log(emailBoolean);
+        this.confirmationService.confirm({
+          message: 'Are you sure to send mail to selected users?',
+          accept: () => {
+            this.spinner.show();
+            if (emailBoolean == true) {
+              this.spinner.hide();
+              this.selectedUser = [];
+              this.messageService.add({
+                severity: 'error',
+                detail: 'Pending status',
+              });
+            } else {
+              console.log(approvedId);
+
+              let obj: any = {
+                // queue_approval: true,
+                emails: approvedId,
+              };
+              console.log(obj);
+
+              this.apiService.postBulkApproval(obj).subscribe((res: any) => {
+                console.log(res);
+                this.selectedUser = [];
+                this.spinner.hide();
+                this.messageService.add({
+                  severity: 'success',
+                  detail: res.message,
+                });
+                this.getUsers();
+              });
+            }
+          },
+          // reject: ()
+        });
+      } else if (this.selectedUser.length === 0) {
+        this.messageService.add({
+          severity: 'error',
+          // summary: 'Error',
+          detail: 'Please select at least one field',
+        });
+      }
+    } else if (string === 'single') {
+      if (item.status === 'Approved' || item.status === 'Rejected') {
+        let approvedId = [];
+        this.confirmationService.confirm({
+          message: 'Are you sure to send mail to selected user?',
+          accept: () => {
+            this.spinner.show();
+            let id = item.id;
+            approvedId.push({ id });
+
+            console.log(approvedId);
+
+            let obj: any = {
+              // queue_approval: true,
+              emails: approvedId,
+            };
+            console.log(obj);
+
+            this.apiService.postBulkApproval(obj).subscribe((res: any) => {
+              console.log(res);
+              this.selectedUser = [];
+              this.spinner.hide();
+              this.messageService.add({
+                severity: 'success',
+                detail: res.message,
+              });
+              // this.getUsers();
+            });
+          },
+        });
+      }
+    }
   }
 }

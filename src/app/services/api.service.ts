@@ -24,6 +24,18 @@ export class ApiService {
     return this.http.post('logout');
   }
 
+  // Generate otp
+
+  generateOTP(modal: any): Observable<any> {
+    return this.http.post('generateOTP', modal);
+  }
+
+  // Login with otp
+
+  checkOTP(modal: any): Observable<any> {
+    return this.http.post('checkOTP', modal);
+  }
+
   // refresh token api
   refreshTOken(): Observable<any> {
     return this.http.post('refresh');
@@ -63,8 +75,14 @@ export class ApiService {
     return this.http.get('awardsregistration');
   }
 
-  updateStatus(id: number, modal: any): Observable<any> {
-    debugger;
-    return this.http.put(`awardsregistration/update/${id}`, modal);
+  updateStatus(modal: any): Observable<any> {
+    // debugger;
+    return this.http.post(`awardsregistration/update`, modal);
+  }
+
+  // Send bulk approval
+
+  postBulkApproval(modal: any): Observable<any> {
+    return this.http.post('awardsregistration/sendMail', modal);
   }
 }

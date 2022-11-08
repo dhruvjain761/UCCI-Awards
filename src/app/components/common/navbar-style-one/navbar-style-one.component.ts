@@ -49,18 +49,21 @@ export class NavbarStyleOneComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.role = JSON.parse(localStorage.getItem('access_token')).role;
-    // save user name or email in localstorage
-    var access_token = localStorage.getItem('access_token');
-    if (access_token && access_token != 'undefined') {
-      this.userName = JSON.parse(localStorage.getItem('access_token')).username;
-      this.userEmail = JSON.parse(
-        localStorage.getItem('access_token')
-      ).useremail;
-    }
-
     this.localStorage = '';
     this.localStorage = this.commonFunction.getLocalStorage();
+    if (localStorage.getItem('award_access_token')) {
+      this.role = JSON.parse(localStorage.getItem('award_access_token')).role;
+      // save user name or email in localstorage
+      var award_access_token = localStorage.getItem('award_access_token');
+      if (award_access_token && award_access_token != 'undefined') {
+        this.userName = JSON.parse(
+          localStorage.getItem('award_access_token')
+        ).username;
+        this.userEmail = JSON.parse(
+          localStorage.getItem('award_access_token')
+        ).useremail;
+      }
+    }
     // console.log(this.localStorage)
   }
 
@@ -226,10 +229,10 @@ export class NavbarStyleOneComponent implements OnInit, OnChanges {
   }
   // logout function
   logout() {
-    // console.log(localStorage.getItem('access_token'));
+    // console.log(localStorage.getItem('award_access_token'));
     this.spinner.show();
     this.spinnerMsg = 'Loging Out';
-    localStorage.removeItem('access_token');
+    localStorage.removeItem('award_access_token');
     this.messageService.add({
       severity: 'success',
       // summary: 'success',
@@ -244,7 +247,7 @@ export class NavbarStyleOneComponent implements OnInit, OnChanges {
     this.localStorage = this.commonFunction.getLocalStorage();
     // this.apiservice.logoutUser().subscribe(
     //   (res: any) => {
-    //     localStorage.removeItem('access_token');
+    //     localStorage.removeItem('award_access_token');
     //     this.messageService.add({
     //       severity: 'success',
     //       summary: 'success',
@@ -259,7 +262,7 @@ export class NavbarStyleOneComponent implements OnInit, OnChanges {
     //   this.spinner.hide();
     // if(error=='Unauthenticated.')
     //  {
-    //   localStorage.removeItem('access_token');
+    //   localStorage.removeItem('award_access_token');
     //  }
     // console.log(error)
     // }
@@ -269,12 +272,15 @@ export class NavbarStyleOneComponent implements OnInit, OnChanges {
 
   saveAccessToken(res: any) {
     var localStorageData = {
-      access_token: res.access_token,
+      award_access_token: res.award_access_token,
       username: res.user.name,
       useremail: res.user.email,
       role: res?.role[0],
     };
-    localStorage.setItem('access_token', JSON.stringify(localStorageData));
+    localStorage.setItem(
+      'award_access_token',
+      JSON.stringify(localStorageData)
+    );
     // localStorage.setItem("user_credentials", JSON.stringify(this.loginobj))
     this.userName = res.user.name;
   }

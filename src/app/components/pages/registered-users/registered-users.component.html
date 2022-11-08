@@ -2,6 +2,7 @@
 <p-toast
   [breakpoints]="{'575px': {width: '100%', right: '0', left: '0', display: 'flex', 'justify-content': 'center', 'align-items': 'center'}}">
 </p-toast>
+<p-confirmDialog [closable]="false" [title]="'Confirmation'"></p-confirmDialog>
 <app-dashboard-sidemenu></app-dashboard-sidemenu>
 
 <!-- ********************** Main Content ******************** -->
@@ -37,32 +38,52 @@
         </span>
         <p-button type="button" class="ml-2" (click)="reset(dt1)" icon="bx bx-reset"></p-button>
       </div>
+      <div class="d-flex" *ngIf="localStorage?.role=='Admin'">
+        <div class="add-listings-btn mr-2">
+          <button type="button" (click)="bulkApproval()"> Approve</button>
+        </div>
+        <div class="add-listings-btn mr-2">
+          <button type="button" (click)="bulkReject()"> Reject</button>
+        </div>
+        <div class="add-listings-btn">
+          <button type="button" (click)="sendEmail('bulk', 'bulk')"> Send Email</button>
+        </div>
+      </div>
     </div>
 
     <div class="row">
       <div class="col-lg-12 col-md-12">
         <p-table #dt1 [value]="users" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
-          styleClass="p-datatable-sm p-datatable-customers" [rowsPerPageOptions]="[10,25,50]" editMode="row"
-          responsiveLayout="scroll" [loading]="loading" [paginator]="true"
-          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-          [globalFilterFields]="['name', 'status', 'company_name', 'award.award_name']">
+          [(selection)]="selectedUser" styleClass="p-datatable-sm p-datatable-customers"
+          [rowsPerPageOptions]="[10,25,50]" editMode="row" responsiveLayout="scroll" [loading]="loading"
+          [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [globalFilterFields]="['name', 'status', 'company_name', 'award.award_name', 'category']">
           <ng-template pTemplate="header" style="min-height: 500px;">
             <tr>
               <th style="max-width: 100px; text-align: center;">S. No.</th>
+              <th *ngIf="localStorage?.role=='Admin'">
+                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+              </th>
               <th style="max-width: 170px; width: 170px;  text-align: center;">
-                Action
+                {{localStorage?.role=='Admin' ? 'Action' : 'View'}}
               </th>
               <th style="max-width: 150px; width: 150px;">Status</th>
-              <th style="min-width: 130px;">Contact Person</th>
-              <th style="min-width: 130px;">Company Name</th>
-              <th style="min-width: 130px;">Award Name</th>
+              <th style="min-width: 150px;">Contact Person</th>
+              <th style="min-width: 150px;">Organization Name</th>
+              <th style="min-width: 150px;">Award Name</th>
+              <th style="min-width: 150px;">Category</th>
+              <th style="min-width: 130px;" *ngIf="localStorage?.role=='Admin'">Email</th>
             </tr>
           </ng-template>
 
           <ng-template pTemplate="body" let-item let-i="rowIndex">
-            <tr>
+            <tr class="p-selectable-row">
               <td style="text-align: center;">{{i+1}}</td>
-              <td>
+              <td *ngIf="localStorage?.role=='Admin'">
+                <p-tableCheckbox [value]="item">
+                </p-tableCheckbox>
+              </td>
+              <td style="text-align: center;">
                 <button pButton pRipple class="p-button-rounded
                 p-button-text
                 p-button-info" (click)="onViewPress(item)" pTooltip="View" tooltipPosition="bottom">
@@ -75,8 +96,12 @@
                   p-button-danger p-button-text mr-2" (click)="onRejectPress(item, 'reject')"
                   [disabled]="item.status !== 'Pending'" *ngIf="localStorage?.role=='Admin'"></button>
               </td>
-              <td class="status"><span class="in-progress" *ngIf="item.status == 'Pending'">
+              <td class="status">
+                <span class="in-progress" *ngIf="item.status == 'Pending'">
                   {{item.status}}
+                </span>
+                <span class="in-progress" *ngIf="item.status == null">
+                  Pending
                 </span>
                 <span class="approved" *ngIf="item.status == 'Approved'">
                   {{item.status}}
@@ -88,6 +113,15 @@
               <td>{{item.name}}</td>
               <td>{{item.company_name}}</td>
               <td>{{item.award.award_name}}</td>
+              <td>{{item.category}}</td>
+              <td *ngIf="localStorage?.role=='Admin'">
+                <div class="add-listings-btn">
+                  <button type="button" (click)="sendEmail('single', item)"
+                    [disabled]="item.status === 'Pending' || item.status === 'In Progress'"><span
+                      class="bx bx-send"></span>
+                    Send</button>
+                </div>
+              </td>
             </tr>
           </ng-template>
         </p-table>
@@ -117,7 +151,7 @@
             </div>
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
-                <label>Company Name :</label>
+                <label>Organization Name :</label>
                 <input readonly class="form-control" [value]="data?.company_name | titlecase">
               </div>
             </div>
@@ -135,7 +169,7 @@
             </div>
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
-                <label>PAN No. :</label>
+                <label>PAN:</label>
                 <input readonly class="form-control" [value]="data?.company_PAN">
               </div>
             </div>
@@ -190,13 +224,13 @@
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
                 <label>Turnover :</label>
-                <input readonly class="form-control" [value]="data?.turnover?.component | titlecase">
+                <input readonly class="form-control" [value]="'₹ ' + data?.turnover">
               </div>
             </div>
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
-                <label>Award Category :</label>
-                <input readonly class="form-control" [value]="data?.award?.award_name | titlecase">
+                <label>Award Name :</label>
+                <input readonly class="form-control" [value]="data?.award?.award_name">
               </div>
             </div>
             <!-- <div class="col-lg-6 col-md-12">

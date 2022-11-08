@@ -2208,6 +2208,17 @@
     // }
 }
 
+.admin-link {
+    display: contents !important;
+    cursor: pointer;
+    user-select: none;
+}
+
+@media (max-width: 1198px) {
+    .admin-link {
+        display: contents !important;
+    }
+}
 
 /* Min width 1550px */
 

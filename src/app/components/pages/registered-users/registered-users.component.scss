@@ -113,6 +113,16 @@
   }
 }
 
+:host {
+  .add-listings-btn {
+    margin-top: 0;
+
+    button {
+      padding: 2px 13px;
+    }
+  }
+}
+
 .form-group {
   margin-bottom: 5px;
 
@@ -147,6 +157,14 @@
 
     &:focus {
       box-shadow: 0 0 0 0.2rem rgb(14 198 198 / 28%) !important;
+    }
+  }
+
+  .add-listings-btn {
+
+    button:disabled,
+    button[disabled] {
+      background-color: red !important;
     }
   }
 }

@@ -8,29 +8,32 @@ import { ApiService } from 'src/app/services/api.service';
   selector: 'app-dashboard-sidemenu',
   templateUrl: './dashboard-sidemenu.component.html',
   styleUrls: ['./dashboard-sidemenu.component.scss'],
-  providers:[MessageService]
+  providers: [MessageService],
 })
 export class DashboardSidemenuComponent implements OnInit {
-
-  localStorage:any;
-  constructor(private apiservice : ApiService, private messageService: MessageService, private router: Router, private commonFunction : CommonClass) { }
+  localStorage: any;
+  constructor(
+    private apiservice: ApiService,
+    private messageService: MessageService,
+    private router: Router,
+    private commonFunction: CommonClass
+  ) {}
 
   ngOnInit(): void {
-   this.localStorage = this.commonFunction.getLocalStorage();
-  //  console.log(this.localStorage)
+    this.localStorage = this.commonFunction.getLocalStorage();
+    //  console.log(this.localStorage)
   }
 
   logout() {
     this.apiservice.logoutUser().subscribe((res: any) => {
-      console.log(res,'resresres')
-      localStorage.removeItem('access_token')
+      console.log(res, 'resresres');
+      localStorage.removeItem('award_access_token');
       this.messageService.add({
         severity: 'success',
         summary: 'success',
-        detail: res.message
+        detail: res.message,
       });
       this.router.navigateByUrl('');
-    })
+    });
   }
-
 }

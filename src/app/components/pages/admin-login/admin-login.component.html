@@ -1,0 +1,120 @@
+<!-- <app-navbar-style-one></app-navbar-style-one>
+
+<app-homeone-banner></app-homeone-banner>
+
+<app-features></app-features> -->
+
+<!-- <app-homeone-listings></app-homeone-listings> -->
+
+<!-- <section class="category-area">
+    <app-category></app-category>
+</section> -->
+
+<!-- <app-homeone-destinations></app-homeone-destinations> -->
+
+<!-- <section class="feedback-area pt-100">
+    <app-feedback-style-one></app-feedback-style-one>
+</section> -->
+
+<!-- <section class="how-it-works-area pt-100 pb-70 bg-f9f9f9">
+    <app-how-it-works></app-how-it-works>
+</section> -->
+
+<!-- <app-homeone-blog></app-homeone-blog> -->
+
+<!-- <app-app-download></app-app-download>s -->
+
+<!-- <app-footer-style-one></app-footer-style-one> -->
+
+<!-- <section>
+    <div class="image-box">
+        <img src="/assets/img/UCCI/ucci.jpg" alt="">
+    </div>
+    <div class="content-box">
+        <div class="form-box">
+            <h2>Login</h2>
+
+            <form>
+                <div class="input-box">
+                    <span>User Name</span>
+                    <input type="text" placeholder="Please enter user name">
+                </div>
+                <div class="input-box">
+                    <span>Password</span>
+                    <input type="password" placeholder="Please enter password">
+                </div>
+                <div class="input-box">
+                    <input type="submit" value="Log in">
+                </div>
+                <div class="input-box">
+                    <p>Don't have an account? <a href="#">Sign Up.</a></p>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section> -->
+
+
+<!-- <div class="modal fade loginRegisterModal" id="loginRegisterModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"> -->
+<app-spinner></app-spinner>
+<p-toast
+  [breakpoints]="{'575px': {width: '100%', right: '0', left: '0', display: 'flex', 'justify-content': 'center', 'align-items': 'center'}}">
+</p-toast>
+<div class="main-content d-flex flex-column">
+  <app-navbar-style-one></app-navbar-style-one>
+  <div class="parallax">
+    <div class="overlay">
+      <div class="container custom-container">
+        <div class="modal-content">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+              <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button"
+                role="tab" aria-controls="login" aria-selected="true">Login</button>
+            </li>
+          </ul>
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="login" role="tabpanel">
+              <div class="vesax-login">
+                <!-- Login form -->
+                <form [formGroup]="loginForm" (ngSubmit)="loginIn()">
+                  <div class="form-group">Email<span class="requierdSign">*</span>:
+                    <input type="text" placeholder="Email" formControlName="loginemail" class="form-control">
+                    <div *ngIf="submitted &&
+                                                      g.loginemail.errors?.required ||
+                                                      g.loginemail.touched" class="alert alert-danger">
+                      <div *ngIf="g.loginemail.errors?.required">Email is required
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group" style="position: relative;">Password<span class="requierdSign">*</span>:
+                    <input [type]="passwordState == true ? 'text' : 'password'" formControlName="loginpassword"
+                      placeholder="Password" class="form-control">
+                    <div (click)="onShowHidePasswordClick()" [pTooltip]="passwordState == true ? 'Hide' : 'Show'"
+                      tooltipPosition="bottom" style="position: absolute; right: 10px; top: 34px; cursor: pointer;">
+                      <div *ngIf="passwordState == true ; else elseBlock">
+                        <span class="bx bx-hide" style="font-size: 1.2rem"></span>
+                      </div>
+                      <ng-template #elseBlock>
+                        <span class="bx bx-show" style="font-size: 1.2rem"></span>
+                      </ng-template>
+                    </div>
+
+                  </div>
+                  <button type="submit">Login Now</button>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <app-copyrights></app-copyrights>
+</div>
+<!-- </div>
+      </div> -->
