@@ -36,4 +36,11 @@ export class DashboardSidemenuComponent implements OnInit {
       this.router.navigateByUrl('');
     });
   }
+
+
+  navigate(slug?: any) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([(slug)]);
+  }
 }

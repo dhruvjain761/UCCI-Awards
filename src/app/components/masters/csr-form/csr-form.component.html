@@ -38,8 +38,8 @@
             <li class="item">{{Content.title}}</li>
         </ol>
     </div>
-    <div class="add-listings-box">
-        <lib-renderer></lib-renderer>
+    <div class="add-listings-box" *ngIf="sections.length > 0">
+        <lib-renderer [sections]="sections"></lib-renderer>
     </div>
     <!-- <lib-form-builder [buttonFields]="buttonFields" (formJson)="getJson($event)"></lib-form-builder> -->
     <!-- <lib-form-renderer *ngIf="jsonData" [jsonFormData]="jsonData"></lib-form-renderer> -->

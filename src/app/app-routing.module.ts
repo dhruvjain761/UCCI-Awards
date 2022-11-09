@@ -79,13 +79,10 @@ import { ServiceMasterComponent } from './components/award/service-master/servic
 import { AwardCategoryComponent } from './components/masters/award-category/award-category.component';
 import { AwardConfigurationComponent } from './components/masters/award-configuration/award-configuration.component';
 import { FormBuilderComponent } from './components/masters/form-builder/form-builder.component';
-<<<<<<< HEAD
-import { CsrFormComponent } from './components/masters/csr-form/csr-form.component';
-=======
 import { AdminLoginComponent } from './components/pages/admin-login/admin-login.component';
 import { RegisteredUsersComponent } from './components/pages/registered-users/registered-users.component';
 import { SuccessPageComponent } from './components/pages/success-page/success-page.component';
->>>>>>> 4023cf656aede47e9e95e531ba16ca36eb3b2957
+import { CsrFormComponent } from './components/masters/csr-form/csr-form.component';
 // import { InterestAreaMasterComponent } from './components/masters/interest-area-master/interest-area-master.component';
 // import { SubcategoryMasterComponent } from './components/masters/marketplace-master/subcategory-master/subcategory-master.component';
 // import { CategoryMasterComponent } from './components/masters/marketplace-master/category-master/category-master.component';
@@ -154,7 +151,7 @@ const routes: Routes = [
   // {path: 'certificate-of-origin-list', component: CertificateOfOriginListComponent},
   // {path: 'document-attestation-list', component: DocumentAttestationListComponent},
   { path: 'custom-forms', component: CustomFormComponent },
-  { path: 'CSR-form', component: CsrFormComponent },
+  { path: 'form-lib/:slug', component: CsrFormComponent },
   // {path: 'events-list', component: EventListingComponent},
   // {path: 'event-form', component: EventCreationFormComponent},
   // {path: 'event-form/:slug', component: EventCreationFormComponent},

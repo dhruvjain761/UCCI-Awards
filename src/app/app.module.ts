@@ -153,14 +153,11 @@ import { AwardConfigurationComponent } from './components/masters/award-configur
 import { RegisteredUsersComponent } from './components/pages/registered-users/registered-users.component';
 import { AwardCategoryComponent } from './components/masters/award-category/award-category.component';
 import { FormBuilderComponent } from './components/masters/form-builder/form-builder.component';
-<<<<<<< HEAD
 import {LibFBModule} from 'lib-fb';
 import { CsrFormComponent } from './components/masters/csr-form/csr-form.component';
-=======
 import { AdminLoginComponent } from './components/pages/admin-login/admin-login.component';
 import { SuccessPageComponent } from './components/pages/success-page/success-page.component';
 // import { LibFBModule } from 'libFB';
->>>>>>> 4023cf656aede47e9e95e531ba16ca36eb3b2957
 // import { InterestAreaMasterComponent } from './components/masters/interest-area-master/interest-area-master.component';
 // import { CategoryMasterComponent } from './components/masters/marketplace-master/category-master/category-master.component';
 // import { SubcategoryMasterComponent } from './components/masters/marketplace-master/subcategory-master/subcategory-master.component';
@@ -295,12 +292,9 @@ const ngWizardConfig: NgWizardConfig = {
     RegisteredUsersComponent,
     AwardCategoryComponent,
     FormBuilderComponent,
-<<<<<<< HEAD
     CsrFormComponent,
-=======
     AdminLoginComponent,
     SuccessPageComponent,
->>>>>>> 4023cf656aede47e9e95e531ba16ca36eb3b2957
     // InterestAreaMasterComponent,
     // CategoryMasterComponent,
     // SubcategoryMasterComponent,
