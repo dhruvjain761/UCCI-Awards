@@ -2,7 +2,20 @@
 <p-toast
   [breakpoints]="{'575px': {width: '100%', right: '0', left: '0', display: 'flex', 'justify-content': 'center', 'align-items': 'center'}}">
 </p-toast>
-<p-confirmDialog [closable]="false" [title]="'Confirmation'"></p-confirmDialog>
+<!-- <p-confirmDialog header="Confirmation" [style]="{width: '50vw'}" [baseZIndex]="10000"
+  rejectButtonStyleClass="p-button-text"> -->
+<!-- </p-confirmDialog> -->
+<p-confirmDialog #cd [style]="{width: '30vw'}">
+  <ng-template pTemplate="header">
+    <h5>Confirmation</h5>
+    <button pButton pRipple type="button" icon="pi pi-times" (click)="cd.close()"
+      class="p-button-rounded p-button-secondary p-button-text"></button>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <!-- <button type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button> -->
+    <button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
+  </ng-template>
+</p-confirmDialog>
 <app-dashboard-sidemenu></app-dashboard-sidemenu>
 
 <!-- ********************** Main Content ******************** -->
@@ -60,19 +73,19 @@
           [globalFilterFields]="['name', 'status', 'company_name', 'award.award_name', 'category']">
           <ng-template pTemplate="header" style="min-height: 500px;">
             <tr>
-              <th style="max-width: 100px; text-align: center;">S. No.</th>
+              <th style="max-width: 100px; text-align: center; white-space: no-wrap;">S. No.</th>
               <th *ngIf="localStorage?.role=='Admin'">
                 <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
               </th>
-              <th style="max-width: 170px; width: 170px;  text-align: center;">
+              <th style="max-width: 170px; width: 170px;  text-align: center; white-space: no-wrap;">
                 {{localStorage?.role=='Admin' ? 'Action' : 'View'}}
               </th>
-              <th style="max-width: 150px; width: 150px;">Status</th>
-              <th style="min-width: 150px;">Contact Person</th>
-              <th style="min-width: 150px;">Organization Name</th>
-              <th style="min-width: 150px;">Award Name</th>
-              <th style="min-width: 150px;">Category</th>
-              <th style="min-width: 130px;" *ngIf="localStorage?.role=='Admin'">Email</th>
+              <th style="max-width: 150px; width: 150px; white-space: no-wrap;">Status</th>
+              <th style="min-width: 150px; white-space: no-wrap;">Contact Person</th>
+              <th style="min-width: 150px; white-space: no-wrap;">Organization Name</th>
+              <th style="min-width: 150px; white-space: no-wrap;">Award Name</th>
+              <th style="min-width: 150px; white-space: no-wrap;">Category</th>
+              <th style="min-width: 130px; white-space: no-wrap;" *ngIf="localStorage?.role=='Admin'">Email</th>
             </tr>
           </ng-template>
 
@@ -247,27 +260,22 @@
 </p-dialog>
 
 
-<p-dialog header="Update Status" [(visible)]="statusModal" [modal]="true" [style]="{width: '50vw'}" [draggable]="false"
+<p-dialog header="Rejection" [(visible)]="statusModal" [modal]="true" [style]="{width: '30vw'}" [draggable]="false"
   [resizable]="false">
 
   <form [formGroup]="statusForm" #form="ngForm" (ngSubmit)="statusUpdate(form)">
     <div class="row mt-1">
       <div class="col-lg-12 col-xs-12">
-        <div class="form-group">{{status === 'reject'? 'Reason' : 'Remark'}}<span style="color: red;"
-            *ngIf="status === 'reject'">*</span>:
-          <textarea type="text" class="form-control" [placeholder]="status === 'reject' ? 'Reason' : 'Remark'"
-            formControlName="remark" required
+        <div class="form-group">Reason<span style="color: red;" *ngIf="status === 'reject'">*</span>:
+          <textarea type="text" class="form-control" placeholder="Reason" formControlName="remark" required
             [class.is-invalid]="(form.submitted && statusForm.get('remark')?.invalid) || statusForm.get('remark')?.invalid && statusForm.get('remark').touched"></textarea>
           <div class="invalid-feedback">Reason is required</div>
         </div>
       </div>
     </div>
-    <div class="dialog-footer">
-
-      <button type="submit">Save</button>
-    </div>
   </form>
-  <!-- <ng-template pTemplate="footer">
-      <p-button icon="pi pi-check" label="Ok" styleClass="p-button-text"></p-button>
-    </ng-template> -->
+  <ng-template pTemplate="footer">
+    <!-- <p-button [type]="submit" icon="pi pi-check" label="Reject" styleClass="p-button-text"></p-button> -->
+    <button type="submit" pButton icon="pi pi-check" label="Reject"></button>
+  </ng-template>
 </p-dialog>

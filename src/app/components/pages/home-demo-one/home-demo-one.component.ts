@@ -47,6 +47,13 @@ export class HomeDemoOneComponent implements OnInit {
 
   date: Date = new Date();
   currentYear: any;
+
+  // login in form controls
+  loginForm = new FormGroup({
+    loginemail: new FormControl('', [Validators.required, Validators.email]),
+    // loginpassword: new FormControl('', [Validators.required]),
+    otp: new FormControl(),
+  });
   registerForm = this.fb.group({
     name: ['', [Validators.required]],
     mobile_no: [
@@ -202,7 +209,7 @@ export class HomeDemoOneComponent implements OnInit {
           });
           setTimeout(() => {
             this.router.navigateByUrl('/success');
-          }, 1500);
+          }, 1000);
           // this.registerForm.patchValue({
           //   gst_type: 'registered',
           // });
@@ -222,12 +229,6 @@ export class HomeDemoOneComponent implements OnInit {
       detail: 'Please fill all details',
     });
   }
-  // sign in form controls
-  loginForm = new FormGroup({
-    loginemail: new FormControl('', [Validators.required]),
-    // loginpassword: new FormControl('', [Validators.required]),
-    otp: new FormControl(),
-  });
 
   // user login form function
   loginIn() {
@@ -527,10 +528,7 @@ export class HomeDemoOneComponent implements OnInit {
           console.log(res);
           this.spinner.hide();
           this.otpState = true;
-          this.loginForm.controls['otp'].setValidators([
-            Validators.required,
-            Validators.maxLength(6),
-          ]);
+          this.loginForm.controls['otp'].setValidators([Validators.required]);
           this.loginForm.controls['otp'].updateValueAndValidity();
           this.messageService.add({
             severity: 'success',

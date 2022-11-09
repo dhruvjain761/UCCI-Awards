@@ -35,6 +35,7 @@ export class RegisteredUsersComponent implements OnInit {
   status: string;
   localStorage: any;
   selectedUser: any[] = [];
+  // emailBoolean: boolean = false;
 
   constructor(
     private apiService: ApiService,
@@ -65,8 +66,8 @@ export class RegisteredUsersComponent implements OnInit {
   getUsers() {
     this.apiService.getRegisteredUsers().subscribe((res: any) => {
       console.log(res);
-
-      this.users = res.data;
+      let users: any = res.data;
+      this.users = users.reverse();
       this.spinner.hide();
     });
   }
@@ -203,20 +204,17 @@ export class RegisteredUsersComponent implements OnInit {
       //     id: 1
       //   }]
       // ]
+      this.selectedUser.forEach((element) => {
+        if (element.status !== 'Approved' && element.status !== 'Rejected') {
+          var id = element.id;
+          approvedId.push({ id });
+        }
+      });
       let approvedId = [];
       this.confirmationService.confirm({
         message: 'Are you sure to approve to selected users?',
         accept: () => {
           this.spinner.show();
-          this.selectedUser.forEach((element) => {
-            if (
-              element.status !== 'Approved' &&
-              element.status !== 'Rejected'
-            ) {
-              var id = element.id;
-              approvedId.push({ id });
-            }
-          });
 
           console.log(approvedId);
 
@@ -309,6 +307,7 @@ export class RegisteredUsersComponent implements OnInit {
   // Bulk email sending function
 
   sendEmail(string: string, item: any) {
+    var emailBoolean: any = true;
     if (string === 'bulk') {
       if (this.selectedUser.length !== 0) {
         // let approvalObj = [
@@ -317,30 +316,31 @@ export class RegisteredUsersComponent implements OnInit {
         //   }]
         // ]
         let approvedId = [];
-        var emailBoolean: boolean = false;
         this.selectedUser.forEach((element) => {
           if (element.status == 'Pending' || element.status == 'In Progress') {
             // debugger;
-            emailBoolean = true;
-            // return false;
+            emailBoolean = false;
+            // return this.emailBoolean;
           } else {
             var id = element.id;
             approvedId.push({ id });
+            // this.emailBoolean = true;
           }
         });
         console.log(emailBoolean);
-        this.confirmationService.confirm({
-          message: 'Are you sure to send mail to selected users?',
-          accept: () => {
-            this.spinner.show();
-            if (emailBoolean == true) {
-              this.spinner.hide();
-              this.selectedUser = [];
-              this.messageService.add({
-                severity: 'error',
-                detail: 'Pending status',
-              });
-            } else {
+        // debugger;
+        if (emailBoolean == false) {
+          this.spinner.hide();
+          this.selectedUser = [];
+          this.messageService.add({
+            severity: 'warn',
+            detail: 'Make sure status should be approved',
+          });
+        } else if (emailBoolean === true) {
+          this.confirmationService.confirm({
+            message: 'Are you sure to send mail to selected users?',
+            accept: () => {
+              this.spinner.show();
               console.log(approvedId);
 
               let obj: any = {
@@ -359,10 +359,10 @@ export class RegisteredUsersComponent implements OnInit {
                 });
                 this.getUsers();
               });
-            }
-          },
-          // reject: ()
-        });
+            },
+            // reject: ()
+          });
+        }
       } else if (this.selectedUser.length === 0) {
         this.messageService.add({
           severity: 'error',

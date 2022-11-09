@@ -39,6 +39,9 @@ export class AwardConfigurationComponent implements OnInit {
   filterVal: any;
 
   clonedMaster: { [s: string]: any } = {};
+  turnoverState: boolean;
+  classificationState: boolean;
+  metrixState: any;
 
   constructor(
     private fb: FormBuilder,
@@ -49,7 +52,7 @@ export class AwardConfigurationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.spinner.show();
+    this.spinner.show();
     this.getTurnover();
     this.getClassification();
     this.getServiceType();
@@ -62,11 +65,9 @@ export class AwardConfigurationComponent implements OnInit {
 
   spinnerFunction() {
     if (
-      this.turnover &&
-      this.classification &&
-      this.service &&
-      this.awardCetagory &&
-      this.awardMetrix
+      this.turnoverState === true &&
+      this.classificationState === true &&
+      this.metrixState === true
     ) {
       // debugger;
       this.spinner.hide();
@@ -79,6 +80,8 @@ export class AwardConfigurationComponent implements OnInit {
     this.apiservice.getAwardMetrix().subscribe((res: any) => {
       console.log('metrix data: ', res);
       this.awardMetrix = res.awardmatrixs;
+      this.metrixState = true;
+      this.spinnerFunction();
     });
   }
 
@@ -88,6 +91,7 @@ export class AwardConfigurationComponent implements OnInit {
     this.apiservice.getTurnover().subscribe((res: any) => {
       console.log(res);
       this.turnover = res.data;
+      this.turnoverState = true;
       this.spinnerFunction();
     });
   }
@@ -98,6 +102,7 @@ export class AwardConfigurationComponent implements OnInit {
     this.apiservice.getClassification().subscribe((res: any) => {
       console.log(res);
       this.classification = res.data;
+      this.classificationState = true;
       this.spinnerFunction();
     });
   }
@@ -118,26 +123,28 @@ export class AwardConfigurationComponent implements OnInit {
     this.apiservice.getAwardCategory().subscribe((res: any) => {
       console.log(res);
       this.awardCetagory = res.data;
+
       this.spinnerFunction();
     });
   }
 
-  getData() {
-    // getAwardMetrix() {
-    this.apiservice.getAwardMetrix().subscribe((res: any) => {
-      console.log('metrix data: ', res);
-      this.awardMetrix = res.awardmatrixs;
-    });
+  // getData() {
+  //   // getAwardMetrix() {
+  //   this.apiservice.getAwardMetrix().subscribe((res: any) => {
+  //     console.log('metrix data: ', res);
+  //     this.awardMetrix = res.awardmatrixs;
+  //     this.metrixState = true();
+  //   });
 
-    if (this.awardMetrix) {
-      this.apiservice.getClassification().subscribe((res: any) => {
-        console.log(res);
-        this.classification = res.data;
-        this.spinnerFunction();
-      });
-    }
-    // }
-  }
+  //   if (this.awardMetrix) {
+  //     this.apiservice.getClassification().subscribe((res: any) => {
+  //       console.log(res);
+  //       this.classification = res.data;
+  //       this.spinnerFunction();
+  //     });
+  //   }
+  //   // }
+  // }
 
   // Submit award metrix
 
@@ -156,7 +163,7 @@ export class AwardConfigurationComponent implements OnInit {
             detail: res.message,
           });
           form.resetForm();
-          this.getData();
+          this.getAwardMetrix();
         });
     }
   }

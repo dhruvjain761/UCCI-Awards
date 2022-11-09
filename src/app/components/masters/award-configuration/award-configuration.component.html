@@ -51,7 +51,7 @@
           <div class="form-group">Classification Category<span style="color: red;">*</span>:
             <select formControlName="category"
               [class.is-invalid]="(form.submitted && awardConfigForm.get('category')?.invalid) || awardConfigForm.get('category')?.invalid && awardConfigForm.get('category')?.touched">
-              <option [value]="null" disabled>Please select classification category</option>
+              <option [value]="null" disabled>Select classification category</option>
               <option [value]="item.name" *ngFor="let item of classification | groupByPipe : 'category'">
                 {{item.name}}
               </option>
@@ -96,7 +96,7 @@
               </div>
               <div *ngIf="f.min_turnover.errors?.min" class="alert
                                             alert-danger">
-                Turnover required upto 1 lakh or more than 1 lakh
+                Minimum turnover amount must be 1 lakh
               </div>
             </div>
             <!-- <div class="invalid-feedback">Minimum turnover is required</div> -->
@@ -120,7 +120,7 @@
               </div>
               <div *ngIf="f.max_turnover.errors?.min" class="alert
                                             alert-danger">
-                Turnover required upto 1 lakh or more than 1 lakh
+                Minimum turnover amount must be 1 lakh
               </div>
             </div>
             <!-- <div class="invalid-feedback">Minimum turnover is required</div> -->
