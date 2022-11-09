@@ -259,6 +259,7 @@ select {
   height: 30px;
   padding-left: 15px;
   color: var(--blackColor);
+  font-size: var(--fontSize) !important;
 
   font: {
     size: 14.5px;
@@ -266,7 +267,7 @@ select {
   }
 
   &::placeholder {
-    color: #999999;
+    color: var(--blackColor);
     transition: var(--transition);
   }
 
@@ -1064,7 +1065,7 @@ textarea.form-control {
 
         &::placeholder {
           transition: var(--transition);
-          color: #666666;
+          color: var(--blackColor);
         }
 
         &:focus {
@@ -3517,6 +3518,13 @@ textarea.form-control {
   font-size: 0.8rem;
 }
 
+.p-dropdown .p-dropdown-label.p-placeholder {
+  color: var(--blackColor);
+  font-size: var(--fontSize);
+  padding-inline: 15px;
+  word-spacing: 1px;
+}
+
 .p-paginator .p-paginator-current {
   color: var(--mainColor);
 }
@@ -3748,6 +3756,22 @@ p-inputnumber {
   }
 }
 
+::placeholder {
+  color: var(--blackColor);
+  // opacity: 1;
+  /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: var(--blackColor);
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: var(--blackColor);
+}
+
 .p-datatable-responsive-scroll>.p-datatable-wrapper {
   // min-height: 400px !important;
   // max-height: 400px !important;
@@ -3790,10 +3814,11 @@ select {
   background-color: #f9f9f9;
   transition: var(--transition);
   border: 1px solid #e5e7f2;
-  color: #7d93b2;
+  color: var(--blackColor);
   width: 100%;
   padding-left: 15px;
   margin-top: 5px;
+  font-size: var(--fontSize);
 
   font: {
     weight: 400;
@@ -3904,6 +3929,10 @@ select {
       margin-top: 5px;
       color: var(--blackColor);
 
+      &::placeholder {
+        color: var(--blackColor) !important;
+      }
+
       font: {
         weight: 400;
         size: var(--fontSize);
@@ -3918,7 +3947,7 @@ select {
 
       &::placeholder {
         transition: var(--transition);
-        color: #7d93b2;
+        color: var(--blackColor);
       }
 
       &:focus {
@@ -3945,7 +3974,7 @@ select {
       background-color: #f9f9f9;
       transition: var(--transition);
       border: 1px solid #e5e7f2;
-      color: #7d93b2;
+      color: var(--fontColor);
       width: 100%;
       padding-left: 15px;
 
@@ -4239,7 +4268,7 @@ select {
 
       &::placeholder {
         transition: var(--transition);
-        color: #7d93b2;
+        color: var(--blackColor);
       }
 
       &:focus {
