@@ -12,13 +12,12 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { CommonClass } from 'src/app/common';
 import { ApiService } from 'src/app/services/api.service';
-
 @Component({
-  selector: 'app-home-demo-one',
-  templateUrl: './home-demo-one.component.html',
-  styleUrls: ['./home-demo-one.component.scss'],
+  selector: 'app-admin-login',
+  templateUrl: './admin-login.component.html',
+  styleUrls: ['./admin-login.component.scss'],
 })
-export class HomeDemoOneComponent implements OnInit {
+export class AdminLoginComponent implements OnInit {
   signUpSubmitted = false;
   submitted = false;
   resSignupMsg: string = '';
@@ -80,32 +79,7 @@ export class HomeDemoOneComponent implements OnInit {
   gstType: any;
   nextYear: any;
   loginState: string = 'email';
-  groupedclassification: any = [
-    {
-      label: 'Manufacturing Enterprises',
 
-      items: [
-        { labels: 'Agro Base & Agro Input Based Enterprises' },
-        { labels: 'Cement & Cement Based Products Enterprises' },
-        { labels: 'Chemicals & Fertilizers Enterprises' },
-        { labels: 'Engineering & Fabrication Enterprises' },
-        { labels: 'Electricals & Electronics Enterprises' },
-      ],
-    },
-    {
-      label: 'Manufacturing Enterprises',
-      items: [
-        { labels: 'Agro Base & Agro Input Based Enterprises' },
-        { labels: 'Cement & Cement Based Products Enterprises' },
-        { labels: 'Chemicals & Fertilizers Enterprises' },
-        { labels: 'Engineering & Fabrication Enterprises' },
-        { labels: 'Electricals & Electronics Enterprises' },
-      ],
-    },
-  ];
-  otpState: boolean = false;
-  commonClasifications: any;
-  preYear: any;
   constructor(
     private fb: FormBuilder,
     private messageService: MessageService,
@@ -140,13 +114,6 @@ export class HomeDemoOneComponent implements OnInit {
 
     this.localStorage = '';
     this.localStorage = this.commonFunction.getLocalStorage();
-
-    this.getTurnover();
-    this.getClassification();
-    // this.getServiceType();
-    this.getState();
-    this.preYear = this.currentYear - 1;
-    // this.currentYear = moment(this.currentYear).format('YY');
   }
 
   get c() {
@@ -193,16 +160,10 @@ export class HomeDemoOneComponent implements OnInit {
           this.resSignupMsg = res.message;
           signupForm.resetForm();
           this.spinner.hide();
-          this.registerForm.patchValue({
-            gst_type: null,
-          });
           this.messageService.add({
             severity: 'success',
             detail: res.message,
           });
-          setTimeout(() => {
-            this.router.navigateByUrl('/success');
-          }, 1500);
           // this.registerForm.patchValue({
           //   gst_type: 'registered',
           // });
@@ -225,8 +186,8 @@ export class HomeDemoOneComponent implements OnInit {
   // sign in form controls
   loginForm = new FormGroup({
     loginemail: new FormControl('', [Validators.required]),
-    // loginpassword: new FormControl('', [Validators.required]),
-    otp: new FormControl(),
+    loginpassword: new FormControl('', [Validators.required]),
+    otp: new FormControl(''),
   });
 
   // user login form function
@@ -238,10 +199,9 @@ export class HomeDemoOneComponent implements OnInit {
       let localStorageData: any = {};
       this.spinner.show();
       let data = Object.assign({}, this.loginForm.value);
-
       this.loginobj = {
         email: data.loginemail,
-        // password: data.loginpassword,
+        password: data.loginpassword,
       };
 
       this.apiservice.login(this.loginobj).subscribe(
@@ -342,16 +302,16 @@ export class HomeDemoOneComponent implements OnInit {
 
   saveAccessToken(res: any) {
     var localStorageData = {
-      award_access_token: res.token,
-      username: res.User.name,
-      useremail: res.User.email,
-      role: res?.User.roles[0].name,
+      award_access_token: res.access_token,
+      username: res.user.name,
+      useremail: res.user.email,
+      role: res?.role[0],
     };
     localStorage.setItem(
       'award_access_token',
       JSON.stringify(localStorageData)
     );
-    this.userName = res.User.name;
+    this.userName = res.user.name;
   }
 
   // Get Turnover
@@ -368,7 +328,6 @@ export class HomeDemoOneComponent implements OnInit {
     this.apiservice.getClassification().subscribe((res: any) => {
       console.log(res);
       this.classification = res.data;
-      this.commonClasifications = res.data;
     });
   }
   // getServiceType() {
@@ -391,43 +350,8 @@ export class HomeDemoOneComponent implements OnInit {
   }
 
   onAwardTypeSelection(event) {
-    console.log(event.target.value);
-    let classification = [];
-    let gstType = this.registerForm.value.gst_type;
-    if (event.target.value === 'excellence') {
-      // debugger;
-      this.registerForm.controls['turnover'].setValidators([
-        Validators.required,
-        Validators.min(100000),
-      ]);
-      this.registerForm.controls['turnover'].updateValueAndValidity();
-
-      this.commonClasifications.forEach((element) => {
-        if (element.category !== 'Social Enterprise') {
-          classification.push(element);
-        }
-      });
-      this.classification = classification;
-    } else if (event.target.value === 'csr') {
-      this.registerForm.controls['turnover'].clearValidators();
-      this.registerForm.controls['turnover'].updateValueAndValidity();
-
-      // this.commonClasifications.forEach((element) => {
-      //   // if (element.category !== 'Social Enterprise') {
-      //     classification.push(element);
-      //   // }
-      // });
-      this.classification = this.commonClasifications;
-    } else if (event.target.value === 'se') {
-      this.registerForm.controls['turnover'].clearValidators();
-      this.registerForm.controls['turnover'].updateValueAndValidity();
-
-      this.commonClasifications.forEach((element) => {
-        if (element.category === 'Social Enterprise') {
-          classification.push(element);
-        }
-      });
-      this.classification = classification;
+    console.log(event.target.defaultValue);
+    if (event.target.defaultValue === 'excellence') {
     }
   }
   onDropdownSelection(event: any, params: any) {
@@ -511,76 +435,6 @@ export class HomeDemoOneComponent implements OnInit {
         Validators.required
       );
       this.registerForm.controls['company_GST'].updateValueAndValidity();
-    }
-  }
-
-  // Generate OPT
-
-  otpGenerate() {
-    if (this.otpState == false) {
-      if (this.loginForm.valid) {
-        this.spinner.show();
-        let otpObj: any = {
-          email: this.loginForm.value.loginemail,
-        };
-        this.apiservice.generateOTP(otpObj).subscribe((res: any) => {
-          console.log(res);
-          this.spinner.hide();
-          this.otpState = true;
-          this.loginForm.controls['otp'].setValidators([
-            Validators.required,
-            Validators.maxLength(6),
-          ]);
-          this.loginForm.controls['otp'].updateValueAndValidity();
-          this.messageService.add({
-            severity: 'success',
-            detail: res.message,
-          });
-        });
-      }
-    } else if (this.otpState === true) {
-      if (this.loginForm.valid) {
-        // this.spinner.show();
-        let verifiedOtpObj = {
-          email: this.loginForm.value.loginemail,
-          otp: this.loginForm.value.otp,
-        };
-        this.apiservice.checkOTP(verifiedOtpObj).subscribe((res: any) => {
-          console.log(res);
-          this.saveAccessToken(res);
-          this.localStorage = this.commonFunction.getLocalStorage();
-
-          // if (this.localStorage.role == 'Admin')
-          setTimeout(() => {
-            this.router.navigateByUrl('/registered-user');
-            this.spinner.hide();
-          }, 1500);
-          this.spinner.hide();
-          this.messageService.add({
-            severity: 'success',
-            detail: res.message,
-          });
-        });
-      }
-    }
-  }
-  onResendOtp() {
-    if (this.loginForm.value.loginemail) {
-      this.spinner.show();
-      let otpObj: any = {
-        email: this.loginForm.value.loginemail,
-      };
-      this.apiservice.generateOTP(otpObj).subscribe((res: any) => {
-        console.log(res);
-        this.spinner.hide();
-        this.otpState = true;
-        this.loginForm.controls['otp'].setValidators(Validators.required);
-        this.loginForm.controls['otp'].updateValueAndValidity();
-        this.messageService.add({
-          severity: 'success',
-          detail: res.message,
-        });
-      });
     }
   }
 }

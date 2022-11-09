@@ -1,6 +1,7 @@
 // validation css
 .tab-pane {
     padding: 60px 0 50px 0;
+
     .vesax-register {
         .alert.alert-danger {
             color: red;
@@ -16,6 +17,7 @@
 
 .tab-pane {
     padding: 60px 0 50px 0;
+
     .vesax-login {
         .alert.alert-danger {
             color: red;
@@ -31,14 +33,17 @@
 
 .others-option {
     margin-left: auto;
+
     .profile-nav-item {
         .dropdown-toggle {
             padding: 0;
             color: var(--optionalColor);
             font-weight: 500;
+
             &::after {
                 display: none;
             }
+
             &::before {
                 content: "\f106";
                 position: absolute;
@@ -46,29 +51,36 @@
                 transition: var(--transition);
                 color: #000;
                 top: 3px;
+
                 font: {
                     size: 15px;
                     family: Flaticon;
                 }
             }
+
             span {
                 top: 1px;
                 color: var(--optionalColor);
+
                 &::before {
                     display: none;
                 }
             }
+
             &:hover {
                 &::before {
                     color: var(--mainColor);
                 }
+
                 span {
                     color: var(--mainColor);
                 }
             }
         }
+
         .menu-profile {
             padding-right: 20px;
+
             img {
                 width: 40px;
                 height: 40px;
@@ -76,6 +88,7 @@
                 margin-right: 12px;
             }
         }
+
         &.dropdown {
             .dropdown-menu {
                 padding: 15px 15px 10px;
@@ -93,60 +106,75 @@
                 visibility: hidden;
                 box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
                 background-color: var(--whiteColor);
+
                 .dropdown-header {
                     padding: 0;
                     border-bottom: 1px solid #f2f4f9;
+
                     margin: {
                         left: -15px;
                         right: -15px;
                     }
+
                     .figure {
                         position: relative;
+
                         img {
                             width: 80px;
                             height: 80px;
                         }
                     }
+
                     .name {
                         display: block;
                         color: var(--blackColor);
                         margin-bottom: 2px;
+
                         font: {
                             size: 17px;
                             weight: 600;
                         }
+
                         &::before {
                             display: none;
                         }
                     }
+
                     .email {
                         color: var(--optionalColor);
                         font-size: 14px;
                     }
                 }
+
                 .dropdown-body {
                     ul {
                         padding-left: 0;
                         list-style-type: none;
                         margin-bottom: 0;
+
                         .nav-item {
                             margin-left: 0;
+
                             .nav-link {
                                 color: var(--blackColor);
                                 padding: 5px 15px 5px 38px;
                                 position: relative;
+
                                 font: {
                                     size: 14px;
                                     weight: 500;
                                 }
+
                                 span {
                                     color: var(--blackColor);
                                     display: block;
                                     font-weight: 500;
+
                                     &::before {
                                         display: none;
                                     }
                                 }
+
                                 i {
                                     color: var(--mainColor);
                                     transition: var(--transition);
@@ -155,10 +183,12 @@
                                     top: 7px;
                                     font-size: 16px;
                                 }
+
                                 &:hover {
                                     span {
                                         color: var(--mainColor);
                                     }
+
                                     i {
                                         transform: rotateY(-180deg);
                                     }
@@ -167,31 +197,38 @@
                         }
                     }
                 }
+
                 .dropdown-footer {
                     margin: 10px -15px 0;
                     padding: 10px 15px 0;
                     border-top: 1px solid #eeeeee;
+
                     ul {
                         padding-left: 0;
                         list-style-type: none;
                         margin-bottom: 0;
+
                         .nav-item {
                             .nav-link {
                                 color: red;
                                 padding: 5px 15px 5px 38px;
                                 position: relative;
+
                                 font: {
                                     size: 14px;
                                     weight: 500;
                                 }
+
                                 span {
                                     color: red;
                                     display: block;
                                     font-weight: 500;
+
                                     &::before {
                                         display: none;
                                     }
                                 }
+
                                 i {
                                     color: red;
                                     transition: var(--transition);
@@ -200,6 +237,7 @@
                                     top: 7px;
                                     font-size: 16px;
                                 }
+
                                 &:hover {
                                     i {
                                         transform: rotateY(-180deg);
@@ -209,6 +247,7 @@
                         }
                     }
                 }
+
                 &.show {
                     margin-top: 10px;
                     opacity: 1;
@@ -222,6 +261,7 @@
 .navbar-area {
     position: relative;
     padding: 0;
+
     &.is-sticky {
         position: fixed;
         top: 0;
@@ -246,79 +286,98 @@
             right: 20px;
         }
     }
+
     .navbar {
         position: inherit;
         padding: 0;
+
         .navbar-brand {
             font-size: inherit;
             line-height: 1;
             padding: 0;
+
             img {
                 width: 200px;
             }
         }
+
         ul {
             padding-left: 0;
             list-style-type: none;
             margin-bottom: 0;
         }
+
         .navbar-nav {
             margin: {
                 left: auto;
                 right: auto;
             }
+
             .nav-item {
                 position: relative;
+
                 margin: {
                     left: 15px;
                     right: 15px;
                 }
+
                 a {
                     color: var(--blackColor);
+
                     font: {
                         size: 16px;
                         weight: 500;
                     }
+
                     padding: {
                         left: 0;
                         right: 0;
                         top: 30px;
                         bottom: 30px;
                     }
+
                     &:hover,
                     &:focus,
                     &.active {
                         color: var(--mainColor);
                     }
                 }
+
                 .dropdown-toggle {
                     padding-right: 18px;
+
                     &::after {
                         display: none;
                     }
+
                     &::before {
                         content: "\f106";
                         position: absolute;
                         right: 0;
                         top: 32px;
+
                         font: {
                             size: 15px;
                             family: Flaticon;
                         }
                     }
                 }
+
                 &:last-child {
                     margin-right: 0;
                 }
+
                 &:first-child {
                     margin-left: 0;
                 }
+
                 &:hover,
                 &.active {
                     a {
                         color: var(--mainColor);
                     }
                 }
+
                 .dropdown-menu {
                     border: none;
                     top: 84px;
@@ -336,17 +395,21 @@
                     transition: all 0.2s ease-in-out;
                     border-top: 3px solid var(--mainColor);
                     box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+
                     li {
                         margin: 0;
+
                         a {
                             padding: 8px 20px;
                             position: relative;
                             display: block;
                             color: var(--blackColor);
+
                             font: {
                                 size: 16px;
                                 weight: 500;
                             }
+
                             i {
                                 margin: 0;
                                 position: absolute;
@@ -355,91 +418,110 @@
                                 transform: translateY(-50%);
                                 right: 15px;
                             }
+
                             &:hover,
                             &:focus,
                             &.active {
                                 color: var(--mainColor);
                             }
                         }
+
                         .dropdown-menu {
                             top: 0;
                             opacity: 0;
                             left: 250px;
                             margin-top: 15px;
                             visibility: hidden;
+
                             li {
                                 a {
                                     color: var(--blackColor);
+
                                     &:hover,
                                     &:focus,
                                     &.active {
                                         color: var(--mainColor);
                                     }
                                 }
+
                                 .dropdown-menu {
                                     top: 0;
                                     opacity: 0;
                                     left: 250px;
                                     visibility: hidden;
+
                                     li {
                                         a {
                                             color: var(--blackColor);
+
                                             &:hover,
                                             &:focus,
                                             &.active {
                                                 color: var(--mainColor);
                                             }
                                         }
+
                                         .dropdown-menu {
                                             top: 0;
                                             opacity: 0;
                                             left: -250px;
                                             visibility: hidden;
+
                                             li {
                                                 a {
                                                     color: var(--blackColor);
+
                                                     &:hover,
                                                     &:focus,
                                                     &.active {
                                                         color: var(--mainColor);
                                                     }
                                                 }
+
                                                 .dropdown-menu {
                                                     top: 0;
                                                     opacity: 0;
                                                     left: 250px;
                                                     visibility: hidden;
+
                                                     li {
                                                         a {
                                                             color: var(--blackColor);
+
                                                             &:hover,
                                                             &:focus,
                                                             &.active {
                                                                 color: var(--mainColor);
                                                             }
                                                         }
+
                                                         .dropdown-menu {
                                                             top: 0;
                                                             opacity: 0;
                                                             left: -250px;
                                                             visibility: hidden;
+
                                                             li {
                                                                 a {
                                                                     color: var(--blackColor);
+
                                                                     &:hover,
                                                                     &:focus,
                                                                     &.active {
                                                                         color: var(--mainColor);
                                                                     }
                                                                 }
+
                                                                 .dropdown-menu {
                                                                     top: 0;
                                                                     opacity: 0;
                                                                     left: 250px;
                                                                     visibility: hidden;
+
                                                                     li {
                                                                         a {
                                                                             color: var(--blackColor);
+
                                                                             &:hover,
                                                                             &:focus,
                                                                             &.active {
@@ -448,11 +530,13 @@
                                                                         }
                                                                     }
                                                                 }
+
                                                                 &.active {
                                                                     a {
                                                                         color: var(--mainColor);
                                                                     }
                                                                 }
+
                                                                 &:hover {
                                                                     .dropdown-menu {
                                                                         opacity: 1;
@@ -461,11 +545,13 @@
                                                                 }
                                                             }
                                                         }
+
                                                         &.active {
                                                             a {
                                                                 color: var(--mainColor);
                                                             }
                                                         }
+
                                                         &:hover {
                                                             .dropdown-menu {
                                                                 opacity: 1;
@@ -474,11 +560,13 @@
                                                         }
                                                     }
                                                 }
+
                                                 &.active {
                                                     a {
                                                         color: var(--mainColor);
                                                     }
                                                 }
+
                                                 &:hover {
                                                     .dropdown-menu {
                                                         opacity: 1;
@@ -487,11 +575,13 @@
                                                 }
                                             }
                                         }
+
                                         &.active {
                                             a {
                                                 color: var(--mainColor);
                                             }
                                         }
+
                                         &:hover {
                                             .dropdown-menu {
                                                 opacity: 1;
@@ -500,11 +590,13 @@
                                         }
                                     }
                                 }
+
                                 &.active {
                                     a {
                                         color: var(--mainColor);
                                     }
                                 }
+
                                 &:hover {
                                     .dropdown-menu {
                                         opacity: 1;
@@ -513,11 +605,13 @@
                                 }
                             }
                         }
+
                         &.active {
                             a {
                                 color: var(--mainColor);
                             }
                         }
+
                         &:hover {
                             .dropdown-menu {
                                 opacity: 1;
@@ -527,6 +621,7 @@
                         }
                     }
                 }
+
                 &:hover {
                     .dropdown-menu {
                         opacity: 1;
@@ -536,10 +631,12 @@
                 }
             }
         }
+
         .navbar-search-box {
             margin-left: 40px;
             position: relative;
             width: 210px;
+
             label {
                 margin-bottom: 0;
                 position: absolute;
@@ -548,6 +645,7 @@
                 color: var(--mainColor);
                 font-size: 18px;
             }
+
             .input-search {
                 border: none;
                 border-bottom: 1px solid #e0e0e0;
@@ -559,10 +657,12 @@
                 background-color: transparent;
                 color: var(--blackColor);
                 padding: 0 0 0 25px;
+
                 &::placeholder {
                     color: #888888;
                     transition: var(--transition);
                 }
+
                 &:focus {
                     &::placeholder {
                         color: transparent;
@@ -570,12 +670,15 @@
                 }
             }
         }
+
         .others-option {
             .option-item {
                 margin-left: 25px;
+
                 &:first-child {
                     margin-left: 0;
                 }
+
                 span {
                     display: inline-block;
                     cursor: pointer;
@@ -583,12 +686,14 @@
                     transition: var(--transition);
                     font-weight: 500;
                     position: relative;
+
                     i {
                         margin-right: 2px;
                         color: var(--mainColor);
                         position: relative;
                         top: 1px;
                     }
+
                     &::before {
                         content: "";
                         position: absolute;
@@ -600,13 +705,16 @@
                         transition: var(--transition);
                         transform: scaleX(0);
                     }
+
                     &:hover {
                         color: var(--mainColor);
+
                         &::before {
                             transform: scaleX(1);
                         }
                     }
                 }
+
                 .default-btn {
                     position: relative;
                     box-shadow: unset !important;
@@ -614,13 +722,16 @@
                     background-color: transparent;
                     color: var(--mainColor);
                     font-weight: 500;
+
                     padding: {
                         top: 11px;
                         bottom: 11px;
                     }
+
                     i {
                         margin-right: 5px;
                     }
+
                     &:hover {
                         background-color: var(--mainColor);
                         color: var(--whiteColor);
@@ -642,88 +753,105 @@
     height: auto;
     z-index: 999;
     transition: .7s;
+
     .vesax-nav {
         .navbar {
             .navbar-nav {
                 .nav-item {
                     a {
                         color: var(--blackColor);
+
                         &:hover,
                         &:focus,
                         &.active {
                             color: var(--mainColor);
                         }
                     }
+
                     &:hover,
                     &.active {
                         a {
                             color: var(--mainColor);
                         }
                     }
+
                     .dropdown-menu {
                         li {
                             a {
                                 color: var(--blackColor);
+
                                 &:hover,
                                 &:focus,
                                 &.active {
                                     color: var(--mainColor);
                                 }
                             }
+
                             .dropdown-menu {
                                 li {
                                     a {
                                         color: var(--blackColor);
+
                                         &:hover,
                                         &:focus,
                                         &.active {
                                             color: var(--mainColor);
                                         }
                                     }
+
                                     .dropdown-menu {
                                         li {
                                             a {
                                                 color: var(--blackColor);
+
                                                 &:hover,
                                                 &:focus,
                                                 &.active {
                                                     color: var(--mainColor);
                                                 }
                                             }
+
                                             .dropdown-menu {
                                                 li {
                                                     a {
                                                         color: var(--blackColor);
+
                                                         &:hover,
                                                         &:focus,
                                                         &.active {
                                                             color: var(--mainColor);
                                                         }
                                                     }
+
                                                     .dropdown-menu {
                                                         li {
                                                             a {
                                                                 color: var(--blackColor);
+
                                                                 &:hover,
                                                                 &:focus,
                                                                 &.active {
                                                                     color: var(--mainColor);
                                                                 }
                                                             }
+
                                                             .dropdown-menu {
                                                                 li {
                                                                     a {
                                                                         color: var(--blackColor);
+
                                                                         &:hover,
                                                                         &:focus,
                                                                         &.active {
                                                                             color: var(--mainColor);
                                                                         }
                                                                     }
+
                                                                     .dropdown-menu {
                                                                         li {
                                                                             a {
                                                                                 color: var(--blackColor);
+
                                                                                 &:hover,
                                                                                 &:focus,
                                                                                 &.active {
@@ -732,6 +860,7 @@
                                                                             }
                                                                         }
                                                                     }
+
                                                                     &.active {
                                                                         a {
                                                                             color: var(--mainColor);
@@ -739,6 +868,7 @@
                                                                     }
                                                                 }
                                                             }
+
                                                             &.active {
                                                                 a {
                                                                     color: var(--mainColor);
@@ -746,6 +876,7 @@
                                                             }
                                                         }
                                                     }
+
                                                     &.active {
                                                         a {
                                                             color: var(--mainColor);
@@ -753,6 +884,7 @@
                                                     }
                                                 }
                                             }
+
                                             &.active {
                                                 a {
                                                     color: var(--mainColor);
@@ -760,6 +892,7 @@
                                             }
                                         }
                                     }
+
                                     &.active {
                                         a {
                                             color: var(--mainColor);
@@ -767,6 +900,7 @@
                                     }
                                 }
                             }
+
                             &.active {
                                 a {
                                     color: var(--mainColor);
@@ -776,16 +910,20 @@
                     }
                 }
             }
+
             .navbar-search-box {
                 label {
                     color: var(--whiteColor);
                 }
+
                 .input-search {
                     border-bottom: 1px solid rgba(255, 255, 255, 0.88);
                     color: var(--whiteColor);
+
                     &::placeholder {
                         color: rgba(255, 255, 255, 0.88);
                     }
+
                     &:focus {
                         &::placeholder {
                             color: transparent;
@@ -793,25 +931,31 @@
                     }
                 }
             }
+
             .others-option {
                 .option-item {
                     span {
                         color: var(--blackColor);
+
                         // color: var(--whiteColor);
                         i {
                             // color: var(--whiteColor);
                             transition: var(--transition);
                         }
+
                         &:hover {
                             color: var(--mainColor2);
+
                             i {
                                 color: var(--mainColor2);
                             }
                         }
                     }
+
                     .default-btn {
                         color: var(--mainColor2);
                         border-color: var(--mainColor2);
+
                         &:hover {
                             background-color: var(--mainColor);
                             color: var(--whiteColor);
@@ -822,6 +966,7 @@
             }
         }
     }
+
     // &.is-sticky {
     //     background-color: var(--blackColor) !important;
     //     .nav-item a {
@@ -835,7 +980,7 @@
         .dot-menu {
             .inner {
                 .circle {
-                    background-color: var(--whiteColor);
+                    background-color: var(--blackColor);
                 }
             }
         }
@@ -844,6 +989,7 @@
 
 .others-option-for-responsive {
     display: none;
+
     .dot-menu {
         padding: 0 10px;
         height: 30px;
@@ -851,11 +997,13 @@
         z-index: 9991;
         position: absolute;
         right: 60px;
-        top: -34px;
+        top: -45px;
+
         .inner {
             display: flex;
             align-items: center;
             height: 30px;
+
             .circle {
                 height: 5px;
                 width: 5px;
@@ -865,6 +1013,7 @@
                 background-color: var(--blackColor);
             }
         }
+
         &:hover {
             .inner {
                 .circle {
@@ -873,8 +1022,10 @@
             }
         }
     }
+
     .container {
         position: relative;
+
         .container {
             position: absolute;
             right: 0;
@@ -886,10 +1037,12 @@
             transition: var(--transition);
             transform: scaleX(0);
             z-index: 2;
+
             padding: {
                 left: 15px;
                 right: 15px;
             }
+
             &.active {
                 opacity: 1;
                 visibility: visible;
@@ -897,18 +1050,23 @@
             }
         }
     }
+
     .option-inner {
         padding: 15px;
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.09);
         background-color: var(--whiteColor);
+
         .others-option {
             text-align: center;
+
             .option-item {
                 display: block;
                 margin-top: 15px;
+
                 &:first-child {
                     margin-top: 0;
                 }
+
                 span {
                     display: inline-block;
                     cursor: pointer;
@@ -916,12 +1074,14 @@
                     transition: var(--transition);
                     font-weight: 500;
                     position: relative;
+
                     i {
                         margin-right: 2px;
                         color: var(--mainColor);
                         position: relative;
                         top: 1px;
                     }
+
                     &::before {
                         content: "";
                         position: absolute;
@@ -933,13 +1093,16 @@
                         transition: var(--transition);
                         transform: scaleX(0);
                     }
+
                     &:hover {
                         color: var(--mainColor);
+
                         &::before {
                             transform: scaleX(1);
                         }
                     }
                 }
+
                 .default-btn {
                     position: relative;
                     box-shadow: unset !important;
@@ -949,20 +1112,25 @@
                     font-weight: 500;
                     display: block;
                     width: 100%;
+
                     padding: {
                         top: 11px;
                         bottom: 11px;
                     }
+
                     i {
                         margin-right: 5px;
                     }
+
                     &:hover {
                         background-color: var(--mainColor);
                         color: var(--whiteColor);
                     }
                 }
+
                 .navbar-search-box {
                     position: relative;
+
                     label {
                         margin-bottom: 0;
                         position: absolute;
@@ -971,6 +1139,7 @@
                         color: var(--mainColor);
                         font-size: 18px;
                     }
+
                     .input-search {
                         border: none;
                         border-bottom: 1px solid #e0e0e0;
@@ -982,10 +1151,12 @@
                         background-color: transparent;
                         color: var(--blackColor);
                         padding: 0 0 0 25px;
+
                         &::placeholder {
                             color: #888888;
                             transition: var(--transition);
                         }
+
                         &:focus {
                             &::placeholder {
                                 color: transparent;
@@ -1001,10 +1172,12 @@
 .loginRegisterModal {
     .modal-dialog {
         max-width: 500px;
+
         margin: {
             top: 0;
             bottom: 0;
         }
+
         .modal-content {
             background-color: var(--whiteColor);
             border: none;
@@ -1013,6 +1186,7 @@
             border: 1px solid var(--mainColor);
             padding: 40px;
             position: relative;
+
             button.close {
                 position: absolute;
                 right: -22px;
@@ -1031,27 +1205,32 @@
                 color: var(--whiteColor);
                 padding: 3px 0 0;
             }
+
             .nav-tabs {
                 padding-left: 0;
                 margin-bottom: 0;
                 list-style-type: none;
                 border-bottom: 1px solid #f0f0f0;
-                display: flex!important;
+                display: flex !important;
+
                 .nav-item {
                     margin: {
                         bottom: 0;
                         right: 30px;
                     }
+
                     .nav-link {
                         padding: 0 0 8px;
                         border: none;
                         color: #666666;
                         transition: var(--transition);
                         position: relative;
+
                         font: {
                             size: 18px;
                             weight: 600;
                         }
+
                         &::before {
                             content: "";
                             position: absolute;
@@ -1063,9 +1242,11 @@
                             transform: scaleX(0);
                             background-color: var(--mainColor);
                         }
+
                         &:hover,
                         &.active {
                             color: var(--blackColor);
+
                             &::before {
                                 transform: scaleX(1);
                             }
@@ -1073,34 +1254,42 @@
                     }
                 }
             }
+
             .tab-content {
                 margin-top: 30px;
+
                 .vesax-login {
                     .login-with-account {
                         margin-bottom: 30px;
+
                         span {
                             display: block;
                             color: #666666;
                             font-weight: 500;
                         }
+
                         ul {
                             padding-left: 0;
                             list-style-type: none;
                             display: flex;
                             flex-wrap: wrap;
+
                             margin: {
                                 bottom: 0;
                                 top: 15px;
                                 left: -7px;
                                 right: -7px;
                             }
+
                             li {
                                 flex: 0 0 50%;
                                 max-width: 50%;
+
                                 padding: {
                                     left: 7px;
                                     right: 7px;
                                 }
+
                                 a {
                                     display: block;
                                     text-align: center;
@@ -1108,12 +1297,14 @@
                                     color: var(--whiteColor);
                                     border-radius: 5px;
                                     font-weight: 600;
+
                                     padding: {
                                         top: 8px;
                                         bottom: 11px;
                                         left: 25px;
                                         right: 25px;
                                     }
+
                                     i {
                                         font-size: 22px;
                                         line-height: 1;
@@ -1121,17 +1312,21 @@
                                         top: 4px;
                                         margin-right: 2px;
                                     }
+
                                     &.facebook {
                                         background-color: #4267b2;
                                         color: var(--whiteColor);
+
                                         &:hover {
                                             background-color: #6d8bc8;
                                             color: var(--whiteColor);
                                         }
                                     }
+
                                     &.twitter {
                                         background-color: #1da1f2;
                                         color: var(--whiteColor);
+
                                         &:hover {
                                             background-color: #0982cc;
                                             color: var(--whiteColor);
@@ -1141,6 +1336,7 @@
                             }
                         }
                     }
+
                     .sub-title {
                         display: block;
                         color: #666666;
@@ -1148,6 +1344,7 @@
                         margin-bottom: 20px;
                         z-index: 1;
                         position: relative;
+
                         &::before {
                             content: "";
                             position: absolute;
@@ -1158,14 +1355,17 @@
                             z-index: -1;
                             background: #f0f0f0;
                         }
+
                         span {
                             background-color: var(--whiteColor);
                             padding-right: 15px;
                         }
                     }
+
                     form {
                         .form-group {
                             margin-bottom: 15px;
+
                             .form-control {
                                 border: 1px solid #d5d5d5 !important;
                                 border-radius: 5px;
@@ -1173,6 +1373,7 @@
                                 padding-top: 9px;
                             }
                         }
+
                         button {
                             display: block;
                             background-color: var(--mainColor);
@@ -1184,51 +1385,62 @@
                             border-radius: 5px;
                             padding: 14px 30px 13px;
                             transition: var(--transition);
+
                             &:hover {
                                 background-color: var(--blackColor);
                                 color: var(--whiteColor);
                             }
                         }
                     }
+
                     .dont-account {
                         display: block;
                         color: #666666;
                         margin-top: 20px;
+
                         a {
                             font-weight: 500;
                             color: var(--mainColor);
+
                             &:hover {
                                 color: var(--blackColor);
                             }
                         }
                     }
                 }
+
                 .vesax-register {
                     .register-with-account {
                         margin-bottom: 30px;
+
                         span {
                             display: block;
                             color: #666666;
                             font-weight: 500;
                         }
+
                         ul {
                             padding-left: 0;
                             list-style-type: none;
                             display: flex;
                             flex-wrap: wrap;
+
                             margin: {
                                 bottom: 0;
                                 top: 15px;
                                 left: -7px;
                                 right: -7px;
                             }
+
                             li {
                                 flex: 0 0 50%;
                                 max-width: 50%;
+
                                 padding: {
                                     left: 7px;
                                     right: 7px;
                                 }
+
                                 a {
                                     display: block;
                                     text-align: center;
@@ -1236,12 +1448,14 @@
                                     color: var(--whiteColor);
                                     border-radius: 5px;
                                     font-weight: 600;
+
                                     padding: {
                                         top: 8px;
                                         bottom: 11px;
                                         left: 25px;
                                         right: 25px;
                                     }
+
                                     i {
                                         font-size: 22px;
                                         line-height: 1;
@@ -1249,17 +1463,21 @@
                                         top: 4px;
                                         margin-right: 2px;
                                     }
+
                                     &.facebook {
                                         background-color: #4267b2;
                                         color: var(--whiteColor);
+
                                         &:hover {
                                             background-color: #6d8bc8;
                                             color: var(--whiteColor);
                                         }
                                     }
+
                                     &.twitter {
                                         background-color: #1da1f2;
                                         color: var(--whiteColor);
+
                                         &:hover {
                                             background-color: #0982cc;
                                             color: var(--whiteColor);
@@ -1269,6 +1487,7 @@
                             }
                         }
                     }
+
                     .sub-title {
                         display: block;
                         color: #666666;
@@ -1276,6 +1495,7 @@
                         margin-bottom: 20px;
                         z-index: 1;
                         position: relative;
+
                         &::before {
                             content: "";
                             position: absolute;
@@ -1286,14 +1506,17 @@
                             z-index: -1;
                             background: #f0f0f0;
                         }
+
                         span {
                             background-color: var(--whiteColor);
                             padding-right: 15px;
                         }
                     }
+
                     form {
                         .form-group {
                             margin-bottom: 15px;
+
                             .form-control {
                                 border: 1px solid #d5d5d5 !important;
                                 border-radius: 5px;
@@ -1301,6 +1524,7 @@
                                 padding-top: 9px;
                             }
                         }
+
                         button {
                             display: block;
                             background-color: var(--mainColor);
@@ -1312,19 +1536,23 @@
                             border-radius: 5px;
                             padding: 14px 30px 13px;
                             transition: var(--transition);
+
                             &:hover {
                                 background-color: var(--blackColor);
                                 color: var(--whiteColor);
                             }
                         }
                     }
+
                     .already-account {
                         display: block;
                         color: #666666;
                         margin-top: 20px;
+
                         a {
                             font-weight: 500;
                             color: var(--mainColor);
+
                             &:hover {
                                 color: var(--blackColor);
                             }
@@ -1345,18 +1573,21 @@
             top: 15px;
             bottom: 15px;
         }
+
         &.is-sticky {
             padding: {
                 top: 15px;
                 bottom: 15px;
             }
         }
+
         &.navbar-style-two {
             .vesax-responsive-nav {
                 .mean-container {
                     a {
                         &.meanmenu-reveal {
                             color: var(--whiteColor);
+
                             span {
                                 // background: var(--whiteColor);
                             }
@@ -1366,146 +1597,45 @@
             }
         }
     }
-    .vesax-responsive-nav {
-        display: block;
-        .vesax-responsive-menu {
-            position: relative;
-        }
-        .dropdown-toggle {
-            &::after {
-                display: none !important;
-            }
-        }
-        .others-option {
-            display: none !important;
-            .option-item {
-                margin-left: 25px;
-                &:first-child {
-                    margin-left: 0;
-                }
-                span {
-                    display: inline-block;
-                    cursor: pointer;
-                    color: #221638;
-                    transition: var(--transition);
-                    font-weight: 500;
-                    position: relative;
-                    i {
-                        margin-right: 2px;
-                        color: var(--mainColor);
-                        position: relative;
-                        top: 1px;
-                    }
-                    &::before {
-                        content: "";
-                        position: absolute;
-                        left: 0;
-                        bottom: 0;
-                        width: 100%;
-                        height: 1px;
-                        background-color: var(--mainColor);
-                        transition: var(--transition);
-                        transform: scaleX(0);
-                    }
-                    &:hover {
-                        color: var(--mainColor);
-                        &::before {
-                            transform: scaleX(1);
-                        }
-                    }
-                }
-                .default-btn {
-                    position: relative;
-                    box-shadow: unset !important;
-                    border-radius: 30px;
-                    background-color: transparent;
-                    color: var(--mainColor);
-                    font-weight: 500;
-                    padding: {
-                        top: 11px;
-                        bottom: 11px;
-                    }
-                    i {
-                        margin-right: 5px;
-                    }
-                    &:hover {
-                        background-color: var(--mainColor);
-                        color: var(--whiteColor);
-                    }
-                }
-            }
-        }
-        .navbar-search-box {
-            position: absolute;
-            top: 0;
-            right: 0;
-            display: none;
-            label {
-                margin-bottom: 0;
-                position: absolute;
-                left: 0;
-                top: 1.5px;
-                color: var(--mainColor);
-                font-size: 18px;
-            }
-            .input-search {
-                border: none;
-                border-bottom: 1px solid #e0e0e0;
-                display: block;
-                width: 100%;
-                height: 33px;
-                line-height: 33px;
-                font-size: 14px;
-                background-color: transparent;
-                color: var(--blackColor);
-                padding: 0 0 0 25px;
-                &::placeholder {
-                    color: #888888;
-                    transition: var(--transition);
-                }
-                &:focus {
-                    &::placeholder {
-                        color: transparent;
-                    }
-                }
-            }
-        }
-        .logo {
-            position: relative;
-            width: 60%;
-            z-index: 999;
-        }
-    }
+
     .vesax-nav {
         display: none;
     }
+
     .others-option-for-responsive {
         display: block;
     }
+
     .loginRegisterModal {
         .modal-dialog {
             max-width: 100%;
+
             margin: {
                 left: 10px;
                 right: 10px;
             }
+
             .modal-content {
                 border: none;
                 box-shadow: unset;
                 padding: 20px;
+
                 button.close {
                     right: -5px;
                     top: -5px;
                 }
+
                 .nav-tabs {
                     .nav-item {
                         margin-right: 25px;
+
                         .nav-link {
                             padding: 0 0 6px;
                             font-size: 16px;
                         }
                     }
                 }
+
                 .tab-content {
                     .vesax-login {
                         .login-with-account {
@@ -1518,6 +1648,7 @@
                                             left: 15px;
                                             right: 15px;
                                         }
+
                                         i {
                                             font-size: 20px;
                                             top: 3px;
@@ -1539,52 +1670,30 @@
 @media only screen and (min-width: 576px) and (max-width: 767px) {}
 
 
-/* Min width 768px to Max width 991px */
-
-@media only screen and (min-width: 768px) and (max-width: 991px) {
-    .navbar-area {
-        padding: {
-            top: 15px;
-            bottom: 15px;
-        }
-        &.is-sticky {
-            padding: {
-                top: 15px;
-                bottom: 15px;
-            }
-        }
-        &.navbar-style-two {
-            .vesax-responsive-nav {
-                .mean-container {
-                    a {
-                        &.meanmenu-reveal {
-                            color: var(--whiteColor);
-                            span {
-                                // background: var(--whiteColor);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+@media (max-width: 1198px) {
     .vesax-responsive-nav {
         display: block;
+
         .vesax-responsive-menu {
             position: relative;
         }
+
         .dropdown-toggle {
             &::after {
                 display: none !important;
             }
         }
+
         .others-option {
             display: none !important;
+
             .option-item {
                 margin-left: 25px;
+
                 &:first-child {
                     margin-left: 0;
                 }
+
                 span {
                     display: inline-block;
                     cursor: pointer;
@@ -1592,12 +1701,14 @@
                     transition: var(--transition);
                     font-weight: 500;
                     position: relative;
+
                     i {
                         margin-right: 2px;
                         color: var(--mainColor);
                         position: relative;
                         top: 1px;
                     }
+
                     &::before {
                         content: "";
                         position: absolute;
@@ -1609,13 +1720,16 @@
                         transition: var(--transition);
                         transform: scaleX(0);
                     }
+
                     &:hover {
                         color: var(--mainColor);
+
                         &::before {
                             transform: scaleX(1);
                         }
                     }
                 }
+
                 .default-btn {
                     position: relative;
                     box-shadow: unset !important;
@@ -1623,13 +1737,16 @@
                     background-color: transparent;
                     color: var(--mainColor);
                     font-weight: 500;
+
                     padding: {
                         top: 11px;
                         bottom: 11px;
                     }
+
                     i {
                         margin-right: 5px;
                     }
+
                     &:hover {
                         background-color: var(--mainColor);
                         color: var(--whiteColor);
@@ -1637,11 +1754,13 @@
                 }
             }
         }
+
         .navbar-search-box {
             position: absolute;
             top: 0;
             right: 0;
             display: none;
+
             label {
                 margin-bottom: 0;
                 position: absolute;
@@ -1650,6 +1769,7 @@
                 color: var(--mainColor);
                 font-size: 18px;
             }
+
             .input-search {
                 border: none;
                 border-bottom: 1px solid #e0e0e0;
@@ -1661,10 +1781,12 @@
                 background-color: transparent;
                 color: var(--blackColor);
                 padding: 0 0 0 25px;
+
                 &::placeholder {
                     color: #888888;
                     transition: var(--transition);
                 }
+
                 &:focus {
                     &::placeholder {
                         color: transparent;
@@ -1672,22 +1794,192 @@
                 }
             }
         }
+
         .logo {
             position: relative;
             width: 60%;
             z-index: 999;
         }
     }
+}
+
+/* Min width 768px to Max width 991px */
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .navbar-area {
+        padding: {
+            top: 15px;
+            bottom: 15px;
+        }
+
+        &.is-sticky {
+            padding: {
+                top: 15px;
+                bottom: 15px;
+            }
+        }
+
+        &.navbar-style-two {
+            .vesax-responsive-nav {
+                .mean-container {
+                    a {
+                        &.meanmenu-reveal {
+                            color: var(--whiteColor);
+
+                            span {
+                                // background: var(--whiteColor);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .vesax-responsive-nav {
+        display: block;
+
+        .vesax-responsive-menu {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            &::after {
+                display: none !important;
+            }
+        }
+
+        .others-option {
+            display: none !important;
+
+            .option-item {
+                margin-left: 25px;
+
+                &:first-child {
+                    margin-left: 0;
+                }
+
+                span {
+                    display: inline-block;
+                    cursor: pointer;
+                    color: #221638;
+                    transition: var(--transition);
+                    font-weight: 500;
+                    position: relative;
+
+                    i {
+                        margin-right: 2px;
+                        color: var(--mainColor);
+                        position: relative;
+                        top: 1px;
+                    }
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        height: 1px;
+                        background-color: var(--mainColor);
+                        transition: var(--transition);
+                        transform: scaleX(0);
+                    }
+
+                    &:hover {
+                        color: var(--mainColor);
+
+                        &::before {
+                            transform: scaleX(1);
+                        }
+                    }
+                }
+
+                .default-btn {
+                    position: relative;
+                    box-shadow: unset !important;
+                    border-radius: 30px;
+                    background-color: transparent;
+                    color: var(--mainColor);
+                    font-weight: 500;
+
+                    padding: {
+                        top: 11px;
+                        bottom: 11px;
+                    }
+
+                    i {
+                        margin-right: 5px;
+                    }
+
+                    &:hover {
+                        background-color: var(--mainColor);
+                        color: var(--whiteColor);
+                    }
+                }
+            }
+        }
+
+        .navbar-search-box {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: none;
+
+            label {
+                margin-bottom: 0;
+                position: absolute;
+                left: 0;
+                top: 1.5px;
+                color: var(--mainColor);
+                font-size: 18px;
+            }
+
+            .input-search {
+                border: none;
+                border-bottom: 1px solid #e0e0e0;
+                display: block;
+                width: 100%;
+                height: 33px;
+                line-height: 33px;
+                font-size: 14px;
+                background-color: transparent;
+                color: var(--blackColor);
+                padding: 0 0 0 25px;
+
+                &::placeholder {
+                    color: #888888;
+                    transition: var(--transition);
+                }
+
+                &:focus {
+                    &::placeholder {
+                        color: transparent;
+                    }
+                }
+            }
+        }
+
+        .logo {
+            position: relative;
+            width: 60%;
+            z-index: 999;
+        }
+    }
+
     .vesax-nav {
         display: none;
     }
+
     .others-option-for-responsive {
         display: block;
+
         .container {
             .container {
                 max-width: 325px;
             }
         }
+
         .option-inner {
             padding: 20px;
         }
@@ -1703,6 +1995,7 @@
             top: 15px;
             bottom: 15px;
         }
+
         &.is-sticky {
             padding: {
                 top: 15px;
@@ -1710,23 +2003,30 @@
             }
         }
     }
+
     .vesax-responsive-nav {
         display: block;
+
         .vesax-responsive-menu {
             position: relative;
         }
+
         .dropdown-toggle {
             &::after {
                 display: none !important;
             }
         }
+
         .others-option {
             display: none !important;
+
             .option-item {
                 margin-left: 25px;
+
                 &:first-child {
                     margin-left: 0;
                 }
+
                 span {
                     display: inline-block;
                     cursor: pointer;
@@ -1734,12 +2034,14 @@
                     transition: var(--transition);
                     font-weight: 500;
                     position: relative;
+
                     i {
                         margin-right: 2px;
                         color: var(--mainColor);
                         position: relative;
                         top: 1px;
                     }
+
                     &::before {
                         content: "";
                         position: absolute;
@@ -1751,13 +2053,16 @@
                         transition: var(--transition);
                         transform: scaleX(0);
                     }
+
                     &:hover {
                         color: var(--mainColor);
+
                         &::before {
                             transform: scaleX(1);
                         }
                     }
                 }
+
                 .default-btn {
                     position: relative;
                     box-shadow: unset !important;
@@ -1765,13 +2070,16 @@
                     background-color: transparent;
                     color: var(--mainColor);
                     font-weight: 500;
+
                     padding: {
                         top: 11px;
                         bottom: 11px;
                     }
+
                     i {
                         margin-right: 5px;
                     }
+
                     &:hover {
                         background-color: var(--mainColor);
                         color: var(--whiteColor);
@@ -1779,11 +2087,13 @@
                 }
             }
         }
+
         .navbar-search-box {
             position: absolute;
             top: 0;
             right: 0;
             display: none;
+
             label {
                 margin-bottom: 0;
                 position: absolute;
@@ -1792,6 +2102,7 @@
                 color: var(--mainColor);
                 font-size: 18px;
             }
+
             .input-search {
                 border: none;
                 border-bottom: 1px solid #e0e0e0;
@@ -1803,10 +2114,12 @@
                 background-color: transparent;
                 color: var(--blackColor);
                 padding: 0 0 0 25px;
+
                 &::placeholder {
                     color: #888888;
                     transition: var(--transition);
                 }
+
                 &:focus {
                     &::placeholder {
                         color: transparent;
@@ -1814,15 +2127,18 @@
                 }
             }
         }
+
         .logo {
             position: relative;
             width: 60%;
             z-index: 999;
         }
     }
+
     .vesax-nav {
         display: none;
     }
+
     .others-option-for-responsive {
         display: block;
     }
@@ -1840,16 +2156,19 @@
             //     right: 15px;
             // }
         }
+
         .navbar {
             .navbar-search-box {
                 display: none;
             }
+
             .others-option {
                 .option-item {
                     margin: {
                         left: 0;
                         right: 25px;
                     }
+
                     .default-btn {
                         display: none;
                     }
@@ -1857,32 +2176,49 @@
             }
         }
     }
-    .others-option-for-responsive {
-        display: block;
-        .dot-menu {
-            right: 0;
-            top: -56px;
-        }
-        .container {
-            .container {
-                max-width: 350px;
-                top: 0;
-            }
-        }
-        .option-inner {
-            padding: 25px;
-            .others-option {
-                .option-item {
-                    margin-top: 20px;
-                    span {
-                        display: none;
-                    }
-                }
-            }
-        }
-    }
+
+    // .others-option-for-responsive {
+    //     display: block;
+
+    //     .dot-menu {
+    //         right: 0;
+    //         top: -56px;
+    //     }
+
+    //     .container {
+    //         .container {
+    //             max-width: 350px;
+    //             top: 0;
+    //         }
+    //     }
+
+    //     .option-inner {
+    //         padding: 25px;
+
+    //         .others-option {
+    //             .option-item {
+    //                 margin-top: 20px;
+
+    //                 span {
+    //                     display: none;
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 }
 
+.admin-link {
+    display: contents !important;
+    cursor: pointer;
+    user-select: none;
+}
+
+@media (max-width: 1198px) {
+    .admin-link {
+        display: contents !important;
+    }
+}
 
 /* Min width 1550px */
 
@@ -1894,5 +2230,11 @@
             //     right: 100px;
             // }
         }
+    }
+}
+
+@media only screen and (min-width: 1198px) {
+    .navbar-nav {
+        display: none;
     }
 }

@@ -1,5 +1,8 @@
 <!-- <ngx-spinner name="sp5" [fullScreen]="true" type="square-jelly-box" size="medium"></ngx-spinner> -->
-<p-toast></p-toast>
+<p-toast
+  [breakpoints]="{'575px': {width: '100%', right: '0', left: '0', display: 'flex', 'justify-content': 'center', 'align-items': 'center'}}">
+</p-toast>
+<p-confirmDialog [closable]="false" [title]="'Confirmation'"></p-confirmDialog>
 <app-dashboard-sidemenu></app-dashboard-sidemenu>
 
 <!-- ********************** Main Content ******************** -->
@@ -35,32 +38,52 @@
         </span>
         <p-button type="button" class="ml-2" (click)="reset(dt1)" icon="bx bx-reset"></p-button>
       </div>
+      <div class="d-flex" *ngIf="localStorage?.role=='Admin'">
+        <div class="add-listings-btn mr-2">
+          <button type="button" (click)="bulkApproval()"> Approve</button>
+        </div>
+        <div class="add-listings-btn mr-2">
+          <button type="button" (click)="bulkReject()"> Reject</button>
+        </div>
+        <div class="add-listings-btn">
+          <button type="button" (click)="sendEmail('bulk', 'bulk')"> Send Email</button>
+        </div>
+      </div>
     </div>
 
     <div class="row">
       <div class="col-lg-12 col-md-12">
         <p-table #dt1 [value]="users" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
-          styleClass="p-datatable-sm p-datatable-customers" [rowsPerPageOptions]="[10,25,50]" editMode="row"
-          responsiveLayout="scroll" [loading]="loading" [paginator]="true"
-          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-          [globalFilterFields]="['name', 'status', 'company_name', 'award.award_name']">
+          [(selection)]="selectedUser" styleClass="p-datatable-sm p-datatable-customers"
+          [rowsPerPageOptions]="[10,25,50]" editMode="row" responsiveLayout="scroll" [loading]="loading"
+          [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [globalFilterFields]="['name', 'status', 'company_name', 'award.award_name', 'category']">
           <ng-template pTemplate="header" style="min-height: 500px;">
             <tr>
               <th style="max-width: 100px; text-align: center;">S. No.</th>
+              <th *ngIf="localStorage?.role=='Admin'">
+                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+              </th>
               <th style="max-width: 170px; width: 170px;  text-align: center;">
-                Action
+                {{localStorage?.role=='Admin' ? 'Action' : 'View'}}
               </th>
               <th style="max-width: 150px; width: 150px;">Status</th>
-              <th style="min-width: 130px;">Contact Person</th>
-              <th style="min-width: 130px;">Company Name</th>
-              <th style="min-width: 130px;">Award Name</th>
+              <th style="min-width: 150px;">Contact Person</th>
+              <th style="min-width: 150px;">Organization Name</th>
+              <th style="min-width: 150px;">Award Name</th>
+              <th style="min-width: 150px;">Category</th>
+              <th style="min-width: 130px;" *ngIf="localStorage?.role=='Admin'">Email</th>
             </tr>
           </ng-template>
 
           <ng-template pTemplate="body" let-item let-i="rowIndex">
-            <tr>
+            <tr class="p-selectable-row">
               <td style="text-align: center;">{{i+1}}</td>
-              <td>
+              <td *ngIf="localStorage?.role=='Admin'">
+                <p-tableCheckbox [value]="item">
+                </p-tableCheckbox>
+              </td>
+              <td style="text-align: center;">
                 <button pButton pRipple class="p-button-rounded
                 p-button-text
                 p-button-info" (click)="onViewPress(item)" pTooltip="View" tooltipPosition="bottom">
@@ -73,8 +96,12 @@
                   p-button-danger p-button-text mr-2" (click)="onRejectPress(item, 'reject')"
                   [disabled]="item.status !== 'Pending'" *ngIf="localStorage?.role=='Admin'"></button>
               </td>
-              <td class="status"><span class="in-progress" *ngIf="item.status == 'Pending'">
+              <td class="status">
+                <span class="in-progress" *ngIf="item.status == 'Pending'">
                   {{item.status}}
+                </span>
+                <span class="in-progress" *ngIf="item.status == null">
+                  Pending
                 </span>
                 <span class="approved" *ngIf="item.status == 'Approved'">
                   {{item.status}}
@@ -86,149 +113,161 @@
               <td>{{item.name}}</td>
               <td>{{item.company_name}}</td>
               <td>{{item.award.award_name}}</td>
+              <td>{{item.category}}</td>
+              <td *ngIf="localStorage?.role=='Admin'">
+                <div class="add-listings-btn">
+                  <button type="button" (click)="sendEmail('single', item)"
+                    [disabled]="item.status === 'Pending' || item.status === 'In Progress'"><span
+                      class="bx bx-send"></span>
+                    Send</button>
+                </div>
+              </td>
             </tr>
           </ng-template>
         </p-table>
       </div>
     </div>
   </div>
+  <div class="flex-grow-1"></div>
+
+  <app-copyrights></app-copyrights>
+</div>
 
 
-  <p-dialog header="User Deatils" [(visible)]="displayMaximizable" [modal]="true" [style]="{ width: '90vw' }"
-    [draggable]="false" [resizable]="false">
-    <!-- Start -->
-    <ng-container *ngFor="let data of details">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="my-profile-box">
-            <!-- <h3>User Details</h3> -->
-            <div class="row">
-              <div class="col-lg-6 col-md-12">
-                <div class="form-group">
-                  <label>Contact Person :</label>
-                  <input readonly class="form-control" [value]="data?.name | titlecase">
-                </div>
+<p-dialog header="User Deatils" [(visible)]="displayMaximizable" [modal]="true" [style]="{ width: '90vw' }"
+  [draggable]="false" [resizable]="false">
+  <!-- Start -->
+  <ng-container *ngFor="let data of details">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="my-profile-box">
+          <!-- <h3>User Details</h3> -->
+          <div class="row">
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                <label>Contact Person :</label>
+                <input readonly class="form-control" [value]="data?.name | titlecase">
               </div>
-              <div class="col-lg-6 col-md-12">
-                <div class="form-group">
-                  <label>Company Name :</label>
-                  <input readonly class="form-control" [value]="data?.company_name | titlecase">
-                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                <label>Organization Name :</label>
+                <input readonly class="form-control" [value]="data?.company_name | titlecase">
               </div>
-              <div class="col-lg-6 col-md-12">
-                <div class="form-group">
-                  <label>Mobile No. :</label>
-                  <input readonly class="form-control" [value]="data?.mobile_no">
-                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                <label>Mobile No. :</label>
+                <input readonly class="form-control" [value]="data?.mobile_no">
               </div>
-              <div class="col-lg-6 col-md-12">
-                <div class="form-group">
-                  <label>Email :</label>
-                  <input readonly class="form-control" [value]="data?.email">
-                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                <label>Email :</label>
+                <input readonly class="form-control" [value]="data?.email">
               </div>
-              <div class="col-lg-6 col-md-12">
-                <div class="form-group">
-                  <label>PAN No. :</label>
-                  <input readonly class="form-control" [value]="data?.company_PAN">
-                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                <label>PAN:</label>
+                <input readonly class="form-control" [value]="data?.company_PAN">
               </div>
-              <div class="col-lg-6 col-md-12">
-                <div class="form-group">
-                  <label>GST No. :</label>
-                  <input readonly class="form-control"
-                    [value]="data?.company_GST ? data?.company_GST : 'Not Available'">
-                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                <label>GST No. :</label>
+                <input readonly class="form-control" [value]="data?.company_GST ? data?.company_GST : 'Not Available'">
               </div>
-              <div class="col-lg-6 col-md-12">
-                <div class="form-group">
-                  <label>Address :</label>
-                  <input readonly class="form-control" [value]="data?.company_address | titlecase" />
-                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                <label>Address :</label>
+                <input readonly class="form-control" [value]="data?.company_address | titlecase" />
               </div>
-              <div class="col-lg-6 col-md-12">
-                <div class="form-group">
-                  <label>City :</label>
-                  <input readonly class="form-control" [value]="data?.company_city | titlecase">
-                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                <label>City :</label>
+                <input readonly class="form-control" [value]="data?.company_city | titlecase">
               </div>
-              <!-- <div class="col-lg-6 col-md-12">
+            </div>
+            <!-- <div class="col-lg-6 col-md-12">
                 <div class="form-group">
                   <label>Name :</label>
                   <input readonly class="form-control" [value]="data?.company_name | titlecase ">
                 </div>
               </div> -->
-              <div class="col-lg-6 col-md-12">
-                <div class="form-group">
-                  <label>State :</label>
-                  <input readonly class="form-control" [value]="data?.company_state | titlecase">
-                </div>
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                <label>State :</label>
+                <input readonly class="form-control" [value]="data?.company_state | titlecase">
               </div>
-              <div class="col-lg-6 col-md-12">
-                <div class="form-group">
-                  <label>Pincode :</label>
-                  <input readonly class="form-control" [value]="data?.company_pincode">
-                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                <label>Pincode :</label>
+                <input readonly class="form-control" [value]="data?.company_pincode">
               </div>
-              <div class="col-lg-6 col-md-12">
-                <div class="form-group">
-                  <label>Award Type :</label>
-                  <input readonly class="form-control" [value]="data?.award_type | titlecase">
-                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                <label>Award Type :</label>
+                <input readonly class="form-control" [value]="data?.award_type | titlecase">
               </div>
-              <div class="col-lg-6 col-md-12">
-                <div class="form-group">
-                  <label>Classification :</label>
-                  <input readonly class="form-control" [value]="data?.classification?.name | titlecase">
-                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                <label>Classification :</label>
+                <input readonly class="form-control" [value]="data?.classification?.name | titlecase">
               </div>
-              <div class="col-lg-6 col-md-12">
-                <div class="form-group">
-                  <label>Turnover :</label>
-                  <input readonly class="form-control" [value]="data?.turnover?.component | titlecase">
-                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                <label>Turnover :</label>
+                <input readonly class="form-control" [value]="'₹ ' + data?.turnover">
               </div>
-              <div class="col-lg-6 col-md-12">
-                <div class="form-group">
-                  <label>Award Category :</label>
-                  <input readonly class="form-control" [value]="data?.award?.award_name | titlecase">
-                </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                <label>Award Name :</label>
+                <input readonly class="form-control" [value]="data?.award?.award_name">
               </div>
-              <!-- <div class="col-lg-6 col-md-12">
+            </div>
+            <!-- <div class="col-lg-6 col-md-12">
                 <div class="form-group">
                   <label>Name :</label>
                   <input readonly class="form-control" [value]="data?.company_name">
                 </div>
               </div> -->
-            </div>
           </div>
         </div>
       </div>
-    </ng-container>
-  </p-dialog>
+    </div>
+  </ng-container>
+</p-dialog>
 
 
-  <p-dialog header="Update Status" [(visible)]="statusModal" [modal]="true" [style]="{width: '50vw'}"
-    [draggable]="false" [resizable]="false">
+<p-dialog header="Update Status" [(visible)]="statusModal" [modal]="true" [style]="{width: '50vw'}" [draggable]="false"
+  [resizable]="false">
 
-    <form [formGroup]="statusForm" #form="ngForm" (ngSubmit)="statusUpdate(form)">
-      <div class="row mt-1">
-        <div class="col-lg-12 col-xs-12">
-          <div class="form-group">{{status === 'reject'? 'Reason' : 'Remark'}}<span style="color: red;"
-              *ngIf="status === 'reject'">*</span>:
-            <textarea type="text" class="form-control" [placeholder]="status === 'reject' ? 'Reason' : 'Remark'"
-              formControlName="remark" required
-              [class.is-invalid]="(form.submitted && statusForm.get('remark')?.invalid) || statusForm.get('remark')?.invalid && statusForm.get('remark').touched"></textarea>
-            <div class="invalid-feedback">Reason is required</div>
-          </div>
+  <form [formGroup]="statusForm" #form="ngForm" (ngSubmit)="statusUpdate(form)">
+    <div class="row mt-1">
+      <div class="col-lg-12 col-xs-12">
+        <div class="form-group">{{status === 'reject'? 'Reason' : 'Remark'}}<span style="color: red;"
+            *ngIf="status === 'reject'">*</span>:
+          <textarea type="text" class="form-control" [placeholder]="status === 'reject' ? 'Reason' : 'Remark'"
+            formControlName="remark" required
+            [class.is-invalid]="(form.submitted && statusForm.get('remark')?.invalid) || statusForm.get('remark')?.invalid && statusForm.get('remark').touched"></textarea>
+          <div class="invalid-feedback">Reason is required</div>
         </div>
       </div>
-      <div class="dialog-footer">
+    </div>
+    <div class="dialog-footer">
 
-        <button type="submit">Save</button>
-      </div>
-    </form>
-    <!-- <ng-template pTemplate="footer">
+      <button type="submit">Save</button>
+    </div>
+  </form>
+  <!-- <ng-template pTemplate="footer">
       <p-button icon="pi pi-check" label="Ok" styleClass="p-button-text"></p-button>
     </ng-template> -->
-  </p-dialog>
+</p-dialog>

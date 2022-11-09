@@ -21,8 +21,10 @@ export class AwardConfigurationComponent implements OnInit {
   awardConfigForm = this.fb.group({
     category: [null, [Validators.required]],
     // service_id: [null, [Validators.required]],
-    turnover_id: [null, [Validators.required]],
+    // turnover_id: [null, [Validators.required]],
     award_name: [null, [Validators.required]],
+    min_turnover: [null, [Validators.required, Validators.min(100000)]],
+    max_turnover: [null, [Validators.required, Validators.min(100000)]],
   });
 
   turnover: any;
@@ -140,7 +142,7 @@ export class AwardConfigurationComponent implements OnInit {
   // Submit award metrix
 
   onSubmit(form) {
-    console.log(this.awardConfigForm.value);
+    console.log(this.awardConfigForm.value, this.awardConfigForm.valid);
     if (this.awardConfigForm.valid) {
       this.spinner.show();
 
@@ -201,5 +203,11 @@ export class AwardConfigurationComponent implements OnInit {
     //     detail: 'Service deleted successfully!',
     //   });
     // });
+  }
+
+  // Get form control name
+
+  get f() {
+    return this.awardConfigForm.controls;
   }
 }

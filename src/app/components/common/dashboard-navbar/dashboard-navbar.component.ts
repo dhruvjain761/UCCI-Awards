@@ -7,27 +7,29 @@ import { ApiService } from 'src/app/services/api.service';
   selector: 'app-dashboard-navbar',
   templateUrl: './dashboard-navbar.component.html',
   styleUrls: ['./dashboard-navbar.component.scss'],
-  providers:[MessageService]
+  providers: [MessageService],
 })
 export class DashboardNavbarComponent implements OnInit {
+  constructor(
+    private apiservice: ApiService,
+    private messageService: MessageService,
+    private router: Router
+  ) {}
 
-  constructor(private apiservice: ApiService, private messageService: MessageService, private router: Router) { }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
   // logout function
   logout() {
     this.apiservice.logoutUser().subscribe((res: any) => {
-      localStorage.removeItem('access_token')
+      localStorage.removeItem('award_access_token');
       this.messageService.add({
         severity: 'success',
         summary: 'success',
-        detail: res.message
+        detail: res.message,
       });
       setTimeout(() => {
         this.router.navigateByUrl('');
       }, 1000);
-    })
+    });
     this.router.navigateByUrl('');
     // localStorage.clear();
   }

@@ -78,9 +78,14 @@ import { AuthGuard } from './auth.guard';
 import { ServiceMasterComponent } from './components/award/service-master/service-master.component';
 import { AwardCategoryComponent } from './components/masters/award-category/award-category.component';
 import { AwardConfigurationComponent } from './components/masters/award-configuration/award-configuration.component';
-import { RegisteredUsersComponent } from './components/pages/registered-users/registered-users.component';
 import { FormBuilderComponent } from './components/masters/form-builder/form-builder.component';
+<<<<<<< HEAD
 import { CsrFormComponent } from './components/masters/csr-form/csr-form.component';
+=======
+import { AdminLoginComponent } from './components/pages/admin-login/admin-login.component';
+import { RegisteredUsersComponent } from './components/pages/registered-users/registered-users.component';
+import { SuccessPageComponent } from './components/pages/success-page/success-page.component';
+>>>>>>> 4023cf656aede47e9e95e531ba16ca36eb3b2957
 // import { InterestAreaMasterComponent } from './components/masters/interest-area-master/interest-area-master.component';
 // import { SubcategoryMasterComponent } from './components/masters/marketplace-master/subcategory-master/subcategory-master.component';
 // import { CategoryMasterComponent } from './components/masters/marketplace-master/category-master/category-master.component';
@@ -89,6 +94,7 @@ import { CsrFormComponent } from './components/masters/csr-form/csr-form.compone
 
 const routes: Routes = [
   { path: '', component: HomeDemoOneComponent },
+  { path: 'admin-login', component: AdminLoginComponent },
   { path: 'index-2', component: HomeDemoTwoComponent },
   // {path: 'about', component: AboutUsComponent},
   // {path: 'how-it-works', component: HowItWorksPageComponent},
@@ -136,6 +142,7 @@ const routes: Routes = [
   // {path: 'dashboard-add-listings', component: DashboardAddListingsComponent},
   { path: 'dashboard-bookmarks', component: DashboardBookmarksComponent },
   { path: 'dashboard-my-listings', component: DashboardMyListingsComponent },
+  { path: 'success', component: SuccessPageComponent },
   // {path: 'regular-member-form', component: RegularMemberFormComponent},
   // {path: 'hwm-registration', component: HWMFormComponent},
   // {path: 'non-member-registration', component: NonMemberExporterFormComponent},
@@ -151,7 +158,7 @@ const routes: Routes = [
   // {path: 'events-list', component: EventListingComponent},
   // {path: 'event-form', component: EventCreationFormComponent},
   // {path: 'event-form/:slug', component: EventCreationFormComponent},
-  {path: 'form-builder', component: FormBuilderComponent},
+  { path: 'form-builder', component: FormBuilderComponent },
   // {path: 'form-builder/:slug', component: FormBuilderComponent},
   // Here add new pages component
 
