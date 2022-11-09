@@ -1,5 +1,5 @@
 <p-toast></p-toast>
-<p-toast position="bottom-center" key="c" (onClose)="onReject()" [baseZIndex]="5000">
+<!-- <p-toast position="bottom-center" key="c" (onClose)="onReject()" [baseZIndex]="5000">
     <ng-template let-message pTemplate="message">
         <div class="flex flex-column" style="flex: 1">
             <div class="text-center">
@@ -17,7 +17,7 @@
             </div>
         </div>
     </ng-template>
-</p-toast>
+</p-toast> -->
 
 <app-dashboard-sidemenu></app-dashboard-sidemenu>
 
@@ -38,22 +38,9 @@
             <li class="item">{{Content.title}}</li>
         </ol>
     </div>
-    <div class="add-listings-box">
-        <div class="back_btn">
-            <p-button type="button" routerLink="/custom-forms" icon="bx bx-arrow-back" label=""
-                        iconPos="left"></p-button>
-        </div>
-        <div class="top_section">
-            <!-- <h3>Custom Forms List</h3> -->
-            <!-- <div class="add-listings-btn"> -->
-            <!-- [disabled]="!postMemberCategoriesForm.valid" -->
-            <!-- <button type="submit" (click)="navigateToFormBuilder()"><i class="fa fa-plus mx-1"></i>Add</button> -->
-            <label for="title">Enter Form Title</label>
-            <input type="text" [(ngModel)]="formModel.form_name" class="form-control" placeholder="Enter title here">
-            <!-- </div> -->
-        </div>
+    <div class="add-listings-box" *ngIf="sections.length > 0">
+        <lib-renderer [sections]="sections"></lib-renderer>
     </div>
-    <lib-form-builder></lib-form-builder>
     <!-- <lib-form-builder [buttonFields]="buttonFields" (formJson)="getJson($event)"></lib-form-builder> -->
     <!-- <lib-form-renderer *ngIf="jsonData" [jsonFormData]="jsonData"></lib-form-renderer> -->
     <!-- ********************** End Breadcrumb Area  ******************** -->

@@ -82,6 +82,7 @@ import { FormBuilderComponent } from './components/masters/form-builder/form-bui
 import { AdminLoginComponent } from './components/pages/admin-login/admin-login.component';
 import { RegisteredUsersComponent } from './components/pages/registered-users/registered-users.component';
 import { SuccessPageComponent } from './components/pages/success-page/success-page.component';
+import { CsrFormComponent } from './components/masters/csr-form/csr-form.component';
 // import { InterestAreaMasterComponent } from './components/masters/interest-area-master/interest-area-master.component';
 // import { SubcategoryMasterComponent } from './components/masters/marketplace-master/subcategory-master/subcategory-master.component';
 // import { CategoryMasterComponent } from './components/masters/marketplace-master/category-master/category-master.component';
@@ -150,6 +151,7 @@ const routes: Routes = [
   // {path: 'certificate-of-origin-list', component: CertificateOfOriginListComponent},
   // {path: 'document-attestation-list', component: DocumentAttestationListComponent},
   { path: 'custom-forms', component: CustomFormComponent },
+  { path: 'form-lib/:slug', component: CsrFormComponent },
   // {path: 'events-list', component: EventListingComponent},
   // {path: 'event-form', component: EventCreationFormComponent},
   // {path: 'event-form/:slug', component: EventCreationFormComponent},
