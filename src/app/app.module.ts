@@ -153,7 +153,8 @@ import { AwardConfigurationComponent } from './components/masters/award-configur
 import { RegisteredUsersComponent } from './components/pages/registered-users/registered-users.component';
 import { AwardCategoryComponent } from './components/masters/award-category/award-category.component';
 import { FormBuilderComponent } from './components/masters/form-builder/form-builder.component';
-// import { LibFBModule } from 'libFB';
+import {LibFBModule} from 'lib-fb';
+import { CsrFormComponent } from './components/masters/csr-form/csr-form.component';
 // import { InterestAreaMasterComponent } from './components/masters/interest-area-master/interest-area-master.component';
 // import { CategoryMasterComponent } from './components/masters/marketplace-master/category-master/category-master.component';
 // import { SubcategoryMasterComponent } from './components/masters/marketplace-master/subcategory-master/subcategory-master.component';
@@ -288,6 +289,7 @@ const ngWizardConfig: NgWizardConfig = {
     RegisteredUsersComponent,
     AwardCategoryComponent,
     FormBuilderComponent,
+    CsrFormComponent,
     // InterestAreaMasterComponent,
     // CategoryMasterComponent,
     // SubcategoryMasterComponent,
@@ -324,7 +326,7 @@ const ngWizardConfig: NgWizardConfig = {
     DropdownModule,
     InputNumberModule,
     ScrollPanelModule,
-    // LibFBModule,
+    
 
     // Vizard Form Imports
     NgWizardModule.forRoot(ngWizardConfig),
@@ -332,6 +334,7 @@ const ngWizardConfig: NgWizardConfig = {
     // loader import
 
     NgxSpinnerModule,
+    LibFBModule
   ],
   bootstrap: [AppComponent],
   providers: [

@@ -80,6 +80,7 @@ import { AwardCategoryComponent } from './components/masters/award-category/awar
 import { AwardConfigurationComponent } from './components/masters/award-configuration/award-configuration.component';
 import { RegisteredUsersComponent } from './components/pages/registered-users/registered-users.component';
 import { FormBuilderComponent } from './components/masters/form-builder/form-builder.component';
+import { CsrFormComponent } from './components/masters/csr-form/csr-form.component';
 // import { InterestAreaMasterComponent } from './components/masters/interest-area-master/interest-area-master.component';
 // import { SubcategoryMasterComponent } from './components/masters/marketplace-master/subcategory-master/subcategory-master.component';
 // import { CategoryMasterComponent } from './components/masters/marketplace-master/category-master/category-master.component';
@@ -146,6 +147,7 @@ const routes: Routes = [
   // {path: 'certificate-of-origin-list', component: CertificateOfOriginListComponent},
   // {path: 'document-attestation-list', component: DocumentAttestationListComponent},
   { path: 'custom-forms', component: CustomFormComponent },
+  { path: 'CSR-form', component: CsrFormComponent },
   // {path: 'events-list', component: EventListingComponent},
   // {path: 'event-form', component: EventCreationFormComponent},
   // {path: 'event-form/:slug', component: EventCreationFormComponent},
