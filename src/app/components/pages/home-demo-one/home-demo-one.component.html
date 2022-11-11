@@ -70,86 +70,29 @@
                 <div class="modal-content">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
-                            <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login"
-                                type="button" role="tab" aria-controls="login" aria-selected="true">Login</button>
+                            <button class="nav-link active" id="register-tab" data-bs-toggle="tab"
+                                data-bs-target="#register" type="button" role="tab" aria-controls="register"
+                                aria-selected="true">Register</button>
                         </li>
                         <li class="nav-item">
-                            <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register"
-                                type="button" role="tab" aria-controls="register" aria-selected="true">Register</button>
+                            <button class="nav-link" id="login-tab" data-bs-toggle="tab" data-bs-target="#login"
+                                type="button" role="tab" aria-controls="login" aria-selected="true">Login</button>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="login" role="tabpanel">
-                            <div class="vesax-login">
-                                <!-- Login form -->
-                                <form [formGroup]="loginForm" (ngSubmit)="otpGenerate()" #login="ngForm">
-                                    <div class="form-group">Email<span class="requierdSign">*</span>:
-                                        <input type="email" placeholder="Email" formControlName="loginemail"
-                                            [class.is-invalid]="(login.submitted && loginForm.get('loginemail')?.invalid) || loginForm.get('loginemail')?.invalid && loginForm.get('loginemail')?.touched"
-                                            oninput="this.value= this.value.toLowerCase()" class="form-control"
-                                            pattern="^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$">
-                                        <div *ngIf="login.submitted &&
-                                                g.loginemail.errors?.required ||
-                                                g.loginemail.touched" class="alert alert-danger">
-                                            <div *ngIf="g.loginemail.errors?.required">Email is required
-                                            </div>
-                                        </div>
-                                        <div *ngIf="g.loginemail.errors?.pattern" class="alert alert-danger">
-                                            Invalid email address
-                                        </div>
-                                    </div>
-                                    <!-- <div class="form-group" style="position: relative;">Password<span
-                                            class="requierdSign">*</span>:
-                                        <input [type]="passwordState == true ? 'text' : 'password'"
-                                            formControlName="loginpassword" placeholder="Password" class="form-control"> -->
-                                    <!-- <div (click)="onShowHidePasswordClick()"
-                                            [pTooltip]="passwordState == true ? 'Hide' : 'Show'"
-                                            tooltipPosition="bottom"
-                                            style="position: absolute; right: 10px; top: 34px; cursor: pointer;">
-                                            <div *ngIf="passwordState == true ; else elseBlock">
-                                                <span class="bx bx-hide" style="font-size: 1.2rem"></span>
-                                            </div>
-                                            <ng-template #elseBlock>
-                                                <span class="bx bx-show" style="font-size: 1.2rem"></span>
-                                            </ng-template>
-                                        </div> -->
-                                    <div class="form-group" *ngIf="otpState === true">OTP<span
-                                            class="requierdSign">*</span>:
-                                        <input type="text" placeholder="Enter OTP" formControlName="otp"
-                                            class="form-control" pattern="^[0-9]{6}$/" maxlength="6">
-                                        <div *ngIf="login.submitted &&
-                                            g.otp.errors?.required ||
-                                            g.otp.touched" class="alert alert-danger">
-                                            <div *ngIf="g.otp.errors?.required">OTP is required
-                                            </div>
-                                        </div>
-                                        <div *ngIf="g.otp.errors?.pattern" class="alert alert-danger">
-                                            Invalid OTP
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-12" style="text-align: right;">
-                                                <span class="otpBtn" (click)="onResendOtp()">Resend OTP</span>
-                                            </div>
-                                        </div>
 
-                                    </div>
-                                    <!-- </div> -->
-                                    <button type="submit">{{otpState === false ? 'Send OTP' : 'Login Now'}}</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="register" role="tabpanel">
+                        <div class="tab-pane fade show active" id="register" role="tabpanel">
                             <div class="vesax-register">
                                 <!-- Register form -->
                                 <form [formGroup]="registerForm" (ngSubmit)="signUp(signupForm)" #signupForm="ngForm">
                                     <!-- pop ups -->
-                                    <p-scrollPanel [style]="{width: '100%', height: '410px'}">
+                                    <p-scrollPanel [style]="{width: '100%', height: '410px'}" styleClass="custombar2">
                                         <div class="row padding">
                                             <div class="col-lg-6 col-md-12">
                                                 <div class="form-group">Contact Person Name<span
                                                         class="requierdSign">*</span>:
                                                     <input type="text" formControlName="name"
-                                                        placeholder="Contact Person Name" class="form-control"
+                                                        placeholder="Contact person name" class="form-control"
                                                         maxlength="70" pattern="^[A-Z]([a-zA-Z0-9.-_,]|[- @.&!])*$"
                                                         [class.is-invalid]="(signupForm.submitted && registerForm.get('name')?.invalid) || registerForm.get('name')?.invalid && registerForm.get('name').touched">
                                                     <!-- <div class="invalid-feedback">User Name is required</div> -->
@@ -172,7 +115,7 @@
                                             <div class="col-lg-6 col-md-12">
                                                 <div class="form-group">Mobile No.<span class="requierdSign">*</span>:
                                                     <input type="text" formControlName="mobile_no" maxlength="10"
-                                                        placeholder="Mobile Number" class="form-control" minlength="10"
+                                                        placeholder="Mobile number" class="form-control" minlength="10"
                                                         (keydown)="bloackAlphabet($event)"
                                                         [class.is-invalid]="(signupForm.submitted && registerForm.get('mobile_no')?.invalid) || registerForm.get('mobile_no')?.invalid && registerForm.get('mobile_no').touched">
                                                     <!-- <div class="invalid-feedback">Mobile number is required</div> -->
@@ -222,11 +165,10 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12">
-                                                <div class="form-group">Organization Name<span
-                                                        class="requierdSign">*</span>:
+                                                <div class="form-group">Legal Name<span class="requierdSign">*</span>:
                                                     <input type="text" maxlength="70"
                                                         pattern="^[A-Z]([a-zA-Z0-9.-_,]|[- @.&!])*$"
-                                                        placeholder="Organization Name" formControlName="company_name"
+                                                        placeholder="Legal name" formControlName="company_name"
                                                         [class.is-invalid]="(signupForm.submitted && registerForm.get('company_name')?.invalid) || registerForm.get('company_name')?.invalid && registerForm.get('company_name').touched"
                                                         class="form-control">
                                                     <!-- <div class="invalid-feedback">Company name is required</div> -->
@@ -235,13 +177,13 @@
                                                             f.company_name.touched" class="alert
                                                                                 alert-danger">
                                                         <div *ngIf="f.company_name.errors?.required">
-                                                            Organization Name is required
+                                                            Legal Name is required
                                                         </div>
 
                                                     </div>
                                                     <div *ngIf="f.company_name.errors?.pattern" class="alert
                                                 alert-danger">
-                                                        Organization Name
+                                                        Legal Name
                                                         is
                                                         invalid
                                                     </div>
@@ -329,7 +271,7 @@
                                                         (change)="onGstTypeSelection($event.target.value)"
                                                         [class.is-invalid]="(signupForm.submitted && registerForm.get('gst_type')?.invalid) || registerForm.get('gst_type')?.invalid && registerForm.get('gst_type').touched"
                                                         #value>
-                                                        <option [value]="null" disabled>Select gst type
+                                                        <option [value]="null" disabled>Select GST type
                                                         </option>
                                                         <option value="registered">Registered</option>
                                                         <option value="nonRegistered">Non Registered</option>
@@ -380,7 +322,7 @@
                                                 <div class="form-group" *ngIf="gstType === 'registered'">
                                                     GST No.<span class="requierdSign">*</span>:
                                                     <input type="text" formControlName="company_GST"
-                                                        placeholder="GST Number" class="form-control" maxlength="15"
+                                                        placeholder="GST number" class="form-control" maxlength="15"
                                                         oninput="this.value= this.value.toUpperCase()"
                                                         pattern="^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$"
                                                         [class.is-invalid]="(signupForm.submitted && registerForm.get('company_GST')?.invalid) || registerForm.get('company_GST')?.invalid && registerForm.get('company_GST').touched">
@@ -390,12 +332,12 @@
                                                             f.company_GST.touched" class="alert
                                                                                 alert-danger">
                                                         <div *ngIf="f.company_GST.errors?.required">
-                                                            GST Number is required
+                                                            GST number is required
                                                         </div>
                                                     </div>
                                                     <div *ngIf="f.company_GST.errors?.pattern" class="alert
                                                 alert-danger">
-                                                        GST Number
+                                                        GST number
                                                         is
                                                         invalid
                                                     </div>
@@ -405,18 +347,18 @@
                                                     <span style="color: grey;">GST No.:</span>
                                                     <span class="form-control" style="color: #999999; display: flex;
                                                 align-items: center;">GST
-                                                        Number</span>
+                                                        number</span>
                                                 </div>
                                             </div>
 
 
                                             <div class="col-lg-6 col-md-12">
-                                                <div class="form-group">Classification<span
+                                                <div class="form-group">Industry Classification<span
                                                         class="requierdSign">*</span>:
                                                     <!-- {{classification | groupByPipe : 'category' | json}} -->
                                                     <p-dropdown [options]="classification | groupByPipe : 'category'"
                                                         formControlName="classification_id"
-                                                        placeholder="Select classification" [group]="true"
+                                                        placeholder="Select industry classification" [group]="true"
                                                         [class.is-invalid]="(signupForm.submitted && registerForm.get('classification_id')?.invalid) || registerForm.get('classification_id')?.invalid && registerForm.get('classification_id').touched">
                                                         <!-- <p-scrollPanel [style]="{width: '10px'}"> -->
                                                         <ng-template let-item pTemplate="selectedItem">
@@ -433,7 +375,8 @@
                                                         <!-- </p-scrollPanel> -->
 
                                                     </p-dropdown>
-                                                    <div class="invalid-feedback">Classification is required</div>
+                                                    <div class="invalid-feedback">Industry classification is required
+                                                    </div>
                                                     <!-- <select formControlName="classification_id"
                                                         [class]="(signupForm.submitted && registerForm.get('classification_id')?.invalid) || registerForm.get('classification_id')?.invalid && registerForm.get('classification_id').touched ? 'form-control' : ''"
                                                         (change)="onDropdownSelection($event, 'classification')"
@@ -461,7 +404,7 @@
                                         </div> -->
                                             <div class="col-lg-6 col-md-12">
                                                 <div class="form-group">
-                                                    Turnover ({{preYear}}-{{date | date: 'yy'}})
+                                                    Turnover in INR ({{preYear}}-{{date | date: 'yy'}})
 
                                                     <span class="requierdSign">*</span>:
                                                     <!-- <select formControlName="turnover"
@@ -509,12 +452,20 @@
                                             </div>
 
                                             <div class="col-lg-12 col-md-12">
-                                                <div class="form-group">Company Address<span
+                                                <div class="form-group">Address Line 1<span
                                                         class="requierdSign">*</span>:
-                                                    <textarea type="text" formControlName="company_address"
-                                                        placeholder="Enter address" class="form-control"
-                                                        [class.is-invalid]="(signupForm.submitted && registerForm.get('company_address')?.invalid) || registerForm.get('company_address')?.invalid && registerForm.get('company_address').touched"></textarea>
-                                                    <div class="invalid-feedback">Address is required</div>
+                                                    <input type="text" formControlName="company_address"
+                                                        placeholder="Enter address line 1" class="form-control"
+                                                        [class.is-invalid]="(signupForm.submitted && registerForm.get('company_address')?.invalid) || registerForm.get('company_address')?.invalid && registerForm.get('company_address').touched" />
+                                                    <div class="invalid-feedback">Address line 1 is required</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12">
+                                                <div class="form-group">Address Line 2:
+                                                    <input type="text" formControlName="address_line2"
+                                                        placeholder="Enter address line 2" class="form-control"
+                                                        [class.is-invalid]="(signupForm.submitted && registerForm.get('address_line2')?.invalid) || registerForm.get('address_line2')?.invalid && registerForm.get('address_line2').touched">
+                                                    <div class="invalid-feedback">Address line 2 is required</div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12">
@@ -608,6 +559,65 @@
                                 </form>
                                 <!-- <span class="already-account">Already have an account?
                                 <a href="#">Login Now</a></span> -->
+                            </div>
+                        </div>
+                        <div class="tab-pane fade " id="login" role="tabpanel">
+                            <div class="vesax-login">
+                                <!-- Login form -->
+                                <form [formGroup]="loginForm" (ngSubmit)="otpGenerate()" #login="ngForm">
+                                    <div class="form-group">Email<span class="requierdSign">*</span>:
+                                        <input type="email" placeholder="Email" formControlName="loginemail"
+                                            [class.is-invalid]="(login.submitted && loginForm.get('loginemail')?.invalid) || loginForm.get('loginemail')?.invalid && loginForm.get('loginemail')?.touched"
+                                            oninput="this.value= this.value.toLowerCase()" class="form-control"
+                                            pattern="^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$">
+                                        <div *ngIf="login.submitted &&
+                                                g.loginemail.errors?.required ||
+                                                g.loginemail.touched" class="alert alert-danger">
+                                            <div *ngIf="g.loginemail.errors?.required">Email is required
+                                            </div>
+                                        </div>
+                                        <div *ngIf="g.loginemail.errors?.pattern" class="alert alert-danger">
+                                            Invalid email address
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group" style="position: relative;">Password<span
+                                            class="requierdSign">*</span>:
+                                        <input [type]="passwordState == true ? 'text' : 'password'"
+                                            formControlName="loginpassword" placeholder="Password" class="form-control"> -->
+                                    <!-- <div (click)="onShowHidePasswordClick()"
+                                            [pTooltip]="passwordState == true ? 'Hide' : 'Show'"
+                                            tooltipPosition="bottom"
+                                            style="position: absolute; right: 10px; top: 34px; cursor: pointer;">
+                                            <div *ngIf="passwordState == true ; else elseBlock">
+                                                <span class="bx bx-hide" style="font-size: 1.2rem"></span>
+                                            </div>
+                                            <ng-template #elseBlock>
+                                                <span class="bx bx-show" style="font-size: 1.2rem"></span>
+                                            </ng-template>
+                                        </div> -->
+                                    <div class="form-group" *ngIf="otpState === true">OTP<span
+                                            class="requierdSign">*</span>:
+                                        <input type="text" placeholder="Enter OTP" formControlName="otp"
+                                            class="form-control" pattern="^[0-9]{6}$/" maxlength="6">
+                                        <div *ngIf="login.submitted &&
+                                            g.otp.errors?.required ||
+                                            g.otp.touched" class="alert alert-danger">
+                                            <div *ngIf="g.otp.errors?.required">OTP is required
+                                            </div>
+                                        </div>
+                                        <div *ngIf="g.otp.errors?.pattern" class="alert alert-danger">
+                                            Invalid OTP
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12" style="text-align: right;">
+                                                <span class="otpBtn" (click)="onResendOtp()">Resend OTP</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- </div> -->
+                                    <button type="submit">{{otpState === false ? 'Send OTP' : 'Login Now'}}</button>
+                                </form>
                             </div>
                         </div>
                     </div>

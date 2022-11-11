@@ -68,6 +68,7 @@ export class HomeDemoOneComponent implements OnInit {
     company_city: ['', Validators.required],
     company_pincode: ['', Validators.required],
     company_address: ['', Validators.required],
+    address_line2: [''],
     award_type: [null, Validators.required],
     gst_type: [null, Validators.required],
     classification_id: [null, Validators.required],
@@ -183,7 +184,9 @@ export class HomeDemoOneComponent implements OnInit {
           key !== 'classification_id' &&
           // key !== 'turnover' &&
           key !== 'company_state' &&
-          key !== 'category'
+          key !== 'category' &&
+          key !== 'company_address' &&
+          key !== 'address_line2'
         ) {
           formData.append(key, `${value}`);
         } else if (key === 'classification_id') {
@@ -192,6 +195,11 @@ export class HomeDemoOneComponent implements OnInit {
           formData.append(key, `${state.name}`);
         } else if (key === 'category') {
           formData.append(key, `${classification_id.category}`);
+        } else if (key === 'company_address') {
+          formData.append(
+            key,
+            `${value}, ${this.registerForm.value.address_line2}`
+          );
         }
       }
       this.apiservice.register(formData).subscribe(
