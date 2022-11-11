@@ -157,6 +157,7 @@ import {LibFBModule} from 'lib-fb';
 import { CsrFormComponent } from './components/masters/csr-form/csr-form.component';
 import { AdminLoginComponent } from './components/pages/admin-login/admin-login.component';
 import { SuccessPageComponent } from './components/pages/success-page/success-page.component';
+import { ExcelService } from './services/excel.service';
 // import { LibFBModule } from 'libFB';
 // import { InterestAreaMasterComponent } from './components/masters/interest-area-master/interest-area-master.component';
 // import { CategoryMasterComponent } from './components/masters/marketplace-master/category-master/category-master.component';
@@ -347,6 +348,7 @@ const ngWizardConfig: NgWizardConfig = {
     ConfirmationService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    ExcelService
   ],
 })
 export class AppModule {}

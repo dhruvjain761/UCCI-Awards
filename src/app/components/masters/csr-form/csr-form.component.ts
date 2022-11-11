@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ExcelService } from 'src/app/services/excel.service';
 
 @Component({
   selector: 'app-csr-form',
@@ -14,7 +15,7 @@ export class CsrFormComponent implements OnInit {
       subTitle: 'Masters',
     },
   ];
-  constructor(private router: ActivatedRoute) { }
+  constructor(private router: ActivatedRoute, private excelService:ExcelService) { }
   ngOnInit(): void {
     let slug = this.router.snapshot.params;
     console.log(slug);
@@ -45,31 +46,35 @@ export class CsrFormComponent implements OnInit {
             {
               "id": "radio",
               "name": "radio",
-              "label": "1.2 Type of company",
+              "label": "1.2 Type of company / कम्पनी का प्रकार",
               "tooltip": "",
               "value": "",
               "type": "radio",
               "required": true,
               "data": [
                 {
-                  "label": "Proprietorship",
+                  "label": "Proprietorship / प्रोपराइटरशिप",
                   "value": "1"
                 },
                 {
-                  "label": "Partnership",
+                  "label": "Partnership / पार्टनरशिप",
                   "value": "2"
                 },
                 {
-                  "label": "Private Limited",
+                  "label": "Private Limited / प्राईवेट लिमिटेड",
                   "value": "Another Label2"
                 },
                 {
-                  "label": "Public Limited",
+                  "label": "Public Limited / पब्लिक लिमिटेड",
                   "value": "Another Label3"
                 },
                 {
-                  "label": "Limited Liability Partnership",
+                  "label": "Limited Liability Partnership / लिमिटेड लाईबिलिटी पार्टनरशिप",
                   "value": "Another Label4"
+                },
+                {
+                  "label": "Others / अन्य",
+                  "value": "Another Label5"
                 }
               ],
               "validators": {
@@ -546,23 +551,13 @@ export class CsrFormComponent implements OnInit {
           "canExit": false,
           "controls": [
             {
-              "id": "label",
-              "name": "label",
-              "label": "2.1 Describe your organization's strategic planning process viz , key activities & their frequency and participants in these process",
-              "tooltip": "",
-              "type": "Label",
-              "required": true,
-              "validators": {},
-              "layout": "col-lg-12"
-            },
-            {
-              "id": "text",
-              "name": "text",
-              "placeholder": "Enter Text Here",
-              "label": "",
+              "id": "area",
+              "name": "area",
+              "placeholder": "Enter Description",
+              "label": "2.1 Describe your organization’s strategic planning process viz., key activities and their frequency and participants in these process / आपके व्यवसाय सम्बन्धी मध्यम-अवधि नीतिगत कार्य योजना, व उसे तय करने की प्रक्रिया और उनकी पुनः निरिक्षण की योजना का वर्णन करें ।",
               "tooltip": "",
               "value": "",
-              "type": "text",
+              "type": "textarea",
               "required": true,
               "validators": {
                 "required": false
@@ -570,23 +565,41 @@ export class CsrFormComponent implements OnInit {
               "layout": "col-lg-12"
             },
             {
-              "id": "label",
-              "name": "label",
-              "label": "2.2 Please Describe how do you communicate your company's vision to your employees and stakeholders",
+              "id": "area",
+              "name": "area",
+              "placeholder": "Enter Description",
+              "label": "2.2 What is your vision statement? / आपका विजन स्टेटमेंट क्या है?",
               "tooltip": "",
-              "type": "Label",
+              "value": "",
+              "type": "textarea",
               "required": true,
-              "validators": {},
+              "validators": {
+                "required": false
+              },
               "layout": "col-lg-12"
             },
             {
-              "id": "text",
-              "name": "text",
-              "placeholder": "Enter Text Here",
-              "label": "",
+              "id": "area",
+              "name": "area",
+              "placeholder": "Enter Description",
+              "label": "2.3 What is your mission statement? / आपका मिशन स्टेटमेंट क्या है?",
               "tooltip": "",
               "value": "",
-              "type": "text",
+              "type": "textarea",
+              "required": true,
+              "validators": {
+                "required": false
+              },
+              "layout": "col-lg-12"
+            },
+            {
+              "id": "area",
+              "name": "area",
+              "placeholder": "Enter Description",
+              "label": "2.4 Please describe how do you communicate your company’s vision to your employees and stakeholders / आपकी कंपनी ने संगठन के भीतर किस - किस माध्यम से अपने विज़न को दर्शाया है",
+              "tooltip": "",
+              "value": "",
+              "type": "textarea",
               "required": true,
               "validators": {
                 "required": false
@@ -596,7 +609,7 @@ export class CsrFormComponent implements OnInit {
             {
               "id": "radio",
               "name": "radio",
-              "label": "2.3 Do you set timelines for achieving the company's goals and objectives ? क्या आप कंपनी के लक्ष्यों और उद्देश्यों को प्राप्त करने के लिए समय-सीमा निर्धारित करते हैं?",
+              "label": "2.5 Do you set timelines for achieving the company's goals and objectives ? क्या आप कंपनी के लक्ष्यों और उद्देश्यों को प्राप्त करने के लिए समय-सीमा निर्धारित करते हैं?",
               "tooltip": "",
               "value": "",
               "type": "radio",
@@ -619,7 +632,7 @@ export class CsrFormComponent implements OnInit {
             {
               "id": "radio",
               "name": "radio",
-              "label": "2.4 Do employees understand the purpose and the objectives (measurable) of the organization ? क्या कर्मचारी संगठन के उद्देश्य और उद्देश्यों (मापनीय) को समझते हैं? )",
+              "label": "2.6 Do employees understand the purpose and the objectives (measurable) of the organization ? क्या कर्मचारी संगठन के उद्देश्य और उद्देश्यों (मापनीय) को समझते हैं? )",
               "tooltip": "",
               "value": "",
               "type": "radio",
@@ -642,7 +655,7 @@ export class CsrFormComponent implements OnInit {
             {
               "id": "radio",
               "name": "radio",
-              "label": "2.5 Do you assign each objective to some responsible person and outline his/her role and responsibilities ? क्या आप प्रत्येक उद्देश्य को किसी जिम्मेदार व्यक्ति को सौंपते हैं और उसकी भूमिका और जिम्मेदारियों की रूपरेखा तैयार करते हैं?",
+              "label": "2.7 Do you assign each objective to some responsible person and outline his/her role and responsibilities ? क्या आप प्रत्येक उद्देश्य को किसी जिम्मेदार व्यक्ति को सौंपते हैं और उसकी भूमिका और जिम्मेदारियों की रूपरेखा तैयार करते हैं?",
               "tooltip": "",
               "value": "",
               "type": "radio",
@@ -663,13 +676,27 @@ export class CsrFormComponent implements OnInit {
               "layout": "col-lg-12"
             },
             {
-              "id": "text",
-              "name": "text",
-              "placeholder": "Enter Text Here",
-              "label": "2.6 Why do you think your organization is the best and should be selected to win this award ? / आपको क्यों लगता है कि आपका संगठन सबसे अच्छा है और इस पुरस्कार को जीतने के लिए चुना जाना चाहिए?",
+              "id": "area",
+              "name": "area",
+              "placeholder": "Enter Description",
+              "label": "2.8 Why do you think your organization is the best and should be selected to win this award ? / आपको क्यों लगता है कि आपका संगठन सबसे अच्छा है और इस पुरस्कार को जीतने के लिए चुना जाना चाहिए?",
               "tooltip": "",
               "value": "",
-              "type": "text",
+              "type": "textarea",
+              "required": true,
+              "validators": {
+                "required": false
+              },
+              "layout": "col-lg-12"
+            },
+            {
+              "id": "area",
+              "name": "area",
+              "placeholder": "Enter Description",
+              "label": "2.9 Does the company have any management system certification (ISO 9001/CMMi/ etc.)? Please list them? / क्या कंपनी के पास कोई प्रबंधन प्रणाली का प्रमाणन (आईएसओ 9001, सीएमएमआई इत्यादि) है? कृपया उन्हें सूचीबद्ध करें।",
+              "tooltip": "",
+              "value": "",
+              "type": "textarea",
               "required": true,
               "validators": {
                 "required": false
@@ -679,31 +706,7 @@ export class CsrFormComponent implements OnInit {
             {
               "id": "label",
               "name": "label",
-              "label": "2.7 Does Company have any management system certification (ISO 9001 / CMMi / etc.) ? Please list them",
-              "tooltip": "",
-              "type": "Label",
-              "required": true,
-              "validators": {},
-              "layout": "col-lg-12"
-            },
-            {
-              "id": "text",
-              "name": "text",
-              "placeholder": "Enter Text Here",
-              "label": "",
-              "tooltip": "",
-              "value": "",
-              "type": "text",
-              "required": true,
-              "validators": {
-                "required": false
-              },
-              "layout": "col-lg-12"
-            },
-            {
-              "id": "label",
-              "name": "label",
-              "label": "2.8 Diversity of Management Team / प्रबंधन टीम की विविधता",
+              "label": "Diversity of Management Team / प्रबंधन टीम की विविधता",
               "tooltip": "",
               "type": "Label",
               "required": true,
@@ -713,7 +716,7 @@ export class CsrFormComponent implements OnInit {
             {
               "id": "radio",
               "name": "radio",
-              "label": "2.8.1 Does Your Company favour diversity in the executive team / क्या आपकी कंपनी कार्यकारी दल में विविधता के पक्ष में है",
+              "label": "2.10 Does Your Company favour diversity in the executive team / क्या आपकी कंपनी कार्यकारी दल में विविधता के पक्ष में है",
               "tooltip": "",
               "value": "",
               "type": "radio",
@@ -731,6 +734,16 @@ export class CsrFormComponent implements OnInit {
               "validators": {
                 "required": false
               },
+              "layout": "col-lg-12"
+            },
+            {
+              "id": "label",
+              "name": "label",
+              "label": "2.11 Please list top ten decision making persons in the company (CEO, CFO, VP , Directors/Partners/Owners—who are involved in the business activities etc.) / आपके व्यवसाय में सम्मिलित निर्देशक मंडल के सदस्य, सांझेदारों, मालिकाना अधिकार वाले अन्य सदस्य या भागीदारों, जो भी आपके व्यवसाय गतिविधियों में शामिल हो उनके बारे में संक्षेप में वर्णन करें।:",
+              "tooltip": "",
+              "type": "Label",
+              "required": true,
+              "validators": {},
               "layout": "col-lg-12"
             },
             {
@@ -783,26 +796,56 @@ export class CsrFormComponent implements OnInit {
                     "layout": "col-lg-12"
                   },
                   {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "Enter Text Here",
+                    "id": "dropdown",
+                    "name": "dropdown",
                     "label": "",
+                    "tooltip": "",
                     "value": "",
-                    "type": "text",
+                    "placeholder": "Please select",
+                    "type": "dropdown",
                     "required": true,
+                    "data": [
+                      {
+                        "label": "Technical or Engineering, Business Management, CA",
+                        "value": "1"
+                      },
+                      {
+                        "label": "PhD, MS, MTech, ME",
+                        "value": "2"
+                      },
+                      {
+                        "label": "College or vocational training",
+                        "value": "Another Label2"
+                      },
+                      {
+                        "label": "Others",
+                        "value": "Another Label3"
+                      }
+                    ],
                     "validators": {
                       "required": false
                     },
                     "layout": "col-lg-12"
                   },
                   {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "Enter Text Here",
+                    "id": "dropdown",
+                    "name": "dropdown",
                     "label": "",
+                    "tooltip": "",
                     "value": "",
-                    "type": "text",
+                    "placeholder": "Please select",
+                    "type": "dropdown",
                     "required": true,
+                    "data": [
+                      {
+                        "label": "Yes / हां",
+                        "value": "1"
+                      },
+                      {
+                        "label": "No / नहीं",
+                        "value": "2"
+                      }
+                    ],
                     "validators": {
                       "required": false
                     },
@@ -878,26 +921,56 @@ export class CsrFormComponent implements OnInit {
                     "layout": "col-lg-12"
                   },
                   {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "Enter Text Here",
+                    "id": "dropdown",
+                    "name": "dropdown",
                     "label": "",
+                    "tooltip": "",
                     "value": "",
-                    "type": "text",
+                    "placeholder": "Please select",
+                    "type": "dropdown",
                     "required": true,
+                    "data": [
+                      {
+                        "label": "Technical or Engineering, Business Management, CA",
+                        "value": "1"
+                      },
+                      {
+                        "label": "PhD, MS, MTech, ME",
+                        "value": "2"
+                      },
+                      {
+                        "label": "College or vocational training",
+                        "value": "Another Label2"
+                      },
+                      {
+                        "label": "Others",
+                        "value": "Another Label3"
+                      }
+                    ],
                     "validators": {
                       "required": false
                     },
                     "layout": "col-lg-12"
                   },
                   {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "Enter Text Here",
+                    "id": "dropdown",
+                    "name": "dropdown",
                     "label": "",
+                    "tooltip": "",
                     "value": "",
-                    "type": "text",
+                    "placeholder": "Please select",
+                    "type": "dropdown",
                     "required": true,
+                    "data": [
+                      {
+                        "label": "Yes / हां",
+                        "value": "1"
+                      },
+                      {
+                        "label": "No / नहीं",
+                        "value": "2"
+                      }
+                    ],
                     "validators": {
                       "required": false
                     },
@@ -973,26 +1046,32 @@ export class CsrFormComponent implements OnInit {
                     "layout": "col-lg-12"
                   },
                   {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "Enter Text Here",
+                    "id": "dropdown",
+                    "name": "dropdown",
                     "label": "",
+                    "tooltip": "",
                     "value": "",
-                    "type": "text",
+                    "placeholder": "Please select",
+                    "type": "dropdown",
                     "required": true,
-                    "validators": {
-                      "required": false
-                    },
-                    "layout": "col-lg-12"
-                  },
-                  {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "Enter Text Here",
-                    "label": "",
-                    "value": "",
-                    "type": "text",
-                    "required": true,
+                    "data": [
+                      {
+                        "label": "Technical or Engineering, Business Management, CA",
+                        "value": "1"
+                      },
+                      {
+                        "label": "PhD, MS, MTech, ME",
+                        "value": "2"
+                      },
+                      {
+                        "label": "College or vocational training",
+                        "value": "Another Label2"
+                      },
+                      {
+                        "label": "Others",
+                        "value": "Another Label3"
+                      }
+                    ],
                     "validators": {
                       "required": false
                     },
@@ -1009,180 +1088,14 @@ export class CsrFormComponent implements OnInit {
                     "required": true,
                     "data": [
                       {
-                        "label": "Female / महिला ",
+                        "label": "Yes / हां",
                         "value": "1"
                       },
                       {
-                        "label": "Male / पुरुष",
+                        "label": "No / नहीं",
                         "value": "2"
-                      },
-                      {
-                        "label": "Other / अन्य",
-                        "value": "Another Label2"
                       }
                     ],
-                    "validators": {
-                      "required": false
-                    },
-                    "layout": "col-lg-12"
-                  }
-                ],
-                [
-                  {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "Enter Text Here",
-                    "label": "",
-                    "value": "",
-                    "type": "text",
-                    "required": true,
-                    "validators": {
-                      "required": false
-                    },
-                    "layout": "col-lg-12"
-                  },
-                  {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "Enter Text Here",
-                    "label": "",
-                    "value": "",
-                    "type": "text",
-                    "required": true,
-                    "validators": {
-                      "required": false
-                    },
-                    "layout": "col-lg-12"
-                  },
-                  {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "Enter Text Here",
-                    "label": "",
-                    "value": "",
-                    "type": "text",
-                    "required": true,
-                    "validators": {
-                      "required": false
-                    },
-                    "layout": "col-lg-12"
-                  },
-                  {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "Enter Text Here",
-                    "label": "",
-                    "value": "",
-                    "type": "text",
-                    "required": true,
-                    "validators": {
-                      "required": false
-                    },
-                    "layout": "col-lg-12"
-                  },
-                  {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "Enter Text Here",
-                    "label": "",
-                    "value": "",
-                    "type": "text",
-                    "required": true,
-                    "validators": {
-                      "required": false
-                    },
-                    "layout": "col-lg-12"
-                  },
-                  {
-                    "id": "dropdown",
-                    "name": "dropdown",
-                    "label": "",
-                    "tooltip": "",
-                    "value": "",
-                    "placeholder": "Please select",
-                    "type": "dropdown",
-                    "required": true,
-                    "data": [
-                      {
-                        "label": "Female / महिला ",
-                        "value": "1"
-                      },
-                      {
-                        "label": "Male / पुरुष",
-                        "value": "2"
-                      },
-                      {
-                        "label": "Other / अन्य",
-                        "value": "Another Label2"
-                      }
-                    ],
-                    "validators": {
-                      "required": false
-                    },
-                    "layout": "col-lg-12"
-                  }
-                ],
-                [
-                  {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "Enter Text Here",
-                    "label": "",
-                    "value": "",
-                    "type": "text",
-                    "required": true,
-                    "validators": {
-                      "required": false
-                    },
-                    "layout": "col-lg-12"
-                  },
-                  {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "Enter Text Here",
-                    "label": "",
-                    "value": "",
-                    "type": "text",
-                    "required": true,
-                    "validators": {
-                      "required": false
-                    },
-                    "layout": "col-lg-12"
-                  },
-                  {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "Enter Text Here",
-                    "label": "",
-                    "value": "",
-                    "type": "text",
-                    "required": true,
-                    "validators": {
-                      "required": false
-                    },
-                    "layout": "col-lg-12"
-                  },
-                  {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "Enter Text Here",
-                    "label": "",
-                    "value": "",
-                    "type": "text",
-                    "required": true,
-                    "validators": {
-                      "required": false
-                    },
-                    "layout": "col-lg-12"
-                  },
-                  {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "Enter Text Here",
-                    "label": "",
-                    "value": "",
-                    "type": "text",
-                    "required": true,
                     "validators": {
                       "required": false
                     },
@@ -1258,26 +1171,56 @@ export class CsrFormComponent implements OnInit {
                     "layout": "col-lg-12"
                   },
                   {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "Enter Text Here",
+                    "id": "dropdown",
+                    "name": "dropdown",
                     "label": "",
+                    "tooltip": "",
                     "value": "",
-                    "type": "text",
+                    "placeholder": "Please select",
+                    "type": "dropdown",
                     "required": true,
+                    "data": [
+                      {
+                        "label": "Technical or Engineering, Business Management, CA",
+                        "value": "1"
+                      },
+                      {
+                        "label": "PhD, MS, MTech, ME",
+                        "value": "2"
+                      },
+                      {
+                        "label": "College or vocational training",
+                        "value": "Another Label2"
+                      },
+                      {
+                        "label": "Others",
+                        "value": "Another Label3"
+                      }
+                    ],
                     "validators": {
                       "required": false
                     },
                     "layout": "col-lg-12"
                   },
                   {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "Enter Text Here",
+                    "id": "dropdown",
+                    "name": "dropdown",
                     "label": "",
+                    "tooltip": "",
                     "value": "",
-                    "type": "text",
+                    "placeholder": "Please select",
+                    "type": "dropdown",
                     "required": true,
+                    "data": [
+                      {
+                        "label": "Yes / हां",
+                        "value": "1"
+                      },
+                      {
+                        "label": "No / नहीं",
+                        "value": "2"
+                      }
+                    ],
                     "validators": {
                       "required": false
                     },
@@ -1353,26 +1296,56 @@ export class CsrFormComponent implements OnInit {
                     "layout": "col-lg-12"
                   },
                   {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "Enter Text Here",
+                    "id": "dropdown",
+                    "name": "dropdown",
                     "label": "",
+                    "tooltip": "",
                     "value": "",
-                    "type": "text",
+                    "placeholder": "Please select",
+                    "type": "dropdown",
                     "required": true,
+                    "data": [
+                      {
+                        "label": "Technical or Engineering, Business Management, CA",
+                        "value": "1"
+                      },
+                      {
+                        "label": "PhD, MS, MTech, ME",
+                        "value": "2"
+                      },
+                      {
+                        "label": "College or vocational training",
+                        "value": "Another Label2"
+                      },
+                      {
+                        "label": "Others",
+                        "value": "Another Label3"
+                      }
+                    ],
                     "validators": {
                       "required": false
                     },
                     "layout": "col-lg-12"
                   },
                   {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "Enter Text Here",
+                    "id": "dropdown",
+                    "name": "dropdown",
                     "label": "",
+                    "tooltip": "",
                     "value": "",
-                    "type": "text",
+                    "placeholder": "Please select",
+                    "type": "dropdown",
                     "required": true,
+                    "data": [
+                      {
+                        "label": "Yes / हां",
+                        "value": "1"
+                      },
+                      {
+                        "label": "No / नहीं",
+                        "value": "2"
+                      }
+                    ],
                     "validators": {
                       "required": false
                     },
@@ -1448,26 +1421,56 @@ export class CsrFormComponent implements OnInit {
                     "layout": "col-lg-12"
                   },
                   {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "Enter Text Here",
+                    "id": "dropdown",
+                    "name": "dropdown",
                     "label": "",
+                    "tooltip": "",
                     "value": "",
-                    "type": "text",
+                    "placeholder": "Please select",
+                    "type": "dropdown",
                     "required": true,
+                    "data": [
+                      {
+                        "label": "Technical or Engineering, Business Management, CA",
+                        "value": "1"
+                      },
+                      {
+                        "label": "PhD, MS, MTech, ME",
+                        "value": "2"
+                      },
+                      {
+                        "label": "College or vocational training",
+                        "value": "Another Label2"
+                      },
+                      {
+                        "label": "Others",
+                        "value": "Another Label3"
+                      }
+                    ],
                     "validators": {
                       "required": false
                     },
                     "layout": "col-lg-12"
                   },
                   {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "Enter Text Here",
+                    "id": "dropdown",
+                    "name": "dropdown",
                     "label": "",
+                    "tooltip": "",
                     "value": "",
-                    "type": "text",
+                    "placeholder": "Please select",
+                    "type": "dropdown",
                     "required": true,
+                    "data": [
+                      {
+                        "label": "Yes / हां",
+                        "value": "1"
+                      },
+                      {
+                        "label": "No / नहीं",
+                        "value": "2"
+                      }
+                    ],
                     "validators": {
                       "required": false
                     },
@@ -1543,26 +1546,56 @@ export class CsrFormComponent implements OnInit {
                     "layout": "col-lg-12"
                   },
                   {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "Enter Text Here",
+                    "id": "dropdown",
+                    "name": "dropdown",
                     "label": "",
+                    "tooltip": "",
                     "value": "",
-                    "type": "text",
+                    "placeholder": "Please select",
+                    "type": "dropdown",
                     "required": true,
+                    "data": [
+                      {
+                        "label": "Technical or Engineering, Business Management, CA",
+                        "value": "1"
+                      },
+                      {
+                        "label": "PhD, MS, MTech, ME",
+                        "value": "2"
+                      },
+                      {
+                        "label": "College or vocational training",
+                        "value": "Another Label2"
+                      },
+                      {
+                        "label": "Others",
+                        "value": "Another Label3"
+                      }
+                    ],
                     "validators": {
                       "required": false
                     },
                     "layout": "col-lg-12"
                   },
                   {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "Enter Text Here",
+                    "id": "dropdown",
+                    "name": "dropdown",
                     "label": "",
+                    "tooltip": "",
                     "value": "",
-                    "type": "text",
+                    "placeholder": "Please select",
+                    "type": "dropdown",
                     "required": true,
+                    "data": [
+                      {
+                        "label": "Yes / हां",
+                        "value": "1"
+                      },
+                      {
+                        "label": "No / नहीं",
+                        "value": "2"
+                      }
+                    ],
                     "validators": {
                       "required": false
                     },
@@ -1638,6 +1671,92 @@ export class CsrFormComponent implements OnInit {
                     "layout": "col-lg-12"
                   },
                   {
+                    "id": "dropdown",
+                    "name": "dropdown",
+                    "label": "",
+                    "tooltip": "",
+                    "value": "",
+                    "placeholder": "Please select",
+                    "type": "dropdown",
+                    "required": true,
+                    "data": [
+                      {
+                        "label": "Technical or Engineering, Business Management, CA",
+                        "value": "1"
+                      },
+                      {
+                        "label": "PhD, MS, MTech, ME",
+                        "value": "2"
+                      },
+                      {
+                        "label": "College or vocational training",
+                        "value": "Another Label2"
+                      },
+                      {
+                        "label": "Others",
+                        "value": "Another Label3"
+                      }
+                    ],
+                    "validators": {
+                      "required": false
+                    },
+                    "layout": "col-lg-12"
+                  },
+                  {
+                    "id": "dropdown",
+                    "name": "dropdown",
+                    "label": "",
+                    "tooltip": "",
+                    "value": "",
+                    "placeholder": "Please select",
+                    "type": "dropdown",
+                    "required": true,
+                    "data": [
+                      {
+                        "label": "Yes / हां",
+                        "value": "1"
+                      },
+                      {
+                        "label": "No / नहीं",
+                        "value": "2"
+                      }
+                    ],
+                    "validators": {
+                      "required": false
+                    },
+                    "layout": "col-lg-12"
+                  },
+                  {
+                    "id": "dropdown",
+                    "name": "dropdown",
+                    "label": "",
+                    "tooltip": "",
+                    "value": "",
+                    "placeholder": "Please select",
+                    "type": "dropdown",
+                    "required": true,
+                    "data": [
+                      {
+                        "label": "Female / महिला ",
+                        "value": "1"
+                      },
+                      {
+                        "label": "Male / पुरुष ",
+                        "value": "2"
+                      },
+                      {
+                        "label": "Other / अन्य",
+                        "value": "Another Label2"
+                      }
+                    ],
+                    "validators": {
+                      "required": false
+                    },
+                    "layout": "col-lg-12"
+                  }
+                ],
+                [
+                  {
                     "id": "text",
                     "name": "text",
                     "placeholder": "Enter Text Here",
@@ -1658,6 +1777,200 @@ export class CsrFormComponent implements OnInit {
                     "value": "",
                     "type": "text",
                     "required": true,
+                    "validators": {
+                      "required": false
+                    },
+                    "layout": "col-lg-12"
+                  },
+                  {
+                    "id": "text",
+                    "name": "text",
+                    "placeholder": "Enter Text Here",
+                    "label": "",
+                    "value": "",
+                    "type": "text",
+                    "required": true,
+                    "validators": {
+                      "required": false
+                    },
+                    "layout": "col-lg-12"
+                  },
+                  {
+                    "id": "dropdown",
+                    "name": "dropdown",
+                    "label": "",
+                    "tooltip": "",
+                    "value": "",
+                    "placeholder": "Please select",
+                    "type": "dropdown",
+                    "required": true,
+                    "data": [
+                      {
+                        "label": "Technical or Engineering, Business Management, CA",
+                        "value": "1"
+                      },
+                      {
+                        "label": "PhD, MS, MTech, ME",
+                        "value": "2"
+                      },
+                      {
+                        "label": "College or vocational training",
+                        "value": "Another Label2"
+                      },
+                      {
+                        "label": "Others",
+                        "value": "Another Label3"
+                      }
+                    ],
+                    "validators": {
+                      "required": false
+                    },
+                    "layout": "col-lg-12"
+                  },
+                  {
+                    "id": "dropdown",
+                    "name": "dropdown",
+                    "label": "",
+                    "tooltip": "",
+                    "value": "",
+                    "placeholder": "Please select",
+                    "type": "dropdown",
+                    "required": true,
+                    "data": [
+                      {
+                        "label": "Yes / हां",
+                        "value": "1"
+                      },
+                      {
+                        "label": "No / नहीं",
+                        "value": "2"
+                      }
+                    ],
+                    "validators": {
+                      "required": false
+                    },
+                    "layout": "col-lg-12"
+                  },
+                  {
+                    "id": "dropdown",
+                    "name": "dropdown",
+                    "label": "",
+                    "tooltip": "",
+                    "value": "",
+                    "placeholder": "Please select",
+                    "type": "dropdown",
+                    "required": true,
+                    "data": [
+                      {
+                        "label": "Female / महिला ",
+                        "value": "1"
+                      },
+                      {
+                        "label": "Male / पुरुष ",
+                        "value": "2"
+                      },
+                      {
+                        "label": "Other / अन्य",
+                        "value": "Another Label2"
+                      }
+                    ],
+                    "validators": {
+                      "required": false
+                    },
+                    "layout": "col-lg-12"
+                  }
+                ],
+                [
+                  {
+                    "id": "text",
+                    "name": "text",
+                    "placeholder": "Enter Text Here",
+                    "label": "",
+                    "value": "",
+                    "type": "text",
+                    "required": true,
+                    "validators": {
+                      "required": false
+                    },
+                    "layout": "col-lg-12"
+                  },
+                  {
+                    "id": "text",
+                    "name": "text",
+                    "placeholder": "Enter Text Here",
+                    "label": "",
+                    "value": "",
+                    "type": "text",
+                    "required": true,
+                    "validators": {
+                      "required": false
+                    },
+                    "layout": "col-lg-12"
+                  },
+                  {
+                    "id": "text",
+                    "name": "text",
+                    "placeholder": "Enter Text Here",
+                    "label": "",
+                    "value": "",
+                    "type": "text",
+                    "required": true,
+                    "validators": {
+                      "required": false
+                    },
+                    "layout": "col-lg-12"
+                  },
+                  {
+                    "id": "dropdown",
+                    "name": "dropdown",
+                    "label": "",
+                    "tooltip": "",
+                    "value": "",
+                    "placeholder": "Please select",
+                    "type": "dropdown",
+                    "required": true,
+                    "data": [
+                      {
+                        "label": "Technical or Engineering, Business Management, CA",
+                        "value": "1"
+                      },
+                      {
+                        "label": "PhD, MS, MTech, ME",
+                        "value": "2"
+                      },
+                      {
+                        "label": "College or vocational training",
+                        "value": "Another Label2"
+                      },
+                      {
+                        "label": "Others",
+                        "value": "Another Label3"
+                      }
+                    ],
+                    "validators": {
+                      "required": false
+                    },
+                    "layout": "col-lg-12"
+                  },
+                  {
+                    "id": "dropdown",
+                    "name": "dropdown",
+                    "label": "",
+                    "tooltip": "",
+                    "value": "",
+                    "placeholder": "Please select",
+                    "type": "dropdown",
+                    "required": true,
+                    "data": [
+                      {
+                        "label": "Yes / हां",
+                        "value": "1"
+                      },
+                      {
+                        "label": "No / नहीं",
+                        "value": "2"
+                      }
+                    ],
                     "validators": {
                       "required": false
                     },
@@ -1789,7 +2102,7 @@ export class CsrFormComponent implements OnInit {
             {
               "id": "table",
               "name": "table",
-              "label": "Table",
+              "label": "",
               "tooltip": "",
               "value": "",
               "type": "table",
@@ -2589,7 +2902,7 @@ export class CsrFormComponent implements OnInit {
             {
               "id": "table",
               "name": "table",
-              "label": "Table",
+              "label": "",
               "tooltip": "",
               "value": "",
               "type": "table",
@@ -3093,7 +3406,7 @@ export class CsrFormComponent implements OnInit {
             {
               "id": "table",
               "name": "table",
-              "label": "Table",
+              "label": "",
               "tooltip": "",
               "value": "",
               "type": "table",
@@ -3392,7 +3705,7 @@ export class CsrFormComponent implements OnInit {
             {
               "id": "table",
               "name": "table",
-              "label": "Table",
+              "label": "",
               "tooltip": "",
               "value": "",
               "type": "table",
@@ -3646,7 +3959,7 @@ export class CsrFormComponent implements OnInit {
             {
               "id": "table",
               "name": "table",
-              "label": "Table",
+              "label": "",
               "tooltip": "",
               "value": "",
               "type": "table",
@@ -4101,7 +4414,7 @@ export class CsrFormComponent implements OnInit {
             {
               "id": "table",
               "name": "table",
-              "label": "Table",
+              "label": "",
               "tooltip": "",
               "value": "",
               "type": "table",
@@ -4364,7 +4677,7 @@ export class CsrFormComponent implements OnInit {
             {
               "id": "table",
               "name": "table",
-              "label": "Table",
+              "label": "",
               "tooltip": "",
               "value": "",
               "type": "table",
@@ -4632,7 +4945,7 @@ export class CsrFormComponent implements OnInit {
             {
               "id": "table",
               "name": "table",
-              "label": "Table",
+              "label": "",
               "tooltip": "",
               "value": "",
               "type": "table",
@@ -5789,14 +6102,72 @@ export class CsrFormComponent implements OnInit {
               "layout": "col-lg-12"
             },
             {
-              "id": "text",
-              "name": "text",
-              "placeholder": "",
+              "id": "dropdown",
+              "name": "dropdown",
               "label": "1.8.1 State / राज्य",
               "tooltip": "",
               "value": "",
-              "type": "text",
+              "placeholder": "Please select",
+              "type": "dropdown",
               "required": true,
+              "data": [
+                {
+                  "label": "Rajasthan",
+                  "value": "1"
+                },
+                {
+                  "label": "Punjab",
+                  "value": "2"
+                },
+                {
+                  "label": "Haryana",
+                  "value": "Another Label2"
+                },
+                {
+                  "label": "Jammu & Kashmir",
+                  "value": "Another Label3"
+                },
+                {
+                  "label": "Goa",
+                  "value": "Another Label4"
+                }
+              ],
+              "validators": {
+                "required": false
+              },
+              "layout": "col-lg-12"
+            },
+            {
+              "id": "dropdown",
+              "name": "dropdown",
+              "label": "1.8.2 District / जिला",
+              "tooltip": "",
+              "value": "",
+              "placeholder": "Please select",
+              "type": "dropdown",
+              "required": true,
+              "data": [
+                {
+                  "label": "Udaipur",
+                  "value": "1"
+                },
+                {
+                  "label": "Jaipur",
+                  "value": "2"
+                },
+                {
+                  "label": "Sikar",
+                  "value": "Another Label2"
+                },
+                {
+                  "label": "Kota",
+                  "value": "Another Label3"
+                },
+                {
+                  "label": "Churu",
+                  "value": "Another Label4"
+                }
+              ],
               "validators": {
                 "required": false
               },
@@ -5831,28 +6202,72 @@ export class CsrFormComponent implements OnInit {
               "layout": "col-lg-12"
             },
             {
-              "id": "text",
-              "name": "text",
-              "placeholder": "",
+              "id": "dropdown",
+              "name": "dropdown",
               "label": "1.9.1 State / राज्य",
               "tooltip": "",
               "value": "",
-              "type": "text",
+              "placeholder": "Please select",
+              "type": "dropdown",
               "required": true,
+              "data": [
+                {
+                  "label": "Rajasthan",
+                  "value": "1"
+                },
+                {
+                  "label": "Goa",
+                  "value": "2"
+                },
+                {
+                  "label": "Haryana",
+                  "value": "Another Label2"
+                },
+                {
+                  "label": "Punjab",
+                  "value": "Another Label3"
+                },
+                {
+                  "label": "Jammu & Kashmir",
+                  "value": "Another Label4"
+                }
+              ],
               "validators": {
                 "required": false
               },
               "layout": "col-lg-12"
             },
             {
-              "id": "text",
-              "name": "text",
-              "placeholder": "",
+              "id": "dropdown",
+              "name": "dropdown",
               "label": "1.9.2 District / जिला",
               "tooltip": "",
               "value": "",
-              "type": "text",
+              "placeholder": "Please select",
+              "type": "dropdown",
               "required": true,
+              "data": [
+                {
+                  "label": "Rajasthan",
+                  "value": "1"
+                },
+                {
+                  "label": "Goa",
+                  "value": "2"
+                },
+                {
+                  "label": "Haryana",
+                  "value": "Another Label2"
+                },
+                {
+                  "label": "Punjab",
+                  "value": "Another Label3"
+                },
+                {
+                  "label": "Jammu & Kashmir",
+                  "value": "Another Label4"
+                }
+              ],
               "validators": {
                 "required": false
               },
@@ -5897,28 +6312,56 @@ export class CsrFormComponent implements OnInit {
               "layout": "col-lg-12"
             },
             {
-              "id": "text",
-              "name": "text",
-              "placeholder": "",
+              "id": "dropdown",
+              "name": "dropdown",
               "label": "1.11.1.1 State / राज्य",
               "tooltip": "",
               "value": "",
-              "type": "text",
+              "placeholder": "Please select",
+              "type": "dropdown",
               "required": true,
+              "data": [
+                {
+                  "label": "Rajasthan",
+                  "value": "1"
+                },
+                {
+                  "label": "Goa",
+                  "value": "2"
+                },
+                {
+                  "label": "Haryana",
+                  "value": "Another Label2"
+                }
+              ],
               "validators": {
                 "required": false
               },
               "layout": "col-lg-12"
             },
             {
-              "id": "text",
-              "name": "text",
-              "placeholder": "",
-              "label": "1.11.1.2 City / शहर",
+              "id": "dropdown",
+              "name": "dropdown",
+              "label": "1.11.1.2 District / जिला",
               "tooltip": "",
               "value": "",
-              "type": "text",
+              "placeholder": "Please select",
+              "type": "dropdown",
               "required": true,
+              "data": [
+                {
+                  "label": "Udaipur",
+                  "value": "1"
+                },
+                {
+                  "label": "Sikar",
+                  "value": "2"
+                },
+                {
+                  "label": "Jaipur",
+                  "value": "Another Label2"
+                }
+              ],
               "validators": {
                 "required": false
               },
@@ -5939,28 +6382,56 @@ export class CsrFormComponent implements OnInit {
               "layout": "col-lg-12"
             },
             {
-              "id": "text",
-              "name": "text",
-              "placeholder": "",
+              "id": "dropdown",
+              "name": "dropdown",
               "label": "1.11.2.1 State / राज्य",
               "tooltip": "",
               "value": "",
-              "type": "text",
+              "placeholder": "Please select",
+              "type": "dropdown",
               "required": true,
+              "data": [
+                {
+                  "label": "Rajasthan",
+                  "value": "1"
+                },
+                {
+                  "label": "Haryana",
+                  "value": "2"
+                },
+                {
+                  "label": "Goa",
+                  "value": "Another Label2"
+                }
+              ],
               "validators": {
                 "required": false
               },
               "layout": "col-lg-12"
             },
             {
-              "id": "text",
-              "name": "text",
-              "placeholder": "",
-              "label": "1.11.2.2 City / शहर",
+              "id": "dropdown",
+              "name": "dropdown",
+              "label": "1.11.2.2 District / जिला",
               "tooltip": "",
               "value": "",
-              "type": "text",
+              "placeholder": "Please select",
+              "type": "dropdown",
               "required": true,
+              "data": [
+                {
+                  "label": "Udaipur",
+                  "value": "1"
+                },
+                {
+                  "label": "Sikar",
+                  "value": "2"
+                },
+                {
+                  "label": "Jaipur",
+                  "value": "Another Label2"
+                }
+              ],
               "validators": {
                 "required": false
               },
@@ -5981,28 +6452,56 @@ export class CsrFormComponent implements OnInit {
               "layout": "col-lg-12"
             },
             {
-              "id": "text",
-              "name": "text",
-              "placeholder": "",
+              "id": "dropdown",
+              "name": "dropdown",
               "label": "1.11.3.1 State / राज्य",
               "tooltip": "",
               "value": "",
-              "type": "text",
+              "placeholder": "Please select",
+              "type": "dropdown",
               "required": true,
+              "data": [
+                {
+                  "label": "Rajasthan",
+                  "value": "1"
+                },
+                {
+                  "label": "Haryana",
+                  "value": "2"
+                },
+                {
+                  "label": "Goa",
+                  "value": "Another Label2"
+                }
+              ],
               "validators": {
                 "required": false
               },
               "layout": "col-lg-12"
             },
             {
-              "id": "text",
-              "name": "text",
-              "placeholder": "",
-              "label": "1.11.3.2 City / शहर",
+              "id": "dropdown",
+              "name": "dropdown",
+              "label": "1.11.3.2 District / जिला",
               "tooltip": "",
               "value": "",
-              "type": "text",
+              "placeholder": "Please select",
+              "type": "dropdown",
               "required": true,
+              "data": [
+                {
+                  "label": "Udaipur",
+                  "value": "1"
+                },
+                {
+                  "label": "Sikar",
+                  "value": "2"
+                },
+                {
+                  "label": "Jaipur",
+                  "value": "Another Label2"
+                }
+              ],
               "validators": {
                 "required": false
               },
@@ -6247,7 +6746,7 @@ export class CsrFormComponent implements OnInit {
             {
               "id": "table",
               "name": "table",
-              "label": "Table",
+              "label": "",
               "tooltip": "",
               "value": "",
               "type": "table",
@@ -8205,7 +8704,7 @@ export class CsrFormComponent implements OnInit {
               "label": "1.6 Year of commencement of service sector operations / सेवा क्षेत्र की गतिविधियां शुरु करने का वर्ष:",
               "tooltip": "",
               "value": "",
-              "placeholder": "xdeedxe",
+              "placeholder": "",
               "type": "dropdown",
               "required": true,
               "data": [
@@ -11906,82 +12405,45 @@ export class CsrFormComponent implements OnInit {
               "layout": "col-lg-12"
             },
             {
-              "id": "table",
-              "name": "table",
-              "label": "Table",
+              "id": "text",
+              "name": "text",
+              "placeholder": "",
+              "label": "",
               "tooltip": "",
               "value": "",
-              "type": "table",
+              "type": "text",
               "required": true,
-              "rows": [
-                [
-                  {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "",
-                    "label": "",
-                    "value": "",
-                    "type": "text",
-                    "required": true,
-                    "validators": {
-                      "required": false
-                    },
-                    "layout": "col-lg-12"
-                  },
-                  {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "",
-                    "label": "",
-                    "value": "",
-                    "type": "text",
-                    "required": true,
-                    "validators": {
-                      "required": false
-                    },
-                    "layout": "col-lg-12"
-                  },
-                  {
-                    "id": "text",
-                    "name": "text",
-                    "placeholder": "",
-                    "label": "",
-                    "value": "",
-                    "type": "text",
-                    "required": true,
-                    "validators": {
-                      "required": false
-                    },
-                    "layout": "col-lg-12"
-                  }
-                ]
-              ],
-              "columns": [
-                {
-                  "id": "label",
-                  "name": "Column 1",
-                  "label": "",
-                  "type": "label"
-                },
-                {
-                  "id": "label",
-                  "label": "",
-                  "name": "label",
-                  "type": "label"
-                },
-                {
-                  "id": "label",
-                  "label": "",
-                  "name": "label",
-                  "type": "label"
-                }
-              ],
-              "rowHead": [
-                {
-                  "name": "row 1"
-                }
-              ],
-              "validators": {},
+              "validators": {
+                "required": false
+              },
+              "layout": "col-lg-12"
+            },
+            {
+              "id": "text",
+              "name": "text",
+              "placeholder": "",
+              "label": "",
+              "tooltip": "",
+              "value": "",
+              "type": "text",
+              "required": true,
+              "validators": {
+                "required": false
+              },
+              "layout": "col-lg-12"
+            },
+            {
+              "id": "text",
+              "name": "text",
+              "placeholder": "",
+              "label": "",
+              "tooltip": "",
+              "value": "",
+              "type": "text",
+              "required": true,
+              "validators": {
+                "required": false
+              },
               "layout": "col-lg-12"
             },
             {
@@ -18783,9 +19245,29 @@ export class CsrFormComponent implements OnInit {
         }
       ]
     }
-
-
     console.log(this.sections)
+  }
+  getExcelFromJson() {
+    let data : any = [{}]
+    data = Object.assign([],this.sections[3]?.controls);
+    // this.sections[0]?.controls?.forEach((object:any,index:any) => {
+    //   console.log(data, object)
+    //   if('label' in object) {
+    //     data[index].label = object.label;
+    //   }
+    //   else if('value' in object) {
+    //     data[index].value = object.value;
+    //   }
+    // });
+    // console.log(data)
+    // data = [{
+    //   name: 'test',
+    //   subject: 'testing'
+    // },{
+    //   name: 'test1',
+    //   subject: 'testing2'
+    // }]
+    this.excelService.exportAsExcelFile(data, 'export-to-excel');
   }
 
 }
