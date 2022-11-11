@@ -403,12 +403,15 @@ export class HomeDemoOneComponent implements OnInit {
       ]);
       this.registerForm.controls['turnover'].updateValueAndValidity();
 
-      this.commonClasifications.forEach((element) => {
-        if (element.category !== 'Social Enterprise') {
-          classification.push(element);
-        }
+      this.classification = this.commonClasifications.filter((element: any) => {
+        return element.category !== 'Social Enterprise';
       });
-      this.classification = classification;
+      // this.commonClasifications.forEach((element) => {
+      //   if (element.category !== 'Social Enterprise') {
+      //     classification.push(element);
+      //   }
+      // });
+      // this.classification = classification;
     } else if (event.target.value === 'csr') {
       this.registerForm.controls['turnover'].clearValidators();
       this.registerForm.controls['turnover'].updateValueAndValidity();
@@ -423,12 +426,15 @@ export class HomeDemoOneComponent implements OnInit {
       this.registerForm.controls['turnover'].clearValidators();
       this.registerForm.controls['turnover'].updateValueAndValidity();
 
-      this.commonClasifications.forEach((element) => {
-        if (element.category === 'Social Enterprise') {
-          classification.push(element);
-        }
+      this.classification = this.commonClasifications.filter((element: any) => {
+        return element.category === 'Social Enterprise';
       });
-      this.classification = classification;
+      // this.commonClasifications.forEach((element) => {
+      //   if (element.category === 'Social Enterprise') {
+      //     classification.push(element);
+      //   }
+      // });
+      // this.classification = classification;
     }
   }
   onDropdownSelection(event: any, params: any) {
