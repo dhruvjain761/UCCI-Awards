@@ -78,11 +78,11 @@ import { AuthGuard } from './auth.guard';
 import { ServiceMasterComponent } from './components/award/service-master/service-master.component';
 import { AwardCategoryComponent } from './components/masters/award-category/award-category.component';
 import { AwardConfigurationComponent } from './components/masters/award-configuration/award-configuration.component';
+import { CsrFormComponent } from './components/masters/csr-form/csr-form.component';
 import { FormBuilderComponent } from './components/masters/form-builder/form-builder.component';
 import { AdminLoginComponent } from './components/pages/admin-login/admin-login.component';
 import { RegisteredUsersComponent } from './components/pages/registered-users/registered-users.component';
 import { SuccessPageComponent } from './components/pages/success-page/success-page.component';
-import { CsrFormComponent } from './components/masters/csr-form/csr-form.component';
 // import { InterestAreaMasterComponent } from './components/masters/interest-area-master/interest-area-master.component';
 // import { SubcategoryMasterComponent } from './components/masters/marketplace-master/subcategory-master/subcategory-master.component';
 // import { CategoryMasterComponent } from './components/masters/marketplace-master/category-master/category-master.component';
@@ -121,12 +121,12 @@ const routes: Routes = [
   // {path: 'single-listings', component: ListingsDetailsComponent},
   // {path: 'events', component: EventsComponent},
   // {path: 'single-events', component: EventsDetailsComponent},
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    data: { route: ['Admin', 'Nominee 2', 'Nominee 1', 'UCCI Staff'] },
-    canActivate: [AuthGuard],
-  },
+  // {
+  //   path: 'dashboard',
+  //   component: DashboardComponent,
+  //   data: { route: ['Admin', 'Nominee 2', 'Nominee 1', 'UCCI Staff'] },
+  //   canActivate: [AuthGuard],
+  // },
   { path: 'dashboard-messages', component: DashboardMessagesComponent },
   { path: 'dashboard-bookings', component: DashboardBookingsComponent },
   { path: 'dashboard-wallet', component: DashboardWalletComponent },
@@ -156,7 +156,7 @@ const routes: Routes = [
   // {path: 'event-form', component: EventCreationFormComponent},
   // {path: 'event-form/:slug', component: EventCreationFormComponent},
   { path: 'form-builder', component: FormBuilderComponent },
-  {path: 'form-builder/:slug', component: FormBuilderComponent},
+  { path: 'form-builder/:slug', component: FormBuilderComponent },
   // Here add new pages component
 
   // Master Page Routing Pats

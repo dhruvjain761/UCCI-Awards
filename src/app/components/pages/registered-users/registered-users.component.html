@@ -229,10 +229,11 @@
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
                 <label>Award Type :</label>
-                <input readonly class="form-control" [value]="data?.award_type | titlecase">
+
+                <input readonly class="form-control" [value]="data?.award_type ">
               </div>
             </div>
-            <div class="col-lg-6 col-md-12">
+            <div class=" col-lg-6 col-md-12">
               <div class="form-group">
                 <label>Classification Industry:</label>
                 <input readonly class="form-control" [value]="data?.classification?.name | titlecase">
