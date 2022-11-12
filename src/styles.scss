@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import './assets/css/variables/variable.scss';
-@import '~ng-wizard/themes/ng_wizard.min.css';
-@import '~ng-wizard/themes/ng_wizard_theme_dots.min.css';
+@import "./assets/css/variables/variable.scss";
+@import "~ng-wizard/themes/ng_wizard.min.css";
+@import "~ng-wizard/themes/ng_wizard_theme_dots.min.css";
 
 :root {
   --fontFamily: "Work Sans", sans-serif;
@@ -10,15 +10,12 @@
   --optionalColor: #666666;
   --whiteColor: #ffffff;
   --blackColor: #221638;
-  --fontSize: 15px;
+  --fontSize: 13px;
   --transition: 0.5s;
   --btn-hover: #3b99ca;
 }
 
 // Veriables
-
-
-
 
 body {
   padding: 0;
@@ -78,7 +75,6 @@ img {
 .requierdSign {
   color: red;
 }
-
 
 p {
   color: var(--optionalColor);
@@ -206,6 +202,13 @@ p {
         }
       }
     }
+  }
+}
+
+.form-group {
+  label {
+    font-size: 13px;
+    font-weight: 500;
   }
 }
 
@@ -3284,7 +3287,6 @@ textarea.form-control {
                 }
               }
             }
-
           }
         }
       }
@@ -3513,7 +3515,7 @@ textarea.form-control {
   }
 }
 
-@media(max-width: 600px) {
+@media (max-width: 600px) {
   .p-dialog {
     width: 90%;
   }
@@ -3533,7 +3535,6 @@ textarea.form-control {
   }
 
   .add-listings-btn {
-
     margin-top: 10px;
     width: 100%;
 
@@ -4806,7 +4807,6 @@ select {
   font-size: 12px !important;
 }
 
-
 // payment section css
 .payment-totals {
   background: var(--whiteColor);
@@ -4820,8 +4820,6 @@ select {
     left: auto;
     right: auto;
   }
-
-  ;
 
   h3 {
     margin-bottom: 25px;
@@ -4844,8 +4842,6 @@ select {
         size: var(--fontSize);
       }
 
-      ;
-
       &:first-child {
         border: {
           bottom: none;
@@ -4858,8 +4854,6 @@ select {
         border: {
           top: none;
         }
-
-        ;
 
         span {
           color: var(--blackColor);
@@ -4874,8 +4868,6 @@ select {
         font: {
           weight: normal;
         }
-
-        ;
       }
     }
   }
@@ -5077,10 +5069,8 @@ $pending: red;
 
     .table-cols {
       border-bottom: $border !important;
-      ;
 
       &:last-child {
-
         border-bottom: none;
       }
 
@@ -5103,7 +5093,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 

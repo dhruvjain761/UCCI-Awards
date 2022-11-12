@@ -28,6 +28,12 @@ export class RegisteredUsersComponent implements OnInit {
 
   id: number;
 
+  preYear: any;
+
+  currentYear: any;
+
+  date: Date = new Date();
+
   statusForm = this.fb.group({
     status: ['', Validators.required],
     remark: ['', Validators.required],
@@ -59,6 +65,8 @@ export class RegisteredUsersComponent implements OnInit {
         subTitle: 'Home',
       },
     ];
+    this.currentYear = this.date.getFullYear();
+    this.preYear = this.currentYear - 1;
   }
 
   // get All registered users
@@ -215,7 +223,7 @@ export class RegisteredUsersComponent implements OnInit {
         }
       });
       this.confirmationService.confirm({
-        message: 'Are you sure to approve to selected users?',
+        message: 'Are you sure you want to approve selected users?',
         accept: () => {
           this.spinner.show();
 
@@ -262,7 +270,7 @@ export class RegisteredUsersComponent implements OnInit {
       // ]
       let approvedId = [];
       this.confirmationService.confirm({
-        message: 'Are you sure to reject to selected users?',
+        message: 'Are you sure you want to reject selected users?',
         accept: () => {
           this.spinner.show();
           this.selectedUser.forEach((element) => {
@@ -341,7 +349,7 @@ export class RegisteredUsersComponent implements OnInit {
           });
         } else if (emailBoolean === true) {
           this.confirmationService.confirm({
-            message: 'Are you sure to send mail to selected users?',
+            message: 'Are you sure you want to send mail to selected users?',
             accept: () => {
               this.spinner.show();
               console.log(approvedId);
@@ -377,7 +385,7 @@ export class RegisteredUsersComponent implements OnInit {
       if (item.status === 'Approved' || item.status === 'Rejected') {
         let approvedId = [];
         this.confirmationService.confirm({
-          message: 'Are you sure to send mail to selected user?',
+          message: 'Are you sure you want to send mail to selected users?',
           accept: () => {
             this.spinner.show();
             let id = item.id;
