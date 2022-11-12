@@ -92,9 +92,9 @@
                                     <p-scrollPanel styleClass="custombar2">
                                         <div class="row padding">
                                             <div class="col-lg-6 col-md-12">
-                                                <div class="form-group">Contact
-                                                    Person Name<span
-                                                        class="requierdSign">*</span>:
+                                                <div class="form-group"><label>Contact
+                                                        Person Name<span
+                                                            class="requierdSign">*</span>:</label>
                                                     <input type="text"
                                                         formControlName="name"
                                                         placeholder="Contact
@@ -136,13 +136,16 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12">
-                                                <div class="form-group">Mobile
-                                                    No.<span
-                                                        class="requierdSign">*</span>:
+                                                <div class="form-group"><label>
+                                                        Mobile
+                                                        No.<span
+                                                            class="requierdSign">*</span>:
+                                                    </label>
                                                     <input type="text"
                                                         formControlName="mobile_no"
                                                         maxlength="10"
-                                                        placeholder="Mobile number"
+                                                        placeholder="Mobile
+                                                        number"
                                                         class="form-control"
                                                         minlength="10"
                                                         [class.is-invalid]="(signupForm.submitted
@@ -170,7 +173,9 @@
                                                     <div
                                                         *ngIf="f.mobile_no.errors?.minlength
                                                         ||
-                                                        f.mobile_no.errors?.maxlength || f.mobile_no.errors?.pattern"
+                                                        f.mobile_no.errors?.maxlength
+                                                        ||
+                                                        f.mobile_no.errors?.pattern"
                                                         class="alert
                                                         alert-danger">
                                                         Mobile number
@@ -180,8 +185,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12">
-                                                <div class="form-group">Email<span
-                                                        class="requierdSign">*</span>:
+                                                <div class="form-group"><label>Email<span
+                                                            class="requierdSign">*</span>:</label>
                                                     <input type="email"
                                                         formControlName="email"
                                                         placeholder="Email"
@@ -229,9 +234,9 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12">
-                                                <div class="form-group">Legal
-                                                    Name<span
-                                                        class="requierdSign">*</span>:
+                                                <div class="form-group"><label>Legal
+                                                        Name<span
+                                                            class="requierdSign">*</span>:</label>
                                                     <input type="text"
                                                         maxlength="70"
                                                         pattern="^[A-Z]([a-zA-Z0-9.-_,]|[-
@@ -273,10 +278,10 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12">
-                                                <div class="form-group">Award
-                                                    Type<span
-                                                        class="requierdSign">*</span>:
-                                                    <select
+                                                <div class="form-group"><label>Award
+                                                        Type<span
+                                                            class="requierdSign">*</span>:
+                                                    </label> <select
                                                         formControlName="award_type"
                                                         [class]="(signupForm.submitted
                                                         &&
@@ -346,8 +351,10 @@
                                             </div> -->
                                             </div>
                                             <div class="col-lg-6 col-md-12">
-                                                <div class="form-group">PAN<span
+                                                <div class="form-group"><label>
+                                                    PAN<span
                                                         class="requierdSign">*</span>:
+                                                </label>
                                                     <input type="text"
                                                         formControlName="company_PAN"
                                                         oninput="this.value=
@@ -389,9 +396,11 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12">
-                                                <div class="form-group">GST
+                                                <div class="form-group"><label>
+                                                    GST
                                                     Registration Type<span
                                                         class="requierdSign">*</span>:
+                                                </label>
                                                     <select
                                                         formControlName="gst_type"
                                                         [class]="(signupForm.submitted
@@ -468,9 +477,10 @@
                                             <div class="col-lg-6 col-md-12">
                                                 <div class="form-group"
                                                     *ngIf="gstType ===
-                                                    'registered'">
+                                                    'registered'"><label>
                                                     GST No.<span
-                                                        class="requierdSign">*</span>:
+                                                    class="requierdSign">*</span>:
+                                                    </label>
                                                     <input type="text"
                                                         formControlName="company_GST"
                                                         placeholder="GST number"
@@ -527,9 +537,11 @@
 
 
                                             <div class="col-lg-6 col-md-12">
-                                                <div class="form-group">Industry
+                                                <div class="form-group"><label>
+                                                    Industry
                                                     Classification<span
                                                         class="requierdSign">*</span>:
+                                                </label>
                                                     <!-- {{classification | groupByPipe : 'category' | json}} -->
                                                     <p-dropdown
                                                         [options]="classification
@@ -607,11 +619,13 @@
                                         </div> -->
                                             <div class="col-lg-6 col-md-12">
                                                 <div class="form-group">
-                                                    Turnover in INR
+                                                    <label>
+                                                        Turnover in INR
                                                     ({{preYear}}-{{date | date:
                                                     'yy'}})
 
                                                     <span class="requierdSign">*</span>:
+                                                    </label>
                                                     <!-- <select formControlName="turnover"
                                                     [class]="(signupForm.submitted && registerForm.get('turnover')?.invalid) || registerForm.get('turnover')?.invalid && registerForm.get('turnover').touched ? 'form-control' : ''"
                                                     (change)="onDropdownSelection($event, 'turnover')"
@@ -674,9 +688,11 @@
                                             </div>
 
                                             <div class="col-lg-12 col-md-12">
-                                                <div class="form-group">Address
+                                                <div class="form-group"><label>
+                                                    Address
                                                     Line 1<span
                                                         class="requierdSign">*</span>:
+                                                </label>
                                                     <input type="text"
                                                         formControlName="company_address"
                                                         placeholder="Enter
@@ -696,30 +712,20 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 col-md-12">
-                                                <div class="form-group">Address
-                                                    Line 2:
+                                                <div class="form-group"><label>Address
+                                                    Line 2:</label>
                                                     <input type="text"
                                                         formControlName="address_line2"
                                                         placeholder="Enter
                                                         address line 2"
-                                                        class="form-control"
-                                                        [class.is-invalid]="(signupForm.submitted
-                                                        &&
-                                                        registerForm.get('address_line2')?.invalid)
-                                                        ||
-                                                        registerForm.get('address_line2')?.invalid
-                                                        &&
-                                                        registerForm.get('address_line2').touched">
-                                                    <div
-                                                        class="invalid-feedback">Address
-                                                        line 2 is required</div>
+                                                        class="form-control" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12">
                                                 <div class="form-group">
-                                                    <span style="margin-top:
+                                                    <label style="margin-top:
                                                         5px;">State<span
-                                                            class="requierdSign">*</span>:</span>
+                                                            class="requierdSign">*</span>:</label>
                                                     <p-dropdown
                                                         [options]="state"
                                                         formControlName="company_state"
@@ -774,8 +780,10 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12">
-                                                <div class="form-group">City<span
+                                                <div class="form-group"><label>
+                                                    City<span
                                                         class="requierdSign">*</span>:
+                                                </label>
                                                     <input type="text"
                                                         formControlName="company_city"
                                                         placeholder="City"
@@ -793,8 +801,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12">
-                                                <div class="form-group">Pincode<span
-                                                        class="requierdSign">*</span>:
+                                                <div class="form-group"><label>Pincode<span
+                                                    class="requierdSign">*</span>:</label>
                                                     <input type="text"
                                                         formControlName="company_pincode"
                                                         placeholder="Pincode"
@@ -825,7 +833,9 @@
                                                     <div
                                                         *ngIf="f.company_pincode.errors?.minlength
                                                         ||
-                                                        f.company_pincode.errors?.maxlength || f.company_pincode.errors?.pattern"
+                                                        f.company_pincode.errors?.maxlength
+                                                        ||
+                                                        f.company_pincode.errors?.pattern"
                                                         class="alert
                                                         alert-danger">
                                                         Pincode
@@ -836,7 +846,8 @@
                                             </div>
 
                                             <div class="col-lg-12 col-md-12">
-                                                <div class="form-group">Mention
+                                                <div class="form-group"><label>
+                                                    Mention
                                                     2-3 Key Achievements In
                                                     Terms Of
                                                     Business Operations /
@@ -845,6 +856,7 @@
                                                     Organization Qualifies For A
                                                     Consideration For Award(s).<span
                                                         class="requierdSign">*</span>:
+                                                </label>
                                                     <textarea type="text"
                                                         formControlName="achievements"
                                                         placeholder="Enter
@@ -863,11 +875,13 @@
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 col-md-12">
-                                                <div class="form-group">Mention
+                                                <div class="form-group"><label>
+                                                    Mention
                                                     upto 3 Key Strengths / USPs
                                                     ( Unique
                                                     Features) of your enterprise<span
                                                         class="requierdSign">*</span>:
+                                                </label>
                                                     <textarea type="text"
                                                         formControlName="reason"
                                                         placeholder="Enter
@@ -901,8 +915,10 @@
                                 <!-- Login form -->
                                 <form [formGroup]="loginForm"
                                     (ngSubmit)="otpGenerate()" #login="ngForm">
-                                    <div class="form-group">Email<span
+                                    <div class="form-group"><label>
+                                        Email<span
                                             class="requierdSign">*</span>:
+                                    </label>
                                         <input type="email" placeholder="Email"
                                             formControlName="loginemail"
                                             [class.is-invalid]="(login.submitted
@@ -947,8 +963,10 @@
                                             </ng-template>
                                         </div> -->
                                     <div class="form-group" *ngIf="otpState ===
-                                        true">OTP<span
+                                        true"><label>
+                                            OTP<span
                                             class="requierdSign">*</span>:
+                                        </label>
                                         <input type="text" placeholder="Enter
                                             OTP" formControlName="otp"
                                             class="form-control"
