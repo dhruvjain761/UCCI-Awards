@@ -65,13 +65,14 @@
                 <div class="modal-content">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
-                            <button class="nav-link {{classCheck ? '' : 'show active'}}" id="register-tab" data-bs-toggle="tab"
-                                data-bs-target="#register" type="button" role="tab" aria-controls="register"
-                                aria-selected="true">Register</button>
+                            <button class="nav-link {{classCheck ? '' : 'show active'}}" id="register-tab"
+                                data-bs-toggle="tab" data-bs-target="#register" type="button" role="tab"
+                                aria-controls="register" aria-selected="true">Register</button>
                         </li>
                         <li class="nav-item">
-                            <button class="nav-link {{classCheck ? 'show active' : ''}}" id="login-tab" data-bs-toggle="tab" data-bs-target="#login"
-                                type="button" role="tab" aria-controls="login" aria-selected="true">Login</button>
+                            <button class="nav-link {{classCheck ? 'show active' : ''}}" id="login-tab"
+                                data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab"
+                                aria-controls="login" aria-selected="true">Login</button>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
@@ -104,7 +105,7 @@
                                                         f.name.touched" class="alert
                                                         alert-danger">
                                                         <div *ngIf="f.name.errors?.required">
-                                                            Contact Person Name
+                                                            Contact person name
                                                             is required
                                                         </div>
                                                     </div>
@@ -204,7 +205,7 @@
                                                         f.company_name.touched" class="alert
                                                         alert-danger">
                                                         <div *ngIf="f.company_name.errors?.required">
-                                                            Legal Name is
+                                                            Legal name is
                                                             required
                                                         </div>
 
@@ -455,7 +456,7 @@
                                                 </select> -->
                                                     <p-inputNumber inputId="locale-indian" mode="decimal" locale="en-IN"
                                                         prefix="₹" placeholder="Turnover" formControlName="turnover"
-                                                        required [class.is-invalid]="(signupForm.submitted
+                                                        maxlength="18" required [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('turnover')?.invalid)
                                                         ||
