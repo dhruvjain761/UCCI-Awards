@@ -33,6 +33,8 @@ export class RegisteredUsersComponent implements OnInit {
   currentYear: any;
 
   date: Date = new Date();
+  currncyLength = 0;
+  currency
 
   statusForm = this.fb.group({
     status: ['', Validators.required],
@@ -41,6 +43,7 @@ export class RegisteredUsersComponent implements OnInit {
   status: string;
   localStorage: any;
   selectedUser: any[] = [];
+  turnoverAmount: string;
   // emailBoolean: boolean = false;
 
   constructor(
@@ -191,6 +194,21 @@ export class RegisteredUsersComponent implements OnInit {
     let selectedUser = [];
     selectedUser.push(item);
     this.details = selectedUser;
+
+    let a = item.turnover;
+    a = a.replace(/,/g, "");
+    console.log('updated ', a);
+    if (a && !isNaN(+a)) {
+      let num: number = +a;
+      let temp = new Intl.NumberFormat("en-IN").format(num); //inplace of en-IN you can mention your country's code
+      console.log("temp is   ", temp);
+      temp = temp ? temp.toString() : '';
+      console.log("temp is updated ", temp);
+      this.currency.setValue(temp);
+      this.turnoverAmount = temp;
+      console.log(this.turnoverAmount);
+      
+    }
 
     this.displayMaximizable = true;
 
@@ -412,6 +430,31 @@ export class RegisteredUsersComponent implements OnInit {
           },
         });
       }
+    }
+  }
+  changeToCurrency(currencyTextRef) {
+    const currency = this.statusForm.get('currency')
+    this.currncyLength = this.currency.value.length;
+    console.log("currency len is " + this.currncyLength);
+    let index: number;
+    // if(currencyTextRef.selectionStart || currencyTextRef.selectionStart == '0') {
+    //     console.log("index isss  "+currencyTextRef.selectionStart);
+    index = currencyTextRef.selectionStart; //getting caret(cursor) position
+    // }
+    console.log("index is  " + index);
+
+    // console.log("value is "+this.currency.value);
+
+    let a = this.currency.value;
+    a = a.replace(/,/g, "");
+    console.log('updated ', a);
+    if (a && !isNaN(+a)) {
+      let num: number = +a;
+      let temp = new Intl.NumberFormat("en-IN").format(num); //inplace of en-IN you can mention your country's code
+      console.log("temp is   ", temp);
+      temp = temp ? temp.toString() : '';
+      console.log("temp is updated ", temp);
+      this.currency.setValue(temp);
     }
   }
 }

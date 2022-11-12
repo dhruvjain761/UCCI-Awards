@@ -241,7 +241,7 @@
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
                 <label>Turnover in INR ({{preYear}}-{{date | date: 'yy'}}) :</label>
-                <input readonly class="form-control" value="₹{{data?.turnover | number}}">
+                <input readonly class="form-control" value="₹{{data?.turnover}}" (input)="changeToCurrency(currencyTextRef)" #currencyTextRef>
               </div>
             </div>
             <div class="col-lg-6 col-md-12">
