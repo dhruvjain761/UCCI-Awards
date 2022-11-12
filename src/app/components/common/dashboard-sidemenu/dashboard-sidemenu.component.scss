@@ -85,6 +85,7 @@
                     position: relative;
                     z-index: 1;
                     font-size: var(--fontSize);
+                    cursor: pointer;
                     .icon {
                         color: var(--blackColor);
                         transition: var(--transition);

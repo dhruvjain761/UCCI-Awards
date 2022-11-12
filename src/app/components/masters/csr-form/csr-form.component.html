@@ -41,7 +41,7 @@
         </ol>
     </div>
     <div class="add-listings-box" *ngIf="sections.length > 0">
-        <lib-renderer [sections]="sections"></lib-renderer>
+        <lib-renderer [sections]="sections" (sectionsData)="getFormResponse($event)"></lib-renderer>
     </div>
     <!-- <button (click)="getExcelFromJson()">get excel</button> -->
     <!-- <lib-form-builder [buttonFields]="buttonFields" (formJson)="getJson($event)"></lib-form-builder> -->

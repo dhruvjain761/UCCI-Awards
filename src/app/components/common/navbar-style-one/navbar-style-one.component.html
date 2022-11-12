@@ -21,8 +21,8 @@
                             src="https://ucciudaipur.com/wp-content/uploads/2021/11/ucci-logo-update-2.png" alt="logo"
                             height="180px" width="180px"></a>
                 </div>
-                <a *ngIf="!localStorage" routerLink="/admin-login" class="admin-link">Admin
-                    Login</a>
+                <!-- <a *ngIf="!localStorage" routerLink="/admin-login" class="admin-link">Admin
+                    Login</a> -->
             </div>
         </div>
     </div>
@@ -33,7 +33,7 @@
                 <a class="navbar-brand" style="padding: 14px 0;" routerLink="/"><img
                         src="https://ucciudaipur.com/wp-content/uploads/2021/11/ucci-logo-update-2.png" alt="logo"></a>
                 <!-- <div> -->
-                <a *ngIf="!localStorage" routerLink="/admin-login" class="admin-link">Admin Login</a>
+                <!-- <a *ngIf="!localStorage" routerLink="/admin-login" class="admin-link">Admin Login</a> -->
                 <!-- </div> -->
                 <div class="collapse navbar-collapse mean-menu" *ngIf="localStorage">
                     <!-- <form class="navbar-search-box">
@@ -218,8 +218,8 @@
         </div>
     </div>
 
-    <div class="others-option-for-responsive" *ngIf="localStorage">
-        <div [class]="otherOptionClass">
+    <!-- <div class="others-option-for-responsive" *ngIf="localStorage">
+        <div class="container">
             <div class="dot-menu">
                 <div class="inner">
                     <div class="circle circle-one"></div>
@@ -232,43 +232,65 @@
                 <div class="option-inner">
                     <div class="others-option">
                         <div class="option-item">
-                            <!-- <div>
-                                <h3>{{userName | titlecase}}</h3>
-                            </div> -->
                             <div class="info text-center" style="border-bottom: 1px solid #f1e9e9;">
                                 <span class="name" style="color: #000;">{{userName | titlecase}}</span>
                                 <p class="mb-2 email">{{userEmail}}</p>
                             </div>
-                            <!-- <form class="navbar-search-box">
-                                <label><i class="flaticon-search"></i></label>
-                                <input type="text" class="input-search" placeholder="What are you looking for?">
-                            </form> -->
-                            <!-- <ul class="profile-nav p-0 pt-3"> -->
                             <span class="nav-item mt-2"><a routerLink="/dashboard" class="nav-link"><i
                                         class='bx bx-user'></i> <span>Dashboard</span></a></span>
-                            <!-- <span class="nav-item"><a routerLink="/dashboard-messages" class="nav-link"><i
-                                        class='bx bx-envelope'></i> <span>Messages</span></a></span>
-                            <span class="nav-item"><a routerLink="/dashboard-bookings" class="nav-link"><i
-                                        class='bx bx-edit-alt'></i> <span>Bookings</span></a></span>
-                            <span class="nav-item"><a routerLink="/dashboard-my-profile" class="nav-link"><i
-                                        class='bx bx-cog'></i> <span>Settings</span></a>
-                            </span> -->
-                            <!-- </ul> -->
                         </div>
 
                         <div class="option-item">
-                            <!-- <span data-bs-toggle="modal" data-bs-target="#loginRegisterModal"><i
-                                    class="flaticon-user"></i> Login / Register</span> -->
                             <span>
                                 <a class="nav-link" (click)="logout()"><i class='bx bx-log-out'></i>
                                     <span>Logout</span></a>
                             </span>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <div class="others-option-for-responsive" *ngIf="localStorage">
 
-                        <!-- <div class="option-item">
-                            <a routerLink="/dashboard-add-listings" class="default-btn"><i class="flaticon-more"></i>
-                                Add Listing</a>
+        <div class="others-option d-flex align-items-center justify-content-end">
+            <div class="option-item">
+                <div class="dropdown profile-nav-item">
+                    <a href="#" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <div class="menu-profile">
+                            <!-- <img src="assets/img/user1.jpg" class="rounded-circle" alt="image"> -->
+                            <span class="name">My Account</span>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-header d-flex flex-column align-items-center">
+                            <div class="figure mb-3">
+                                <!-- <img src="assets/img/user1.jpg" class="rounded-circle" alt="image"> -->
+                            </div>
+
+                            <div class="info text-center">
+                                <span class="name">{{userName | titlecase}}</span>
+                                <p class="mb-3 email">{{userEmail}}</p>
+                            </div>
+                        </div>
+                        <!-- <div class="dropdown-body">
+                            <ul class="profile-nav p-0 pt-3">
+                                <li class="nav-item"><a routerLink="/dashboard" class="nav-link"><i
+                                            class='bx bx-user'></i>
+                                        <span>Dashboard</span></a></li>
+                            </ul>
                         </div> -->
+                        <div class="dropdown-footer">
+                            <ul class="profile-nav">
+                                <li class="nav-item">
+
+                                    <a class="nav-link" (click)="logout()"><i class='bx bx-log-out'></i>
+                                        <span>Logout</span></a>
+                                    <!-- <a routerLink="/" class="nav-link"><i class='bx bx-log-out'></i> <span>Logout</span></a> -->
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

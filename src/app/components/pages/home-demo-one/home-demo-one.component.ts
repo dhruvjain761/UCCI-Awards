@@ -58,20 +58,17 @@ export class HomeDemoOneComponent implements OnInit {
   });
   registerForm = this.fb.group({
     name: ['', [Validators.required]],
-    mobile_no: [
-      '',
-      [
-        Validators.required,
-        Validators.pattern('^[0-9]{10}$'),
-      ],
-    ],
+    mobile_no: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
     email: ['', [Validators.required, Validators.email]],
     company_name: ['', Validators.required],
     company_GST: [''],
     company_PAN: ['', Validators.required],
     company_state: ['', Validators.required],
     company_city: ['', Validators.required],
-    company_pincode: ['', Validators.required, Validators.pattern('^[0-9]{6}$')],
+    company_pincode: [
+      '',
+      [Validators.required, Validators.pattern('^[0-9]{6}$')],
+    ],
     company_address: ['', Validators.required],
     address_line2: [''],
     award_type: [null, Validators.required],
@@ -119,6 +116,7 @@ export class HomeDemoOneComponent implements OnInit {
   otpState: boolean = false;
   commonClasifications: any;
   preYear: any;
+  classCheck: boolean = false;
   constructor(
     private fb: FormBuilder,
     private messageService: MessageService,
@@ -180,7 +178,7 @@ export class HomeDemoOneComponent implements OnInit {
       this.spinner.show();
       let formData = new FormData();
       let classification_id: any = this.registerForm.value.classification_id;
-      let turnover: any = this.registerForm.value.turnover;
+      // let turnover: any = this.registerForm.value.turnover;
       let state: any = this.registerForm.value.company_state;
       // classId.push()
       for (const [key, value] of Object.entries(this.registerForm.value)) {
@@ -220,10 +218,10 @@ export class HomeDemoOneComponent implements OnInit {
             severity: 'success',
             detail: res.message,
           });
-          // this.signupState = true;
-          setTimeout(() => {
-            this.router.navigateByUrl('/success');
-          }, 1000);
+          this.signupState = true;
+          // setTimeout(() => {
+          //   this.router.navigateByUrl('/success');
+          // }, 1000);
           // this.registerForm.patchValue({
           //   gst_type: 'registered',
           // });
@@ -248,6 +246,7 @@ export class HomeDemoOneComponent implements OnInit {
     console.log(event);
     if (event == true) {
       this.signupState = false;
+      this.classCheck = true;
     }
   }
   // user login form function

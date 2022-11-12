@@ -50,7 +50,7 @@
                 right: 0;
                 transition: var(--transition);
                 color: #000;
-                top: 3px;
+                top: 1px;
 
                 font: {
                     size: 15px;
@@ -154,6 +154,7 @@
 
                         .nav-item {
                             margin-left: 0;
+                            cursor: pointer !important;
 
                             .nav-link {
                                 color: var(--blackColor);
@@ -1567,7 +1568,12 @@
 
 /* Max width 767px */
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 767.5px) {
+    .dropdown {
+        right: 165px;
+        bottom: 46px;
+    }
+
     .navbar-area {
         padding: {
             top: 15px;
@@ -2005,7 +2011,7 @@
     }
 
     .vesax-responsive-nav {
-        display: block;
+        // display: block;
 
         .vesax-responsive-menu {
             position: relative;
@@ -2161,6 +2167,8 @@
 }
 
 
+
+
 /* Min width 1200px to Max width 1355px */
 
 @media only screen and (min-width: 1200px) and (max-width: 1355px) {
@@ -2228,11 +2236,24 @@
     display: contents !important;
     cursor: pointer;
     user-select: none;
+    font-weight: 500;
+    font-size: 1rem;
 }
 
 @media (max-width: 1198px) {
     .admin-link {
         display: contents !important;
+    }
+
+    .vesax-responsive-nav {
+        display: block;
+    }
+
+    .dropdown {
+        position: relative;
+        bottom: 40px;
+        right: 153px;
+        z-index: 1000;
     }
 }
 
@@ -2272,5 +2293,18 @@
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .vesax-responsive-nav .logo {
         width: 68% !important;
+    }
+}
+
+@media (max-width: 500px) {
+    .dropdown {
+        right: 51px;
+    }
+}
+
+@media (max-width: 350px) {
+    .dropdown {
+        bottom: 20px;
+        left: -17px;
     }
 }
