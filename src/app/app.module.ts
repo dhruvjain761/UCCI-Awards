@@ -153,7 +153,7 @@ import { AwardConfigurationComponent } from './components/masters/award-configur
 import { RegisteredUsersComponent } from './components/pages/registered-users/registered-users.component';
 import { AwardCategoryComponent } from './components/masters/award-category/award-category.component';
 import { FormBuilderComponent } from './components/masters/form-builder/form-builder.component';
-import {LibFBModule} from 'lib-fb';
+import { LibFBModule } from 'lib-fb';
 import { CsrFormComponent } from './components/masters/csr-form/csr-form.component';
 import { AdminLoginComponent } from './components/pages/admin-login/admin-login.component';
 import { SuccessPageComponent } from './components/pages/success-page/success-page.component';
@@ -332,7 +332,6 @@ const ngWizardConfig: NgWizardConfig = {
     DropdownModule,
     InputNumberModule,
     ScrollPanelModule,
-    
 
     // Vizard Form Imports
     NgWizardModule.forRoot(ngWizardConfig),
@@ -340,7 +339,7 @@ const ngWizardConfig: NgWizardConfig = {
     // loader import
 
     NgxSpinnerModule,
-    LibFBModule
+    LibFBModule,
   ],
   bootstrap: [AppComponent],
   providers: [
@@ -348,7 +347,7 @@ const ngWizardConfig: NgWizardConfig = {
     ConfirmationService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    ExcelService
+    ExcelService,
   ],
 })
 export class AppModule {}

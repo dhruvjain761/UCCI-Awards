@@ -35,6 +35,7 @@ export class NavbarStyleOneComponent implements OnInit, OnChanges {
 
   spinnerMsg: string;
   role: any;
+  otherOptionClass: string = 'container';
   // confirmPassword: string = '';
   constructor(
     private apiservice: ApiService,
@@ -238,13 +239,14 @@ export class NavbarStyleOneComponent implements OnInit, OnChanges {
       // summary: 'success',
       detail: 'Logged out successfully',
     });
+    this.userName = '';
+    this.localStorage = this.commonFunction.getLocalStorage();
     this.spinner.hide();
     setTimeout(() => {
       this.router.navigateByUrl('/');
     }, 1000);
     // this.router.navigateByUrl('/');
-    this.userName = '';
-    this.localStorage = this.commonFunction.getLocalStorage();
+
     // this.apiservice.logoutUser().subscribe(
     //   (res: any) => {
     //     localStorage.removeItem('award_access_token');

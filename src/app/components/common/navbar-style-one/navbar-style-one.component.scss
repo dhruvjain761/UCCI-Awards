@@ -50,7 +50,7 @@
                 right: 0;
                 transition: var(--transition);
                 color: #000;
-                top: 3px;
+                top: 1px;
 
                 font: {
                     size: 15px;
@@ -997,7 +997,7 @@
         z-index: 9991;
         position: absolute;
         right: 60px;
-        top: -45px;
+        top: -50px;
 
         .inner {
             display: flex;
@@ -1567,7 +1567,12 @@
 
 /* Max width 767px */
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 767.5px) {
+    .dropdown {
+        right: 165px;
+        bottom: 46px;
+    }
+
     .navbar-area {
         padding: {
             top: 15px;
@@ -2005,7 +2010,7 @@
     }
 
     .vesax-responsive-nav {
-        display: block;
+        // display: block;
 
         .vesax-responsive-menu {
             position: relative;
@@ -2130,8 +2135,24 @@
 
         .logo {
             position: relative;
-            width: 60%;
+            width: 80%;
             z-index: 999;
+        }
+
+        .admin-link {
+            // margin-top: 10px;
+            display: flex !important;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+
+            // &a {
+            &:visited {
+                // color: red;
+                color: var(--fontColor);
+            }
+
+            // }
         }
     }
 
@@ -2143,6 +2164,8 @@
         display: block;
     }
 }
+
+
 
 
 /* Min width 1200px to Max width 1355px */
@@ -2212,11 +2235,24 @@
     display: contents !important;
     cursor: pointer;
     user-select: none;
+    font-weight: 500;
+    font-size: 1rem;
 }
 
 @media (max-width: 1198px) {
     .admin-link {
         display: contents !important;
+    }
+
+    .vesax-responsive-nav {
+        display: block;
+    }
+
+    .dropdown {
+        position: relative;
+        bottom: 40px;
+        right: 153px;
+        z-index: 1000;
     }
 }
 
@@ -2236,5 +2272,38 @@
 @media only screen and (min-width: 1198px) {
     .navbar-nav {
         display: none;
+    }
+
+
+}
+
+.menu {
+    align-items: flex-start;
+}
+
+@media (min-width: 1199px) {
+    .menu {
+        justify-content: space-between;
+        align-items: center;
+
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .vesax-responsive-nav .logo {
+        width: 68% !important;
+    }
+}
+
+@media (max-width: 500px) {
+    .dropdown {
+        right: 51px;
+    }
+}
+
+@media (max-width: 350px) {
+    .dropdown {
+        bottom: 20px;
+        left: -17px;
     }
 }
