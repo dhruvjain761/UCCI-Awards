@@ -88,8 +88,9 @@
                                                 <div class="form-group"><label>Contact
                                                         Person Name<span class="requierdSign">*</span>:</label>
                                                     <input type="text" formControlName="name"
+                                                        style="text-transform: capitalize;"
                                                         placeholder="Contact person name" class="form-control"
-                                                        maxlength="70" pattern="^[A-Z]([a-zA-Z0-9.-_,]|[-
+                                                        maxlength="70" pattern="^([a-zA-Z0-9.-_,]|[-
                                                         @.&!])*$" [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('name')?.invalid)
@@ -188,8 +189,9 @@
                                             <div class="col-lg-6 col-md-12">
                                                 <div class="form-group"><label>Legal
                                                         Name<span class="requierdSign">*</span>:</label>
-                                                    <input type="text" maxlength="70" pattern="^[A-Z]([a-zA-Z0-9.-_,]|[-
+                                                    <input type="text" maxlength="70" pattern="^([a-zA-Z0-9.-_,]|[-
                                                         @.&!])*$" placeholder="Legal name"
+                                                        style="text-transform: capitalize;"
                                                         formControlName="company_name" [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('company_name')?.invalid)
@@ -398,17 +400,10 @@
                                                         </ng-template>
                                                         <!-- </p-scrollPanel> -->
                                                     </p-dropdown>
-                                                    <div *ngIf="signupForm.submitted
-                                                        &&
-                                                        f.classification_id.errors?.required
-                                                        ||
-                                                        f.classification_id.touched" class="alert
-                                                        alert-danger">
-                                                        <div *ngIf="f.classification_id.errors?.required">
-                                                            Industry
-                                                            classification is
-                                                            required
-                                                        </div>
+                                                    <div class="invalid-feedback">
+                                                        Industry
+                                                        classification is
+                                                        required
                                                     </div>
                                                     <!-- <div class="invalid-feedback">Industry classification is required
                                                     </div> -->
@@ -456,7 +451,7 @@
                                                 </select> -->
                                                     <p-inputNumber inputId="locale-indian" mode="decimal" locale="en-IN"
                                                         prefix="₹" placeholder="Turnover" formControlName="turnover"
-                                                        maxlength="18" required [class.is-invalid]="(signupForm.submitted
+                                                        maxlength="22" required [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('turnover')?.invalid)
                                                         ||
@@ -547,19 +542,7 @@
                                                             </div>
                                                         </ng-template>
                                                     </p-dropdown>
-                                                    <!-- <input type="text" formControlName="company_state" placeholder="State"
-                                                    class="form-control"
-                                                    [class.is-invalid]="(signupForm.submitted && registerForm.get('company_state')?.invalid) || registerForm.get('company_state')?.invalid && registerForm.get('company_state').touched"> -->
-                                                    <div *ngIf="signupForm.submitted
-                                                        &&
-                                                        f.company_state.errors?.required
-                                                        ||
-                                                        f.company_state.touched" class="alert
-                                                        alert-danger">
-                                                        <div *ngIf="f.company_state.errors?.required">
-                                                            State is required
-                                                        </div>
-                                                    </div>
+                                                    <div class="invalid-feedback">State is required</div>
                                                     <!-- <div class="invalid-feedback">State is required</div> -->
                                                 </div>
                                             </div>

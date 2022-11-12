@@ -218,6 +218,7 @@ export class HomeDemoOneComponent implements OnInit {
             severity: 'success',
             detail: res.message,
           });
+          this.gstType = 'nonRegistered';
           this.signupState = true;
           // setTimeout(() => {
           //   this.router.navigateByUrl('/success');
