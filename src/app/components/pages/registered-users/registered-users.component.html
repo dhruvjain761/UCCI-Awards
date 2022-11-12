@@ -82,7 +82,7 @@
               </th>
               <th style="max-width: 150px; width: 150px; white-space: no-wrap;">Status</th>
               <th style="min-width: 150px; white-space: no-wrap;">Contact Person</th>
-              <th style="min-width: 150px; white-space: no-wrap;">Organization Name</th>
+              <th style="min-width: 150px; white-space: no-wrap;">Legal Name</th>
               <th style="min-width: 150px; white-space: no-wrap;">Award Name</th>
               <th style="min-width: 150px; white-space: no-wrap;">Category</th>
               <th style="min-width: 130px; white-space: no-wrap;" *ngIf="localStorage?.role=='Admin'">Email</th>
@@ -164,7 +164,7 @@
             </div>
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
-                <label>Organization Name :</label>
+                <label>Legal Name :</label>
                 <input readonly class="form-control" [value]="data?.company_name | titlecase">
               </div>
             </div>
@@ -230,14 +230,14 @@
             </div>
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
-                <label>Classification :</label>
+                <label>Classification Industry:</label>
                 <input readonly class="form-control" [value]="data?.classification?.name | titlecase">
               </div>
             </div>
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
-                <label>Turnover :</label>
-                <input readonly class="form-control" [value]="'₹ ' + data?.turnover">
+                <label>Turnover in INR ({{preYear}}-{{date | date: 'yy'}}) :</label>
+                <input readonly class="form-control" value="₹{{data?.turnover | number}}">
               </div>
             </div>
             <div class="col-lg-6 col-md-12">

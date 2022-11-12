@@ -60,7 +60,10 @@ export class HomeDemoOneComponent implements OnInit {
     name: ['', [Validators.required]],
     mobile_no: [
       '',
-      [Validators.required, Validators.maxLength(10), Validators.minLength(10)],
+      [
+        Validators.required,
+        Validators.pattern('^[0-9]{10}$'),
+      ],
     ],
     email: ['', [Validators.required, Validators.email]],
     company_name: ['', Validators.required],
@@ -68,7 +71,7 @@ export class HomeDemoOneComponent implements OnInit {
     company_PAN: ['', Validators.required],
     company_state: ['', Validators.required],
     company_city: ['', Validators.required],
-    company_pincode: ['', Validators.required],
+    company_pincode: ['', Validators.required, Validators.pattern('^[0-9]{6}$')],
     company_address: ['', Validators.required],
     address_line2: [''],
     award_type: [null, Validators.required],
@@ -492,33 +495,33 @@ export class HomeDemoOneComponent implements OnInit {
   }
 
   bloackAlphabet(event: any) {
-    if (event.key == 'Tab') {
-      return;
-    }
-    const keyCode = event.keyCode;
-    if (
-      [46, 8, 9, 27, 13].indexOf(event.keyCode) !== -1 ||
-      // Allow: Ctrl+A
-      (event.keyCode === 65 && (event.ctrlKey || event.metaKey)) ||
-      // Allow: Ctrl+C
-      (event.keyCode === 67 && (event.ctrlKey || event.metaKey)) ||
-      // Allow: Ctrl+V
-      (event.keyCode === 86 && (event.ctrlKey || event.metaKey)) ||
-      // Allow: Ctrl+X
-      (event.keyCode === 88 && (event.ctrlKey || event.metaKey)) ||
-      // Allow: home, end, left, right
-      (event.keyCode >= 35 && event.keyCode <= 39)
-    ) {
-      // let it happen, don't do anything
-      return;
-    }
-    // Ensure that it is a number and stop the keypress
-    if (
-      (event.shiftKey || event.keyCode < 48 || event.keyCode > 57) &&
-      (event.keyCode < 96 || event.keyCode > 105)
-    ) {
-      event.preventDefault();
-    }
+    // if (event.key == 'Tab') {
+    //   return;
+    // }
+    // const keyCode = event.keyCode;
+    // if (
+    //   [46, 8, 9, 27, 13].indexOf(event.keyCode) !== -1 ||
+    //   // Allow: Ctrl+A
+    //   (event.keyCode === 65 && (event.ctrlKey || event.metaKey)) ||
+    //   // Allow: Ctrl+C
+    //   (event.keyCode === 67 && (event.ctrlKey || event.metaKey)) ||
+    //   // Allow: Ctrl+V
+    //   (event.keyCode === 86 && (event.ctrlKey || event.metaKey)) ||
+    //   // Allow: Ctrl+X
+    //   (event.keyCode === 88 && (event.ctrlKey || event.metaKey)) ||
+    //   // Allow: home, end, left, right
+    //   (event.keyCode >= 35 && event.keyCode <= 39)
+    // ) {
+    //   // let it happen, don't do anything
+    //   return;
+    // }
+    // // Ensure that it is a number and stop the keypress
+    // if (
+    //   (event.shiftKey || event.keyCode < 48 || event.keyCode > 57) &&
+    //   (event.keyCode < 96 || event.keyCode > 105)
+    // ) {
+    //   event.preventDefault();
+    // }
   }
 
   onGstTypeSelection(string: any) {
