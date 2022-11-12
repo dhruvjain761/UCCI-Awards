@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { CommonClass } from 'src/app/common';
 import { ApiService } from 'src/app/services/api.service';
+import { FormBuilderService } from 'src/app/services/form-builder.service';
 
 @Component({
   selector: 'app-dashboard-sidemenu',
@@ -12,15 +13,20 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class DashboardSidemenuComponent implements OnInit {
   localStorage: any;
+  awardForm: any=[];
   constructor(
     private apiservice: ApiService,
     private messageService: MessageService,
     private router: Router,
-    private commonFunction: CommonClass
+    private commonFunction: CommonClass,
+    private _formBuilder : FormBuilderService
   ) {}
 
   ngOnInit(): void {
     this.localStorage = this.commonFunction.getLocalStorage();
+    this._formBuilder.getAPI('formData').subscribe((res:any)=> {
+      this.awardForm = res.data;
+    })
     //  console.log(this.localStorage)
   }
 

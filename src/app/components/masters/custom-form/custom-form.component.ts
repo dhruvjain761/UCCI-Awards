@@ -37,20 +37,20 @@ export class CustomFormComponent implements OnInit {
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
       accept: () => {
-        this.loading = true;
-        this.__formBuilder.deleteCustomForm(id).subscribe(
-          (res: any) => {
-            console.log(res);
-            this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted' });
-            this.forms = [];
-            res.data?.map((response: any) => {
-              this.forms.push(response);
-            })
-            this.loading = false;
-          },
-          (error: HttpErrorResponse) => {
-            console.log(error)
-          })
+        // this.loading = true;
+        // this.__formBuilder.deleteCustomForm(id).subscribe(
+        //   (res: any) => {
+        //     console.log(res);
+        //     this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Record deleted' });
+        //     this.forms = [];
+        //     res.data?.map((response: any) => {
+        //       this.forms.push(response);
+        //     })
+        //     this.loading = false;
+        //   },
+        //   (error: HttpErrorResponse) => {
+        //     console.log(error)
+        //   })
       },
       reject: (type) => {
         switch (type) {
@@ -81,7 +81,7 @@ export class CustomFormComponent implements OnInit {
   //to get all custom forms
   getAllFormsList() {
     this.forms = []
-    this.__formBuilder.getCustomFormsList().subscribe(
+    this.__formBuilder.getAPI('formData').subscribe(
       (res: any) => {
         console.log(res);
         console.log(this.dt2);

@@ -39,21 +39,48 @@
         </ol>
     </div>
     <div class="add-listings-box">
-        <div class="back_btn">
-            <p-button type="button" routerLink="/custom-forms" icon="bx bx-arrow-back" label=""
-                        iconPos="left"></p-button>
+        <div class="back_btn" style="padding: 0 15px;">
+            <p-button type="button" routerLink="/custom-forms" icon="bx bx-arrow-back" label="" iconPos="left">
+            </p-button>
         </div>
         <div class="top_section">
             <!-- <h3>Custom Forms List</h3> -->
             <!-- <div class="add-listings-btn"> -->
             <!-- [disabled]="!postMemberCategoriesForm.valid" -->
             <!-- <button type="submit" (click)="navigateToFormBuilder()"><i class="fa fa-plus mx-1"></i>Add</button> -->
-            <label for="title">Enter Form Title</label>
-            <input type="text" [(ngModel)]="formModel.form_name" class="form-control" placeholder="Enter title here">
+            <div class="row m-0">
+                <div class="col-md-6 col-12">
+                    <label for="title">Form Title</label>
+                    <input type="text" #form_name="ngModel" [(ngModel)]="formModel.form_name" class="form-control mb-2"
+                        placeholder="Enter title here" required>
+                    <div *ngIf="form_name.touched || errorMsg" class="alert alert-danger">
+                        <div *ngIf="form_name.errors?.['required']">
+                            Field is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-12">
+                    <label for="title">Award Category</label>
+                    <select #award_category="ngModel" required class="form-select form-control mt-0 mb-2"
+                        [(ngModel)]="formModel.awardCategory" aria-label="Default select example">
+                        <option value="" disabled>Open this select menu</option>
+                        <ng-container *ngFor="let item of awardCategory">
+                            <option [value]="item.category">{{item.category}}</option>
+                        </ng-container>
+                    </select>
+                    <div *ngIf="award_category.touched || errorMsg" class="alert alert-danger">
+                        <div *ngIf="award_category.errors?.['required']">
+                            Field is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- </div> -->
         </div>
     </div>
-    <lib-form-builder></lib-form-builder>
+    <!-- {{sectionsData | json}} -->
+    <lib-form-builder *ngIf="sectionsData.length>0" [sections]="sectionsData" (getFormData)="customFormData($event)">
+    </lib-form-builder>
     <!-- <lib-form-builder [buttonFields]="buttonFields" (formJson)="getJson($event)"></lib-form-builder> -->
     <!-- <lib-form-renderer *ngIf="jsonData" [jsonFormData]="jsonData"></lib-form-renderer> -->
     <!-- ********************** End Breadcrumb Area  ******************** -->

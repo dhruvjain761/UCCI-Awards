@@ -86,13 +86,13 @@
             styleClass="p-datatable-sm p-datatable-customers" [rowsPerPageOptions]="[10,25,50]"
             responsiveLayout="scroll" [loading]="loading" [paginator]="true"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-            [globalFilterFields]="['name']">
+            [globalFilterFields]="['form_title']">
 
             <ng-template pTemplate="header" style="min-height: 500px;">
                 <tr>
                     <th>S. No.</th>
                     <th>Title</th>
-                    <th>Slug</th>
+                    <th>Award Category</th>
                     <th>Actions</th>
                 </tr>
             </ng-template>
@@ -103,10 +103,10 @@
                         {{i+1}}
                     </td>
                     <td>
-                        {{forms.name}}
+                        {{forms.form_title}}
                     </td>
                     <td>
-                        {{forms.slug}}
+                        {{forms.award_category}}
                     </td>
                     <td>
                         <button pButton pRipple icon="bx bx-pencil"

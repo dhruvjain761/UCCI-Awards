@@ -156,7 +156,7 @@ const routes: Routes = [
   // {path: 'event-form', component: EventCreationFormComponent},
   // {path: 'event-form/:slug', component: EventCreationFormComponent},
   { path: 'form-builder', component: FormBuilderComponent },
-  // {path: 'form-builder/:slug', component: FormBuilderComponent},
+  {path: 'form-builder/:slug', component: FormBuilderComponent},
   // Here add new pages component
 
   // Master Page Routing Pats
