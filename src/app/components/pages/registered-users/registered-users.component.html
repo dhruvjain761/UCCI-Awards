@@ -13,7 +13,9 @@
   </ng-template>
   <ng-template pTemplate="footer">
     <!-- <button type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button> -->
-    <button type="button" pButton icon="pi pi-check" label="Yes" (click)="cd.accept()"></button>
+    <!-- <p-button type="button" pButton icon="pi pi-check" styleClass="p-button-text" label="Yes"
+      (click)="cd.accept()"></p-button> -->
+    <p-button (click)="cd.accept()" icon="pi pi-check" label="Reject" styleClass="p-button-text"></p-button>
   </ng-template>
 </p-confirmDialog>
 <app-dashboard-sidemenu></app-dashboard-sidemenu>
@@ -52,13 +54,15 @@
         <p-button type="button" class="ml-2" (click)="reset(dt1)" icon="bx bx-reset"></p-button>
       </div>
       <div class="d-flex btn-box" *ngIf="localStorage?.role=='Admin'">
-        <div class="add-listings-btn mr-2">
-          <button type="button" (click)="bulkApproval()"> Approve</button>
+        <div class="d-flex">
+          <div class="add-listings-btn mr-2">
+            <button type="button" (click)="bulkApproval()"> Approve</button>
+          </div>
+          <div class="add-listings-btn">
+            <button type="button" (click)="bulkReject()"> Reject</button>
+          </div>
         </div>
-        <div class="add-listings-btn mr-2">
-          <button type="button" (click)="bulkReject()"> Reject</button>
-        </div>
-        <div class="add-listings-btn">
+        <div class="add-listings-btn ml-2">
           <button type="button" (click)="sendEmail('bulk', 'bulk')"> Send Email</button>
         </div>
       </div>
