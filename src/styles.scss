@@ -3461,7 +3461,7 @@ textarea.form-control {
       .vesax-responsive-menu {
         &.mean-container {
           .mean-nav {
-            margin-top: 41px;
+            margin-top: 76px;
           }
         }
       }
@@ -3503,6 +3503,42 @@ textarea.form-control {
           }
         }
       }
+    }
+  }
+}
+
+.mean-bar {
+  .meanmenu-reveal .meanclose {
+    animation: none;
+  }
+}
+
+@media(max-width: 600px) {
+  .p-dialog {
+    width: 90%;
+  }
+}
+
+@media (max-width: 642px) {
+  .theader {
+    flex-direction: column;
+  }
+
+  .search-bar {
+    width: 100%;
+
+    span {
+      width: 100%;
+    }
+  }
+
+  .add-listings-btn {
+
+    margin-top: 10px;
+    width: 100%;
+
+    button {
+      width: 100%;
     }
   }
 }
@@ -4770,6 +4806,7 @@ select {
   font-size: 12px !important;
 }
 
+
 // payment section css
 .payment-totals {
   background: var(--whiteColor);
@@ -4843,6 +4880,7 @@ select {
     }
   }
 }
+
 :host::ng-deep {
   .p-message-custom {
     background-color: #e1cfe7;
@@ -4850,6 +4888,7 @@ select {
     border-width: 0 0 0 6px;
     color: #2c1e30;
   }
+
   .p-message-close-icon {
     color: #2c1e30;
   }

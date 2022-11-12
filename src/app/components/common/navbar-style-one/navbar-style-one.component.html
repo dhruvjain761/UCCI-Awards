@@ -1,18 +1,28 @@
 <!-- Start Navbar Area -->
 <p-toast
-    [breakpoints]="{'575px': {width: '100%', right: '0', left: '0', display: 'flex', 'justify-content': 'center', 'align-items': 'center'}}">
+    [breakpoints]="{'575px': {width: '100%', right: '0', left: '0', display: 'flex', 'justify-content': 'center', 'align-items': 'center', 'flex-direction': 'column'}}">
 </p-toast>
 <app-spinner [msg]="spinnerMsg"></app-spinner>
 <div class="navbar-area navbar-style-two">
     <div class="vesax-responsive-nav">
         <div class="container">
-            <div class="vesax-responsive-menu d-flex" style="justify-content: space-between; align-items: center;">
+            <div class="vesax-responsive-menu" *ngIf="localStorage">
                 <div class="logo">
                     <a class="navbar-brand" routerLink="/"><img
                             src="https://ucciudaipur.com/wp-content/uploads/2021/11/ucci-logo-update-2.png" alt="logo"
                             height="180px" width="180px"></a>
                 </div>
-                <a *ngIf="!localStorage" routerLink="/admin-login" class="admin-link">Admin Login</a>
+                <!-- <a *ngIf="!localStorage" routerLink="/admin-login" class="admin-link">Admin
+                    Login</a> -->
+            </div>
+            <div class="vesax-responsive-menu d-flex" *ngIf="!localStorage" style="align-items: center;">
+                <div class="logo" style="width: 82%;">
+                    <a class="navbar-brand" routerLink="/"><img
+                            src="https://ucciudaipur.com/wp-content/uploads/2021/11/ucci-logo-update-2.png" alt="logo"
+                            height="180px" width="180px"></a>
+                </div>
+                <a *ngIf="!localStorage" routerLink="/admin-login" class="admin-link">Admin
+                    Login</a>
             </div>
         </div>
     </div>
@@ -209,7 +219,7 @@
     </div>
 
     <div class="others-option-for-responsive" *ngIf="localStorage">
-        <div class="container">
+        <div [class]="otherOptionClass">
             <div class="dot-menu">
                 <div class="inner">
                     <div class="circle circle-one"></div>

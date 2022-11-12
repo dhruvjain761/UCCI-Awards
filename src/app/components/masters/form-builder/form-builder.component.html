@@ -1,4 +1,6 @@
-<p-toast></p-toast>
+<p-toast
+    [breakpoints]="{'575px': {width: '100%', right: '0', left: '0', display: 'flex', 'justify-content': 'center', 'align-items': 'center', 'flex-direction': 'column'}}">
+</p-toast>
 <p-toast position="bottom-center" key="c" (onClose)="onReject()" [baseZIndex]="5000">
     <ng-template let-message pTemplate="message">
         <div class="flex flex-column" style="flex: 1">
@@ -40,8 +42,8 @@
     </div>
     <div class="add-listings-box">
         <div class="back_btn">
-            <p-button type="button" routerLink="/custom-forms" icon="bx bx-arrow-back" label=""
-                        iconPos="left"></p-button>
+            <p-button type="button" routerLink="/custom-forms" icon="bx bx-arrow-back" label="" iconPos="left">
+            </p-button>
         </div>
         <div class="top_section">
             <!-- <h3>Custom Forms List</h3> -->

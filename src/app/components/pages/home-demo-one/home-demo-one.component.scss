@@ -683,17 +683,43 @@ select {
 :host ::ng-deep {
   .p-scrollpanel {
     &.custombar2 {
-      .p-scrollpanel-wrapper {
-        border-right: 9px solid var(--layer-1);
-        border-bottom: 9px solid var(--layer-1);
-      }
+      width: 100%;
+      height: 410px;
 
-      .p-scrollpanel-bar {
-        background-color: var(--layer-2);
-        border-radius: 0;
-        opacity: 1;
-        transition: background-color .2s;
+      // .p-scrollpanel-wx`
+
+      // .p-scrollpanel-bar {
+      //   background-color: var(--layer-2);
+      //   border-radius: 0;
+      //   opacity: 1;
+      //   transition: background-color .2s;
+      // }
+    }
+  }
+
+  @media (max-width: 642px) {
+    .parallax {
+      .overlay {
+
+        padding: 20px 10px;
+      }
+    }
+
+    .p-scrollpanel {
+      &.custombar2 {
+        width: 100%;
+        height: 100%;
+
       }
     }
   }
+
+  // @media (max-height: 740px) {
+  //   .p-scrollpanel {
+  //     &.custombar2 {
+  //       width: 100%;
+  //       height: 350px;
+  //     }
+  //   }
+  // }
 }

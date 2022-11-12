@@ -133,6 +133,8 @@ export class RegisteredUsersComponent implements OnInit {
       });
     }
     // debugger;
+    console.log(this.statusForm.valid);
+
     if (this.statusForm.valid) {
       let rejectObj = {
         award_registrations: [{ id: this.id }],
@@ -204,13 +206,14 @@ export class RegisteredUsersComponent implements OnInit {
       //     id: 1
       //   }]
       // ]
+      let approvedId = [];
       this.selectedUser.forEach((element) => {
         if (element.status !== 'Approved' && element.status !== 'Rejected') {
+          console.log(element);
           var id = element.id;
           approvedId.push({ id });
         }
       });
-      let approvedId = [];
       this.confirmationService.confirm({
         message: 'Are you sure to approve to selected users?',
         accept: () => {

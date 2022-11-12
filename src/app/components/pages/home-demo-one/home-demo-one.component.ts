@@ -48,6 +48,8 @@ export class HomeDemoOneComponent implements OnInit {
   date: Date = new Date();
   currentYear: any;
 
+  signupState: boolean = false;
+
   // login in form controls
   loginForm = new FormGroup({
     loginemail: new FormControl('', [Validators.required, Validators.email]),
@@ -215,6 +217,7 @@ export class HomeDemoOneComponent implements OnInit {
             severity: 'success',
             detail: res.message,
           });
+          // this.signupState = true;
           setTimeout(() => {
             this.router.navigateByUrl('/success');
           }, 1000);
@@ -238,6 +241,12 @@ export class HomeDemoOneComponent implements OnInit {
     });
   }
 
+  onLoginClick(event) {
+    console.log(event);
+    if (event == true) {
+      this.signupState = false;
+    }
+  }
   // user login form function
   loginIn() {
     this.submitted = true;
@@ -551,6 +560,8 @@ export class HomeDemoOneComponent implements OnInit {
         });
       }
     } else if (this.otpState === true) {
+      console.log(this.loginForm.valid);
+
       if (this.loginForm.valid) {
         // this.spinner.show();
         let verifiedOtpObj = {

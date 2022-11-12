@@ -12,6 +12,7 @@ $green-3: lighten($green-1, 20);
 $green-4: rgba(190, 240, 200, 1);
 
 
+
 .add-listings-box {
   display: flex;
   justify-content: center;
@@ -262,11 +263,12 @@ button {
 
 
 a {
-  color: var(--mainColor);
-  font-size: 1.2rem;
+  color: var(--mainColor) !important;
+  font-size: 1.2rem !important;
+  cursor: pointer;
 
   &:hover {
-    color: var(--btn-hover);
+    color: var(--btn-hover) !important;
   }
 }
 

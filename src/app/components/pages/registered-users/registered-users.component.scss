@@ -175,3 +175,50 @@ button:disabled {
   background-color: grey;
   // opacity: 0.5;
 }
+
+@media (max-width: 642px) {
+  .theader {
+    flex-direction: column;
+  }
+
+  .search-bar {
+    width: 100%;
+
+    span {
+      width: 100%;
+    }
+  }
+
+  .btn-box {
+    flex-direction: column;
+    width: 100%;
+
+    .add-listings-btn {
+
+      margin-top: 5px;
+      width: 100%;
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+}
+
+
+:host ::ng-deep {
+  @media (max-width: 575px) {
+    textarea {
+      height: 50px;
+    }
+
+    .p-dialog {
+      width: 92vw !important;
+      height: 245px !important;
+    }
+  }
+
+  .p-dialog .p-dialog-content {
+    padding: .5rem 1rem;
+  }
+}

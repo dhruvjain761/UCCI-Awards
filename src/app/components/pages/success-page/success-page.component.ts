@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-success-page',
   templateUrl: './success-page.component.html',
-  styleUrls: ['./success-page.component.scss']
+  styleUrls: ['./success-page.component.scss'],
 })
 export class SuccessPageComponent implements OnInit {
+  @Output() clickState: any = new EventEmitter<any>();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  onGotoLogin() {
+    this.clickState.emit(true);
   }
-
 }
