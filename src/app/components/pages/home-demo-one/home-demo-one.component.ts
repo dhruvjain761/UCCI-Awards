@@ -116,6 +116,7 @@ export class HomeDemoOneComponent implements OnInit {
   otpState: boolean = false;
   commonClasifications: any;
   preYear: any;
+  classCheck: boolean = false;
   constructor(
     private fb: FormBuilder,
     private messageService: MessageService,
@@ -217,10 +218,10 @@ export class HomeDemoOneComponent implements OnInit {
             severity: 'success',
             detail: res.message,
           });
-          // this.signupState = true;
-          setTimeout(() => {
-            this.router.navigateByUrl('/success');
-          }, 1000);
+          this.signupState = true;
+          // setTimeout(() => {
+          //   this.router.navigateByUrl('/success');
+          // }, 1000);
           // this.registerForm.patchValue({
           //   gst_type: 'registered',
           // });
@@ -245,6 +246,7 @@ export class HomeDemoOneComponent implements OnInit {
     console.log(event);
     if (event == true) {
       this.signupState = false;
+      this.classCheck = true;
     }
   }
   // user login form function
