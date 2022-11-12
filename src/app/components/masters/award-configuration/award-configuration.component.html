@@ -35,7 +35,7 @@
       <div class="row mt-1">
         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
           <div class="form-group">Award Name<span style="color: red;">*</span>:
-            <input formControlName="award_name" class="form-control" placeholder="Please enter award name"
+            <input formControlName="award_name" class="form-control" placeholder="Please Enter Award Name"
               [class.is-invalid]="(form.submitted && awardConfigForm.get('award_name')?.invalid) || awardConfigForm.get('award_name')?.invalid && awardConfigForm.get('award_name').touched" />
             <!-- <option [value]="null" disabled>Please select award name</option>
               <option [ngValue]="item.id" *ngFor="let item of awardCetagory">{{item?.award_title}}
@@ -44,7 +44,7 @@
             <!-- <input type="text" class="form-control" placeholder="Description" formControlName="award_name"
               required
               [class.is-invalid]="(form.submitted && awardConfigForm.get('award_name')?.invalid) || awardConfigForm.get('award_name')?.invalid && awardConfigForm.get('award_name').touched"> -->
-            <div class="invalid-feedback">Award name is required</div>
+            <div class="invalid-feedback">Award Name is Required</div>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
@@ -92,7 +92,7 @@
                         f.min_turnover.touched" class="alert
                         alert-danger">
               <div *ngIf="f.min_turnover.errors?.required">
-                Mininum turnover is required
+                Mininum Turnover is Required
               </div>
               <div *ngIf="f.min_turnover.errors?.min" class="alert
                                             alert-danger">
@@ -116,7 +116,7 @@
                         f.max_turnover.touched" class="alert
                         alert-danger">
               <div *ngIf="f.max_turnover.errors?.required">
-                Maximum turnover is required
+                Maximum Turnover is Required
               </div>
               <div *ngIf="f.max_turnover.errors?.min" class="alert
                                             alert-danger">
