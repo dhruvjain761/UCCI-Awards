@@ -74,18 +74,28 @@
                             </ul>
                         </li> -->
 
-                        <li *ngIf="localStorage &&  role === 'Admin'" class="nav-item"><a href="javascript:void(0)"
+                        <ng-container *ngIf="localStorage &&  role === 'Admin'" class="nav-item">
+                            <!-- <a href="javascript:void(0)"
                                 class="dropdown-toggle nav-link">User Panel</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item"><a routerLink="/award-configuration" class="nav-link"
-                                        routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+                            <ul class="dropdown-menu"> -->
+                            <li class="nav-item"><a routerLink="/award-configuration" class="nav-link"
+                                    routerLinkActive="active" [routerLinkActiveOptions]="{exact:
                                         true}">Award Configuration</a></li>
 
-                                <li class="nav-item"><a routerLink="/registered-user" class="nav-link"
-                                        routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+                            <li class="nav-item"><a routerLink="/registered-user" class="nav-link"
+                                    routerLinkActive="active" [routerLinkActiveOptions]="{exact:
                                             true}">Registered User</a></li>
+                            <li class="nav-item"><a routerLink="/custom-forms" class="nav-link"
+                                    routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+                                            true}">Form Builder</a></li>
+                            <ng-container *ngFor="let item of awardForm;index as index;">
 
-                                <!-- <li class="nav-item"><a routerLink="/dashboard-messages" class="nav-link"
+                                <li *ngIf="index < 4" class="nav-item"><a routerLink="/custom-forms" class="nav-link"
+                                        routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+                                                                true}">Form Builder</a></li>
+                            </ng-container>
+
+                            <!-- <li class="nav-item"><a routerLink="/dashboard-messages" class="nav-link"
                                         routerLinkActive="active" [routerLinkActiveOptions]="{exact:
                                         true}">Messages</a></li>
 
@@ -120,21 +130,22 @@
                                 <li class="nav-item"><a routerLink="/dashboard-invoice" class="nav-link"
                                         routerLinkActive="active" [routerLinkActiveOptions]="{exact:
                                         true}">Invoice</a></li> -->
-                            </ul>
-                        </li>
-
-                        <li *ngIf="localStorage &&  role === 'User'" class="nav-item"><a href="javascript:void(0)"
+                            <!-- </ul>
+                        </li> -->
+                        </ng-container>
+                        <ng-container *ngIf="localStorage &&  role === 'User'">
+                            <!-- <a href="javascript:void(0)"
                                 class="dropdown-toggle nav-link">User Panel</a>
-                            <ul class="dropdown-menu">
-                                <!-- <li class="nav-item"><a routerLink="/award-configuration" class="nav-link"
+                            <ul class="dropdown-menu"> -->
+                            <!-- <li class="nav-item"><a routerLink="/award-configuration" class="nav-link"
                                         routerLinkActive="active" [routerLinkActiveOptions]="{exact:
                                     true}">Award Configuration</a></li> -->
 
-                                <li class="nav-item"><a routerLink="/registered-user" class="nav-link"
-                                        routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+                            <li class="nav-item"><a routerLink="/registered-user" class="nav-link"
+                                    routerLinkActive="active" [routerLinkActiveOptions]="{exact:
                                         true}">My Registrations</a></li>
-                            </ul>
-                        </li>
+                            <!-- </ul> -->
+                        </ng-container>
 
 
                         <!-- <li class="nav-item"><a href="javascript:void(0)" class="dropdown-toggle nav-link">Shop</a>
@@ -181,19 +192,19 @@
                                             <p class="mb-3 email">{{userEmail}}</p>
                                         </div>
                                     </div>
-                                    <div class="dropdown-body">
-                                        <ul class="profile-nav p-0 pt-3">
-                                            <li class="nav-item"><a routerLink="/dashboard" class="nav-link"><i
-                                                        class='bx bx-user'></i> <span>Dashboard</span></a></li>
-                                            <!-- <li class="nav-item"><a routerLink="/dashboard-messages" class="nav-link"><i
+                                    <!-- <div class="dropdown-body">
+                                        <ul class="profile-nav p-0 pt-3"> -->
+                                    <!-- <li class="nav-item"><a routerLink="/dashboard" class="nav-link"><i
+                                                        class='bx bx-user'></i> <span>Dashboard</span></a></li> -->
+                                    <!-- <li class="nav-item"><a routerLink="/dashboard-messages" class="nav-link"><i
                                                         class='bx bx-envelope'></i> <span>Messages</span></a></li>
                                             <li class="nav-item"><a routerLink="/dashboard-bookings" class="nav-link"><i
                                                         class='bx bx-edit-alt'></i> <span>Bookings</span></a></li>
                                             <li class="nav-item"><a routerLink="/dashboard-my-profile"
                                                     class="nav-link"><i class='bx bx-cog'></i> <span>Settings</span></a> -->
-                                            <!-- </li> -->
-                                        </ul>
-                                    </div>
+                                    <!-- </li> -->
+                                    <!-- </ul>
+                                    </div> -->
                                     <div class="dropdown-footer">
                                         <ul class="profile-nav">
                                             <li class="nav-item">
