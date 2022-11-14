@@ -80,9 +80,11 @@
             <!-- </div> -->
         </div>
     </div>
-    <!-- {{sectionsData | json}} -->
-    <lib-form-builder *ngIf="sectionsData.length>0" [sections]="sectionsData" (getFormData)="customFormData($event)">
-    </lib-form-builder>
+    
+    <ng-container *ngIf="sectionsData?.length > 0">
+        <lib-form-builder [sections]="sectionsData" (getFormData)="customFormData($event)">
+        </lib-form-builder>
+    </ng-container>
     <!-- <lib-form-builder [buttonFields]="buttonFields" (formJson)="getJson($event)"></lib-form-builder> -->
     <!-- <lib-form-renderer *ngIf="jsonData" [jsonFormData]="jsonData"></lib-form-renderer> -->
     <!-- ********************** End Breadcrumb Area  ******************** -->
