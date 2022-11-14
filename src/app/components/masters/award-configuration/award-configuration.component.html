@@ -30,21 +30,21 @@
 
   <!-- ********************** Add Master Form Area  ******************** -->
 
-  <div class="add-listings-box">
+  <!-- <div class="add-listings-box">
     <form [formGroup]="awardConfigForm" (ngSubmit)="onSubmit(form)" #form="ngForm">
       <div class="row mt-1">
         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
           <div class="form-group">Award Name<span style="color: red;">*</span>:
             <input formControlName="award_name" class="form-control" placeholder="Please Enter Award Name"
-              [class.is-invalid]="(form.submitted && awardConfigForm.get('award_name')?.invalid) || awardConfigForm.get('award_name')?.invalid && awardConfigForm.get('award_name').touched" />
-            <!-- <option [value]="null" disabled>Please select award name</option>
+              [class.is-invalid]="(form.submitted && awardConfigForm.get('award_name')?.invalid) || awardConfigForm.get('award_name')?.invalid && awardConfigForm.get('award_name').touched" /> -->
+  <!-- <option [value]="null" disabled>Please select award name</option>
               <option [ngValue]="item.id" *ngFor="let item of awardCetagory">{{item?.award_title}}
               </option>
             </input> -->
-            <!-- <input type="text" class="form-control" placeholder="Description" formControlName="award_name"
+  <!-- <input type="text" class="form-control" placeholder="Description" formControlName="award_name"
               required
               [class.is-invalid]="(form.submitted && awardConfigForm.get('award_name')?.invalid) || awardConfigForm.get('award_name')?.invalid && awardConfigForm.get('award_name').touched"> -->
-            <div class="invalid-feedback">Award Name is Required</div>
+  <!-- <div class="invalid-feedback">Award Name is Required</div>
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
@@ -55,14 +55,14 @@
               <option [value]="item.name" *ngFor="let item of classification | groupByPipe : 'category'">
                 {{item.name}}
               </option>
-            </select>
-            <!-- <div class="invalid-feedback">Name is required</div> -->
-            <!-- <input type="text" class="form-control" placeholder="Name" formControlName="category" required
+            </select> -->
+  <!-- <div class="invalid-feedback">Name is required</div> -->
+  <!-- <input type="text" class="form-control" placeholder="Name" formControlName="category" required
               [class.is-invalid]="(form.submitted && awardConfigForm.get('category')?.invalid) || awardConfigForm.get('category')?.invalid && awardConfigForm.get('category')?.touched"> -->
-            <div class="invalid-feedback">Classification Category is Required</div>
+  <!-- <div class="invalid-feedback">Classification Category is Required</div>
           </div>
-        </div>
-        <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+        </div> -->
+  <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
           <div class="form-group">Service <span style="color: red;">*</span>:
             <select formControlName="service_id"
               [class.is-invalid]="(form.submitted && awardConfigForm.get('service_id')?.invalid) || awardConfigForm.get('service_id')?.invalid && awardConfigForm.get('service_id').touched">
@@ -72,13 +72,13 @@
             <div class="invalid-feedback">Service is required</div>
           </div>
         </div> -->
-        <!-- <select formControlName="turnover_id"
+  <!-- <select formControlName="turnover_id"
           [class.is-invalid]="(form.submitted && awardConfigForm.get('turnover_id')?.invalid) || awardConfigForm.get('turnover_id')?.invalid && awardConfigForm.get('turnover_id').touched">
           <option [value]="null" disabled>Please select turnover</option>
           <option [ngValue]="item.id" *ngFor="let item of turnover">{{item?.component}}
           </option>
         </select> -->
-        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+  <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
           <div class="form-group">Minimum Turnover <span style="color: red;">*</span>:
 
             <p-inputNumber inputId="locale-indian" mode="decimal" locale="en-IN" prefix="₹" maxlength="22"
@@ -98,9 +98,9 @@
                                             alert-danger">
                 Minimum turnover amount must be 1 lakh
               </div>
-            </div>
-            <!-- <div class="invalid-feedback">Minimum turnover is required</div> -->
-          </div>
+            </div> -->
+  <!-- <div class="invalid-feedback">Minimum turnover is required</div> -->
+  <!-- </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
           <div class="form-group">Maximum Turnover <span style="color: red;">*</span>:
@@ -122,20 +122,20 @@
                                             alert-danger">
                 Minimum turnover amount must be 1 lakh
               </div>
-            </div>
-            <!-- <div class="invalid-feedback">Minimum turnover is required</div> -->
-          </div>
-        </div>
+            </div> -->
+  <!-- <div class="invalid-feedback">Minimum turnover is required</div> -->
+  <!-- </div>
+        </div> -->
 
-        <!-- <div class="col-lg-1 col-md-4 col-sm-4 col-xs-12"></div> -->
-        <div class="col-lg-12 col-md-2 col-sm-2 col-xs-12" style="text-align: right;">
+  <!-- <div class="col-lg-1 col-md-4 col-sm-4 col-xs-12"></div> -->
+  <!-- <div class="col-lg-12 col-md-2 col-sm-2 col-xs-12" style="text-align: right;">
           <div class="add-listings-btn">
             <button type="submit">Add</button>
           </div>
         </div>
       </div>
     </form>
-  </div>
+  </div> -->
 
   <div class="Master-view-box">
     <div class="theader">
@@ -211,22 +211,41 @@
               </td>
               <td>
                 <p-cellEditor editingRowKeys="item.id">
-                  <ng-template pTemplate="input">
-                    <input pInputText type="text" [(ngModel)]="item.turnover.component" required>
-                  </ng-template>
-                  <ng-template pTemplate="output">
-                    {{item.min_turnover | indianCurrency}}
-                  </ng-template>
+                  <ng-container *ngIf="item.min_turnover != null">
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="item.turnover.component" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{item.min_turnover | indianCurrency}}
+                    </ng-template>
+                  </ng-container>
+                  <ng-container *ngIf="item.min_turnover == null">
+                    <!-- <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="item.turnover.component" required>
+                    </ng-template> -->
+                    <ng-template pTemplate="output">
+                      -
+                    </ng-template>
+                  </ng-container>
                 </p-cellEditor>
               </td>
               <td>
                 <p-cellEditor editingRowKeys="item.id">
-                  <ng-template pTemplate="input">
-                    <input pInputText type="text" [(ngModel)]="item.turnover.component" required>
-                  </ng-template>
-                  <ng-template pTemplate="output">
-                    {{item.max_turnover | indianCurrency}}
-                  </ng-template>
+                  <ng-container *ngIf="item.max_turnover != null">
+                    <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="item.turnover.component" required>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      {{item.max_turnover | indianCurrency}}
+                    </ng-template>
+                  </ng-container>
+                  <ng-container *ngIf="item.max_turnover == null">
+                    <!-- <ng-template pTemplate="input">
+                      <input pInputText type="text" [(ngModel)]="item.turnover.component" required>
+                    </ng-template> -->
+                    <ng-template pTemplate="output">-
+                    </ng-template>
+                  </ng-container>
                 </p-cellEditor>
               </td>
               <!-- <td style="text-align: right;">
