@@ -47,36 +47,41 @@ export class NavbarStyleOneComponent implements OnInit, OnChanges {
     private spinner: NgxSpinnerService // private _formBuilder: FormBuilderService
   ) {}
 
+  async ngOnInit() {
+    // this.localStorage = '';
+    // debugger;
+    this.localStorage = this.commonFunction.getLocalStorage();
+    console.log(this.localStorage);
+
+    this.role = JSON.parse(localStorage.getItem('award_access_token')).role;
+    // save user name or email in localstorage
+    var award_access_token = localStorage.getItem('award_access_token');
+    if (award_access_token && award_access_token != 'undefined') {
+      this.userName = JSON.parse(
+        localStorage.getItem('award_access_token')
+      ).username;
+      this.userEmail = JSON.parse(
+        localStorage.getItem('award_access_token')
+      ).useremail;
+    }
+
+    if (localStorage.getItem('award_access_token')) {
+      await this.apiservice.getDropdownName().then((res: any) => {
+        console.log(res);
+        this.awardForm = res.data;
+      });
+    }
+  }
   ngOnChanges() {
     // this.localStorage = this.commonFunction.getLocalStorage();
   }
 
-  ngOnInit(): void {
-    this.localStorage = this.commonFunction.getLocalStorage();
-    if (localStorage.getItem('award_access_token')) {
-      this.role = JSON.parse(localStorage.getItem('award_access_token')).role;
-      // this.getMenu();
-      // save user name or email in localstorage
-      var award_access_token = localStorage.getItem('award_access_token');
-      if (award_access_token && award_access_token != 'undefined') {
-        this.userName = JSON.parse(
-          localStorage.getItem('award_access_token')
-        ).username;
-        this.userEmail = JSON.parse(
-          localStorage.getItem('award_access_token')
-        ).useremail;
-      }
-    }
+  async getMenu() {
+    await this.apiservice.getDropdownName().then((res: any) => {
+      console.log(res);
+      this.awardForm = res.data;
+    });
 
-    console.log(this.awardForm);
-  }
-
-  getMenu() {
-    // this.apiservice.getDropdownName().subscribe((res: any) => {
-    //   console.log(res);
-    //   this.awardForm = res.data;
-    // });
-    // debugger;
     // this._formBuilder.getAPI('formData').subscribe((res: any) => {
     //   this.awardForm = res.data;
     //   console.log(this.awardForm);
