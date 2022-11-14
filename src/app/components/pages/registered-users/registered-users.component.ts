@@ -34,7 +34,11 @@ export class RegisteredUsersComponent implements OnInit {
 
   date: Date = new Date();
   currncyLength = 0;
-  currency;
+  // <<<<<<< HEAD
+  //   currency;
+  // =======
+  //   currency
+  // >>>>>>> 79b965bb3f33b39ee216fc353fe076e480be689d
 
   statusForm = this.fb.group({
     status: ['', Validators.required],
@@ -196,6 +200,7 @@ export class RegisteredUsersComponent implements OnInit {
     this.details = selectedUser;
 
     // let a = item.turnover;
+    // <<<<<<< HEAD
     // a = a.replace(/,/g, '');
     // console.log('updated ', a);
     // if (a && !isNaN(+a)) {
@@ -207,6 +212,20 @@ export class RegisteredUsersComponent implements OnInit {
     //   this.currency.setValue(temp);
     //   this.turnoverAmount = temp;
     //   console.log(this.turnoverAmount);
+    // =======
+    // a = a.replace(/,/g, "");
+    // console.log('updated ', a);
+    // if (a && !isNaN(+a)) {
+    //   let num: number = +a;
+    //   let temp = new Intl.NumberFormat("en-IN").format(num); //inplace of en-IN you can mention your country's code
+    //   console.log("temp is   ", temp);
+    //   temp = temp ? temp.toString() : '';
+    //   console.log("temp is updated ", temp);
+    //   this.currency.setValue(temp);
+    //   this.turnoverAmount = temp;
+    //   console.log(this.turnoverAmount);
+
+    // >>>>>>> 79b965bb3f33b39ee216fc353fe076e480be689d
     // }
 
     this.displayMaximizable = true;

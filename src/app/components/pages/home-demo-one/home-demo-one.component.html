@@ -89,9 +89,10 @@
                                                         Person Name<span class="requierdSign">*</span>:</label>
                                                     <input type="text" formControlName="name"
                                                         style="text-transform: capitalize;"
-                                                        placeholder="Contact Person Name" class="form-control"
-                                                        maxlength="70" pattern="^([a-zA-Z0-9.-_,]|[-
-                                                        @.&!])*$" [class.is-invalid]="(signupForm.submitted
+                                                        placeholder="Contact Person name" class="form-control"
+                                                        maxlength="70"
+                                                        pattern="^[-a-zA-Z0-9-()]+(\s+[-a-zA-Z0-9-()]+)*$"
+                                                        [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('name')?.invalid)
                                                         ||

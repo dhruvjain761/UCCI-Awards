@@ -215,7 +215,7 @@
                     <input pInputText type="text" [(ngModel)]="item.turnover.component" required>
                   </ng-template>
                   <ng-template pTemplate="output">
-                    {{item.min_turnover}}
+                    {{item.min_turnover | indianCurrency}}
                   </ng-template>
                 </p-cellEditor>
               </td>
@@ -225,7 +225,7 @@
                     <input pInputText type="text" [(ngModel)]="item.turnover.component" required>
                   </ng-template>
                   <ng-template pTemplate="output">
-                    {{item.max_turnover}}
+                    {{item.max_turnover | indianCurrency}}
                   </ng-template>
                 </p-cellEditor>
               </td>

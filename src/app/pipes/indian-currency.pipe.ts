@@ -1,0 +1,31 @@
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'indianCurrency',
+})
+export class IndianCurrencyPipe implements PipeTransform {
+  transform(value: number, ...args: unknown[]): unknown {
+    if (!isNaN(value)) {
+      var currencySymbol = '₹';
+      //var output = Number(input).toLocaleString('en-IN');   <-- This method is not working fine in all browsers!
+      var result = value.toString().split('.');
+      console.log(result);
+
+      var lastThree = result[0].substring(result[0].length - 3);
+      
+      var otherNumbers = result[0].substring(0, result[0].length - 3);
+      console.log(otherNumbers);
+      
+      if (otherNumbers != '') lastThree = ',' + lastThree;
+      console.log(lastThree);
+      var output =
+        otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ',') + lastThree;
+
+      if (result.length > 1) {
+        output += '.' + result[1];
+      }
+
+      return currencySymbol + output;
+    }
+  }
+}
