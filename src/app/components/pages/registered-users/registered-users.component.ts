@@ -195,20 +195,20 @@ export class RegisteredUsersComponent implements OnInit {
     selectedUser.push(item);
     this.details = selectedUser;
 
-    let a = item.turnover;
-    a = a.replace(/,/g, "");
-    console.log('updated ', a);
-    if (a && !isNaN(+a)) {
-      let num: number = +a;
-      let temp = new Intl.NumberFormat("en-IN").format(num); //inplace of en-IN you can mention your country's code
-      console.log("temp is   ", temp);
-      temp = temp ? temp.toString() : '';
-      console.log("temp is updated ", temp);
-      this.currency.setValue(temp);
-      this.turnoverAmount = temp;
-      console.log(this.turnoverAmount);
+    // let a = item.turnover;
+    // a = a.replace(/,/g, "");
+    // console.log('updated ', a);
+    // if (a && !isNaN(+a)) {
+    //   let num: number = +a;
+    //   let temp = new Intl.NumberFormat("en-IN").format(num); //inplace of en-IN you can mention your country's code
+    //   console.log("temp is   ", temp);
+    //   temp = temp ? temp.toString() : '';
+    //   console.log("temp is updated ", temp);
+    //   this.currency.setValue(temp);
+    //   this.turnoverAmount = temp;
+    //   console.log(this.turnoverAmount);
       
-    }
+    // }
 
     this.displayMaximizable = true;
 
