@@ -190,8 +190,9 @@
                                             <div class="col-lg-6 col-md-12">
                                                 <div class="form-group"><label>Organization Name (Legal
                                                         Name)<span class="requierdSign">*</span>:</label>
-                                                    <input type="text" maxlength="70" pattern="^([a-zA-Z0-9.-_,]|[-
-                                                        @.&!])*$" placeholder="Organization Name"
+                                                    <input type="text" maxlength="70"
+                                                        pattern="^[-a-zA-Z0-9-()]+(\s+[-a-zA-Z0-9-()]+)*$"
+                                                        placeholder="Organization Name"
                                                         style="text-transform: capitalize;"
                                                         formControlName="company_name" [class.is-invalid]="(signupForm.submitted
                                                         &&
@@ -452,9 +453,10 @@
                                                         {{item.component}}
                                                     </option>
                                                 </select> -->
-                                                    <p-inputNumber inputId="locale-indian" mode="decimal" locale="en-IN"
-                                                        prefix="₹" placeholder="Turnover" formControlName="turnover"
-                                                        maxlength="22" required [class.is-invalid]="(signupForm.submitted
+                                                    <p-inputNumber pattern="^[-a-zA-Z0-9-()]+(\s+[-a-zA-Z0-9-()]+)*$"
+                                                        inputId="locale-indian" mode="decimal" locale="en-IN" prefix="₹"
+                                                        placeholder="Turnover" formControlName="turnover" maxlength="22"
+                                                        required [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('turnover')?.invalid)
                                                         ||
@@ -500,6 +502,7 @@
                                                     </label>
                                                     <input type="text" formControlName="company_address"
                                                         placeholder="Enter Address Line 1" class="form-control"
+                                                        pattern="^[-a-zA-Z0-9-(,-/\_)]+(\s+[-a-zA-Z0-9-()]+)*$"
                                                         [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('company_address')?.invalid)
@@ -507,15 +510,56 @@
                                                         registerForm.get('company_address')?.invalid
                                                         &&
                                                         registerForm.get('company_address').touched" />
-                                                    <div class="invalid-feedback">Address
-                                                        Line 1 is Required</div>
+                                                    <!-- <div class="invalid-feedback">Address
+                                                        Line 1 is Required</div> -->
+                                                    <div *ngIf="signupForm.submitted
+                                                        &&
+                                                        f.company_address.errors?.required
+                                                        ||
+                                                        f.company_address.touched" class="alert
+                                                        alert-danger">
+                                                        <div *ngIf="f.company_address.errors?.required">
+                                                            Address
+                                                            Line 1 is Required
+                                                        </div>
+                                                        <div *ngIf="f.company_address.errors?.pattern" class="alert
+                                                            alert-danger">
+                                                            Address
+                                                            Line 1 is Invalid
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="form-group"><label>Address
                                                         Line 2:</label>
-                                                    <input type="text" formControlName="address_line2"
+                                                    <input pattern="^[-a-zA-Z0-9-(,-/\_)]+(\s+[-a-zA-Z0-9-()]+)*$"
+                                                        type="text" formControlName="address_line2" [class.is-invalid]="(signupForm.submitted
+                                                    &&
+                                                    registerForm.get('address_line2')?.invalid)
+                                                    ||
+                                                    registerForm.get('address_line2')?.invalid
+                                                    &&
+                                                    registerForm.get('address_line2').touched"
                                                         placeholder="Enter Address Line 2" class="form-control" />
+                                                    <!-- <div class="invalid-feedback">Address
+                                                        Line 2 is Required</div> -->
+                                                    <div *ngIf="signupForm.submitted
+                                                        &&
+                                                        f.address_line2.errors?.required
+                                                        ||
+                                                        f.address_line2.touched" class="alert
+                                                        alert-danger">
+                                                        <div *ngIf="f.address_line2.errors?.required">
+                                                            Address
+                                                            Line 2 is Required
+                                                        </div>
+                                                        <div *ngIf="f.address_line2.errors?.pattern" class="alert
+                                                            alert-danger">
+                                                            Address
+                                                            Line 2 is Invalid
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12">
@@ -554,6 +598,7 @@
                                                         City<span class="requierdSign">*</span>:
                                                     </label>
                                                     <input type="text" formControlName="company_city" placeholder="City"
+                                                        pattern="^[-a-zA-Z0-9-()]+(\s+[-a-zA-Z0-9-()]+)*$"
                                                         class="form-control" [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('company_city')?.invalid)
@@ -561,14 +606,29 @@
                                                         registerForm.get('company_city')?.invalid
                                                         &&
                                                         registerForm.get('company_city').touched">
-                                                    <div class="invalid-feedback">City
-                                                        is Required</div>
+                                                    <!-- <div class="invalid-feedback">City
+                                                        is Required</div> -->
+                                                    <div *ngIf="signupForm.submitted
+                                                        &&
+                                                        f.company_city.errors?.required
+                                                        ||
+                                                        f.company_city.touched" class="alert
+                                                        alert-danger">
+                                                        <div *ngIf="f.company_city.errors?.required">
+                                                            City is Required
+                                                        </div>
+                                                    </div>
+                                                    <div *ngIf="f.company_city.errors?.pattern" class="alert
+                                                        alert-danger">
+                                                        City is Invalid
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12">
                                                 <div class="form-group"><label>Pincode<span
                                                             class="requierdSign">*</span>:</label>
                                                     <input type="text" formControlName="company_pincode"
+                                                        pattern="^[-a-zA-Z0-9-()]+(\s+[-a-zA-Z0-9-()]+)*$"
                                                         placeholder="Pincode" class="form-control" maxlength="6"
                                                         minlength="6" [class.is-invalid]="(signupForm.submitted
                                                         &&
@@ -612,8 +672,9 @@
                                                         Organization Qualifies For A
                                                         Consideration For Award(s).<span class="requierdSign">*</span>:
                                                     </label>
-                                                    <textarea type="text" formControlName="achievements"
+                                                    <textarea type="text" formControlName="achievements" maxlength="400"
                                                         placeholder="Enter Achievement" class="form-control"
+                                                        pattern="^[-a-zA-Z0-9-()]+(\s+[-a-zA-Z0-9-()]+)*$"
                                                         [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('achievements')?.invalid)
@@ -621,8 +682,24 @@
                                                         registerForm.get('achievements')?.invalid
                                                         &&
                                                         registerForm.get('achievements').touched"></textarea>
-                                                    <div class="invalid-feedback">Key
-                                                        Achievement is Required</div>
+                                                    <!-- <div class="invalid-feedback">Key
+                                                        Achievement is Required</div> -->
+                                                    <div *ngIf="signupForm.submitted
+                                                        &&
+                                                        f.achievements.errors?.required
+                                                        ||
+                                                        f.achievements.touched" class="alert
+                                                        alert-danger">
+                                                        <div *ngIf="f.achievements.errors?.required">
+                                                            Key
+                                                            Achievement is Required
+                                                        </div>
+                                                    </div>
+                                                    <div *ngIf="f.achievements.errors?.pattern" class="alert
+                                                        alert-danger">
+                                                        Key
+                                                        Achievement is Invalid
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 col-md-12">
@@ -634,15 +711,32 @@
                                                     </label>
                                                     <textarea type="text" formControlName="reason"
                                                         placeholder="Enter Strength" class="form-control"
-                                                        [class.is-invalid]="(signupForm.submitted
+                                                        pattern="^[-a-zA-Z0-9-()]+(\s+[-a-zA-Z0-9-()]+)*$"
+                                                        maxlength="400" [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('reason')?.invalid)
                                                         ||
                                                         registerForm.get('reason')?.invalid
                                                         &&
                                                         registerForm.get('reason').touched"></textarea>
-                                                    <div class="invalid-feedback">Key
-                                                        Strength is Required</div>
+                                                    <!-- <div class="invalid-feedback">Key
+                                                        Strength is Required</div> -->
+                                                    <div *ngIf="signupForm.submitted
+                                                        &&
+                                                        f.reason.errors?.required
+                                                        ||
+                                                        f.reason.touched" class="alert
+                                                        alert-danger">
+                                                        <div *ngIf="f.reason.errors?.required">
+                                                            Key
+                                                            Strength is Required
+                                                        </div>
+                                                    </div>
+                                                    <div *ngIf="f.reason.errors?.pattern" class="alert
+                                                        alert-danger">
+                                                        Key
+                                                        Strength is Invalid
+                                                    </div>
                                                 </div>
                                             </div>
 

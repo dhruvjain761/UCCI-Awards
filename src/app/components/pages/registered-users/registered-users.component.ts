@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Table } from 'primeng/table';
 import { CommonClass } from 'src/app/common';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -12,6 +13,9 @@ import { ApiService } from 'src/app/services/api.service';
   providers: [MessageService, ConfirmationService],
 })
 export class RegisteredUsersComponent implements OnInit {
+
+  @ViewChild('dt1') dt1: Table;
+  @ViewChild('dt2') dt2: Table;
   breadcrumb: any[];
 
   filterVal: string;
@@ -87,9 +91,19 @@ export class RegisteredUsersComponent implements OnInit {
     });
   }
 
+  // search function 
+
+  onSearch(type: string, e: any) {
+    // if(type == "dt1") {
+      this.dt1.filterGlobal(e, 'contains')
+    // }else if(type == "dt1") {
+    //   this.dt1.filterGlobal(e, 'contains')
+    // }
+  }
+
   // Clear search filter
-  reset(dt1) {
-    dt1.reset();
+  reset() {
+    this.dt1.reset();
     this.filterVal = '';
   }
 

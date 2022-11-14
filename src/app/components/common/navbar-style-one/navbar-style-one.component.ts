@@ -12,6 +12,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { CommonClass } from 'src/app/common';
 import { ApiService } from 'src/app/services/api.service';
+import { FormBuilderService } from 'src/app/services/form-builder.service';
 
 @Component({
   selector: 'app-navbar-style-one',
@@ -36,38 +37,53 @@ export class NavbarStyleOneComponent implements OnInit, OnChanges {
   spinnerMsg: string;
   role: any;
   otherOptionClass: string = 'container';
+  awardForm: any = [];
   // confirmPassword: string = '';
   constructor(
     private apiservice: ApiService,
     private router: Router,
     private messageService: MessageService,
     private commonFunction: CommonClass,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService // private _formBuilder: FormBuilderService
   ) {}
 
+  async ngOnInit() {
+    // this.localStorage = '';
+    // debugger;
+    this.localStorage = this.commonFunction.getLocalStorage();
+    console.log(this.localStorage);
+
+    this.role = JSON.parse(localStorage.getItem('award_access_token')).role;
+    // save user name or email in localstorage
+    var award_access_token = localStorage.getItem('award_access_token');
+    if (award_access_token && award_access_token != 'undefined') {
+      this.userName = JSON.parse(
+        localStorage.getItem('award_access_token')
+      ).username;
+
+      this.userEmail = JSON.parse(
+        localStorage.getItem('award_access_token')
+      ).useremail;
+    }
+
+    if (localStorage.getItem('award_access_token')) {
+    }
+  }
   ngOnChanges() {
     // this.localStorage = this.commonFunction.getLocalStorage();
   }
 
-  ngOnInit(): void {
-    this.localStorage = '';
-    this.localStorage = this.commonFunction.getLocalStorage();
-    if (localStorage.getItem('award_access_token')) {
-      this.role = JSON.parse(localStorage.getItem('award_access_token')).role;
-      // save user name or email in localstorage
-      var award_access_token = localStorage.getItem('award_access_token');
-      if (award_access_token && award_access_token != 'undefined') {
-        this.userName = JSON.parse(
-          localStorage.getItem('award_access_token')
-        ).username;
-        this.userEmail = JSON.parse(
-          localStorage.getItem('award_access_token')
-        ).useremail;
-      }
-    }
-    // console.log(this.localStorage)
-  }
+  async getMenu() {
+    await this.apiservice.getDropdownName().then((res: any) => {
+      console.log(res);
+      this.awardForm = res.data;
+    });
 
+    // this._formBuilder.getAPI('formData').subscribe((res: any) => {
+    //   this.awardForm = res.data;
+    //   console.log(this.awardForm);
+    // });
+  }
   // sign up form controls
   registerForm = new FormGroup({
     signupname: new FormControl('', [

@@ -36,6 +36,10 @@ export class ApiService {
     return this.http.post('checkOTP', modal);
   }
 
+  getDropdownName(): Promise<any> {
+    return this.http.get('formData').toPromise();
+  }
+
   // refresh token api
   refreshTOken(): Observable<any> {
     return this.http.post('refresh');

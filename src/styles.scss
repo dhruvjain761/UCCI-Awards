@@ -213,6 +213,15 @@ p {
   }
 }
 
+// split text
+.small-text {
+  display: inline-block !important;
+  width: 180px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
 /*default-btn*/
 
 .default-btn {
@@ -2927,7 +2936,7 @@ textarea.form-control {
   }
 
   .container {
-    max-width: 720px;
+    max-width: 900px;
   }
 
   .navbar-area {

@@ -37,13 +37,15 @@
                         <span class="menu-title">Form Builder</span>
                     </a>
                 </li>
-                <ng-container *ngFor="let item of awardForm;index as index;">
-                    <li *ngIf="index < 4 " class="nav-item" routerLinkActive="active mm-active">
-                        <a (click)="navigate('/form-lib/'+item.slug)" class="nav-link">
-                            <span class="icon"><i class='bx bx-home-circle'></i></span>
-                            <span class="menu-title">{{item.form_title}}</span>
-                        </a>
-                    </li>
+                <ng-container *ngIf="awardForm?.length > 0">
+                    <ng-container *ngFor="let item of awardForm;index as index;">
+                        <li *ngIf="index < 4" class="nav-item" routerLinkActive="active mm-active">
+                            <a (click)="navigate('/form-lib/'+item.slug)" class="nav-link">
+                                <span class="icon"><i class='bx bx-home-circle'></i></span>
+                                <span class="menu-title">{{item.form_title}}</span>
+                            </a>
+                        </li>
+                    </ng-container>
                 </ng-container>
                 <!-- <li class="nav-item-title">
                     Award Service

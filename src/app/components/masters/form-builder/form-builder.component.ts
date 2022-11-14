@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MessageService } from 'primeng/api';
 import { FormBuilderService } from 'src/app/services/form-builder.service';
@@ -8,7 +8,7 @@ import { FormBuilderService } from 'src/app/services/form-builder.service';
   selector: 'app-form-builder',
   templateUrl: './form-builder.component.html',
   styleUrls: ['./form-builder.component.scss'],
-  providers: [MessageService]
+  providers: [MessageService],
 })
 export class FormBuilderComponent implements OnInit {
   sectionsData: any = [{
@@ -20,12 +20,18 @@ export class FormBuilderComponent implements OnInit {
     controls: [
     ]
   }];
-  sections : any = []
+  sections: any = []
   errorMsg: boolean;
 
-  constructor(private spinner: NgxSpinnerService, private activeRoute: ActivatedRoute, private messageService: MessageService, private __formBuilder: FormBuilderService, private route: Router) { }
+  constructor(
+    private spinner: NgxSpinnerService,
+    private activeRoute: ActivatedRoute,
+    private messageService: MessageService,
+    private __formBuilder: FormBuilderService,
+    private route: Router
+  ) { }
 
-  formModel: any = { form_name: "", awardCategory: "" };
+  formModel: any = { form_name: '', awardCategory: '' };
   slug: any;
   jsonData: any;
   formId: any;
@@ -38,25 +44,30 @@ export class FormBuilderComponent implements OnInit {
   ];
 
   async ngOnInit() {
-    this.__formBuilder.getAPI('award-catgeory').then((res: any) => {
+    this.__formBuilder.getAPI('award-catgeory').subscribe((res: any) => {
       this.awardCategory = res.data;
-    })
+    });
     this.slug = this.activeRoute.snapshot.params;
     console.log(this.slug.slug);
     // debugger;
     if (this.slug.slug) {
       this.spinner.show();
-      await this.__formBuilder.getAPI('formWithData/' + this.slug.slug).then((res: any) => {
-        console.log(res);
-        this.formModel.awardCategory = res.data[0].award_category;
-        this.formModel.form_name = res.data[0].form_title;
-        this.formId = res.data[0].id;
-        this.sections = Object.assign([], JSON.parse(JSON.parse(res.data[0].form_json)));
-        console.log(this.sectionsData)
-        this.spinner.hide()
-      })
+      this.__formBuilder
+        .getAPI('formWithData/' + this.slug.slug)
+        .subscribe((res: any) => {
+          console.log(res);
+          this.formModel.awardCategory = res.data[0].award_category;
+          this.formModel.form_name = res.data[0].form_title;
+          this.formId = res.data[0].id;
+          this.sections = Object.assign(
+            [],
+            JSON.parse(JSON.parse(res.data[0].form_json))
+          );
+          console.log(this.sectionsData);
+          this.spinner.hide();
+        });
     }
-    else if(this.slug.slug == undefined) {
+    else if (this.slug.slug == undefined) {
       this.sections = [{
         title: `Section 1`,
         description: "Enter Description",
@@ -70,7 +81,7 @@ export class FormBuilderComponent implements OnInit {
   }
 
   // getJson(event:any) {
-  //   console.log(event);    
+  //   console.log(event);
   //   if(this.formModel.form_name) {
   //     this.jsonData = JSON.parse(event);
   //     this.formModel.data = this.jsonData;
@@ -110,26 +121,27 @@ export class FormBuilderComponent implements OnInit {
     let Object = {
       form_title: this.formModel.form_name,
       award_category: this.formModel.awardCategory,
-      form_json: JSON.stringify(event)
-    }
+      form_json: JSON.stringify(event),
+    };
     if (this.formModel.form_name && this.formModel.awardCategory) {
       this.errorMsg = false;
       if (this.slug.slug) {
-        this.__formBuilder.createCustomForm('edit/formData/'+this.formId,Object).subscribe((res:any)=> {
-          this.route.navigateByUrl('custom-forms');
-        })
+        this.__formBuilder
+          .createCustomForm('edit/formData/' + this.formId, Object)
+          .subscribe((res: any) => {
+            this.route.navigateByUrl('custom-forms');
+          });
+      } else {
+        this.__formBuilder
+          .createCustomForm('create/formData', Object)
+          .subscribe((res: any) => {
+            console.log(res);
+            this.route.navigateByUrl('custom-forms');
+          });
       }
-      else {
-        this.__formBuilder.createCustomForm('create/formData', Object).subscribe((res: any) => {
-          console.log(res);
-          this.route.navigateByUrl('custom-forms');
-        })
-      }
-    }
-    else {
+    } else {
       this.errorMsg = true;
-      window.scroll(0, 0)
+      window.scroll(0, 0);
     }
   }
-
 }
