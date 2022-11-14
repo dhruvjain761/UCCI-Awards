@@ -212,6 +212,7 @@ p {
     font-weight: 500;
   }
 }
+
 // split text
 .small-text {
   display: inline-block !important;
@@ -220,6 +221,7 @@ p {
   overflow: hidden !important;
   text-overflow: ellipsis !important;
 }
+
 /*default-btn*/
 
 .default-btn {
@@ -2934,7 +2936,7 @@ textarea.form-control {
   }
 
   .container {
-    max-width: 720px;
+    max-width: 900px;
   }
 
   .navbar-area {

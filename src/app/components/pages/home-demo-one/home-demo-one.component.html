@@ -502,7 +502,7 @@
                                                     </label>
                                                     <input type="text" formControlName="company_address"
                                                         placeholder="Enter Address Line 1" class="form-control"
-                                                        pattern="^[-a-zA-Z0-9-()]+(\s+[-a-zA-Z0-9-()]+)*$"
+                                                        pattern="^[-a-zA-Z0-9-(,-/\_)]+(\s+[-a-zA-Z0-9-()]+)*$"
                                                         [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('company_address')?.invalid)
@@ -533,7 +533,7 @@
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="form-group"><label>Address
                                                         Line 2:</label>
-                                                    <input pattern="^[-a-zA-Z0-9-()]+(\s+[-a-zA-Z0-9-()]+)*$"
+                                                    <input pattern="^[-a-zA-Z0-9-(,-/\_)]+(\s+[-a-zA-Z0-9-()]+)*$"
                                                         type="text" formControlName="address_line2" [class.is-invalid]="(signupForm.submitted
                                                     &&
                                                     registerForm.get('address_line2')?.invalid)
