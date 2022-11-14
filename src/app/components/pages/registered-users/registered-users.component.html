@@ -1,21 +1,26 @@
 <!-- <ngx-spinner name="sp5" [fullScreen]="true" type="square-jelly-box" size="medium"></ngx-spinner> -->
 <p-toast
-  [breakpoints]="{'575px': {width: '100%', right: '0', left: '0', display: 'flex', 'justify-content': 'center', 'align-items': 'center', 'flex-direction': 'column'}}">
+  [breakpoints]="{'575px': {width: '100%', right: '0', left: '0', display:
+  'flex', 'justify-content': 'center', 'align-items': 'center',
+  'flex-direction': 'column'}}">
 </p-toast>
 <!-- <p-confirmDialog header="Confirmation" [style]="{width: '50vw'}" [baseZIndex]="10000"
   rejectButtonStyleClass="p-button-text"> -->
 <!-- </p-confirmDialog> -->
-<p-confirmDialog #cd [style]="{width: '30vw'}" [breakpoints]="{'960px': '92vw'}">
+<p-confirmDialog #cd [style]="{width: '30vw'}" [breakpoints]="{'960px':
+  '92vw'}">
   <ng-template pTemplate="header">
     <h5>Confirmation</h5>
-    <button pButton pRipple type="button" icon="pi pi-times" (click)="cd.close()"
+    <button pButton pRipple type="button" icon="pi pi-times"
+      (click)="cd.close()"
       class="p-button-rounded p-button-secondary p-button-text"></button>
   </ng-template>
   <ng-template pTemplate="footer">
     <!-- <button type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button> -->
     <!-- <p-button type="button" pButton icon="pi pi-check" styleClass="p-button-text" label="Yes"
       (click)="cd.accept()"></p-button> -->
-    <p-button (click)="cd.accept()" icon="pi pi-check" label="Yes" styleClass="p-button-text"></p-button>
+    <p-button (click)="cd.accept()" icon="pi pi-check" label="Yes"
+      styleClass="p-button-text"></p-button>
   </ng-template>
 </p-confirmDialog>
 <app-dashboard-sidemenu></app-dashboard-sidemenu>
@@ -41,17 +46,19 @@
   <!-- ********************** End Breadcrumb Area  ******************** -->
 
   <!-- ********************** Add Master Form Area  ******************** -->
-
   <div class="Master-view-box">
     <div class="theader">
       <!-- <ng-template pTemplate="caption"> -->
       <div class="d-flex search-bar">
         <span class="p-input-icon-left ml-auto mr-2">
           <i class="pi pi-search"></i>
-          <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')"
+          <input pInputText type="text"
+            (input)="onSearch('dt1', $event.target.value)"
             placeholder="Search keyword" [(ngModel)]="filterVal" />
         </span>
-        <p-button type="button" class="ml-2" (click)="reset(dt1)" icon="bx bx-reset"></p-button>
+        <p-button type="button" class="ml-2" (click)="reset()"
+          [(ngModel)]="filterVal" icon="bx
+          bx-reset"></p-button>
       </div>
       <div class="d-flex btn-box" *ngIf="localStorage?.role=='Admin'">
         <div class="d-flex">
@@ -70,78 +77,226 @@
 
     <div class="row">
       <div class="col-lg-12 col-md-12">
-        <p-table #dt1 [value]="users" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
-          [(selection)]="selectedUser" styleClass="p-datatable-sm p-datatable-customers"
-          [rowsPerPageOptions]="[10,25,50]" editMode="row" responsiveLayout="scroll" [loading]="loading"
-          [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-          [globalFilterFields]="['name', 'status', 'company_name', 'award.award_name', 'category']">
-          <ng-template pTemplate="header" style="min-height: 500px;">
-            <tr>
-              <th style="max-width: 100px; text-align: center; white-space: no-wrap;">S. No.</th>
-              <th *ngIf="localStorage?.role=='Admin'">
-                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-              </th>
-              <th style="max-width: 170px; width: 170px;  text-align: center; white-space: no-wrap;">
-                {{localStorage?.role=='Admin' ? 'Action' : 'View'}}
-              </th>
-              <th style="max-width: 150px; width: 150px; white-space: no-wrap;">Status</th>
-              <th style="min-width: 150px; white-space: no-wrap;">Contact Person</th>
-              <th style="min-width: 150px; white-space: no-wrap;">Organization Name</th>
-              <th style="min-width: 150px; white-space: no-wrap;">Award Name</th>
-              <th style="min-width: 150px; white-space: no-wrap;">Category</th>
-              <th style="min-width: 130px; white-space: no-wrap;" *ngIf="localStorage?.role=='Admin'">Email</th>
-            </tr>
-          </ng-template>
+        <!-- *********************************************for user role table************************************************ -->
+        <ng-container *ngIf="localStorage.role == 'User'">
+          <p-table #dt1 [value]="users"
+            sortField="company_name"
+            rowGroupMode="subheader" sortMode="single"
+            groupRowsBy="company_name" [paginator]="true"
+            dataKey="company_name" [rows]="10"
+            [showCurrentPageReport]="true"
+            [rowsPerPageOptions]="[10,25,50]" responsiveLayout="scroll"
+            [loading]="loading"
+            currentPageReportTemplate="Showing {first} to {last} of
+            {totalRecords} entries" [globalFilterFields]="['name', 'status',
+            'company_name',
+            'award.award_name', 'category']">
+            <ng-template pTemplate="header" style="min-height:
+              500px;">
+              <tr>
+                <th style="min-width: 100px; text-align: center; white-space:
+                  no-wrap;">S. No.</th>
+                <th *ngIf="localStorage?.role=='Admin'">
+                  <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th style="max-width: 170px; width: 170px; text-align: center;
+                  white-space: no-wrap;">
+                  {{localStorage?.role=='Admin' ? 'Action' : 'View'}}
+                </th>
+                <th style="max-width: 150px; width: 150px; white-space:
+                  no-wrap;">Status</th>
+                <th style="min-width: 150px; white-space: no-wrap;">Award Name</th>
+                <th style="min-width: 150px; white-space: no-wrap;">Category</th>
+                <th style="min-width: 150px; white-space: no-wrap;">Contact
+                  Person</th>
+                <!-- <th style="min-width: 200px; white-space: no-wrap;">Organization
+                  Name</th> -->
+                <th style="min-width: 130px; white-space: no-wrap;"
+                  *ngIf="localStorage?.role=='Admin'">Email</th>
+              </tr>
+            </ng-template>
 
-          <ng-template pTemplate="body" let-item let-i="rowIndex">
-            <tr class="p-selectable-row">
-              <td style="text-align: center;">{{i+1}}</td>
-              <td *ngIf="localStorage?.role=='Admin'">
-                <p-tableCheckbox [value]="item">
-                </p-tableCheckbox>
-              </td>
-              <td style="text-align: center;">
-                <button pButton pRipple class="p-button-rounded
-                p-button-text
-                p-button-info" (click)="onViewPress(item)" pTooltip="View" tooltipPosition="bottom">
-                  <i class="far fa-eye"></i>
-                </button>
-                <button pButton pRipple icon="bx bx-check" class="p-button-rounded p-button-success p-button-text mr-2"
-                  (click)="onAprrovPress(item, 'approve')" [disabled]="item.status !== 'Pending'"
-                  *ngIf="localStorage?.role=='Admin'"></button>
-                <button pButton pRipple icon="bx bx-x" class="p-button-rounded
-                  p-button-danger p-button-text mr-2" (click)="onRejectPress(item, 'reject')"
-                  [disabled]="item.status !== 'Pending'" *ngIf="localStorage?.role=='Admin'"></button>
-              </td>
-              <td class="status">
-                <span class="in-progress" *ngIf="item.status == 'Pending'">
-                  {{item.status}}
-                </span>
-                <span class="in-progress" *ngIf="item.status == null">
-                  Pending
-                </span>
-                <span class="approved" *ngIf="item.status == 'Approved'">
-                  {{item.status}}
-                </span>
-                <span class="rejected" *ngIf="item.status == 'Rejected'">
-                  {{item.status}}
-                </span>
-              </td>
-              <td>{{item.name}}</td>
-              <td>{{item.company_name}}</td>
-              <td>{{item.award.award_name}}</td>
-              <td>{{item.category}}</td>
-              <td *ngIf="localStorage?.role=='Admin'">
-                <div class="add-listings-btn">
-                  <button type="button" (click)="sendEmail('single', item)"
-                    [disabled]="item.status === 'Pending' || item.status === 'In Progress'"><span
-                      class="bx bx-send"></span>
-                    Send</button>
-                </div>
-              </td>
-            </tr>
-          </ng-template>
-        </p-table>
+            <ng-template pTemplate="groupheader" let-item
+              let-rowIndex="rowIndex"
+              let-expanded="expanded">
+              <tr>
+                <td colspan="7">
+                  <div style="display: flex; align-items:
+                    center; font-size: 13px;">
+                    <button type="button" pButton pRipple
+                      class="p-button-text p-button-rounded
+                      p-button-plain p-mr-2" [icon]="expanded
+                      ? 'pi pi-chevron-down' :
+                      'pi pi-chevron-right'"
+                      [pRowToggler]="item"></button>
+                    <span class="p-text-bold p-ml-2">{{item.company_name}}</span>
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+
+            <ng-template pTemplate="rowexpansion" let-item let-i="rowIndex">
+              <tr class="p-selectable-row">
+                <td style="text-align: center;">{{i+1}}</td>
+                <td *ngIf="localStorage?.role=='Admin'">
+                  <p-tableCheckbox [value]="item">
+                  </p-tableCheckbox>
+                </td>
+                <td style="text-align: center;">
+                  <button pButton pRipple class="p-button-rounded
+                    p-button-text
+                    p-button-info" (click)="onViewPress(item)" pTooltip="View"
+                    tooltipPosition="bottom">
+                    <i class="far fa-eye"></i>
+                  </button>
+                  <button pButton pRipple icon="bx bx-check"
+                    class="p-button-rounded p-button-success p-button-text mr-2"
+                    (click)="onAprrovPress(item, 'approve')"
+                    [disabled]="item.status !== 'Pending'"
+                    *ngIf="localStorage?.role=='Admin'"></button>
+                  <button pButton pRipple icon="bx bx-x" class="p-button-rounded
+                    p-button-danger p-button-text mr-2"
+                    (click)="onRejectPress(item, 'reject')"
+                    [disabled]="item.status !== 'Pending'"
+                    *ngIf="localStorage?.role=='Admin'"></button>
+                </td>
+                <td class="status">
+                  <span class="in-progress" *ngIf="item.status == 'Pending'">
+                    {{item.status}}
+                  </span>
+                  <span class="in-progress" *ngIf="item.status == null">
+                    Pending
+                  </span>
+                  <span class="approved" *ngIf="item.status == 'Approved'">
+                    {{item.status}}
+                  </span>
+                  <span class="rejected" *ngIf="item.status == 'Rejected'">
+                    {{item.status}}
+                  </span>
+                </td>
+                <td class="small-text" tooltipPosition="bottom"
+                  pTooltip="{{item.award.award_name}}">{{item.award.award_name}}</td>
+                <td>{{item.category}}</td>
+                <td>{{item.name}}</td>
+                <!-- <td>{{item.company_name}}</td> -->
+                <td *ngIf="localStorage?.role=='Admin'">
+                  <div class="add-listings-btn">
+                    <button type="button" (click)="sendEmail('single', item)"
+                      [disabled]="item.status === 'Pending' || item.status ===
+                      'In
+                      Progress'"><span
+                        class="bx bx-send"></span>
+                      Send</button>
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <td colspan="5">No data found.</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </ng-container>
+        <!-- ***************************************************for admin role table********************************************************* -->
+        <ng-container *ngIf="localStorage.role == 'Admin'">
+          <p-table #dt1 [value]="users" dataKey="id" [rows]="10"
+            [showCurrentPageReport]="true"
+            [(selection)]="selectedUser" styleClass="p-datatable-sm
+            p-datatable-customers"
+            [rowsPerPageOptions]="[10,25,50]" editMode="row"
+            responsiveLayout="scroll" [loading]="loading"
+            [paginator]="true" currentPageReportTemplate="Showing {first} to
+            {last} of {totalRecords} entries"
+            [globalFilterFields]="['name', 'status', 'company_name',
+            'award.award_name', 'category']">
+            <ng-template pTemplate="header" style="min-height: 500px;">
+              <tr>
+                <th style="min-width: 100px; text-align: center; white-space:
+                  no-wrap;">S. No.</th>
+                <th *ngIf="localStorage?.role=='Admin'">
+                  <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th style="max-width: 170px; width: 170px; text-align: center;
+                  white-space: no-wrap;">
+                  {{localStorage?.role=='Admin' ? 'Action' : 'View'}}
+                </th>
+                <th style="max-width: 150px; width: 150px; white-space:
+                  no-wrap;">Status</th>
+                <th style="min-width: 150px; white-space: no-wrap;">Contact
+                  Person</th>
+                <th style="min-width: 200px; white-space: no-wrap;">Organization
+                  Name</th>
+                <th style="min-width: 150px; white-space: no-wrap;">Award Name</th>
+                <th style="min-width: 150px; white-space: no-wrap;">Category</th>
+                <th style="min-width: 130px; white-space: no-wrap;"
+                  *ngIf="localStorage?.role=='Admin'">Email</th>
+              </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-item let-i="rowIndex">
+              <tr class="p-selectable-row">
+                <td style="text-align: center;">{{i+1}}</td>
+                <td *ngIf="localStorage?.role=='Admin'">
+                  <p-tableCheckbox [value]="item">
+                  </p-tableCheckbox>
+                </td>
+                <td style="text-align: center;">
+                  <button pButton pRipple class="p-button-rounded
+                    p-button-text
+                    p-button-info" (click)="onViewPress(item)" pTooltip="View"
+                    tooltipPosition="bottom">
+                    <i class="far fa-eye"></i>
+                  </button>
+                  <button pButton pRipple icon="bx bx-check"
+                    class="p-button-rounded p-button-success p-button-text mr-2"
+                    (click)="onAprrovPress(item, 'approve')"
+                    [disabled]="item.status !== 'Pending'"
+                    *ngIf="localStorage?.role=='Admin'"></button>
+                  <button pButton pRipple icon="bx bx-x" class="p-button-rounded
+                    p-button-danger p-button-text mr-2"
+                    (click)="onRejectPress(item, 'reject')"
+                    [disabled]="item.status !== 'Pending'"
+                    *ngIf="localStorage?.role=='Admin'"></button>
+                </td>
+                <td class="status">
+                  <span class="in-progress" *ngIf="item.status == 'Pending'">
+                    {{item.status}}
+                  </span>
+                  <span class="in-progress" *ngIf="item.status == null">
+                    Pending
+                  </span>
+                  <span class="approved" *ngIf="item.status == 'Approved'">
+                    {{item.status}}
+                  </span>
+                  <span class="rejected" *ngIf="item.status == 'Rejected'">
+                    {{item.status}}
+                  </span>
+                </td>
+                <td>{{item.name}}</td>
+                <td>{{item.company_name}}</td>
+                <td class="small-text" tooltipPosition="bottom"
+                  pTooltip="{{item.award.award_name}}">{{item.award.award_name.slice(0,20)}}</td>
+                <td>{{item.category}}</td>
+                <td *ngIf="localStorage?.role=='Admin'">
+                  <div class="add-listings-btn">
+                    <button type="button" (click)="sendEmail('single', item)"
+                      [disabled]="item.status === 'Pending' || item.status ===
+                      'In
+                      Progress'"><span
+                        class="bx bx-send"></span>
+                      Send</button>
+                  </div>
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <td colspan="5">No data found.</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </ng-container>
       </div>
     </div>
   </div>
@@ -151,7 +306,8 @@
 </div>
 
 
-<p-dialog header="User Deatils" [(visible)]="displayMaximizable" [modal]="true" [style]="{ width: '90vw' }"
+<p-dialog header="User Deatils" [(visible)]="displayMaximizable" [modal]="true"
+  [style]="{ width: '90vw' }"
   [breakpoints]="{'960px': '75vw'}" [draggable]="false" [resizable]="false">
   <!-- Start -->
   <ng-container *ngFor="let data of details">
@@ -163,14 +319,16 @@
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
                 <label>Contact Person :</label>
-                <input readonly class="form-control" [value]="data?.name | titlecase">
+                <input readonly class="form-control" [value]="data?.name |
+                  titlecase">
               </div>
             </div>
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
                 <label>Organization Name (Legal
                   Name) :</label>
-                <input readonly class="form-control" [value]="data?.company_name | titlecase">
+                <input readonly class="form-control" [value]="data?.company_name
+                  | titlecase">
               </div>
             </div>
             <div class="col-lg-6 col-md-12">
@@ -188,25 +346,29 @@
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
                 <label>PAN:</label>
-                <input readonly class="form-control" [value]="data?.company_PAN">
+                <input readonly class="form-control"
+                  [value]="data?.company_PAN">
               </div>
             </div>
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
                 <label>GST No. :</label>
-                <input readonly class="form-control" [value]="data?.company_GST ? data?.company_GST : 'Not Available'">
+                <input readonly class="form-control" [value]="data?.company_GST
+                  ? data?.company_GST : 'Not Available'">
               </div>
             </div>
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
                 <label>Address :</label>
-                <input readonly class="form-control" [value]="data?.company_address | titlecase" />
+                <input readonly class="form-control"
+                  [value]="data?.company_address | titlecase" />
               </div>
             </div>
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
                 <label>City :</label>
-                <input readonly class="form-control" [value]="data?.company_city | titlecase">
+                <input readonly class="form-control" [value]="data?.company_city
+                  | titlecase">
               </div>
             </div>
             <!-- <div class="col-lg-6 col-md-12">
@@ -218,38 +380,44 @@
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
                 <label>State :</label>
-                <input readonly class="form-control" [value]="data?.company_state | titlecase">
+                <input readonly class="form-control"
+                  [value]="data?.company_state | titlecase">
               </div>
             </div>
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
                 <label>Pincode :</label>
-                <input readonly class="form-control" [value]="data?.company_pincode">
+                <input readonly class="form-control"
+                  [value]="data?.company_pincode">
               </div>
             </div>
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
                 <label>Award Type :</label>
 
-                <input readonly class="form-control" [value]="data?.award_type ">
+                <input readonly class="form-control" [value]="data?.award_type
+                  ">
               </div>
             </div>
             <div class=" col-lg-6 col-md-12">
               <div class="form-group">
                 <label>Classification Industry:</label>
-                <input readonly class="form-control" [value]="data?.classification?.name | titlecase">
+                <input readonly class="form-control"
+                  [value]="data?.classification?.name | titlecase">
               </div>
             </div>
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
                 <label>Turnover in INR ({{preYear}}-{{date | date: 'yy'}}) :</label>
-                <input readonly class="form-control" value="{{data?.turnover | indianCurrency}}">
+                <input readonly class="form-control" value="{{data?.turnover |
+                  indianCurrency}}">
               </div>
             </div>
             <div class="col-lg-6 col-md-12">
               <div class="form-group">
                 <label>Award Name :</label>
-                <input readonly class="form-control" [value]="data?.award?.award_name">
+                <input readonly class="form-control"
+                  [value]="data?.award?.award_name">
               </div>
             </div>
             <!-- <div class="col-lg-6 col-md-12">
@@ -267,22 +435,29 @@
 
 
 <form [formGroup]="statusForm" #form="ngForm" (ngSubmit)="statusUpdate(form)">
-  <p-dialog header="Rejection" [(visible)]="statusModal" [modal]="true" [style]="{width: '50%'}" [draggable]="false"
+  <p-dialog header="Rejection" [(visible)]="statusModal" [modal]="true"
+    [style]="{width: '50%'}" [draggable]="false"
     [resizable]="false">
 
     <div class="row mt-1">
       <div class="col-lg-12 col-xs-12">
-        <div class="form-group">Reason<span style="color: red;" *ngIf="status === 'reject'">*</span>:
-          <textarea type="text" class="form-control" placeholder="Reason" formControlName="remark" required
+        <div class="form-group">Reason<span style="color: red;" *ngIf="status
+            === 'reject'">*</span>:
+          <textarea type="text" class="form-control" placeholder="Reason"
+            formControlName="remark" required
             style="margin-top: 5px;"
-            [class.is-invalid]="(form.submitted && statusForm.get('remark')?.invalid) || statusForm.get('remark')?.invalid && statusForm.get('remark').touched"></textarea>
+            [class.is-invalid]="(form.submitted &&
+            statusForm.get('remark')?.invalid) ||
+            statusForm.get('remark')?.invalid &&
+            statusForm.get('remark').touched"></textarea>
           <div class="invalid-feedback">Reason is required</div>
         </div>
       </div>
     </div>
 
     <ng-template pTemplate="footer">
-      <p-button type="submit" icon="pi pi-check" label="Reject" styleClass="p-button-text"></p-button>
+      <p-button type="submit" icon="pi pi-check" label="Reject"
+        styleClass="p-button-text"></p-button>
       <!-- <button type="submit">Reject</button> -->
       <!-- <button type="submit" pButton icon="pi pi-check" label="Reject"></button> -->
     </ng-template>

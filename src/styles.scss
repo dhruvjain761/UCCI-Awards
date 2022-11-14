@@ -212,7 +212,14 @@ p {
     font-weight: 500;
   }
 }
-
+// split text
+.small-text {
+  display: inline-block !important;
+  width: 180px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
 /*default-btn*/
 
 .default-btn {
