@@ -57,7 +57,7 @@ export class HomeDemoOneComponent implements OnInit {
     otp: new FormControl(),
   });
   registerForm = this.fb.group({
-    name: ['', [Validators.required]],
+    name: ['', [Validators.required,]],
     mobile_no: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
     email: ['', [Validators.required, Validators.email]],
     company_name: ['', Validators.required],
@@ -218,6 +218,7 @@ export class HomeDemoOneComponent implements OnInit {
             severity: 'success',
             detail: res.message,
           });
+          this.gstType = 'nonRegistered';
           this.signupState = true;
           // setTimeout(() => {
           //   this.router.navigateByUrl('/success');
