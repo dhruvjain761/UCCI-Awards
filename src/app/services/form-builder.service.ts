@@ -11,8 +11,8 @@ export class FormBuilderService {
   constructor( private http:HTTPApi) { }
 
   //to get all custom forms 
-  getAPI(endPoint:any) : Observable<any> {
-    return this.http.get(endPoint);
+  getAPI(endPoint:any) : Promise<any> {
+    return this.http.get(endPoint).toPromise();
   }
   //to delete custom form from from list
   deleteCustomForm(id:any) : Observable<any> {

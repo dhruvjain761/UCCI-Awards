@@ -24,7 +24,7 @@ export class CsrFormComponent implements OnInit {
     let slug = this.router.snapshot.params;
     console.log(slug);
     this.spinner.show();
-    this._formBuilder.getAPI('formWithData/'+slug.slug).subscribe((res:any)=> {
+    this._formBuilder.getAPI('formWithData/'+slug.slug).then((res:any)=> {
       console.log(res);
       this.spinner.hide();
       this.sections = JSON.parse(JSON.parse(res?.data[0]?.form_json));

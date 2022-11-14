@@ -38,7 +38,7 @@
                     </a>
                 </li>
                 <ng-container *ngFor="let item of awardForm;index as index;">
-                    <li *ngIf="index < 4" class="nav-item" routerLinkActive="active mm-active">
+                    <li *ngIf="index < 4 " class="nav-item" routerLinkActive="active mm-active">
                         <a (click)="navigate('/form-lib/'+item.slug)" class="nav-link">
                             <span class="icon"><i class='bx bx-home-circle'></i></span>
                             <span class="menu-title">{{item.form_title}}</span>
@@ -87,6 +87,14 @@
                         <span class="menu-title">My Registrations</span>
                     </a>
                 </li>
+                <ng-container *ngFor="let item of awardForm;index as index;">
+                    <li class="nav-item" routerLinkActive="active mm-active">
+                        <a (click)="navigate('/form-lib/'+item.slug)" class="nav-link">
+                            <span class="icon"><i class='bx bx-home-circle'></i></span>
+                            <span class="menu-title">{{item.form_title}}</span>
+                        </a>
+                    </li>
+                </ng-container>
             </ul>
         </div>
     </div>

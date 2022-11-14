@@ -20,6 +20,7 @@ export class FormBuilderComponent implements OnInit {
     controls: [
     ]
   }];
+  sections : any = []
   errorMsg: boolean;
 
   constructor(private spinner: NgxSpinnerService, private activeRoute: ActivatedRoute, private messageService: MessageService, private __formBuilder: FormBuilderService, private route: Router) { }
@@ -36,8 +37,8 @@ export class FormBuilderComponent implements OnInit {
     },
   ];
 
-  ngOnInit() {
-    this.__formBuilder.getAPI('award-catgeory').subscribe((res: any) => {
+  async ngOnInit() {
+    this.__formBuilder.getAPI('award-catgeory').then((res: any) => {
       this.awardCategory = res.data;
     })
     this.slug = this.activeRoute.snapshot.params;
@@ -45,15 +46,26 @@ export class FormBuilderComponent implements OnInit {
     // debugger;
     if (this.slug.slug) {
       this.spinner.show();
-      this.__formBuilder.getAPI('formWithData/' + this.slug.slug).subscribe((res: any) => {
+      await this.__formBuilder.getAPI('formWithData/' + this.slug.slug).then((res: any) => {
         console.log(res);
         this.formModel.awardCategory = res.data[0].award_category;
         this.formModel.form_name = res.data[0].form_title;
         this.formId = res.data[0].id;
-        this.sectionsData = Object.assign([], JSON.parse(JSON.parse(res.data[0].form_json)));
+        this.sections = Object.assign([], JSON.parse(JSON.parse(res.data[0].form_json)));
         console.log(this.sectionsData)
         this.spinner.hide()
       })
+    }
+    else if(this.slug.slug == undefined) {
+      this.sections = [{
+        title: `Section 1`,
+        description: "Enter Description",
+        state: "normal",
+        canEnter: true,
+        canExit: false,
+        controls: [
+        ]
+      }];
     }
   }
 
