@@ -362,12 +362,17 @@ export class HomeDemoOneComponent implements OnInit {
   }
 
   saveAccessToken(res: any) {
+    console.log(res);
+    
     var localStorageData = {
       award_access_token: res.token,
       username: res.User.name,
       useremail: res.User.email,
       role: res?.User.roles[0].name,
     };
+
+    // console.log(localStorageData);
+    
     localStorage.setItem(
       'award_access_token',
       JSON.stringify(localStorageData)
