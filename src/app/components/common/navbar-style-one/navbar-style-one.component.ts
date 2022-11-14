@@ -53,10 +53,12 @@ export class NavbarStyleOneComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.localStorage = '';
+    // this.localStorage = '';
+    // debugger;
     this.localStorage = this.commonFunction.getLocalStorage();
     if (localStorage.getItem('award_access_token')) {
       this.role = JSON.parse(localStorage.getItem('award_access_token')).role;
+      this.getMenu();
       // save user name or email in localstorage
       var award_access_token = localStorage.getItem('award_access_token');
       if (award_access_token && award_access_token != 'undefined') {
@@ -69,12 +71,20 @@ export class NavbarStyleOneComponent implements OnInit, OnChanges {
       }
     }
 
-    // this._formBuilder.getAPI('formData').subscribe((res: any) => {
-    //   this.awardForm = res.data;
-    // });
-    // console.log(this.localStorage)
+    console.log(this.awardForm);
   }
 
+  getMenu() {
+    // this.apiservice.getDropdownName().subscribe((res: any) => {
+    //   console.log(res);
+    //   this.awardForm = res.data;
+    // });
+    // debugger;
+    this._formBuilder.getAPI('formData').subscribe((res: any) => {
+      this.awardForm = res.data;
+      console.log(this.awardForm);
+    });
+  }
   // sign up form controls
   registerForm = new FormGroup({
     signupname: new FormControl('', [

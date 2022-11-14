@@ -13,20 +13,20 @@ import { FormBuilderService } from 'src/app/services/form-builder.service';
 })
 export class DashboardSidemenuComponent implements OnInit {
   localStorage: any;
-  awardForm: any=[];
+  awardForm: any = [];
   constructor(
     private apiservice: ApiService,
     private messageService: MessageService,
     private router: Router,
     private commonFunction: CommonClass,
-    private _formBuilder : FormBuilderService
+    private _formBuilder: FormBuilderService
   ) {}
 
   ngOnInit(): void {
     this.localStorage = this.commonFunction.getLocalStorage();
-    this._formBuilder.getAPI('formData').subscribe((res:any)=> {
+    this._formBuilder.getAPI('formData').subscribe((res: any) => {
       this.awardForm = res.data;
-    })
+    });
     //  console.log(this.localStorage)
   }
 
@@ -43,10 +43,9 @@ export class DashboardSidemenuComponent implements OnInit {
     });
   }
 
-
   navigate(slug?: any) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate([(slug)]);
+    this.router.navigate([slug]);
   }
 }

@@ -1,7 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
+import {
+  ConfirmationService,
+  ConfirmEventType,
+  MessageService,
+} from 'primeng/api';
 import { Table } from 'primeng/table';
 import { FormBuilderService } from 'src/app/services/form-builder.service';
 
@@ -9,12 +13,17 @@ import { FormBuilderService } from 'src/app/services/form-builder.service';
   selector: 'app-custom-form',
   templateUrl: './custom-form.component.html',
   styleUrls: ['./custom-form.component.scss'],
-  providers: [MessageService, ConfirmationService]
+  providers: [MessageService, ConfirmationService],
 })
 export class CustomFormComponent implements OnInit {
   @ViewChild('dt2') dt2: Table;
   filterVal: string;
-  constructor(private confirmationService: ConfirmationService, private route: Router, private messageService: MessageService, private __formBuilder: FormBuilderService) { }
+  constructor(
+    private confirmationService: ConfirmationService,
+    private route: Router,
+    private messageService: MessageService,
+    private __formBuilder: FormBuilderService
+  ) {}
   breadcrumb: any[] = [
     {
       title: 'Custom Forms',
@@ -22,16 +31,13 @@ export class CustomFormComponent implements OnInit {
     },
   ];
   loading: boolean = true;
-  forms: any = []
+  forms: any = [];
   ngOnInit(): void {
-    
-    
     this.getAllFormsList();
-    
   }
   //to delete form from form list
   deleteFormDetail(id: any) {
-    console.log(id)
+    console.log(id);
     this.confirmationService.confirm({
       message: 'Do you want to delete this form?',
       header: 'Delete Confirmation',
@@ -55,13 +61,21 @@ export class CustomFormComponent implements OnInit {
       reject: (type) => {
         switch (type) {
           case ConfirmEventType.REJECT:
-            this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Rejected',
+              detail: 'You have rejected',
+            });
             break;
           case ConfirmEventType.CANCEL:
-            this.messageService.add({ severity: 'warn', summary: 'Cancelled', detail: 'You have cancelled' });
+            this.messageService.add({
+              severity: 'warn',
+              summary: 'Cancelled',
+              detail: 'You have cancelled',
+            });
             break;
         }
-      }
+      },
     });
   }
   //to edit custom form
@@ -80,7 +94,7 @@ export class CustomFormComponent implements OnInit {
   }
   //to get all custom forms
   getAllFormsList() {
-    this.forms = []
+    this.forms = [];
     this.__formBuilder.getAPI('formData').subscribe(
       (res: any) => {
         console.log(res);
@@ -88,17 +102,17 @@ export class CustomFormComponent implements OnInit {
         res.data?.map((response: any) => {
           this.forms.push(response);
           this.dt2.reset();
-        })
+        });
         this.loading = false;
       },
       (error: HttpErrorResponse) => {
         console.log(error);
         this.loading = false;
-      })
+      }
+    );
   }
   reset(dt1) {
-    dt1.reset()
+    dt1.reset();
     this.filterVal = '';
   }
-
 }
