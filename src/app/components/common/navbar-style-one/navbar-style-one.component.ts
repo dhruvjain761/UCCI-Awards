@@ -60,16 +60,13 @@ export class NavbarStyleOneComponent implements OnInit, OnChanges {
       this.userName = JSON.parse(
         localStorage.getItem('award_access_token')
       ).username;
+
       this.userEmail = JSON.parse(
         localStorage.getItem('award_access_token')
       ).useremail;
     }
 
     if (localStorage.getItem('award_access_token')) {
-      await this.apiservice.getDropdownName().then((res: any) => {
-        console.log(res);
-        this.awardForm = res.data;
-      });
     }
   }
   ngOnChanges() {
