@@ -99,13 +99,13 @@
                 <th *ngIf="localStorage?.role=='Admin'">
                   <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
-                <th style="max-width: 170px; width: 170px; text-align: center;
+                <th style="max-width: 120px; width: 120px; text-align: center;
                   white-space: no-wrap;">
                   {{localStorage?.role=='Admin' ? 'Action' : 'View'}}
                 </th>
                 <th style="max-width: 150px; width: 150px; white-space:
                   no-wrap;">Status</th>
-                <th style="min-width: 150px; white-space: no-wrap;">Award Name</th>
+                <th style="min-width: 250px; white-space: no-wrap;">Award Name</th>
                 <th style="min-width: 150px; white-space: no-wrap;">Category</th>
                 <th style="min-width: 150px; white-space: no-wrap;">Contact
                   Person</th>
@@ -174,7 +174,7 @@
                     {{item.status}}
                   </span>
                 </td>
-                <td class="small-text" tooltipPosition="bottom"
+                <td tooltipPosition="bottom"
                   pTooltip="{{item.award.award_name}}">{{item.award.award_name}}</td>
                 <td>{{item.category}}</td>
                 <td>{{item.name}}</td>
@@ -221,9 +221,9 @@
                   white-space: no-wrap;">
                   {{localStorage?.role=='Admin' ? 'Action' : 'View'}}
                 </th>
-                <th style="min-width: 170px; white-space:
+                <th style="min-width: 120px; white-space:
                   no-wrap;">Status</th>
-                <th style="min-width: 150px; white-space: no-wrap;">Award Name</th>
+                <th style="min-width: 250px; white-space: no-wrap;">Award Name</th>
                 <th style="min-width: 150px; white-space: no-wrap;">Category</th>
                 <th style="min-width: 150px; white-space: no-wrap;">Contact
                   Person</th>
@@ -273,8 +273,8 @@
                     {{item.status}}
                   </span>
                 </td>
-                <td class="small-text" tooltipPosition="bottom"
-                  pTooltip="{{item.award.award_name}}">{{item.award.award_name.slice(0,20)}}</td>
+                <td tooltipPosition="bottom"
+                  pTooltip="{{item.award.award_name}}">{{item.award.award_name}}</td>
                 <td>{{item.category}}</td>
                 <td>{{item.name}}</td>
                 <td>{{item.company_name}}</td>
