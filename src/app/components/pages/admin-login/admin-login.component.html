@@ -79,16 +79,17 @@
               <div class="vesax-login">
                 <!-- Login form -->
                 <form [formGroup]="loginForm" (ngSubmit)="loginIn()">
-                  <div class="form-group">Email<span class="requierdSign">*</span>:
+                  <div class="form-group"><label>Email</label><span class="requierdSign">*</span>:
                     <input type="text" placeholder="Email" formControlName="loginemail" class="form-control">
                     <div *ngIf="submitted &&
                                                       g.loginemail.errors?.required ||
                                                       g.loginemail.touched" class="alert alert-danger">
-                      <div *ngIf="g.loginemail.errors?.required">Email is required
+                      <div *ngIf="g.loginemail.errors?.required">Email is Required
                       </div>
                     </div>
                   </div>
-                  <div class="form-group" style="position: relative;">Password<span class="requierdSign">*</span>:
+                  <div class="form-group" style="position: relative;"><label>Password</label><span
+                      class="requierdSign">*</span>:
                     <input [type]="passwordState == true ? 'text' : 'password'" formControlName="loginpassword"
                       placeholder="Password" class="form-control">
                     <div (click)="onShowHidePasswordClick()" [pTooltip]="passwordState == true ? 'Hide' : 'Show'"

@@ -51,7 +51,7 @@
           <div class="form-group">Classification Category<span style="color: red;">*</span>:
             <select formControlName="category"
               [class.is-invalid]="(form.submitted && awardConfigForm.get('category')?.invalid) || awardConfigForm.get('category')?.invalid && awardConfigForm.get('category')?.touched">
-              <option [value]="null" disabled>Select classification category</option>
+              <option [value]="null" disabled>Select Classification Category</option>
               <option [value]="item.name" *ngFor="let item of classification | groupByPipe : 'category'">
                 {{item.name}}
               </option>
@@ -59,7 +59,7 @@
             <!-- <div class="invalid-feedback">Name is required</div> -->
             <!-- <input type="text" class="form-control" placeholder="Name" formControlName="category" required
               [class.is-invalid]="(form.submitted && awardConfigForm.get('category')?.invalid) || awardConfigForm.get('category')?.invalid && awardConfigForm.get('category')?.touched"> -->
-            <div class="invalid-feedback">Classification Category is required</div>
+            <div class="invalid-feedback">Classification Category is Required</div>
           </div>
         </div>
         <!-- <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">

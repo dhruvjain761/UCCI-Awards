@@ -89,7 +89,7 @@
                                                         Person Name<span class="requierdSign">*</span>:</label>
                                                     <input type="text" formControlName="name"
                                                         style="text-transform: capitalize;"
-                                                        placeholder="Contact person name" class="form-control"
+                                                        placeholder="Contact Person Name" class="form-control"
                                                         maxlength="70" pattern="^([a-zA-Z0-9.-_,]|[-
                                                         @.&!])*$" [class.is-invalid]="(signupForm.submitted
                                                         &&
@@ -98,7 +98,7 @@
                                                         registerForm.get('name')?.invalid
                                                         &&
                                                         registerForm.get('name').touched">
-                                                    <!-- <div class="invalid-feedback">User Name is required</div> -->
+                                                    <!-- <div class="invalid-feedback">User Name is Required</div> -->
                                                     <div *ngIf="signupForm.submitted
                                                         &&
                                                         f.name.errors?.required
@@ -106,25 +106,25 @@
                                                         f.name.touched" class="alert
                                                         alert-danger">
                                                         <div *ngIf="f.name.errors?.required">
-                                                            Contact person name
-                                                            is required
+                                                            Contact Person Name
+                                                            is Required
                                                         </div>
                                                     </div>
                                                     <div *ngIf="f.name.errors?.pattern" class="alert
                                                         alert-danger">
-                                                        Contact person name
+                                                        Contact Person Name
                                                         is
-                                                        invalid
+                                                        Invalid
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12">
                                                 <div class="form-group"><label>
                                                         Mobile
-                                                        No.<span class="requierdSign">*</span>:
+                                                        Number<span class="requierdSign">*</span>:
                                                     </label>
                                                     <input type="text" formControlName="mobile_no" maxlength="10"
-                                                        placeholder="Mobile number" class="form-control" minlength="10"
+                                                        placeholder="Mobile Number" class="form-control" minlength="10"
                                                         [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('mobile_no')?.invalid)
@@ -132,7 +132,7 @@
                                                         registerForm.get('mobile_no')?.invalid
                                                         &&
                                                         registerForm.get('mobile_no').touched">
-                                                    <!-- <div class="invalid-feedback">Mobile number is required</div> -->
+                                                    <!-- <div class="invalid-feedback">Mobile number is Required</div> -->
                                                     <div *ngIf="signupForm.submitted
                                                         &&
                                                         f.mobile_no.errors?.required
@@ -140,8 +140,8 @@
                                                         f.mobile_no.touched" class="alert
                                                         alert-danger">
                                                         <div *ngIf="f.mobile_no.errors?.required">
-                                                            Mobile number is
-                                                            required
+                                                            Mobile Number is
+                                                            Required
                                                         </div>
                                                     </div>
                                                     <div *ngIf="f.mobile_no.errors?.minlength
@@ -150,9 +150,9 @@
                                                         ||
                                                         f.mobile_no.errors?.pattern" class="alert
                                                         alert-danger">
-                                                        Mobile number
+                                                        Mobile Number
                                                         is
-                                                        invalid
+                                                        Invalid
                                                     </div>
                                                 </div>
                                             </div>
@@ -177,20 +177,20 @@
                                                         <div *ngIf="f.email.errors?.required
                                                             ||
                                                             f.email.errors?.submit">
-                                                            Email is required
+                                                            Email is Required
                                                         </div>
                                                     </div>
                                                     <div *ngIf="f.email.errors?.pattern" class="alert
                                                         alert-danger">
-                                                        Invalid email address
+                                                        Invalid Email
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12">
-                                                <div class="form-group"><label>Legal
-                                                        Name<span class="requierdSign">*</span>:</label>
+                                                <div class="form-group"><label>Organization Name (Legal
+                                                        Name)<span class="requierdSign">*</span>:</label>
                                                     <input type="text" maxlength="70" pattern="^([a-zA-Z0-9.-_,]|[-
-                                                        @.&!])*$" placeholder="Legal name"
+                                                        @.&!])*$" placeholder="Organization Name"
                                                         style="text-transform: capitalize;"
                                                         formControlName="company_name" [class.is-invalid]="(signupForm.submitted
                                                         &&
@@ -199,7 +199,7 @@
                                                         registerForm.get('company_name')?.invalid
                                                         &&
                                                         registerForm.get('company_name').touched" class="form-control">
-                                                    <!-- <div class="invalid-feedback">Company name is required</div> -->
+                                                    <!-- <div class="invalid-feedback">Company name is Required</div> -->
                                                     <div *ngIf="signupForm.submitted
                                                         &&
                                                         f.company_name.errors?.required
@@ -207,16 +207,18 @@
                                                         f.company_name.touched" class="alert
                                                         alert-danger">
                                                         <div *ngIf="f.company_name.errors?.required">
-                                                            Legal name is
-                                                            required
+                                                            Organization Name (Legal
+                                                            Name) is
+                                                            Required
                                                         </div>
 
                                                     </div>
                                                     <div *ngIf="f.company_name.errors?.pattern" class="alert
                                                         alert-danger">
-                                                        Legal Name
+                                                        Organization Name (Legal
+                                                        Name)
                                                         is
-                                                        invalid
+                                                        Invalid
                                                     </div>
                                                 </div>
                                             </div>
@@ -239,7 +241,7 @@
                                                         &&
                                                         registerForm.get('award_type').touched" #value>
                                                         <option [value]="null" disabled>Select
-                                                            award type
+                                                            Award Type
                                                         </option>
                                                         <option value="excellence">Excellence
                                                             Award</option>
@@ -249,7 +251,7 @@
                                                             Enterprises Award</option>
                                                     </select>
                                                     <div class="invalid-feedback">Award
-                                                        type is required</div>
+                                                        Type is Required</div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12">
@@ -266,7 +268,7 @@
                                                         registerForm.get('company_PAN')?.invalid
                                                         &&
                                                         registerForm.get('company_PAN').touched">
-                                                    <!-- <div class="invalid-feedback">PAN number is required</div> -->
+                                                    <!-- <div class="invalid-feedback">PAN number is Required</div> -->
                                                     <div *ngIf="signupForm.submitted
                                                         &&
                                                         f.company_PAN.errors?.required
@@ -274,7 +276,7 @@
                                                         f.company_PAN.touched" class="alert
                                                         alert-danger">
                                                         <div *ngIf="f.company_PAN.errors?.required">
-                                                            PAN is required
+                                                            PAN is Required
                                                         </div>
                                                     </div>
 
@@ -282,7 +284,7 @@
                                                         alert-danger">
                                                         PAN
                                                         is
-                                                        invalid
+                                                        Invalid
                                                     </div>
                                                 </div>
                                             </div>
@@ -308,25 +310,25 @@
                                                         &&
                                                         registerForm.get('gst_type').touched" #value>
                                                         <option [value]="null" disabled>Select GST
-                                                            type
+                                                            Type
                                                         </option>
                                                         <option value="registered">Registered</option>
                                                         <option value="nonRegistered">Non
                                                             Registered</option>
                                                     </select>
                                                     <div class="invalid-feedback">GST
-                                                        registration type is
-                                                        required
+                                                        Registration Type is
+                                                        Required
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12">
                                                 <div class="form-group" *ngIf="gstType ===
                                                     'registered'"><label>
-                                                        GST No.<span class="requierdSign">*</span>:
+                                                        GST Number<span class="requierdSign">*</span>:
                                                     </label>
                                                     <input type="text" formControlName="company_GST"
-                                                        placeholder="GST number" class="form-control" maxlength="15"
+                                                        placeholder="GST Number" class="form-control" maxlength="15"
                                                         oninput="this.value=
                                                         this.value.toUpperCase()"
                                                         pattern="^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$"
@@ -344,15 +346,15 @@
                                                         f.company_GST.touched" class="alert
                                                         alert-danger">
                                                         <div *ngIf="f.company_GST.errors?.required">
-                                                            GST number is
-                                                            required
+                                                            GST Number is
+                                                            Required
                                                         </div>
                                                     </div>
                                                     <div *ngIf="f.company_GST.errors?.pattern" class="alert
                                                         alert-danger">
-                                                        GST number
+                                                        GST Number
                                                         is
-                                                        invalid
+                                                        Invalid
                                                     </div>
                                                 </div>
                                                 <div class="form-group" *ngIf="gstType ===
@@ -360,11 +362,11 @@
                                                     this.registerForm.value.gst_type
                                                     === null">
                                                     <label style="color: grey;">GST
-                                                        No.:</label>
+                                                        Number:</label>
                                                     <span class="form-control" style="color: #999999;
                                                         display: flex;
                                                         align-items: center;">GST
-                                                        number</span>
+                                                        Number</span>
                                                 </div>
                                             </div>
 
@@ -378,7 +380,7 @@
                                                     <p-dropdown [options]="classification
                                                         | groupByPipe :
                                                         'category'" formControlName="classification_id" placeholder="Select
-                                                        industry classification" [group]="true" [class.is-invalid]="(signupForm.submitted
+                                                        Industry Classification" [group]="true" [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('classification_id')?.invalid)
                                                         ||
@@ -402,10 +404,10 @@
                                                     </p-dropdown>
                                                     <div class="invalid-feedback">
                                                         Industry
-                                                        classification is
-                                                        required
+                                                        Classification is
+                                                        Required
                                                     </div>
-                                                    <!-- <div class="invalid-feedback">Industry classification is required
+                                                    <!-- <div class="invalid-feedback">Industry classification is Required
                                                     </div> -->
                                                     <!-- <select formControlName="classification_id"
                                                         [class]="(signupForm.submitted && registerForm.get('classification_id')?.invalid) || registerForm.get('classification_id')?.invalid && registerForm.get('classification_id').touched ? 'form-control' : ''"
@@ -428,7 +430,7 @@
                                                     <option [ngValue]="item" *ngFor="let item of service">{{item.name}}
                                                     </option>
                                                 </select>
-                                                <div class="invalid-feedback">Service is required</div>
+                                                <div class="invalid-feedback">Service is Required</div>
                                             </div>
                                         </div> -->
                                             <div class="col-lg-6 col-md-12">
@@ -459,7 +461,7 @@
                                                         &&
                                                         registerForm.get('turnover').touched">
                                                     </p-inputNumber>
-                                                    <!-- <div class="invalid-feedback">Turnover is required</div> -->
+                                                    <!-- <div class="invalid-feedback">Turnover is Required</div> -->
                                                     <div *ngIf="signupForm.submitted
                                                         &&
                                                         f.turnover.errors?.required
@@ -467,13 +469,13 @@
                                                         f.turnover.touched" class="alert
                                                         alert-danger">
                                                         <div *ngIf="f.turnover.errors?.required">
-                                                            Turnover is required
+                                                            Turnover is Required
                                                         </div>
                                                         <div *ngIf="f.turnover.errors?.min" class="alert
                                                             alert-danger">
-                                                            Minimum turnover
-                                                            amount must be 1
-                                                            lakh
+                                                            Minimum Turnover
+                                                            Amount Must be 1
+                                                            Lakh
                                                         </div>
                                                     </div>
                                                     <!-- <div *ngIf="f.turnover.errors?.min" class="alert
@@ -496,7 +498,7 @@
                                                         Line 1<span class="requierdSign">*</span>:
                                                     </label>
                                                     <input type="text" formControlName="company_address"
-                                                        placeholder="Enter address line 1" class="form-control"
+                                                        placeholder="Enter Address Line 1" class="form-control"
                                                         [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('company_address')?.invalid)
@@ -505,14 +507,14 @@
                                                         &&
                                                         registerForm.get('company_address').touched" />
                                                     <div class="invalid-feedback">Address
-                                                        line 1 is required</div>
+                                                        Line 1 is Required</div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="form-group"><label>Address
                                                         Line 2:</label>
                                                     <input type="text" formControlName="address_line2"
-                                                        placeholder="Enter address line 2" class="form-control" />
+                                                        placeholder="Enter Address Line 2" class="form-control" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12">
@@ -522,7 +524,7 @@
                                                     <p-dropdown [options]="state" formControlName="company_state"
                                                         optionLabel="name" [filter]="true" filterBy="name"
                                                         [showClear]="true" placeholder="Select
-                                                        state" [(ngModel)]="selectedState" [class.is-invalid]="(signupForm.submitted
+                                                        State" [(ngModel)]="selectedState" [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('company_state')?.invalid)
                                                         ||
@@ -542,8 +544,8 @@
                                                             </div>
                                                         </ng-template>
                                                     </p-dropdown>
-                                                    <div class="invalid-feedback">State is required</div>
-                                                    <!-- <div class="invalid-feedback">State is required</div> -->
+                                                    <div class="invalid-feedback">State is Required</div>
+                                                    <!-- <div class="invalid-feedback">State is Required</div> -->
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12">
@@ -559,7 +561,7 @@
                                                         &&
                                                         registerForm.get('company_city').touched">
                                                     <div class="invalid-feedback">City
-                                                        is required</div>
+                                                        is Required</div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-12">
@@ -574,7 +576,7 @@
                                                         registerForm.get('company_pincode')?.invalid
                                                         &&
                                                         registerForm.get('company_pincode').touched">
-                                                    <!-- <div class="invalid-feedback">Pincode is required</div> -->
+                                                    <!-- <div class="invalid-feedback">Pincode is Required</div> -->
                                                     <div *ngIf="signupForm.submitted
                                                         &&
                                                         f.company_pincode.errors?.required
@@ -582,7 +584,7 @@
                                                         f.company_pincode.touched" class="alert
                                                         alert-danger">
                                                         <div *ngIf="f.company_pincode.errors?.required">
-                                                            Pincode is required
+                                                            Pincode is Required
                                                         </div>
                                                     </div>
                                                     <div *ngIf="f.company_pincode.errors?.minlength
@@ -593,7 +595,7 @@
                                                         alert-danger">
                                                         Pincode
                                                         is
-                                                        invalid
+                                                        Invalid
                                                     </div>
                                                 </div>
                                             </div>
@@ -610,7 +612,7 @@
                                                         Consideration For Award(s).<span class="requierdSign">*</span>:
                                                     </label>
                                                     <textarea type="text" formControlName="achievements"
-                                                        placeholder="Enter achievement" class="form-control"
+                                                        placeholder="Enter Achievement" class="form-control"
                                                         [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('achievements')?.invalid)
@@ -619,7 +621,7 @@
                                                         &&
                                                         registerForm.get('achievements').touched"></textarea>
                                                     <div class="invalid-feedback">Key
-                                                        achievement is required</div>
+                                                        Achievement is Required</div>
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 col-md-12">
@@ -630,7 +632,7 @@
                                                         Features) of your enterprise<span class="requierdSign">*</span>:
                                                     </label>
                                                     <textarea type="text" formControlName="reason"
-                                                        placeholder="Enter strength" class="form-control"
+                                                        placeholder="Enter Strength" class="form-control"
                                                         [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('reason')?.invalid)
@@ -639,7 +641,7 @@
                                                         &&
                                                         registerForm.get('reason').touched"></textarea>
                                                     <div class="invalid-feedback">Key
-                                                        strength is required</div>
+                                                        Strength is Required</div>
                                                 </div>
                                             </div>
 
@@ -675,11 +677,11 @@
                                             g.loginemail.touched" class="alert
                                             alert-danger">
                                             <div *ngIf="g.loginemail.errors?.required">Email
-                                                is required
+                                                is Required
                                             </div>
                                         </div>
                                         <div *ngIf="g.loginemail.errors?.pattern" class="alert alert-danger">
-                                            Invalid email address
+                                            Invalid Email Address
                                         </div>
                                     </div>
                                     <!-- <div class="form-group" style="position: relative;">Password<span
@@ -709,7 +711,7 @@
                                             g.otp.touched" class="alert
                                             alert-danger">
                                             <div *ngIf="g.otp.errors?.required">OTP
-                                                is required
+                                                is Required
                                             </div>
                                         </div>
                                         <div *ngIf="g.otp.errors?.pattern" class="alert alert-danger">

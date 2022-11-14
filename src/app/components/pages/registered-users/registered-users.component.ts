@@ -33,6 +33,8 @@ export class RegisteredUsersComponent implements OnInit {
   currentYear: any;
 
   date: Date = new Date();
+  currncyLength = 0;
+  currency;
 
   statusForm = this.fb.group({
     status: ['', Validators.required],
@@ -41,6 +43,7 @@ export class RegisteredUsersComponent implements OnInit {
   status: string;
   localStorage: any;
   selectedUser: any[] = [];
+  turnoverAmount: string;
   // emailBoolean: boolean = false;
 
   constructor(
@@ -191,6 +194,20 @@ export class RegisteredUsersComponent implements OnInit {
     let selectedUser = [];
     selectedUser.push(item);
     this.details = selectedUser;
+
+    // let a = item.turnover;
+    // a = a.replace(/,/g, '');
+    // console.log('updated ', a);
+    // if (a && !isNaN(+a)) {
+    //   let num: number = +a;
+    //   let temp = new Intl.NumberFormat('en-IN').format(num); //inplace of en-IN you can mention your country's code
+    //   console.log('temp is   ', temp);
+    //   temp = temp ? temp.toString() : '';
+    //   console.log('temp is updated ', temp);
+    //   this.currency.setValue(temp);
+    //   this.turnoverAmount = temp;
+    //   console.log(this.turnoverAmount);
+    // }
 
     this.displayMaximizable = true;
 
