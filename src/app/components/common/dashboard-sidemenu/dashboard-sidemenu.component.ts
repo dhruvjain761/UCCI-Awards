@@ -26,6 +26,7 @@ export class DashboardSidemenuComponent implements OnInit {
     this.localStorage = this.commonFunction.getLocalStorage();
     this._formBuilder.getAPI('formData').subscribe((res: any) => {
       this.awardForm = res.data;
+      console.log(this.awardForm);
     });
     //  console.log(this.localStorage)
   }
