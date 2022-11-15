@@ -38,6 +38,7 @@ export class NavbarStyleOneComponent implements OnInit, OnChanges {
   role: any;
   otherOptionClass: string = 'container';
   awardForm: any = [];
+  menuItems: any = [];
   // confirmPassword: string = '';
   constructor(
     private apiservice: ApiService,
@@ -47,7 +48,7 @@ export class NavbarStyleOneComponent implements OnInit, OnChanges {
     private spinner: NgxSpinnerService // private _formBuilder: FormBuilderService
   ) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     // this.localStorage = '';
     // debugger;
     this.localStorage = this.commonFunction.getLocalStorage();
@@ -63,30 +64,31 @@ export class NavbarStyleOneComponent implements OnInit, OnChanges {
       this.userEmail = JSON.parse(
         localStorage.getItem('award_access_token')
       ).useremail;
+
+      this.apiservice.getDropdownName().subscribe((res: any) => {
+        console.log(res);
+        this.menuItems = res.data;
+      });
     }
 
     if (localStorage.getItem('award_access_token')) {
-      await this.apiservice.getDropdownName().then((res: any) => {
-        console.log(res);
-        this.awardForm = res.data;
-      });
     }
   }
   ngOnChanges() {
     // this.localStorage = this.commonFunction.getLocalStorage();
   }
 
-  async getMenu() {
-    await this.apiservice.getDropdownName().then((res: any) => {
-      console.log(res);
-      this.awardForm = res.data;
-    });
+  // async getMenu() {
+  //   await this.apiservice.getDropdownName().then((res: any) => {
+  //     console.log(res);
+  //     this.awardForm = res.data;
+  //   });
 
-    // this._formBuilder.getAPI('formData').subscribe((res: any) => {
-    //   this.awardForm = res.data;
-    //   console.log(this.awardForm);
-    // });
-  }
+  // this._formBuilder.getAPI('formData').subscribe((res: any) => {
+  //   this.awardForm = res.data;
+  //   console.log(this.awardForm);
+  // });
+  // }
   // sign up form controls
   registerForm = new FormGroup({
     signupname: new FormControl('', [
