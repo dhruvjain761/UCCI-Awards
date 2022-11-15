@@ -4,14 +4,14 @@
 
 export const environment = {
   production: false,
-  // api_baseurl: 'https://brandtalks.in/ucciawards/api',
-  api_baseurl: 'https://awardsbackend.ucciudaipur.com/api',
+  api_baseurl: 'https://brandtalks.in/ucciawards/api',
+  // api_baseurl: 'https://awardsbackend.ucciudaipur.com/api',
   // api_baseurl: "http://192.168.29.166:8000/api",
 
   // award API Base URL
 
-  // award_base_url: 'https://brandtalks.in/ucciaward/api',
-  award_base_url: 'https://awardsbackend.ucciudaipur.com/api',
+  award_base_url: 'https://brandtalks.in/ucciaward/api',
+  // award_base_url: 'https://awardsbackend.ucciudaipur.com/api',
 
   profile_baseUrl:
     'https://ucci.brandtalks.in/storage/app/public/events/coverage_image/',

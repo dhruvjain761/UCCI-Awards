@@ -695,14 +695,14 @@
 // }
 // sticky css
 
-// :host ::ng-deep {
-//     .row {
-//         div {
-//             &.col-9 {
-//                 // background-color: red;
-//                 height: 88vh;
-//                 overflow: auto;
-//             }
-//         }
-//     }
-// }
+:host ::ng-deep {
+    .row {
+        div {
+            &.col-9 {
+                // background-color: red;
+                height: 88vh;
+                overflow: auto;
+            }
+        }
+    }
+}
