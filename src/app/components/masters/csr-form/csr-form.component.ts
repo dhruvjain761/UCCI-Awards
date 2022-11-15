@@ -34,10 +34,12 @@ export class CsrFormComponent implements OnInit {
       .subscribe((res: any) => {
         console.log(res);
         this.spinner.hide();
-        this.sections = JSON.parse(JSON.parse(res?.data[0]?.form_json));
+        if(res?.data[0]?.form_json) {
+          this.sections = JSON?.parse(JSON?.parse(res?.data[0]?.form_json));
+          this.breadcrumb[0].title = res?.data[0].form_title;
+          this.formId = res?.data[0]?.id;
+        }
         console.log(this.sections);
-        this.breadcrumb[0].title = res?.data[0].form_title;
-        this.formId = res?.data[0]?.id;
       });
     console.log(this.sections);
   }
