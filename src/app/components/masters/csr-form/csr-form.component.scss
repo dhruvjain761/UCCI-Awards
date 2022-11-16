@@ -15,12 +15,17 @@
         img {
             width: 100px;
             height: auto;
-            // margin-bottom: 10px;
+            // margin-bottom: 20px;
+        }
 
-            h2 {
-                border-bottom: none;
-                margin: 20px;
-            }
+        h2 {
+            border-bottom: none;
+            margin: 20px 0;
+        }
+
+        p {
+            font-size: .8rem;
+            font-weight: 500;
         }
     }
 
