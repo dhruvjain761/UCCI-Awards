@@ -65,8 +65,8 @@ export class AwardConfigurationComponent implements OnInit {
 
   spinnerFunction() {
     if (
-      this.turnoverState === true &&
-      this.classificationState === true &&
+      // this.turnoverState === true &&
+      // this.classificationState === true &&
       this.metrixState === true
     ) {
       // debugger;
