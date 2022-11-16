@@ -117,6 +117,8 @@ export class HomeDemoOneComponent implements OnInit {
   commonClasifications: any;
   preYear: any;
   classCheck: boolean = false;
+  pattern: any = 'S+.*';
+  pat = new RegExp('S+.*');
   constructor(
     private fb: FormBuilder,
     private messageService: MessageService,
@@ -201,7 +203,9 @@ export class HomeDemoOneComponent implements OnInit {
         } else if (key === 'company_address') {
           formData.append(
             key,
-            `${value}, ${this.registerForm.value.address_line2}`
+            this.registerForm.value.address_line2 != null
+              ? `${value}, ${this.registerForm.value.address_line2}`
+              : `${value}`
           );
         }
       }

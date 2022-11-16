@@ -22,6 +22,9 @@ export class CsrFormComponent implements OnInit {
     },
   ];
   formId: any;
+  title: any;
+  hindiTitle: string;
+  nextYear: number;
   constructor(
     private spinner: NgxSpinnerService,
     private router: ActivatedRoute,
@@ -48,6 +51,19 @@ export class CsrFormComponent implements OnInit {
           this.breadcrumb[0].title = res?.data[0].form_title;
           this.formId = res?.data[0]?.id;
           this.award_form_id = res?.award_form_id;
+          this.title = res?.data[0].form_title;
+
+          if (res?.data[0].form_title === 'Service Sector Award') {
+            this.hindiTitle = 'सेवा क्षेत्र पुरस्कार';
+          } else if (res?.data[0].form_title === 'Manufacturing Sector Award') {
+            this.hindiTitle = 'विनिर्माण क्षेत्र पुरस्कार';
+          } else if (res?.data[0].form_title === 'Social Enterprises Award') {
+            // debugger;
+            this.hindiTitle = 'सामाजिक उपक्रम पुरस्कार';
+          } else if (res?.data[0].form_title === 'CSR Award') {
+            this.hindiTitle = 'सामाजिक उत्तरदायित्व पुरस्कार';
+          }
+
         }
 
         else if (res?.data[0]?.form_response) {
@@ -55,9 +71,27 @@ export class CsrFormComponent implements OnInit {
           this.breadcrumb[0].title = res?.data[0].form_title;
           this.formId = res?.data[0]?.id;
           this.award_form_id = res?.data[0]?.award_form_id;
+          this.title = res?.data[0].form_title;
+
+          if (res?.data[0].form_title === 'Service Sector Award') {
+            this.hindiTitle = 'सेवा क्षेत्र पुरस्कार';
+          } else if (res?.data[0].form_title === 'Manufacturing Sector Award') {
+            this.hindiTitle = 'विनिर्माण क्षेत्र पुरस्कार';
+          } else if (res?.data[0].form_title === 'Social Enterprises Award') {
+            // debugger;
+            this.hindiTitle = 'सामाजिक उपक्रम पुरस्कार';
+          } else if (res?.data[0].form_title === 'CSR Award') {
+            this.hindiTitle = 'सामाजिक उत्तरदायित्व पुरस्कार';
+          }
+
         }
       });
-    console.log(this.sections);
+
+    let date = new Date();
+
+    let year = date.getFullYear();
+
+    this.nextYear = year + 1;
   }
   getExcelFromJson() {
     let data: any = [];
