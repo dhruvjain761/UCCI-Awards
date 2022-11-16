@@ -790,9 +790,8 @@
                                         true"><label>
                                             OTP<span class="requierdSign">*</span>:
                                         </label>
-                                        <input type="text" placeholder="Enter
-                                            OTP" formControlName="otp" class="form-control" pattern="^[0-9]{6}"
-                                            maxlength="6">
+                                        <input type="text" placeholder="Enter OTP" formControlName="otp"
+                                            class="form-control" pattern="^[0-9]{6}" maxlength="6">
                                         <div *ngIf="login.submitted &&
                                             g.otp.errors?.required ||
                                             g.otp.touched" class="alert

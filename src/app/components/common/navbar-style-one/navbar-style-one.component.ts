@@ -53,8 +53,9 @@ export class NavbarStyleOneComponent implements OnInit, OnChanges {
     // debugger;
     this.localStorage = this.commonFunction.getLocalStorage();
     console.log(this.localStorage);
-
-    this.role = JSON.parse(localStorage.getItem('award_access_token')).role;
+    if (localStorage.getItem('award_access_token')) {
+      this.role = JSON.parse(localStorage.getItem('award_access_token')).role;
+    }
     // save user name or email in localstorage
     var award_access_token = localStorage.getItem('award_access_token');
     if (award_access_token && award_access_token != 'undefined') {
@@ -69,9 +70,6 @@ export class NavbarStyleOneComponent implements OnInit, OnChanges {
         console.log(res);
         this.menuItems = res.data;
       });
-    }
-
-    if (localStorage.getItem('award_access_token')) {
     }
   }
   ngOnChanges() {
