@@ -11,16 +11,17 @@ import { FormBuilderService } from 'src/app/services/form-builder.service';
   providers: [MessageService],
 })
 export class FormBuilderComponent implements OnInit {
-  sectionsData: any = [{
-    title: `Section 1`,
-    description: "Enter Description",
-    state: "normal",
-    canEnter: true,
-    canExit: false,
-    controls: [
-    ]
-  }];
-  sections: any = []
+  sectionsData: any = [
+    {
+      title: `Section 1`,
+      description: 'Enter Description',
+      state: 'normal',
+      canEnter: true,
+      canExit: false,
+      controls: [],
+    },
+  ];
+  sections: any = [];
   errorMsg: boolean;
 
   constructor(
@@ -29,7 +30,7 @@ export class FormBuilderComponent implements OnInit {
     private messageService: MessageService,
     private __formBuilder: FormBuilderService,
     private route: Router
-  ) { }
+  ) {}
 
   formModel: any = { form_name: '', awardCategory: '' };
   slug: any;
@@ -43,7 +44,7 @@ export class FormBuilderComponent implements OnInit {
     },
   ];
 
-  async ngOnInit() {
+  ngOnInit() {
     this.__formBuilder.getAPI('award-catgeory').subscribe((res: any) => {
       this.awardCategory = res.data;
     });
@@ -66,17 +67,17 @@ export class FormBuilderComponent implements OnInit {
           console.log(this.sectionsData);
           this.spinner.hide();
         });
-    }
-    else if (this.slug.slug == undefined) {
-      this.sections = [{
-        title: `Section 1`,
-        description: "Enter Description",
-        state: "normal",
-        canEnter: true,
-        canExit: false,
-        controls: [
-        ]
-      }];
+    } else if (this.slug.slug == undefined) {
+      this.sections = [
+        {
+          title: `Section 1`,
+          description: 'Enter Description',
+          state: 'normal',
+          canEnter: true,
+          canExit: false,
+          controls: [],
+        },
+      ];
     }
   }
 
