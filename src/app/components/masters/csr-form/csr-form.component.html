@@ -41,6 +41,10 @@
         </ol>
     </div>
     <div class="add-listings-box" *ngIf="sections.length > 0">
+        <div class="heading">
+            <img src="assets/img/ucci-awards-logo.png" alt="">
+            <h2>{{title}} {{nextYear}} / {{hindiTitle}} {{nextYear}}</h2>
+        </div>
         <lib-renderer [sections]="sections" (sectionsData)="getFormResponse($event)"></lib-renderer>
     </div>
     <!-- <button (click)="getExcelFromJson()">get excel</button> -->

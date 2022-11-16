@@ -9,7 +9,7 @@ import { FormBuilderService } from 'src/app/services/form-builder.service';
   selector: 'app-csr-form',
   templateUrl: './csr-form.component.html',
   styleUrls: ['./csr-form.component.scss'],
-  providers:[MessageService]
+  providers: [MessageService],
 })
 export class CsrFormComponent implements OnInit {
   sections: any = [];
@@ -21,16 +21,19 @@ export class CsrFormComponent implements OnInit {
     },
   ];
   formId: any;
+  title: any;
+  hindiTitle: string;
+  nextYear: number;
   constructor(
     private spinner: NgxSpinnerService,
     private router: ActivatedRoute,
     private excelService: ExcelService,
     private _formBuilder: FormBuilderService,
-    private messageService: MessageService,
+    private messageService: MessageService
   ) {}
 
-  responseMessage : boolean = false;
-  award_form_id : any;
+  responseMessage: boolean = false;
+  award_form_id: any;
   ngOnInit(): void {
     let slug = this.router.snapshot.params;
     console.log(slug);
@@ -41,21 +44,53 @@ export class CsrFormComponent implements OnInit {
         console.log(res);
         this.spinner.hide();
         this.responseMessage = res?.data[0]?.form_response ? true : false;
-          if(res?.data[0]?.form_json) { 
-            this.sections = JSON?.parse(JSON?.parse(res?.data[0]?.form_json));
-            this.breadcrumb[0].title = res?.data[0].form_title;
-            this.formId = res?.data[0]?.id;
-            this.award_form_id = res?.award_form_id;
-          } 
+        if (res?.data[0]?.form_json) {
+          this.sections = JSON?.parse(JSON?.parse(res?.data[0]?.form_json));
+          this.breadcrumb[0].title = res?.data[0].form_title;
+          this.title = res?.data[0].form_title;
+          this.formId = res?.data[0]?.id;
+          this.award_form_id = res?.award_form_id;
+          console.log(res?.data[0].form_title);
 
-          else if(res?.data[0]?.form_response){
-            this.sections = JSON?.parse(JSON?.parse(res?.data[0]?.form_response));
-            this.breadcrumb[0].title = res?.data[0].form_title;
-            this.formId = res?.data[0]?.id;
-            this.award_form_id = res?.data[0]?.award_form_id;
+          if (res?.data[0].form_title === 'Service Sector Award') {
+            this.hindiTitle = 'सेवा क्षेत्र पुरस्कार';
+          } else if (res?.data[0].form_title === 'Manufacturing Sector Award') {
+            this.hindiTitle = 'विनिर्माण क्षेत्र पुरस्कार';
+          } else if (res?.data[0].form_title === 'Social Enterprises Award') {
+            // debugger;
+            this.hindiTitle = 'सामाजिक उपक्रम पुरस्कार';
+          } else if (res?.data[0].form_title === 'CSR Award') {
+            this.hindiTitle = 'सामाजिक उत्तरदायित्व पुरस्कार';
           }
+
+          console.log(this.hindiTitle);
+        } else if (res?.data[0]?.form_response) {
+          this.sections = JSON?.parse(JSON?.parse(res?.data[0]?.form_response));
+          this.breadcrumb[0].title = res?.data[0].form_title;
+          this.title = res?.data[0].form_title;
+          this.formId = res?.data[0]?.id;
+          this.award_form_id = res?.data[0]?.award_form_id;
+          console.log(this.title);
+
+          if (res?.data[0].form_title === 'Service Sector Award') {
+            this.hindiTitle = 'सेवा क्षेत्र पुरस्कार';
+          } else if (res?.data[0].form_title === 'Manufacturing Sector Award') {
+            this.hindiTitle = 'विनिर्माण क्षेत्र पुरस्कार';
+          } else if (res?.data[0].form_title === 'Social Enterprises Award') {
+            // debugger;
+            this.hindiTitle = 'सामाजिक उपक्रम पुरस्कार';
+          } else if (res?.data[0].form_title === 'CSR Award') {
+            this.hindiTitle = 'सामाजिक उत्तरदायित्व पुरस्कार';
+          }
+          console.log(this.hindiTitle);
+        }
       });
-    console.log(this.sections);
+
+    let date = new Date();
+
+    let year = date.getFullYear();
+
+    this.nextYear = year + 1;
   }
   getExcelFromJson() {
     let data: any = [];
@@ -86,12 +121,11 @@ export class CsrFormComponent implements OnInit {
       form_response: JSON.stringify(event),
     };
 
-    if(this.responseMessage){
+    if (this.responseMessage) {
       Object['id'] = this.formId;
     }
 
-    console.log(Object , this.responseMessage) ;
-    
+    console.log(Object, this.responseMessage);
 
     this.spinner.show();
     this._formBuilder
