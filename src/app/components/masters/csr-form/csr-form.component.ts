@@ -28,6 +28,9 @@ export class CsrFormComponent implements OnInit {
     private _formBuilder: FormBuilderService,
     private messageService: MessageService,
   ) {}
+
+  responseMessage : boolean = false;
+  award_form_id : any;
   ngOnInit(): void {
     let slug = this.router.snapshot.params;
     console.log(slug);
@@ -37,12 +40,20 @@ export class CsrFormComponent implements OnInit {
       .subscribe((res: any) => {
         console.log(res);
         this.spinner.hide();
-        if(res?.data[0]?.form_json) {
-          this.sections = JSON?.parse(JSON?.parse(res?.data[0]?.form_json));
-          this.breadcrumb[0].title = res?.data[0].form_title;
-          this.formId = res?.data[0]?.id;
-        }
-        console.log(this.sections);
+        this.responseMessage = res?.data[0]?.form_response ? true : false;
+          if(res?.data[0]?.form_json) { 
+            this.sections = JSON?.parse(JSON?.parse(res?.data[0]?.form_json));
+            this.breadcrumb[0].title = res?.data[0].form_title;
+            this.formId = res?.data[0]?.id;
+            this.award_form_id = res?.award_form_id;
+          } 
+
+          else if(res?.data[0]?.form_response){
+            this.sections = JSON?.parse(JSON?.parse(res?.data[0]?.form_response));
+            this.breadcrumb[0].title = res?.data[0].form_title;
+            this.formId = res?.data[0]?.id;
+            this.award_form_id = res?.data[0]?.award_form_id;
+          }
       });
     console.log(this.sections);
   }
@@ -71,16 +82,23 @@ export class CsrFormComponent implements OnInit {
   getFormResponse(event: any) {
     console.log(event);
     let Object = {
-      award_form_id: this.formId,
+      award_form_id: this.award_form_id,
       form_response: JSON.stringify(event),
     };
+
+    if(this.responseMessage){
+      Object['id'] = this.formId;
+    }
+
+    console.log(Object , this.responseMessage) ;
+    
+
     this.spinner.show();
     this._formBuilder
       .createCustomForm('response/store', Object)
       .subscribe((res: any) => {
         console.log(res);
         this.spinner.hide();
-        alert('form Response Saved successfully!');
         this.messageService.add({
           severity: 'success',
           detail: res.message,
