@@ -594,3 +594,17 @@
 //         transition: transform 0.3s ease, -webkit-transform 0.3s ease;
 //       }
 // }
+
+// sticky css
+
+:host ::ng-deep {
+    .row {
+        div {
+            &.col-9 {
+                // background-color: red;
+                height: 88vh;
+                overflow: auto;
+            }
+        }
+    }
+}
