@@ -53,10 +53,10 @@ export class AwardConfigurationComponent implements OnInit {
 
   ngOnInit(): void {
     this.spinner.show();
-    this.getTurnover();
-    this.getClassification();
-    this.getServiceType();
-    this.getAwardCategory();
+    // this.getTurnover();
+    // this.getClassification();
+    // this.getServiceType();
+    // this.getAwardCategory();
     this.getAwardMetrix();
     this.spinnerFunction();
   }
