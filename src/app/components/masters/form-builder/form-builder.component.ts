@@ -45,7 +45,7 @@ export class FormBuilderComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.__formBuilder.getAPI('award-catgeory').subscribe((res: any) => {
+    this.__formBuilder.getAPI('award-catgeory').then((res: any) => {
       this.awardCategory = res.data;
     });
     this.slug = this.activeRoute.snapshot.params;
@@ -55,7 +55,7 @@ export class FormBuilderComponent implements OnInit {
       this.spinner.show();
       this.__formBuilder
         .getAPI('formWithData/' + this.slug.slug)
-        .subscribe((res: any) => {
+        .then((res: any) => {
           console.log(res);
           this.formModel.awardCategory = res.data[0].award_category;
           this.formModel.form_name = res.data[0].form_title;

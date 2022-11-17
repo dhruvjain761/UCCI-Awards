@@ -95,7 +95,7 @@ export class CustomFormComponent implements OnInit {
   //to get all custom forms
   getAllFormsList() {
     this.forms = [];
-    this.__formBuilder.getAPI('formData').subscribe(
+    this.__formBuilder.getAPI('formData').then(
       (res: any) => {
         console.log(res);
         console.log(this.dt2);

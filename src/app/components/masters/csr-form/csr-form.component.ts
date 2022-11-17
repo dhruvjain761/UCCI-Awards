@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, ConfirmEventType, MessageService } from 'primeng/api';
 import { ExcelService } from 'src/app/services/excel.service';
 import { FormBuilderService } from 'src/app/services/form-builder.service';
 
@@ -9,15 +9,16 @@ import { FormBuilderService } from 'src/app/services/form-builder.service';
   selector: 'app-csr-form',
   templateUrl: './csr-form.component.html',
   styleUrls: ['./csr-form.component.scss'],
-  providers: [MessageService],
+  providers: [MessageService, ConfirmationService]
 })
 export class CsrFormComponent implements OnInit {
   sections: any = [];
+  position: string;
   formData: any = {};
   breadcrumb: any[] = [
     {
-      title: '',
-      subTitle: '',
+      title: ''
+      // subTitle: '',
     },
   ];
   formId: any;
@@ -29,48 +30,48 @@ export class CsrFormComponent implements OnInit {
     private router: ActivatedRoute,
     private excelService: ExcelService,
     private _formBuilder: FormBuilderService,
-    private messageService: MessageService
-  ) {}
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
+  ) { }
 
   responseMessage: boolean = false;
   award_form_id: any;
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     let slug = this.router.snapshot.params;
     console.log(slug);
     this.spinner.show();
-    this._formBuilder
+    await this._formBuilder
       .getAPI('formWithData/' + slug.slug)
-      .subscribe((res: any) => {
+      .then((res: any) => {
         console.log(res);
         this.spinner.hide();
         this.responseMessage = res?.data[0]?.form_response ? true : false;
         if (res?.data[0]?.form_json) {
           this.sections = JSON?.parse(JSON?.parse(res?.data[0]?.form_json));
           this.breadcrumb[0].title = res?.data[0].form_title;
-          this.title = res?.data[0].form_title;
           this.formId = res?.data[0]?.id;
           this.award_form_id = res?.award_form_id;
-          console.log(res?.data[0].form_title);
+          this.title = res?.data[0].form_title;
 
-          if (res?.data[0].form_title === 'Service Sector Award') {
+          if (res?.data[0]?.form_title === 'Service Sector Award') {
             this.hindiTitle = 'सेवा क्षेत्र पुरस्कार';
-          } else if (res?.data[0].form_title === 'Manufacturing Sector Award') {
+          } else if (res?.data[0]?.form_title === 'Manufacturing Sector Award') {
             this.hindiTitle = 'विनिर्माण क्षेत्र पुरस्कार';
-          } else if (res?.data[0].form_title === 'Social Enterprises Award') {
+          } else if (res?.data[0]?.form_title === 'Social Enterprises Award') {
             // debugger;
             this.hindiTitle = 'सामाजिक उपक्रम पुरस्कार';
-          } else if (res?.data[0].form_title === 'CSR Award') {
+          } else if (res?.data[0]?.form_title === 'CSR Award') {
             this.hindiTitle = 'सामाजिक उत्तरदायित्व पुरस्कार';
           }
 
-          console.log(this.hindiTitle);
-        } else if (res?.data[0]?.form_response) {
+        }
+
+        else if (res?.data[0]?.form_response) {
           this.sections = JSON?.parse(JSON?.parse(res?.data[0]?.form_response));
           this.breadcrumb[0].title = res?.data[0].form_title;
-          this.title = res?.data[0].form_title;
           this.formId = res?.data[0]?.id;
           this.award_form_id = res?.data[0]?.award_form_id;
-          console.log(this.title);
+          this.title = res?.data[0]?.form?.form_title;
 
           if (res?.data[0].form_title === 'Service Sector Award') {
             this.hindiTitle = 'सेवा क्षेत्र पुरस्कार';
@@ -82,9 +83,11 @@ export class CsrFormComponent implements OnInit {
           } else if (res?.data[0].form_title === 'CSR Award') {
             this.hindiTitle = 'सामाजिक उत्तरदायित्व पुरस्कार';
           }
-          console.log(this.hindiTitle);
+
         }
       });
+
+      console.log(this.title, this.hindiTitle)
 
     let date = new Date();
 
@@ -115,28 +118,46 @@ export class CsrFormComponent implements OnInit {
   }
 
   getFormResponse(event: any) {
-    console.log(event);
-    let Object = {
-      award_form_id: this.award_form_id,
-      form_response: JSON.stringify(event),
-    };
+    // alert();
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to Submit? You would not be able to Edit once Submitted.',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        console.log(event);
+        let Object = {
+          award_form_id: this.award_form_id,
+          form_response: JSON.stringify(event),
+        };
 
-    if (this.responseMessage) {
-      Object['id'] = this.formId;
-    }
+        if (this.responseMessage) {
+          Object['id'] = this.formId;
+        }
 
-    console.log(Object, this.responseMessage);
+        console.log(Object, this.responseMessage);
 
-    this.spinner.show();
-    this._formBuilder
-      .createCustomForm('response/store', Object)
-      .subscribe((res: any) => {
-        console.log(res);
-        this.spinner.hide();
-        this.messageService.add({
-          severity: 'success',
-          detail: res.message,
-        });
-      });
+        this.spinner.show();
+        this._formBuilder
+          .createCustomForm('response/store', Object)
+          .subscribe((res: any) => {
+            console.log(res);
+            this.spinner.hide();
+            this.messageService.add({
+              severity: 'success',
+              detail: res.message,
+            });
+          });
+      },
+      reject: (type) => {
+        // switch (type) {
+        //   case ConfirmEventType.REJECT:
+        //     this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+        //     break;
+        //   case ConfirmEventType.CANCEL:
+        //     this.messageService.add({ severity: 'warn', summary: 'Cancelled', detail: 'You have cancelled' });
+        //     break;
+        // }
+      }
+    });
   }
 }
