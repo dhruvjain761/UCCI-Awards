@@ -12,6 +12,12 @@
     }
 }
 
+:host::ng-deep {
+    .ng-wizard-theme-dots>ul.step-anchor:before {
+        top: 60px!important;
+    }
+}
+
 @import "../../pages/dashboard/dashboard.component.scss";
 .chat-content-area {
     margin-bottom: 30px;

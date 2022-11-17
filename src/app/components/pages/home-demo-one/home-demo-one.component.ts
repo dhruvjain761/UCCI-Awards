@@ -57,7 +57,7 @@ export class HomeDemoOneComponent implements OnInit {
     otp: new FormControl(),
   });
   registerForm = this.fb.group({
-    name: ['', [Validators.required,]],
+    name: ['', [Validators.required]],
     mobile_no: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
     email: ['', [Validators.required, Validators.email]],
     company_name: ['', Validators.required],
@@ -220,6 +220,7 @@ export class HomeDemoOneComponent implements OnInit {
           });
           this.gstType = 'nonRegistered';
           this.signupState = true;
+
           // setTimeout(() => {
           //   this.router.navigateByUrl('/success');
           // }, 1000);
@@ -246,8 +247,8 @@ export class HomeDemoOneComponent implements OnInit {
   onLoginClick(event) {
     console.log(event);
     if (event == true) {
-      this.signupState = false;
       this.classCheck = true;
+      this.signupState = false;
     }
   }
   // user login form function
@@ -363,7 +364,7 @@ export class HomeDemoOneComponent implements OnInit {
 
   saveAccessToken(res: any) {
     console.log(res);
-    
+
     var localStorageData = {
       award_access_token: res.token,
       username: res.User.name,
@@ -372,7 +373,7 @@ export class HomeDemoOneComponent implements OnInit {
     };
 
     // console.log(localStorageData);
-    
+
     localStorage.setItem(
       'award_access_token',
       JSON.stringify(localStorageData)

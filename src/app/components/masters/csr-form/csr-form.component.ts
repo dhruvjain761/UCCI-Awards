@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { MessageService } from 'primeng/api';
 import { ExcelService } from 'src/app/services/excel.service';
 import { FormBuilderService } from 'src/app/services/form-builder.service';
 
@@ -8,6 +9,7 @@ import { FormBuilderService } from 'src/app/services/form-builder.service';
   selector: 'app-csr-form',
   templateUrl: './csr-form.component.html',
   styleUrls: ['./csr-form.component.scss'],
+  providers:[MessageService]
 })
 export class CsrFormComponent implements OnInit {
   sections: any = [];
@@ -23,7 +25,8 @@ export class CsrFormComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private router: ActivatedRoute,
     private excelService: ExcelService,
-    private _formBuilder: FormBuilderService
+    private _formBuilder: FormBuilderService,
+    private messageService: MessageService,
   ) {}
   ngOnInit(): void {
     let slug = this.router.snapshot.params;
@@ -77,7 +80,11 @@ export class CsrFormComponent implements OnInit {
       .subscribe((res: any) => {
         console.log(res);
         this.spinner.hide();
-        alert('form submitted successfully!');
+        alert('form Response Saved successfully!');
+        this.messageService.add({
+          severity: 'success',
+          detail: res.message,
+        });
       });
   }
 }
