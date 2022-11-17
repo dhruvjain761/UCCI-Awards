@@ -90,7 +90,8 @@
                                                     <input type="text" formControlName="name"
                                                         style="text-transform: capitalize;"
                                                         placeholder="Contact Person name" class="form-control"
-                                                        maxlength="70" pattern="\S+.*" [class.is-invalid]="(signupForm.submitted
+                                                        maxlength="70" pattern="[a-zA-Z0-9]|[./!@#$%^&*()-_,?]"
+                                                        [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('name')?.invalid)
                                                         ||
@@ -188,7 +189,8 @@
                                             <div class="col-lg-6 col-md-12">
                                                 <div class="form-group"><label>Organization Name (Legal
                                                         Name)<span class="requierdSign">*</span>:</label>
-                                                    <input type="text" maxlength="70" pattern="\S+.*"
+                                                    <input type="text" maxlength="70"
+                                                        pattern="[a-zA-Z0-9]|[./!@#$%^&*()-_,?]"
                                                         placeholder="Organization Name"
                                                         style="text-transform: capitalize;"
                                                         formControlName="company_name" [class.is-invalid]="(signupForm.submitted
@@ -450,10 +452,10 @@
                                                         {{item.component}}
                                                     </option>
                                                 </select> -->
-                                                    <p-inputNumber pattern="\S+.*" inputId="locale-indian"
-                                                        mode="decimal" locale="en-IN" prefix="₹" placeholder="Turnover"
-                                                        formControlName="turnover" maxlength="22" required
-                                                        [class.is-invalid]="(signupForm.submitted
+                                                    <p-inputNumber pattern="[a-zA-Z0-9]|[./!@#$%^&*()-_,?]"
+                                                        inputId="locale-indian" mode="decimal" locale="en-IN" prefix="₹"
+                                                        placeholder="Turnover" formControlName="turnover" maxlength="22"
+                                                        required [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('turnover')?.invalid)
                                                         ||
@@ -499,7 +501,7 @@
                                                     </label>
                                                     <input type="text" formControlName="company_address"
                                                         placeholder="Enter Address Line 1" class="form-control"
-                                                        pattern="\S+.*" [class.is-invalid]="(signupForm.submitted
+                                                        pattern="[a-zA-Z0-9]|[./!@#$%^&*()-_,?]" [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('company_address')?.invalid)
                                                         ||
@@ -529,8 +531,8 @@
                                             <div class="col-lg-12 col-md-12">
                                                 <div class="form-group"><label>Address
                                                         Line 2:</label>
-                                                    <input pattern="\S+.*" type="text" formControlName="address_line2"
-                                                        [class.is-invalid]="(signupForm.submitted
+                                                    <input pattern="[a-zA-Z0-9]|[./!@#$%^&*()-_,?]" type="text"
+                                                        formControlName="address_line2" [class.is-invalid]="(signupForm.submitted
                                                     &&
                                                     registerForm.get('address_line2')?.invalid)
                                                     ||
@@ -594,7 +596,8 @@
                                                         City<span class="requierdSign">*</span>:
                                                     </label>
                                                     <input type="text" formControlName="company_city" placeholder="City"
-                                                        pattern="\S+.*" class="form-control" [class.is-invalid]="(signupForm.submitted
+                                                        pattern="[a-zA-Z0-9]|[./!@#$%^&*()-_,?]" class="form-control"
+                                                        [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('company_city')?.invalid)
                                                         ||
@@ -622,9 +625,10 @@
                                             <div class="col-lg-6 col-md-12">
                                                 <div class="form-group"><label>Pincode<span
                                                             class="requierdSign">*</span>:</label>
-                                                    <input type="text" formControlName="company_pincode" pattern="\S+.*"
-                                                        placeholder="Pincode" class="form-control" maxlength="6"
-                                                        minlength="6" [class.is-invalid]="(signupForm.submitted
+                                                    <input type="text" formControlName="company_pincode"
+                                                        pattern="[a-zA-Z0-9]|[./!@#$%^&*()-_,?]" placeholder="Pincode"
+                                                        class="form-control" maxlength="6" minlength="6"
+                                                        [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('company_pincode')?.invalid)
                                                         ||
@@ -668,7 +672,7 @@
                                                     </label>
                                                     <textarea type="text" formControlName="achievements" maxlength="400"
                                                         placeholder="Enter Achievement" class="form-control"
-                                                        pattern="\S+.*" [class.is-invalid]="(signupForm.submitted
+                                                        pattern="[a-zA-Z0-9]|[./!@#$%^&*()-_,?]" [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('achievements')?.invalid)
                                                         ||
@@ -704,7 +708,8 @@
                                                     </label>
                                                     <textarea type="text" formControlName="reason"
                                                         placeholder="Enter Strength" class="form-control"
-                                                        pattern="\S+.*" maxlength="400" [class.is-invalid]="(signupForm.submitted
+                                                        pattern="[a-zA-Z0-9]|[./!@#$%^&*()-_,?]" maxlength="400"
+                                                        [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('reason')?.invalid)
                                                         ||
