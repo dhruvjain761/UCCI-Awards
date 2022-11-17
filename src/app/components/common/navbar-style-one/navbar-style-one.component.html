@@ -20,7 +20,7 @@
             </div>
             <div class="vesax-responsive-menu d-flex" *ngIf="!localStorage">
                 <div class="logo" style="width: 82%;">
-                    <a class="navbar-brand" routerLink="/"><img
+                    <a class="navbar-brand" (click)="onLogoClick()"><img
                             src="https://ucciudaipur.com/wp-content/uploads/2021/11/ucci-logo-update-2.png" alt="logo"
                             height="180px" width="180px"></a>
                 </div>
@@ -33,7 +33,7 @@
         <div class="container-fluid">
             <nav class="navbar navbar-expand-md navbar-light" style="justify-content: space-between;">
 
-                <a class="navbar-brand" style="padding: 14px 0;" routerLink="/"><img
+                <a class="navbar-brand" style="padding: 14px 0;" (click)="onLogoClick()"><img
                         src="https://ucciudaipur.com/wp-content/uploads/2021/11/ucci-logo-update-2.png" alt="logo"></a>
                 <!-- <div> -->
                 <!-- <a *ngIf="!localStorage" routerLink="/admin-login" class="admin-link">Admin Login</a> -->
