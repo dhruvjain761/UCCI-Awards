@@ -13,9 +13,8 @@ export const environment = {
   award_base_url: 'https://brandtalks.in/ucciaward/api',
   // award_base_url: 'https://awardsbackend.ucciudaipur.com/api',
 
-  profile_baseUrl:
-    'https://ucci.brandtalks.in/storage/app/public/events/coverage_image/',
-  // profile_baseUrl : 'http://192.168.29.166:8000/storage/app/public/events/coverage_image/',
+  // profile_baseUrl:
+  //   'https://ucci.brandtalks.in/storage/app/public/events/coverage_image/',
 
   rezorpay_key: 'rzp_test_5R3ifzCtFSn1j1',
 };

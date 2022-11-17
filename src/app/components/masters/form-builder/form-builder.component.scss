@@ -77,19 +77,19 @@
                                 position: relative;
 
                                 .status-busy {
-                                    background-color: #FF5B5C;
+                                    background-color: #ff5b5c;
                                 }
 
                                 .status-online {
-                                    background-color: #39DA8A;
+                                    background-color: #39da8a;
                                 }
 
                                 .status-away {
-                                    background-color: #FDAC41;
+                                    background-color: #fdac41;
                                 }
 
                                 .status-offline {
-                                    background-color: #475F7B;
+                                    background-color: #475f7b;
                                 }
 
                                 [class*=status-] {
@@ -143,7 +143,7 @@
                         &::before {
                             width: 70px;
                             height: 1px;
-                            content: '';
+                            content: "";
                             position: absolute;
                             left: 0;
                             bottom: -1px;
@@ -189,19 +189,19 @@
                             position: relative;
 
                             .status-busy {
-                                background-color: #FF5B5C;
+                                background-color: #ff5b5c;
                             }
 
                             .status-online {
-                                background-color: #39DA8A;
+                                background-color: #39da8a;
                             }
 
                             .status-away {
-                                background-color: #FDAC41;
+                                background-color: #fdac41;
                             }
 
                             .status-offline {
-                                background-color: #475F7B;
+                                background-color: #475f7b;
                             }
 
                             [class*=status-] {
@@ -231,7 +231,7 @@
                                 .favorite {
                                     font-size: 20px;
                                     cursor: pointer;
-                                    color: #C7CFD6;
+                                    color: #c7cfd6;
                                     position: relative;
                                     top: -1px;
 
@@ -251,7 +251,7 @@
                                         padding: 0;
                                         border: none;
                                         background-color: transparent;
-                                        color: #727E8C;
+                                        color: #727e8c;
                                         font-size: 22px;
                                         line-height: 15px;
 
@@ -261,7 +261,7 @@
                                     }
 
                                     .dropdown-menu {
-                                        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, .05);
+                                        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
                                         background-color: var(--whiteColor);
                                         border: none;
                                         border-radius: 0;
@@ -269,7 +269,7 @@
                                         display: block;
                                         opacity: 0;
                                         visibility: hidden;
-                                        transition: .3s;
+                                        transition: 0.3s;
                                         transform: unset !important;
                                         left: auto !important;
                                         right: 0;
@@ -327,7 +327,7 @@
 
                 .chat-container {
                     height: calc(100vh - 340px);
-                    background-color: #E3E6F1;
+                    background-color: #e3e6f1;
                     padding: 25px 20px;
 
                     background: {
@@ -379,7 +379,7 @@
                                         bottom: -25px;
                                         right: 0;
                                         color: #6b7886;
-                                        font-size: .8rem;
+                                        font-size: 0.8rem;
                                         white-space: nowrap;
                                     }
 
@@ -399,7 +399,7 @@
                                         text-align: start;
                                         float: left;
                                         margin: 10px 0 21.28px 21.28px;
-                                        color: #727E8C;
+                                        color: #727e8c;
                                         background-color: var(--whiteColor);
                                         box-shadow: 0 2px 6px 0 rgba(0, 0, 0, .3);
 
@@ -407,7 +407,7 @@
                                             color: #727E8C;
 
                                             a {
-                                                color: #727E8C !important;
+                                                color: #727e8c !important;
                                             }
                                         }
                                     }
@@ -476,12 +476,12 @@
                             transition: var(--transition);
                             padding-left: 15px;
                             font-size: 14.5px;
-                            border: 1px solid #DFE3E7;
+                            border: 1px solid #dfe3e7;
                             color: var(--blackColor);
 
                             &:focus {
                                 border-color: var(--mainColor);
-                                box-shadow: 0 3px 8px 0 rgba(0, 0, 0, .1);
+                                box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.1);
                             }
                         }
 
@@ -507,7 +507,7 @@
                             ;
 
                             &:hover {
-                                box-shadow: 0 4px 12px 0 rgba(8, 141, 211, .6);
+                                box-shadow: 0 4px 12px 0 rgba(8, 141, 211, 0.6);
                             }
                         }
                     }
@@ -516,7 +516,6 @@
         }
     }
 }
-
 
 /* Max width 767px */
 
@@ -564,11 +563,10 @@
     }
 }
 
-
 /* Min width 576px to Max width 767px */
 
-@media only screen and (min-width: 576px) and (max-width: 767px) {}
-
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+}
 
 /* Min width 768px to Max width 991px */
 
@@ -590,20 +588,20 @@
     }
 }
 
-
 /* Min width 992px to Max width 1199px */
 
-@media only screen and (min-width: 992px) and (max-width: 1199px) {}
-
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+}
 
 /* Min width 1200px to Max width 1355px */
 
-@media only screen and (min-width: 1200px) and (max-width: 1355px) {}
-
+@media only screen and (min-width: 1200px) and (max-width: 1355px) {
+}
 
 /* Min width 1550px */
 
-@media only screen and (min-width: 1550px) {}
+@media only screen and (min-width: 1550px) {
+}
 
 ::ng-deep {
     .section_heading {
@@ -632,7 +630,6 @@
         }
     }
 }
-
 
 // :host ::ng-deep input[type="radio"] {
 //     margin-top: 10px;
