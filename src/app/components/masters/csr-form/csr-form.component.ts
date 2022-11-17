@@ -36,13 +36,13 @@ export class CsrFormComponent implements OnInit {
 
   responseMessage: boolean = false;
   award_form_id: any;
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     let slug = this.router.snapshot.params;
     console.log(slug);
     this.spinner.show();
-    this._formBuilder
+    await this._formBuilder
       .getAPI('formWithData/' + slug.slug)
-      .subscribe((res: any) => {
+      .then((res: any) => {
         console.log(res);
         this.spinner.hide();
         this.responseMessage = res?.data[0]?.form_response ? true : false;
@@ -53,14 +53,14 @@ export class CsrFormComponent implements OnInit {
           this.award_form_id = res?.award_form_id;
           this.title = res?.data[0].form_title;
 
-          if (res?.data[0].form_title === 'Service Sector Award') {
+          if (res?.data[0]?.form_title === 'Service Sector Award') {
             this.hindiTitle = 'सेवा क्षेत्र पुरस्कार';
-          } else if (res?.data[0].form_title === 'Manufacturing Sector Award') {
+          } else if (res?.data[0]?.form_title === 'Manufacturing Sector Award') {
             this.hindiTitle = 'विनिर्माण क्षेत्र पुरस्कार';
-          } else if (res?.data[0].form_title === 'Social Enterprises Award') {
+          } else if (res?.data[0]?.form_title === 'Social Enterprises Award') {
             // debugger;
             this.hindiTitle = 'सामाजिक उपक्रम पुरस्कार';
-          } else if (res?.data[0].form_title === 'CSR Award') {
+          } else if (res?.data[0]?.form_title === 'CSR Award') {
             this.hindiTitle = 'सामाजिक उत्तरदायित्व पुरस्कार';
           }
 
@@ -71,7 +71,7 @@ export class CsrFormComponent implements OnInit {
           this.breadcrumb[0].title = res?.data[0].form_title;
           this.formId = res?.data[0]?.id;
           this.award_form_id = res?.data[0]?.award_form_id;
-          this.title = res?.data[0].form_title;
+          this.title = res?.data[0]?.form?.form_title;
 
           if (res?.data[0].form_title === 'Service Sector Award') {
             this.hindiTitle = 'सेवा क्षेत्र पुरस्कार';
@@ -86,6 +86,8 @@ export class CsrFormComponent implements OnInit {
 
         }
       });
+
+      console.log(this.title, this.hindiTitle)
 
     let date = new Date();
 
