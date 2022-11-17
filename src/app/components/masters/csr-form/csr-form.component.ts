@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ConfirmationService, ConfirmEventType, MessageService } from 'primeng/api';
+import {
+  ConfirmationService,
+  ConfirmEventType,
+  MessageService,
+} from 'primeng/api';
 import { ExcelService } from 'src/app/services/excel.service';
 import { FormBuilderService } from 'src/app/services/form-builder.service';
 
@@ -9,7 +13,7 @@ import { FormBuilderService } from 'src/app/services/form-builder.service';
   selector: 'app-csr-form',
   templateUrl: './csr-form.component.html',
   styleUrls: ['./csr-form.component.scss'],
-  providers: [MessageService, ConfirmationService]
+  providers: [MessageService, ConfirmationService],
 })
 export class CsrFormComponent implements OnInit {
   sections: any = [];
@@ -17,7 +21,7 @@ export class CsrFormComponent implements OnInit {
   formData: any = {};
   breadcrumb: any[] = [
     {
-      title: ''
+      title: '',
       // subTitle: '',
     },
   ];
@@ -32,7 +36,7 @@ export class CsrFormComponent implements OnInit {
     private _formBuilder: FormBuilderService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
-  ) { }
+  ) {}
 
   responseMessage: boolean = false;
   award_form_id: any;
@@ -55,7 +59,9 @@ export class CsrFormComponent implements OnInit {
 
           if (res?.data[0]?.form_title === 'Service Sector Award') {
             this.hindiTitle = 'सेवा क्षेत्र पुरस्कार';
-          } else if (res?.data[0]?.form_title === 'Manufacturing Sector Award') {
+          } else if (
+            res?.data[0]?.form_title === 'Manufacturing Sector Award'
+          ) {
             this.hindiTitle = 'विनिर्माण क्षेत्र पुरस्कार';
           } else if (res?.data[0]?.form_title === 'Social Enterprises Award') {
             // debugger;
@@ -63,31 +69,31 @@ export class CsrFormComponent implements OnInit {
           } else if (res?.data[0]?.form_title === 'CSR Award') {
             this.hindiTitle = 'सामाजिक उत्तरदायित्व पुरस्कार';
           }
-
-        }
-
-        else if (res?.data[0]?.form_response) {
+        } else if (res?.data[0]?.form_response) {
           this.sections = JSON?.parse(JSON?.parse(res?.data[0]?.form_response));
           this.breadcrumb[0].title = res?.data[0].form_title;
           this.formId = res?.data[0]?.id;
           this.award_form_id = res?.data[0]?.award_form_id;
           this.title = res?.data[0]?.form?.form_title;
 
-          if (res?.data[0].form_title === 'Service Sector Award') {
+          if (res?.data[0]?.form?.form_title === 'Service Sector Award') {
             this.hindiTitle = 'सेवा क्षेत्र पुरस्कार';
-          } else if (res?.data[0].form_title === 'Manufacturing Sector Award') {
+          } else if (
+            res?.data[0]?.form?.form_title === 'Manufacturing Sector Award'
+          ) {
             this.hindiTitle = 'विनिर्माण क्षेत्र पुरस्कार';
-          } else if (res?.data[0].form_title === 'Social Enterprises Award') {
+          } else if (
+            res?.data[0]?.form?.form_title === 'Social Enterprises Award'
+          ) {
             // debugger;
             this.hindiTitle = 'सामाजिक उपक्रम पुरस्कार';
-          } else if (res?.data[0].form_title === 'CSR Award') {
+          } else if (res?.data[0]?.form?.form_title === 'CSR Award') {
             this.hindiTitle = 'सामाजिक उत्तरदायित्व पुरस्कार';
           }
-
         }
       });
 
-      console.log(this.title, this.hindiTitle)
+    console.log(this.title, this.hindiTitle);
 
     let date = new Date();
 
@@ -120,7 +126,8 @@ export class CsrFormComponent implements OnInit {
   getFormResponse(event: any) {
     // alert();
     this.confirmationService.confirm({
-      message: 'Are you sure you want to Submit? You would not be able to Edit once Submitted.',
+      message:
+        'Are you sure you want to Submit? You would not be able to Edit once Submitted.',
       header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
@@ -157,7 +164,7 @@ export class CsrFormComponent implements OnInit {
         //     this.messageService.add({ severity: 'warn', summary: 'Cancelled', detail: 'You have cancelled' });
         //     break;
         // }
-      }
+      },
     });
   }
 }
