@@ -19,6 +19,8 @@ export class CsrFormComponent implements OnInit {
   sections: any = [];
   position: string;
   formData: any = {};
+  previewCheck: any = false;
+  actionString: string = ''
   breadcrumb: any[] = [
     {
       title: '',
@@ -93,7 +95,7 @@ export class CsrFormComponent implements OnInit {
         }
       });
 
-    console.log(this.title, this.hindiTitle);
+    console.log(this.title, this.hindiTitle)
 
     let date = new Date();
 
@@ -124,47 +126,70 @@ export class CsrFormComponent implements OnInit {
   }
 
   getFormResponse(event: any) {
-    // alert();
-    this.confirmationService.confirm({
-      message:
-        'Are you sure you want to Submit? You would not be able to Edit once Submitted.',
-      header: 'Confirmation',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        console.log(event);
-        let Object = {
-          award_form_id: this.award_form_id,
-          form_response: JSON.stringify(event),
-        };
+    console.log(event)
+    if (event?.string == 'save draft') {
+      let Object = {
+        award_form_id: this.award_form_id,
+        form_response: JSON.stringify(event?.Obj),
+      };
 
-        if (this.responseMessage) {
-          Object['id'] = this.formId;
-        }
+      if (this.responseMessage) {
+        Object['id'] = this.formId;
+      }
 
-        console.log(Object, this.responseMessage);
+      console.log(Object, this.responseMessage);
 
-        this.spinner.show();
-        this._formBuilder
-          .createCustomForm('response/store', Object)
-          .subscribe((res: any) => {
-            console.log(res);
-            this.spinner.hide();
-            this.messageService.add({
-              severity: 'success',
-              detail: res.message,
-            });
+      this.spinner.show();
+      this._formBuilder
+        .createCustomForm('response/store', Object)
+        .subscribe((res: any) => {
+          console.log(res);
+          this.spinner.hide();
+          this.messageService.add({
+            severity: 'success',
+            detail: res.message,
           });
-      },
-      reject: (type) => {
-        // switch (type) {
-        //   case ConfirmEventType.REJECT:
-        //     this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
-        //     break;
-        //   case ConfirmEventType.CANCEL:
-        //     this.messageService.add({ severity: 'warn', summary: 'Cancelled', detail: 'You have cancelled' });
-        //     break;
-        // }
-      },
-    });
+        });
+    }
+    else if (event?.string == 'submit') {
+      this.previewCheck = true;
+      this.confirmationService.confirm({
+        message: 'Are you sure you want to Submit? You would not be able to Edit once Submitted.',
+        header: 'Confirmation',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+          console.log(event);
+          let Object = {
+            award_form_id: this.award_form_id,
+            form_response: JSON.stringify(event?.Obj),
+          };
+
+          if (this.responseMessage) {
+            Object['id'] = this.formId;
+          }
+
+          console.log(Object, this.responseMessage);
+
+          this.spinner.show();
+          this._formBuilder
+            .createCustomForm('response/store', Object)
+            .subscribe((res: any) => {
+              console.log(res);
+              this.spinner.hide();
+              this.messageService.add({
+                severity: 'success',
+                detail: res.message,
+              });
+            });
+        }
+      });
+    }
+    else if(event?.string == 'not valid') {
+      // this.previewCheck = true;
+      this.messageService.add({
+        severity: 'error',
+        detail: 'Please fill required fields'
+      });
+    }
   }
 }

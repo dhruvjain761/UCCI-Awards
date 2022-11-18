@@ -29,7 +29,47 @@
             <p> Please complete the form below and provide details of your business and company.
                 कृपया निम्नलिखित फार्म को पूरा भरें तथा अपने व्यवसाय एवं कम्पनी के विषय में जानकारी देवे:</p>
         </div>
-        <lib-renderer [sections]="sections" (sectionsData)="getFormResponse($event)"></lib-renderer>
+        <ng-container *ngIf="previewCheck">
+            <p-button type="button" (click)="previewCheck = false" icon="bx bx-arrow-back" label="" iconPos="left">
+            </p-button><br>
+            <ng-container *ngFor="let section of sections">
+                <ng-container *ngFor="let control of section.controls">
+                    <label for="">{{control.label}}</label>
+                    <ng-container *ngIf="control.name !='table'">
+                        <input class="form-control" *ngIf="!(control.name == 'label')" type="text" readonly [value]="control.value">
+                    </ng-container>
+                    <ng-contaier *ngIf="control.name =='table'">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <ng-container *ngFor="let colHead of control.columns">
+                                        <th>
+                                            {{colHead.label}}
+                                        </th>
+                                    </ng-container>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let tableRow of control.rows">
+                                    <tr>
+                                        <ng-container *ngFor="let tableCol of tableRow">
+                                            <td>
+                                                <input *ngIf="!(tableCol.name == 'label')" type="text" class="form-control" readonly [value]="tableCol.value">
+                                                <label *ngIf="(tableCol.name == 'label')" for="">{{tableCol.label}}</label>
+                                            </td>
+                                        </ng-container>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </ng-contaier>
+                    <br>
+                </ng-container>
+            </ng-container>
+        </ng-container>
+        <ng-container *ngIf="!previewCheck">
+            <lib-renderer [sections]="sections" (sectionsData)="getFormResponse($event)"></lib-renderer>
+        </ng-container>
     </div>
     <!-- <button (click)="getExcelFromJson()">get excel</button> -->
     <!-- <lib-form-builder [buttonFields]="buttonFields" (formJson)="getJson($event)"></lib-form-builder> -->
