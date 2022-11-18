@@ -13,7 +13,6 @@ import { ApiService } from 'src/app/services/api.service';
   providers: [MessageService, ConfirmationService],
 })
 export class RegisteredUsersComponent implements OnInit {
-
   @ViewChild('dt1') dt1: Table;
   @ViewChild('dt2') dt2: Table;
   breadcrumb: any[];
@@ -91,11 +90,11 @@ export class RegisteredUsersComponent implements OnInit {
     });
   }
 
-  // search function 
+  // search function
 
   onSearch(type: string, e: any) {
     // if(type == "dt1") {
-      this.dt1.filterGlobal(e, 'contains')
+    this.dt1.filterGlobal(e, 'contains');
     // }else if(type == "dt1") {
     //   this.dt1.filterGlobal(e, 'contains')
     // }
