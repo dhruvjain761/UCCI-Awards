@@ -203,7 +203,8 @@ export class HomeDemoOneComponent implements OnInit {
         } else if (key === 'company_address') {
           formData.append(
             key,
-            this.registerForm.value.address_line2 != null
+            this.registerForm.value.address_line2 != null &&
+              this.registerForm.value.address_line2 != ''
               ? `${value}, ${this.registerForm.value.address_line2}`
               : `${value}`
           );
