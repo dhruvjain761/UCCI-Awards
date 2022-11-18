@@ -13,7 +13,7 @@
  *
  * Learn more in https://angular.io/guide/browser-support
  */
-
+//  import "jspdf/dist/polyfills.es.js";
 /***************************************************************************************************
  * BROWSER POLYFILLS
  */
