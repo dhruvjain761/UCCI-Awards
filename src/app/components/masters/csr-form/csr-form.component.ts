@@ -19,7 +19,7 @@ export class CsrFormComponent implements OnInit {
   sections: any = [];
   position: string;
   formData: any = {};
-  previewCheck: any = true;
+  previewCheck: any = false;
   actionString: string = '';
   breadcrumb: any[] = [
     {
@@ -52,8 +52,6 @@ export class CsrFormComponent implements OnInit {
         console.log(res);
         this.spinner.hide();
         this.responseMessage = res?.data[0]?.form_response ? true : false;
-        console.log(this.sections);
-
         if (res?.data[0]?.form_json) {
           this.sections = JSON?.parse(JSON?.parse(res?.data[0]?.form_json));
           this.breadcrumb[0].title = res?.data[0].form_title;
@@ -92,7 +90,7 @@ export class CsrFormComponent implements OnInit {
           } else if (res?.data[0]?.form_title === 'CSR Award') {
             this.hindiTitle = 'सामाजिक उत्तरदायित्व पुरस्कार';
           }
-          console.log(this.sections);
+
           // this.sections.forEach((section:any) => {
           //   section.controls.forEach((control:any) => {
           //     if(control.name == 'checkbox') {
