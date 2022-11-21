@@ -1,16 +1,22 @@
 <p-toast
     [breakpoints]="{'575px': {width: '100%', right: '0', left: '0', display: 'flex', 'justify-content': 'center', 'align-items': 'center', 'flex-direction': 'column'}}">
 </p-toast>
-<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text">
+</p-confirmDialog>
 
-<app-dashboard-sidemenu></app-dashboard-sidemenu>
+
+<ng-container *ngIf="!previewCheck">
+    <app-dashboard-sidemenu></app-dashboard-sidemenu>
+</ng-container>
 
 <!-- ********************** Main Content ******************** -->
 
-<div class="main-content d-flex flex-column">
+<div class="main-content d-flex flex-column" *ngIf="previewCheck == false">
 
     <!-- <app-dashboard-navbar></app-dashboard-navbar> -->
-    <app-navbar-style-one></app-navbar-style-one>
+    <ng-container *ngIf="!previewCheck">
+        <app-navbar-style-one></app-navbar-style-one>
+    </ng-container>
 
     <!-- ********************** Breadcrumb Area  ******************** -->
 
@@ -29,15 +35,43 @@
             <p> Please complete the form below and provide details of your business and company.
                 कृपया निम्नलिखित फार्म को पूरा भरें तथा अपने व्यवसाय एवं कम्पनी के विषय में जानकारी देवे:</p>
         </div>
-        <ng-container *ngIf="previewCheck">
-            <p-button type="button" (click)="previewCheck = false" icon="bx bx-arrow-back" label="" iconPos="left">
-            </p-button><br>
+
+        <ng-container *ngIf="!previewCheck">
+            <lib-renderer [sections]="sections" (sectionsData)="getFormResponse($event)"></lib-renderer>
+        </ng-container>
+    </div>
+    <!-- <button (click)="getExcelFromJson()">get excel</button> -->
+    <!-- <lib-form-builder [buttonFields]="buttonFields" (formJson)="getJson($event)"></lib-form-builder> -->
+    <!-- <lib-form-renderer *ngIf="jsonData" [jsonFormData]="jsonData"></lib-form-renderer> -->
+    <!-- ********************** End Breadcrumb Area  ******************** -->
+
+</div>
+
+
+<ng-container *ngIf="previewCheck">
+    <div class="add-listings-box" *ngIf="sections.length > 0">
+        <div class="heading">
+            <img src="assets/img/ucci-awards-logo.png" alt="">
+            <h2>{{title}} {{nextYear}} / {{hindiTitle}} {{nextYear}}</h2>
+            <!-- <p> Please complete the form below and provide details of your business and company.
+                कृपया निम्नलिखित फार्म को पूरा भरें तथा अपने व्यवसाय एवं कम्पनी के विषय में जानकारी देवे:</p> -->
+        </div>
+
+        <p-button type="button" (click)="previewCheck = false" icon="bx bx-arrow-back" label="" iconPos="left">
+        </p-button><br>
+        <div class="preview">
             <ng-container *ngFor="let section of sections">
-                <ng-container *ngFor="let control of section.controls">
-                    <label for="">{{control.label}}</label>
-                    <ng-container *ngIf="control.name !='table'">
-                        <input class="form-control" *ngIf="!(control.name == 'label')" type="text" readonly [value]="control.value">
-                    </ng-container>
+                <ng-container *ngFor="let control of section.controls; let i = index">
+                    <div *ngIf="i === 0" class="section-heading">
+                        <span>{{control.label}}</span>
+                    </div>
+                    <div class="group">
+                        <label for="" *ngIf="i !== 0" class="label">{{control.label}}</label>
+                        <ng-container *ngIf="control.name !='table'">
+                            <span class="form-control" *ngIf="!(control.name == 'label')">👉
+                                &nbsp;{{control.value != '' ? control.value : '-'}}</span>
+                        </ng-container>
+                    </div>
                     <ng-contaier *ngIf="control.name =='table'">
                         <table>
                             <thead>
@@ -53,9 +87,16 @@
                                 <ng-container *ngFor="let tableRow of control.rows">
                                     <tr>
                                         <ng-container *ngFor="let tableCol of tableRow">
-                                            <td>
-                                                <input *ngIf="!(tableCol.name == 'label')" type="text" class="form-control" readonly [value]="tableCol.value">
-                                                <label *ngIf="(tableCol.name == 'label')" for="">{{tableCol.label}}</label>
+                                            <td *ngIf="!(tableCol.name == 'label')">
+                                                <span class="form-control" *ngIf="tableCol.value != ''">{{
+                                                    tableCol.value }}</span>
+                                                <span class="form-control" *ngIf="tableCol.value == ''"
+                                                    style="display: flex; justify-content: center; align-items: center;">-</span>
+
+                                            </td>
+
+                                            <td *ngIf="(tableCol.name == 'label')" style="background-color: #f9f9f9;">
+                                                <label for="">{{tableCol.label}}</label>
                                             </td>
                                         </ng-container>
                                     </tr>
@@ -63,18 +104,9 @@
                             </tbody>
                         </table>
                     </ng-contaier>
-                    <br>
+                    <!-- <br> -->
                 </ng-container>
             </ng-container>
-        </ng-container>
-        <ng-container *ngIf="!previewCheck">
-            <lib-renderer [sections]="sections" (sectionsData)="getFormResponse($event)"></lib-renderer>
-        </ng-container>
+        </div>
     </div>
-    <!-- <button (click)="onClick()">pdf</button> -->
-    <!-- <button (click)="getExcelFromJson()">get excel</button> -->
-    <!-- <lib-form-builder [buttonFields]="buttonFields" (formJson)="getJson($event)"></lib-form-builder> -->
-    <!-- <lib-form-renderer *ngIf="jsonData" [jsonFormData]="jsonData"></lib-form-renderer> -->
-    <!-- ********************** End Breadcrumb Area  ******************** -->
-
-</div>
+</ng-container>

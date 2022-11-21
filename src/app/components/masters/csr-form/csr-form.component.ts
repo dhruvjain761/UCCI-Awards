@@ -21,7 +21,7 @@ export class CsrFormComponent implements OnInit {
   position: string;
   formData: any = {};
   previewCheck: any = false;
-  actionString: string = ''
+  actionString: string = '';
   breadcrumb: any[] = [
     {
       title: '',
@@ -38,8 +38,8 @@ export class CsrFormComponent implements OnInit {
     private excelService: ExcelService,
     private _formBuilder: FormBuilderService,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService,
-  ) { }
+    private confirmationService: ConfirmationService
+  ) {}
 
   responseMessage: boolean = false;
   award_form_id: any;
@@ -72,8 +72,7 @@ export class CsrFormComponent implements OnInit {
           } else if (res?.data[0]?.form_title === 'CSR Award') {
             this.hindiTitle = 'सामाजिक उत्तरदायित्व पुरस्कार';
           }
-        }
-        else if (res?.data[0]?.form_response) {
+        } else if (res?.data[0]?.form_response) {
           this.sections = JSON?.parse(JSON?.parse(res?.data[0]?.form_response));
           this.breadcrumb[0].title = res?.data[0]?.form_title;
           this.formId = res?.data[0]?.id;
@@ -82,15 +81,14 @@ export class CsrFormComponent implements OnInit {
 
           if (res?.data[0]?.form_title === 'Service Sector Award') {
             this.hindiTitle = 'सेवा क्षेत्र पुरस्कार';
-          }
-          else if (res?.data[0]?.form_title === 'Manufacturing Sector Award') {
+          } else if (
+            res?.data[0]?.form_title === 'Manufacturing Sector Award'
+          ) {
             this.hindiTitle = 'विनिर्माण क्षेत्र पुरस्कार';
-          }
-          else if (res?.data[0]?.form_title === 'Social Enterprises Award') {
+          } else if (res?.data[0]?.form_title === 'Social Enterprises Award') {
             // debugger;
             this.hindiTitle = 'सामाजिक उपक्रम पुरस्कार';
-          }
-          else if (res?.data[0]?.form_title === 'CSR Award') {
+          } else if (res?.data[0]?.form_title === 'CSR Award') {
             this.hindiTitle = 'सामाजिक उत्तरदायित्व पुरस्कार';
           }
 
@@ -101,11 +99,10 @@ export class CsrFormComponent implements OnInit {
           //     }
           //   });
           // });
-          
         }
       });
 
-    console.log(this.title, this.hindiTitle)
+    console.log(this.title, this.hindiTitle);
 
     let date = new Date();
 
@@ -136,7 +133,7 @@ export class CsrFormComponent implements OnInit {
   }
 
   getFormResponse(event: any) {
-    console.log(event)
+    console.log(event);
     if (event?.string == 'save draft') {
       let Object = {
         award_form_id: this.award_form_id,
@@ -160,11 +157,11 @@ export class CsrFormComponent implements OnInit {
             detail: res.message,
           });
         });
-    }
-    else if (event?.string == 'submit') {
+    } else if (event?.string == 'submit') {
       // this.previewCheck = true;
       this.confirmationService.confirm({
-        message: 'Are you sure you want to Submit? You would not be able to Edit once Submitted.',
+        message:
+          'Are you sure you want to Submit? You would not be able to Edit once Submitted.',
         header: 'Confirmation',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
@@ -172,7 +169,7 @@ export class CsrFormComponent implements OnInit {
           let Object = {
             award_form_id: this.award_form_id,
             form_response: JSON.stringify(event?.Obj),
-            status: 'completed'
+            status: 'completed',
           };
 
           if (this.responseMessage) {
@@ -192,14 +189,13 @@ export class CsrFormComponent implements OnInit {
                 detail: res.message,
               });
             });
-        }
+        },
       });
-    }
-    else if (event?.string == 'not valid') {
-      // this.previewCheck = true;
+    } else if (event?.string == 'not valid') {
+      this.previewCheck = true;
       this.messageService.add({
         severity: 'error',
-        detail: 'Please fill required fields'
+        detail: 'Please fill required fields',
       });
     }
   }
