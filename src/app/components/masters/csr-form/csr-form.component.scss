@@ -38,6 +38,34 @@
     }
 }
 
+.pdf_btn {
+    width: fit-content;
+    cursor: pointer;
+    display: inline-block;
+    background-color: #0ec6c6;
+    color: #fff;
+    padding: 5px 25px;
+    box-shadow: 0 4px 6px #32325d1c, 0 1px 3px #00000014;
+    border-radius: 5px;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+@media print {
+    .button_div {
+        display: none!important;
+    }
+    @page {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      body  {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+      }
+}
+
 :host::ng-deep {
     .ng-wizard-theme-dots>ul.step-anchor:before {
         top: 60px !important;
