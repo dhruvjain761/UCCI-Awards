@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import {
@@ -8,6 +8,7 @@ import {
 } from 'primeng/api';
 import { ExcelService } from 'src/app/services/excel.service';
 import { FormBuilderService } from 'src/app/services/form-builder.service';
+
 
 @Component({
   selector: 'app-csr-form',
@@ -37,7 +38,7 @@ export class CsrFormComponent implements OnInit {
     private excelService: ExcelService,
     private _formBuilder: FormBuilderService,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
   ) { }
 
   responseMessage: boolean = false;
@@ -161,7 +162,7 @@ export class CsrFormComponent implements OnInit {
         });
     }
     else if (event?.string == 'submit') {
-      this.previewCheck = true;
+      // this.previewCheck = true;
       this.confirmationService.confirm({
         message: 'Are you sure you want to Submit? You would not be able to Edit once Submitted.',
         header: 'Confirmation',
@@ -195,7 +196,7 @@ export class CsrFormComponent implements OnInit {
       });
     }
     else if (event?.string == 'not valid') {
-      this.previewCheck = true;
+      // this.previewCheck = true;
       this.messageService.add({
         severity: 'error',
         detail: 'Please fill required fields'
