@@ -59,8 +59,12 @@
                 कृपया निम्नलिखित फार्म को पूरा भरें तथा अपने व्यवसाय एवं कम्पनी के विषय में जानकारी देवे:</p> -->
         </div>
 
-        <p-button type="button" (click)="previewCheck = false" icon="bx bx-arrow-back" label="" iconPos="left">
-        </p-button><br>
+        <div class="d-flex justify-content-between align-items-center position-sticky button_div" style="top: 0;background:white;padding:20px 0;">
+            <p-button type="button" #back_btn class="test " (click)="previewCheck = false" icon="bx bx-arrow-back" label="" iconPos="left">
+            </p-button>
+            <button (click)="getPDF()" class="pdf_btn">Save as PDF</button>
+        </div>
+        <br>
         <div class="preview">
             <ng-container *ngFor="let section of sections">
                 <ng-container *ngFor="let control of section.controls; let i = index">
@@ -70,8 +74,12 @@
                     <div class="group">
                         <label for="" *ngIf="i !== 0" class="label">{{control.label}}</label>
                         <ng-container *ngIf="control.name !='table'">
-                            <span class="form-control" *ngIf="!(control.name == 'label')">👉
-                                &nbsp;{{control.value != '' ? control.value : '-'}}</span>
+                            <span class="form-control" *ngIf="!(control.name == 'label')"><i class="bx bx-circle" style="font-size: 8px;
+                                color: black;
+                                background: black;
+                                border-radius: 25px;"></i>
+                                <!-- {{control.value != '' ? control.value : '-'}} -->
+                            </span>
                         </ng-container>
                     </div>
                     <ng-contaier *ngIf="control.name =='table'">
@@ -112,3 +120,4 @@
         </div>
     </div>
 </ng-container>
+

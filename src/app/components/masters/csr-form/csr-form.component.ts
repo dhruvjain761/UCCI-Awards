@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import {
@@ -16,7 +16,7 @@ import { FormBuilderService } from 'src/app/services/form-builder.service';
   styleUrls: ['./csr-form.component.scss'],
   providers: [MessageService, ConfirmationService],
 })
-export class CsrFormComponent implements OnInit {
+export class CsrFormComponent implements OnInit, AfterViewInit {
   sections: any = [];
   position: string;
   formData: any = {};
@@ -158,7 +158,7 @@ export class CsrFormComponent implements OnInit {
           });
         });
     } else if (event?.string == 'submit') {
-      // this.previewCheck = true;
+      this.previewCheck = true;
       this.confirmationService.confirm({
         message:
           'Are you sure you want to Submit? You would not be able to Edit once Submitted.',
@@ -192,11 +192,23 @@ export class CsrFormComponent implements OnInit {
         },
       });
     } else if (event?.string == 'not valid') {
-      this.previewCheck = true;
+      // this.previewCheck = true;
       this.messageService.add({
         severity: 'error',
         detail: 'Please fill required fields',
       });
+    } else if (event?.string == 'preview') {
+      window.scroll(0,0)
+      this.previewCheck = true;
     }
+  }
+  @ViewChild('back_btn') back_btn:ElementRef;
+
+  getPDF() {
+    window.print();
+  }
+
+  ngAfterViewInit() {
+
   }
 }
