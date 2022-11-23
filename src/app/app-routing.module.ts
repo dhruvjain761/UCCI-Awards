@@ -121,12 +121,12 @@ const routes: Routes = [
   // {path: 'single-listings', component: ListingsDetailsComponent},
   // {path: 'events', component: EventsComponent},
   // {path: 'single-events', component: EventsDetailsComponent},
-  // {
-  //   path: 'dashboard',
-  //   component: DashboardComponent,
-  //   data: { route: ['Admin', 'Nominee 2', 'Nominee 1', 'UCCI Staff'] },
-  //   canActivate: [AuthGuard],
-  // },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    // data: { route: ['User'] },
+    // canActivate: [AuthGuard],
+  },
   { path: 'dashboard-messages', component: DashboardMessagesComponent },
   { path: 'dashboard-bookings', component: DashboardBookingsComponent },
   { path: 'dashboard-wallet', component: DashboardWalletComponent },
