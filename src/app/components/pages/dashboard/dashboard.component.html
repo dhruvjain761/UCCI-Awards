@@ -133,8 +133,8 @@
 
                         </span>
                     </div>
-                    <div *ngIf="item.status !== 'completed'" style="background-color: #ffffff; text-align: center;"><a
-                            href="/form-lib/{{item.slug}}">Edit</a></div>
+                    <div *ngIf="item.status !== 'completed'"><a
+                             routerLink="/form-lib/{{item.slug}}">Edit</a></div>
                     <!-- <div class="icon-box">
                         <i class='bx bxs-badge-dollar'></i>
                     </div>
