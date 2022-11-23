@@ -55,7 +55,9 @@
 
 :host ::ng-deep {
 
-  .p-button {
-    width: 100%;
+  .add {
+    button {
+      width: 100%;
+    }
   }
 }

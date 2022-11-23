@@ -73,6 +73,9 @@
         top: 120px !important;
         min-width: 1400px
     }
+    .ng-wizard-theme-dots .ng-wizard-toolbar-bottom {
+        padding-left: 0;
+    }
 }
 
 @import "../../pages/dashboard/dashboard.component.scss";
