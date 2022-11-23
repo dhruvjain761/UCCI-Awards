@@ -20,6 +20,42 @@
   }
 }
 
-:host ::ng-deep .p-datatable-responsive-scroll > .p-datatable-wrapper {
+:host ::ng-deep .p-datatable-responsive-scroll>.p-datatable-wrapper {
   min-height: 56vh;
+}
+
+
+@media (max-width: 642px) {
+  .theader {
+    flex-direction: column;
+  }
+
+  .input {
+    width: 100%;
+  }
+
+  .search-bar {
+    width: 100%;
+
+    span {
+      width: 100%;
+    }
+  }
+
+  .add {
+    margin-top: 5px;
+    width: 100%;
+
+    button {
+      width: 100%;
+    }
+  }
+
+}
+
+:host ::ng-deep {
+
+  .p-button {
+    width: 100%;
+  }
 }

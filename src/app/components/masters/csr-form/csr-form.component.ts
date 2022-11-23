@@ -1,4 +1,10 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import {
@@ -8,7 +14,6 @@ import {
 } from 'primeng/api';
 import { ExcelService } from 'src/app/services/excel.service';
 import { FormBuilderService } from 'src/app/services/form-builder.service';
-
 
 @Component({
   selector: 'app-csr-form',
@@ -198,17 +203,15 @@ export class CsrFormComponent implements OnInit, AfterViewInit {
         detail: 'Please fill required fields',
       });
     } else if (event?.string == 'preview') {
-      window.scroll(0,0)
+      window.scroll(0, 0);
       this.previewCheck = true;
     }
   }
-  @ViewChild('back_btn') back_btn:ElementRef;
+  @ViewChild('back_btn') back_btn: ElementRef;
 
   getPDF() {
     window.print();
   }
 
-  ngAfterViewInit() {
-
-  }
+  ngAfterViewInit() {}
 }
