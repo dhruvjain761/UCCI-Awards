@@ -44,7 +44,8 @@
         <div class="row">
             <div class="col-12">
                 <label class="my-2 fw-bold">
-                    In case of any clarifications call, +91 6377205389 / किसी भी स्पष्टीकरण के मामले में, +91 6377205389 पर कॉल करें
+                    In case of any clarifications call, +91 6377205389 / किसी भी स्पष्टीकरण के मामले में, +91 6377205389
+                    पर कॉल करें
                 </label>
             </div>
         </div>
@@ -66,8 +67,10 @@
                 कृपया निम्नलिखित फार्म को पूरा भरें तथा अपने व्यवसाय एवं कम्पनी के विषय में जानकारी देवे:</p> -->
         </div>
 
-        <div class="d-flex justify-content-between align-items-center position-sticky button_div" style="top: 0;background:white;padding:20px 0;">
-            <p-button type="button" #back_btn class="test " (click)="previewCheck = false" icon="bx bx-arrow-back" label="" iconPos="left">
+        <div class="d-flex justify-content-between align-items-center position-sticky button_div"
+            style="top: 0;background:white;padding:20px 0;">
+            <p-button type="button" #back_btn class="test " (click)="previewCheck = false" icon="bx bx-arrow-back"
+                label="" iconPos="left">
             </p-button>
             <button (click)="getPDF()" class="pdf_btn">Save as PDF</button>
         </div>
@@ -81,12 +84,14 @@
                     <div class="group">
                         <label for="" *ngIf="i !== 0" class="label">{{control.label}}</label>
                         <ng-container *ngIf="control.name !='table'">
-                            <span class="form-control" *ngIf="!(control.name == 'label')"><i class="bx bx-circle" style="font-size: 8px;
+                            <div class="value" *ngIf="!(control.name == 'label')">
+                                <!-- <i class="bx bx-circle" style="font-size: 8px;
                                 color: black;
                                 background: black;
-                                border-radius: 25px;"></i>
-                                <!-- {{control.value != '' ? control.value : '-'}} -->
-                            </span>
+                                border-radius: 25px;"></i> -->
+                                <i class="fa fa-thin fa-arrow-right mt-1"></i>
+                                <span>{{control.value != '' ? control.value : '-'}}</span>
+                            </div>
                         </ng-container>
                     </div>
                     <ng-contaier *ngIf="control.name =='table'">
@@ -94,7 +99,7 @@
                             <thead>
                                 <tr>
                                     <ng-container *ngFor="let colHead of control.columns">
-                                        <th>
+                                        <th class="table-label">
                                             {{colHead.label}}
                                         </th>
                                     </ng-container>
@@ -105,15 +110,15 @@
                                     <tr>
                                         <ng-container *ngFor="let tableCol of tableRow">
                                             <td *ngIf="!(tableCol.name == 'label')">
-                                                <span class="form-control" *ngIf="tableCol.value != ''">{{
+                                                <span class="value" *ngIf="tableCol.value != ''">{{
                                                     tableCol.value }}</span>
-                                                <span class="form-control" *ngIf="tableCol.value == ''"
+                                                <span class="value" *ngIf="tableCol.value == ''"
                                                     style="display: flex; justify-content: center; align-items: center;">-</span>
 
                                             </td>
 
                                             <td *ngIf="(tableCol.name == 'label')" style="background-color: #f9f9f9;">
-                                                <label for="">{{tableCol.label}}</label>
+                                                <label for="" class="table-label">{{tableCol.label}}</label>
                                             </td>
                                         </ng-container>
                                     </tr>
@@ -127,4 +132,3 @@
         </div>
     </div>
 </ng-container>
-

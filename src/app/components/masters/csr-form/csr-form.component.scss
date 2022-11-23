@@ -73,6 +73,7 @@
         top: 120px !important;
         min-width: 1400px
     }
+
     .ng-wizard-theme-dots .ng-wizard-toolbar-bottom {
         padding-left: 0;
         display: none;
@@ -677,6 +678,12 @@
         margin: 20px 0;
     }
 
+    .table-label {
+        // background-color: transparent !important;
+        font-weight: 700;
+        font-size: .9rem;
+    }
+
     .group {
         // border-bottom: 1px solid #000;
 
@@ -686,14 +693,24 @@
             margin-bottom: 10px;
         }
 
-        .form-control {
+        .value {
             background-color: transparent !important;
-            font-size: 1rem !important;
+            font-size: .9rem !important;
             margin-left: 10px;
             margin-bottom: 10px;
             padding-top: 0;
-            font-weight: 500;
+            font-weight: 400;
+            display: flex;
+            align-items: flex-start;
+
+            span {
+                margin-left: 10px;
+            }
         }
+
+        // .form-control {
+
+        // }
     }
 
     table {
@@ -721,15 +738,15 @@
         tbody {
             tr {
                 td {
-                    .form-control {
+                    .value {
                         background-color: transparent !important;
-                        font-size: 1rem !important;
+                        font-size: .9rem !important;
                         // margin-left: 10px;
                         // margin-bottom: 10px;
                         padding: 0;
                         display: flex;
-                        align-items: center;
-                        font-weight: 500;
+                        align-items: flex-start;
+                        font-weight: 400;
                     }
 
                     padding: 5px 10px;
