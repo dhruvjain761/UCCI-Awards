@@ -76,6 +76,26 @@
 
     .ng-wizard-theme-dots .ng-wizard-toolbar-bottom {
         padding-left: 0;
+        display: none;
+    }
+    .p-calendar .p-datepicker {
+        min-width: auto;
+    }
+    .p-calendar .p-inputtext {
+        margin: 0;
+        border-radius: 0;
+        background-color: #f5f5f5 !important;
+        box-shadow: unset !important;
+        transition: var(--transition);
+        border: none !important;
+        height: 30px;
+        padding-left: 15px;
+        color: var(--blackColor);
+        font-size: var(--fontSize) !important;
+        font-weight: 400;
+    }
+    .p-calendar .p-inputtext :focus {
+        box-shadow: none;
     }
 }
 
