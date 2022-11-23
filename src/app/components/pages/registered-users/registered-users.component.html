@@ -20,11 +20,13 @@
     <p-button (click)="cd.accept()" icon="pi pi-check" label="Yes" styleClass="p-button-text"></p-button>
   </ng-template>
 </p-confirmDialog>
-<app-dashboard-sidemenu></app-dashboard-sidemenu>
+<ng-container *ngIf="localStorage?.role=='Admin'">
+  <app-dashboard-sidemenu></app-dashboard-sidemenu>
+</ng-container>
 
 <!-- ********************** Main Content ******************** -->
 
-<div class="main-content d-flex flex-column">
+<div class="main-content d-flex flex-column" *ngIf="localStorage?.role=='Admin'">
 
   <!-- <app-dashboard-navbar></app-dashboard-navbar> -->
   <app-navbar-style-one></app-navbar-style-one>
@@ -271,6 +273,7 @@
 
   <app-copyrights></app-copyrights>
 </div>
+
 
 
 <p-dialog header="User Deatils" [(visible)]="displayMaximizable" [modal]="true" [style]="{ width: '90vw' }"

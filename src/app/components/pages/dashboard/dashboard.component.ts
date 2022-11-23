@@ -4,6 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { CommonClass } from 'src/app/common';
 import { ApiService } from 'src/app/services/api.service';
+import { FormBuilderService } from 'src/app/services/form-builder.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,6 +18,7 @@ export class DashboardComponent implements OnInit {
   membershipData: any;
   displayPopUp: boolean = false;
   status: any;
+  awardForm: any;
 
   constructor(
     private commonFunction: CommonClass,
@@ -24,7 +26,8 @@ export class DashboardComponent implements OnInit {
     private ApiServices: ApiService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private Route: Router
+    private Route: Router,
+    private formResponseService: FormBuilderService
   ) {}
 
   ngOnInit() {
@@ -33,9 +36,15 @@ export class DashboardComponent implements OnInit {
     this.localStorage = this.commonFunction.getLocalStorage();
     let localStorage = this.commonFunction.getLocalStorage();
     this.userName = localStorage.username;
-    this.getMembershipStatus();
+    // this.getMembershipStatus();
+    this.getFormResponse();
   }
-
+  getFormResponse() {
+    this.formResponseService.getAPI('formData').then((res: any) => {
+      this.awardForm = res.data;
+      console.log(this.awardForm);
+    });
+  }
   breadcrumb = [
     {
       title: 'Howdy, Andy!',

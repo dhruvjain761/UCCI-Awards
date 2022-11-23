@@ -84,13 +84,24 @@
                     <div class="group">
                         <label for="" *ngIf="i !== 0" class="label">{{control.label}}</label>
                         <ng-container *ngIf="control.name !='table'">
-                            <div class="value" *ngIf="!(control.name == 'label')">
+                            <div class="value" *ngIf="(control.name !== 'label' && control.name !== 'file')">
                                 <!-- <i class="bx bx-circle" style="font-size: 8px;
                                 color: black;
                                 background: black;
                                 border-radius: 25px;"></i> -->
                                 <i class="fa fa-thin fa-arrow-right mt-1"></i>
                                 <span>{{control.value != '' ? control.value : '-'}}</span>
+                            </div>
+                            <div class="value color" *ngIf="control.name === 'file'">
+                                <ng-container *ngIf="control.value != '' ">
+                                    <i class="fa fa-thin fa-arrow-right mt-1"></i>
+                                    <!-- <span><a href="{{control.value}}" target="_blank">{{control.value}}</a></span> -->
+                                    <span>Uploaded</span>
+                                </ng-container>
+                                <ng-container *ngIf="control.value == '' ">
+                                    <i class="fa fa-thin fa-arrow-right mt-1"></i>
+                                    <span>-</span>
+                                </ng-container>
                             </div>
                         </ng-container>
                     </div>
@@ -109,7 +120,8 @@
                                 <ng-container *ngFor="let tableRow of control.rows">
                                     <tr>
                                         <ng-container *ngFor="let tableCol of tableRow">
-                                            <td *ngIf="!(tableCol.name == 'label')">
+                                            <!-- {{tableCol | json}} -->
+                                            <td *ngIf="(tableCol.name !== 'label' && tableCol.name !== 'file')">
                                                 <span class="value" *ngIf="tableCol.value != ''">{{
                                                     tableCol.value }}</span>
                                                 <span class="value" *ngIf="tableCol.value == ''"
@@ -119,6 +131,18 @@
 
                                             <td *ngIf="(tableCol.name == 'label')" style="background-color: #f9f9f9;">
                                                 <label for="" class="table-label">{{tableCol.label}}</label>
+                                            </td>
+                                            <td *ngIf="tableCol.name == 'file'" style="background-color: #f9f9f9;">
+                                                <ng-container *ngIf="tableCol.value !== ''">
+                                                    <label for="" class="value"
+                                                        style="justify-content: center;">Uploaded</label>
+                                                    <!-- <label for="" class="value color"><a href="{{tableCol.value}}"
+                                                            target="_blank">{{tableCol.value}}</a></label> -->
+                                                </ng-container>
+                                                <ng-container *ngIf="tableCol.value === ''">
+                                                    <label for="" class="value"
+                                                        style="justify-content: center;">-</label>
+                                                </ng-container>
                                             </td>
                                         </ng-container>
                                     </tr>
