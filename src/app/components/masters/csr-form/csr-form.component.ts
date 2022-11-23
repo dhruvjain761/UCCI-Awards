@@ -25,7 +25,7 @@ export class CsrFormComponent implements OnInit, AfterViewInit {
   sections: any = [];
   position: string;
   formData: any = {};
-  previewCheck: any = true;
+  previewCheck: any = false;
   actionString: string = '';
   breadcrumb: any[] = [
     {
