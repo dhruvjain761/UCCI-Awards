@@ -82,6 +82,7 @@ import { CsrFormComponent } from './components/masters/csr-form/csr-form.compone
 import { FormBuilderComponent } from './components/masters/form-builder/form-builder.component';
 import { AdminLoginComponent } from './components/pages/admin-login/admin-login.component';
 import { RegisteredUsersComponent } from './components/pages/registered-users/registered-users.component';
+import { StageTwoListComponent } from './components/pages/stage-two-list/stage-two-list.component';
 import { SuccessPageComponent } from './components/pages/success-page/success-page.component';
 // import { InterestAreaMasterComponent } from './components/masters/interest-area-master/interest-area-master.component';
 // import { SubcategoryMasterComponent } from './components/masters/marketplace-master/subcategory-master/subcategory-master.component';
@@ -164,6 +165,7 @@ const routes: Routes = [
   { path: 'member-classification', component: MemberClassificationComponent },
   // {path: 'fees-master', component: FeesMasterComponent},
   { path: 'turnover-master', component: TurnoverMasterComponent },
+  { path: 'stage-two', component: StageTwoListComponent },
   // {path: 'membership-type-master', component: MembershipTypeMasterComponent},
   // {path: 'facilities-approval', component: ApprovalComponent},
   // {path: 'selected-facilities-approval', component: SelectedPlaceAprrovalComponent},

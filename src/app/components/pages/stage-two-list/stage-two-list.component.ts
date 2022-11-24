@@ -7,12 +7,12 @@ import { CommonClass } from 'src/app/common';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
-  selector: 'app-registered-users',
-  templateUrl: './registered-users.component.html',
-  styleUrls: ['./registered-users.component.scss'],
+  selector: 'app-stage-two-list',
+  templateUrl: './stage-two-list.component.html',
+  styleUrls: ['./stage-two-list.component.scss'],
   providers: [MessageService, ConfirmationService],
 })
-export class RegisteredUsersComponent implements OnInit {
+export class StageTwoListComponent implements OnInit {
   @ViewChild('dt1') dt1: Table;
   @ViewChild('dt2') dt2: Table;
   breadcrumb: any[];
@@ -68,10 +68,7 @@ export class RegisteredUsersComponent implements OnInit {
     this.localStorage = this.commonFunction.getLocalStorage();
     this.breadcrumb = [
       {
-        title:
-          this.localStorage.role == 'User'
-            ? 'My Registrations'
-            : 'Registered Users',
+        title: 'Stage Two',
         subTitle: 'Home',
       },
     ];
