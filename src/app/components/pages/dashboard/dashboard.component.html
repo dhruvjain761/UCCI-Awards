@@ -125,7 +125,7 @@
                     <h3>{{item.form_title}}</h3>
                     <!-- </div> -->
                     <div>
-                        <span class="sub-title"><span style="font-size: 1.2rem;">Status: </span>
+                        <span class="sub-title stage-status"><span style="font-size: 1.2rem;">Status: </span>
                             <!-- style="background-color: #ffff; color: red; padding: 1px 8px; border-radius: 4px;" -->
                             <span *ngIf="item.status == ''" class="pending">Pending</span>
                             <span *ngIf="item.status == 'In Progress'" class="in-progress">{{item.status}}</span>
@@ -133,8 +133,8 @@
 
                         </span>
                     </div>
-                    <div *ngIf="item.status !== 'completed'"><a
-                             routerLink="/form-lib/{{item.slug}}">Edit</a></div>
+                    <div *ngIf="item.status !== 'completed'"><a routerLink="/form-lib/{{item.slug}}"
+                            class="edit-btn">Edit</a></div>
                     <!-- <div class="icon-box">
                         <i class='bx bxs-badge-dollar'></i>
                     </div>

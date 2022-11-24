@@ -135,9 +135,9 @@ export class HomeDemoOneComponent implements OnInit {
       // debugger;
       this.role = JSON.parse(localStorage?.getItem('award_access_token')).role;
 
-      if (this.role === 'Admin') {
-        this.router.navigateByUrl('/registered-user');
-      } else if (this.role === 'User') this.router.navigateByUrl('/dashboard');
+      // if (this.role === 'Admin') {
+      this.router.navigateByUrl('/registered-user');
+      // } else if (this.role === 'User') this.router.navigateByUrl('/dashboard');
     }
 
     this.currentYear = this.date.getFullYear();
@@ -592,7 +592,7 @@ export class HomeDemoOneComponent implements OnInit {
 
           // if (this.localStorage.role == 'Admin')
           setTimeout(() => {
-            this.router.navigateByUrl('/dashboard');
+            this.router.navigateByUrl('/registered-user');
             this.spinner.hide();
           }, 1500);
           this.spinner.hide();

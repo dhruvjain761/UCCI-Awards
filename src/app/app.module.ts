@@ -159,6 +159,7 @@ import { AdminLoginComponent } from './components/pages/admin-login/admin-login.
 import { SuccessPageComponent } from './components/pages/success-page/success-page.component';
 import { ExcelService } from './services/excel.service';
 import { IndianCurrencyPipe } from './pipes/indian-currency.pipe';
+import { StageTwoListComponent } from './components/pages/stage-two-list/stage-two-list.component';
 // import { LibFBModule } from 'libFB';
 // import { InterestAreaMasterComponent } from './components/masters/interest-area-master/interest-area-master.component';
 // import { CategoryMasterComponent } from './components/masters/marketplace-master/category-master/category-master.component';
@@ -298,6 +299,7 @@ const ngWizardConfig: NgWizardConfig = {
     AdminLoginComponent,
     SuccessPageComponent,
     IndianCurrencyPipe,
+    StageTwoListComponent,
     // InterestAreaMasterComponent,
     // CategoryMasterComponent,
     // SubcategoryMasterComponent,

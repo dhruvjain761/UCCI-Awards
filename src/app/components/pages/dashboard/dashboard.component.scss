@@ -5,40 +5,56 @@
     padding: 35px 25px 34px 25px;
 }
 
-.approved {
-    border-radius: 30px;
-    color: #64bc36;
-    padding: 3px 10px 3.5px;
-    position: relative;
-    margin-left: 2px;
-    // font-size: 12px;
-    background-color: var(--whiteColor);
-    border-radius: 4px;
+:host .stage-status {
+    .approved {
+        border-radius: 30px;
+        color: #64bc36;
+        padding: 3px 10px 3.5px;
+        position: relative;
+        margin-left: 2px;
+        // font-size: 12px;
+        background-color: var(--whiteColor);
+        border-radius: 4px;
+    }
+
+    .pending {
+        border-radius: 30px;
+        padding: 3px 10px 3.5px;
+        position: relative;
+        background-color: var(--whiteColor);
+        color: rgb(235, 70, 70);
+        // top: -2px;
+        margin-left: 2px;
+        font-weight: 500;
+        // font-size: 12px;
+        border-radius: 4px;
+    }
+
+    .in-progress {
+        border-radius: 30px;
+        color: #e5952e;
+        padding: 3px 10px 3.5px;
+        position: relative;
+        // top: -2px;
+        margin-left: 2px;
+        // font-size: 12px;
+        background-color: var(--whiteColor);
+        border-radius: 4px;
+    }
+
 }
 
-.pending {
-    border-radius: 30px;
-    padding: 3px 10px 3.5px;
-    position: relative;
-    background-color: var(--whiteColor);
-    color: rgb(235, 70, 70);
-    // top: -2px;
-    margin-left: 2px;
+.edit-btn {
+    background-color: #fff;
+    padding: 1px 15px;
+    border-radius: 3px;
+    // color: transparent;
     font-weight: 500;
-    // font-size: 12px;
-    border-radius: 4px;
-}
+    font-size: .9rem;
 
-.in-progress {
-    border-radius: 30px;
-    color: #e5952e;
-    padding: 3px 10px 3.5px;
-    position: relative;
-    // top: -2px;
-    margin-left: 2px;
-    // font-size: 12px;
-    background-color: var(--whiteColor);
-    border-radius: 4px;
+    &:hover {
+        color: var(--blackColor);
+    }
 }
 
 .main-content {
