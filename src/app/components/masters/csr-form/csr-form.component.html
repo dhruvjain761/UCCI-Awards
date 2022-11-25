@@ -21,6 +21,8 @@
     <!-- ********************** Breadcrumb Area  ******************** -->
 
     <div class="breadcrumb-area" *ngFor="let Content of breadcrumb;">
+        <p-button type="button" #back_btn class="test mr-2" (click)="onBackPress()" icon="bx bx-arrow-back" label=""
+            iconPos="left" pTooltip="Back" tooltipPosition="bottom"></p-button>
         <h1>{{Content.title}}</h1>
         <ol class="breadcrumb">
             <li class="item"><a routerLink="/">Home</a></li>
