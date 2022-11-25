@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import {
   AfterViewInit,
   Component,
@@ -43,7 +44,8 @@ export class CsrFormComponent implements OnInit, AfterViewInit {
     private excelService: ExcelService,
     private _formBuilder: FormBuilderService,
     private messageService: MessageService,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private _location: Location
   ) {}
 
   responseMessage: boolean = false;
@@ -211,6 +213,12 @@ export class CsrFormComponent implements OnInit, AfterViewInit {
 
   getPDF() {
     window.print();
+  }
+
+  onBackPress() {
+    // this.route.navigateByUrl('/');
+    this._location.back();
+    // this.Route.navigateByUrl('/');
   }
 
   ngAfterViewInit() {}
