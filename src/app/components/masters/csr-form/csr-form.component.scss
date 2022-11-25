@@ -76,7 +76,7 @@
 
 :host::ng-deep {
     .ng-wizard-theme-dots>ul.step-anchor:before {
-        top: 120px !important;
+        top: 91px !important;
         min-width: 1400px
     }
 
@@ -787,6 +787,7 @@ small {
                 width: 100% !important;
                 overflow-x: auto !important;
                 overflow-y: hidden !important;
+                height: 125px!important;
 
                 &::-webkit-scrollbar {
                     width: 1px;
@@ -810,13 +811,13 @@ small {
 
                 &>li {
                     height: 145px !important;
-                    width: 200px !important;
+                    // width: 200px !important;
 
                     &.done,
                     a {
 
-                        height: 140px !important;
-                        width: 200px !important;
+                        height: 110px !important;
+                        min-width: 220px !important;
 
                         &:after {
                             position: absolute;
@@ -860,7 +861,7 @@ small {
         .ng-wizard-theme-dots ul.step-anchor>li a:after {
             left: 42.8%;
             bottom: unset;
-            top: 104px;
+            top: 75px;
         }
     }
 }
