@@ -940,6 +940,21 @@ small {
     //     height: 140px !important;
     //     width: 200px !important;
     // }
+
+    .addSection {
+        // margin-left: 10px;
+
+        &:disabled {
+            cursor: default;
+            background-color: grey;
+            // opacity: 0.5;
+        }
+
+        &:last-child {
+            margin-left: 10px;
+        }
+    }
+
     @media screen and (max-width: 768px) {
         .ng-wizard-theme-dots>ul.step-anchor>li>a:before {
             top: unset;

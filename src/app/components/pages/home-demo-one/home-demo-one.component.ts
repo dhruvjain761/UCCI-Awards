@@ -402,7 +402,7 @@ export class HomeDemoOneComponent implements OnInit {
   getClassification() {
     this.apiservice.getClassification().subscribe((res: any) => {
       console.log(res);
-      this.classification = res.data;
+      // this.classification = res.data;
       this.commonClasifications = res.data;
     });
   }

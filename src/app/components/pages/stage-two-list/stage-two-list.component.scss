@@ -366,6 +366,42 @@ button:disabled {
   }
 }
 
+:host .stage-status {
+  .approved {
+    border-radius: 30px;
+    color: var(--whiteColor);
+    padding: 3px 10px 3.5px;
+    position: relative;
+    top: -2px;
+    margin-left: 2px;
+    font-size: 12px;
+    background-color: #64bc36;
+  }
+
+  .pending {
+    border-radius: 30px;
+    color: var(--whiteColor);
+    padding: 3px 10px 3.5px;
+    position: relative;
+    top: -2px;
+    margin-left: 2px;
+    font-size: 12px;
+    background-color: rgb(235, 70, 70);
+  }
+
+  .in-progress {
+    border-radius: 30px;
+    color: var(--whiteColor);
+    padding: 3px 10px 3.5px;
+    position: relative;
+    top: -2px;
+    margin-left: 2px;
+    font-size: 12px;
+    background-color: #e5952e;
+  }
+
+}
+
 :host ::ng-deep {
   @media (max-width: 575px) {
     textarea {

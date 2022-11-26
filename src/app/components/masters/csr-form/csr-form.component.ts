@@ -13,6 +13,7 @@ import {
   ConfirmEventType,
   MessageService,
 } from 'primeng/api';
+import { CommonClass } from 'src/app/common';
 import { ExcelService } from 'src/app/services/excel.service';
 import { FormBuilderService } from 'src/app/services/form-builder.service';
 
@@ -38,6 +39,8 @@ export class CsrFormComponent implements OnInit, AfterViewInit {
   title: any;
   hindiTitle: string;
   nextYear: number;
+  localStorage: any;
+  companyName: string;
   constructor(
     private spinner: NgxSpinnerService,
     private router: ActivatedRoute,
@@ -45,57 +48,68 @@ export class CsrFormComponent implements OnInit, AfterViewInit {
     private _formBuilder: FormBuilderService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private _location: Location
+    private _location: Location,
+    private commonFunction: CommonClass
   ) {}
 
   responseMessage: boolean = false;
   award_form_id: any;
   async ngOnInit(): Promise<void> {
-    let slug = this.router.snapshot.params;
-    console.log(slug);
+    let slug = this.router.snapshot.url;
+    // let sh = slug._routerState
+    // console.log(slug[0].path);
+    let id = slug[2].path;
+    console.log(id);
+
+    console.log(this.localStorage);
     this.spinner.show();
     await this._formBuilder
-      .getAPI('formWithData/' + slug.slug)
+      .getAPI('formWithData/' + slug[1].path)
       .then((res: any) => {
         console.log(res);
         this.spinner.hide();
-        this.responseMessage = res?.data[0]?.form_response ? true : false;
-        if (res?.data[0]?.form_json) {
-          this.sections = JSON?.parse(JSON?.parse(res?.data[0]?.form_json));
-          this.breadcrumb[0].title = res?.data[0].form_title;
-          this.formId = res?.data[0]?.id;
-          this.award_form_id = res?.award_form_id;
-          this.title = res?.data[0].form_title;
 
-          if (res?.data[0]?.form_title === 'Service Sector Award') {
+        this.responseMessage = res?.data[id]?.form_response ? true : false;
+        if (res?.data[id]?.form_json) {
+          this.sections = JSON?.parse(JSON?.parse(res?.data[id]?.form_json));
+          this.breadcrumb[0].title = res?.data[id].form_title;
+          this.formId = res?.data[id]?.id;
+          this.award_form_id = res?.award_form_id;
+          this.title = res?.data[id].form_title;
+          this.companyName = res?.data[id].company_name;
+
+          if (res?.data[id]?.form_title === 'Service Sector Award') {
             this.hindiTitle = 'सेवा क्षेत्र पुरस्कार';
           } else if (
-            res?.data[0]?.form_title === 'Manufacturing Sector Award'
+            res?.data[id]?.form_title === 'Manufacturing Sector Award'
           ) {
             this.hindiTitle = 'विनिर्माण क्षेत्र पुरस्कार';
-          } else if (res?.data[0]?.form_title === 'Social Enterprises Award') {
+          } else if (res?.data[id]?.form_title === 'Social Enterprises Award') {
             // debugger;
             this.hindiTitle = 'सामाजिक उपक्रम पुरस्कार';
-          } else if (res?.data[0]?.form_title === 'CSR Award') {
+          } else if (res?.data[id]?.form_title === 'CSR Award') {
             this.hindiTitle = 'सामाजिक उत्तरदायित्व पुरस्कार';
           }
-        } else if (res?.data[0]?.form_response) {
-          this.sections = JSON?.parse(JSON?.parse(res?.data[0]?.form_response));
-          this.breadcrumb[0].title = res?.data[0]?.form_title;
-          this.formId = res?.data[0]?.id;
-          this.award_form_id = res?.data[0]?.award_form_id;
-          this.title = res?.data[0]?.form_title;
+        } else if (res?.data[id]?.form_response) {
+          this.sections = JSON?.parse(
+            JSON?.parse(res?.data[id]?.form_response)
+          );
+          this.breadcrumb[0].title = res?.data[id]?.form_title;
+          this.formId = res?.data[id]?.id;
+          this.award_form_id = res?.data[id]?.award_form_id;
+          this.title = res?.data[id]?.form_title;
+          this.companyName = res?.data[id].company_name;
 
-          if (res?.data[0]?.form_title === 'Service Sector Award') {
+          if (res?.data[id]?.form_title === 'Service Sector Award') {
             this.hindiTitle = 'सेवा क्षेत्र पुरस्कार';
           } else if (
-            res?.data[0]?.form_title === 'Manufacturing Sector Award'
+            res?.data[id]?.form_title === 'Manufacturing Sector Award'
           ) {
             this.hindiTitle = 'विनिर्माण क्षेत्र पुरस्कार';
-          } else if (res?.data[0]?.form_title === 'Social Enterprises Award') {
+          } else if (res?.data[id]?.form_title === 'Social Enterprises Award') {
             // debugger;
             this.hindiTitle = 'सामाजिक उपक्रम पुरस्कार';
-          } else if (res?.data[0]?.form_title === 'CSR Award') {
+          } else if (res?.data[id]?.form_title === 'CSR Award') {
             this.hindiTitle = 'सामाजिक उत्तरदायित्व पुरस्कार';
           }
 
@@ -141,10 +155,14 @@ export class CsrFormComponent implements OnInit, AfterViewInit {
 
   getFormResponse(event: any) {
     console.log(event);
+    // getlog
+    // this.companyName = localStorage.getItem('companyName');
+    console.log(this.companyName);
     if (event?.string == 'save draft') {
       let Object = {
         award_form_id: this.award_form_id,
         form_response: JSON.stringify(event?.Obj),
+        company_name: this.companyName,
       };
 
       if (this.responseMessage) {
@@ -177,6 +195,7 @@ export class CsrFormComponent implements OnInit, AfterViewInit {
             award_form_id: this.award_form_id,
             form_response: JSON.stringify(event?.Obj),
             status: 'completed',
+            company_name: this.companyName,
           };
 
           if (this.responseMessage) {
