@@ -27,6 +27,7 @@ export class CsrFormComponent implements OnInit, AfterViewInit {
   position: string;
   formData: any = {};
   previewCheck: any = false;
+  responseSections:any=[]
   actionString: string = '';
   breadcrumb: any[] = [
     {
@@ -116,26 +117,53 @@ export class CsrFormComponent implements OnInit, AfterViewInit {
     let year = date.getFullYear();
 
     this.nextYear = year + 1;
+
+
+    // form response excel
+    // await this._formBuilder.getAPI('response/all').then((res:any)=> {
+    //   console.log(res);
+    //   let Obj :any = {};
+    //   let array :any = [];
+    //   res?.data?.CSR.forEach((formResponse:any) => {
+    //     console.log(JSON.parse(JSON.parse(formResponse.form_response)))
+    //     this.responseSections = Object.assign([],JSON.parse(JSON.parse(formResponse.form_response)));
+    //     this.responseSections.forEach((section:any) => {
+    //       section.controls.forEach((control:any) => {
+    //         if(control.name != 'label' && control.name != 'table') {
+    //           for(const property in control) {
+    //             Obj[control.label] = control.value;
+    //           }
+    //         }
+    //       });
+    //     });
+    //     array.push(Obj);
+    //   });
+    //   console.log('object',array)
+    //   this.excelService.exportAsExcelFile(array, 'export-to-excel');
+    // })
+
+
   }
   getExcelFromJson() {
-    let data: any = [];
+    let data: any = [{question1:"answer1",question2: "answer6",question3:"answer3",question4:"answer4"},
+    {question1:"answer1",question2: "answer6",question3:"answer3",question4:"answer4"}];
     // data = Object.assign([],this.sections[2]?.controls);
-    this.sections.forEach((section: any) => {
-      section.controls.forEach((object: any) => {
-        if (object.id != 'table' && object.id != 'label') {
-          let obj: any = {};
-          for (const property in object) {
-            if (property == 'label') {
-              obj[object] = object.label;
-            } else if (property == 'value') {
-              obj.value = object.value;
-            }
-          }
-          data.push(obj);
-          console.log(obj)
-        }
-      });
-    });
+    // this.sections.forEach((section: any) => {
+    //   section.controls.forEach((object: any) => {
+    //     if (object.id != 'table' && object.id != 'label') {
+    //       let obj: any = {};
+    //       for (const property in object) {
+    //         if (property == 'label') {
+    //           obj[object] = object.label;
+    //         } else if (property == 'value') {
+    //           obj.value = object.value;
+    //         }
+    //       }
+    //       data.push(obj);
+    //       console.log(obj)
+    //     }
+    //   });
+    // });
     console.log(this.sections);
     this.excelService.exportAsExcelFile(data, 'export-to-excel');
   }
