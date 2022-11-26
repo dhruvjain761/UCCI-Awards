@@ -134,21 +134,22 @@ export class CsrFormComponent implements OnInit, AfterViewInit {
   getExcelFromJson() {
     let data: any = [];
     // data = Object.assign([],this.sections[2]?.controls);
-    // this.sections.forEach((section: any) => {
-    //   section.controls.forEach((object: any) => {
-    //     if (object.id != 'table' && object.id != 'label') {
-    //       let obj: any = {};
-    //       for (const property in object) {
-    //         if (property == 'label') {
-    //           obj.label = object.label;
-    //         } else if (property == 'value') {
-    //           obj.value = object.value;
-    //         }
-    //       }
-    //       data.push(obj);
-    //     }
-    //   });
-    // });
+    this.sections.forEach((section: any) => {
+      section.controls.forEach((object: any) => {
+        if (object.id != 'table' && object.id != 'label') {
+          let obj: any = {};
+          for (const property in object) {
+            if (property == 'label') {
+              obj[object] = object.label;
+            } else if (property == 'value') {
+              obj.value = object.value;
+            }
+          }
+          data.push(obj);
+          console.log(obj)
+        }
+      });
+    });
     console.log(this.sections);
     this.excelService.exportAsExcelFile(data, 'export-to-excel');
   }
