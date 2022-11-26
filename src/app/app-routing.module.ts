@@ -152,7 +152,7 @@ const routes: Routes = [
   // {path: 'certificate-of-origin-list', component: CertificateOfOriginListComponent},
   // {path: 'document-attestation-list', component: DocumentAttestationListComponent},
   { path: 'custom-forms', component: CustomFormComponent },
-  { path: 'form-lib/:slug', component: CsrFormComponent },
+  { path: 'form-lib/:slug/:slug', component: CsrFormComponent },
   // {path: 'events-list', component: EventListingComponent},
   // {path: 'event-form', component: EventCreationFormComponent},
   // {path: 'event-form/:slug', component: EventCreationFormComponent},

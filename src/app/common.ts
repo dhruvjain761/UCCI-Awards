@@ -8,7 +8,7 @@ export class CommonClass implements OnInit {
   getLocalStorage() {
     let local_id = localStorage.getItem('award_access_token');
     if (local_id) {
-      // console.log(local_id)
+      console.log(local_id);
       return JSON.parse(local_id);
     }
   }
