@@ -13,6 +13,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { CommonClass } from 'src/app/common';
 import { ApiService } from 'src/app/services/api.service';
 import { FormBuilderService } from 'src/app/services/form-builder.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-navbar-style-one',
@@ -33,6 +34,7 @@ export class NavbarStyleOneComponent implements OnInit, OnChanges {
   userEmail: string = '';
   resData: any = {};
   localStorage: any;
+  // baseURL = environment.image_baseURL;
 
   spinnerMsg: string;
   role: any;
@@ -60,19 +62,24 @@ export class NavbarStyleOneComponent implements OnInit, OnChanges {
     }
     // save user name or email in localstorage
     var award_access_token = localStorage.getItem('award_access_token');
-    if (award_access_token && award_access_token != 'undefined') {
-      this.userName = JSON.parse(
-        localStorage.getItem('award_access_token')
-      ).username;
-      this.userEmail = JSON.parse(
-        localStorage.getItem('award_access_token')
-      ).useremail;
-
-      this.apiservice.getDropdownName().subscribe((res: any) => {
-        console.log(res);
-        this.menuItems = res.data;
-      });
-    }
+    // if(this.localStorage.role != 'Auditor') {
+      if (award_access_token && award_access_token != 'undefined') {
+        this.userName = JSON.parse(
+          localStorage.getItem('award_access_token')
+        ).username;
+        this.userEmail = JSON.parse(
+          localStorage.getItem('award_access_token')
+        ).useremail;
+  
+        // this.apiservice.getDropdownName().subscribe((res: any) => {
+        //   console.log(res);
+        //   this.menuItems = res?.data;
+        // });
+      }
+    // }
+    // else {
+      
+    // }
   }
 
   onLogoClick() {

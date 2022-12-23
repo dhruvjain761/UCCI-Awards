@@ -96,7 +96,7 @@
                 <th style="max-width: 150px; width: 150px; white-space:
                   no-wrap;">Status</th>
                 <th style="min-width: 150px; white-space: no-wrap;">Award Name</th>
-                <th style="min-width: 150px; white-space: no-wrap;">Category</th>
+                <th style="min-width: 150px; white-space: no-wrap;">Classification</th>
                 <th style="min-width: 150px; white-space: no-wrap;">Contact
                   Person</th>
                 <!-- <th style="min-width: 200px; white-space: no-wrap;">Organization
@@ -229,10 +229,10 @@
                     [disabled]="item.status !== 'Pending'" *ngIf="localStorage?.role=='Admin'"></button>
                 </td>
                 <td class="status">
-                  <span class="in-progress" *ngIf="item.status == 'Pending'">
+                  <span class="pending" *ngIf="item.status == 'Pending'">
                     {{item.status}}
                   </span>
-                  <span class="in-progress" *ngIf="item.status == null">
+                  <span class="pending" *ngIf="item.status == null">
                     Pending
                   </span>
                   <span class="approved" *ngIf="item.status == 'Approved'">
@@ -250,8 +250,7 @@
                 <td *ngIf="localStorage?.role=='Admin'">
                   <div class="add-listings-btn">
                     <button type="button" (click)="sendEmail('single', item)" [disabled]="item.status === 'Pending' || item.status ===
-                      'In
-                      Progress'"><span class="bx bx-send"></span>
+                      'In Progress'"><span class="bx bx-send"></span>
                       Send</button>
                   </div>
                 </td>
@@ -264,10 +263,71 @@
             </ng-template>
           </p-table>
         </ng-container>
+
+        <ng-container *ngIf="localStorage.role == 'Auditor'">
+
+          <p-table #dt1 [value]="users" sortField="award_category" sortMode="single" dataKey="award_category"
+            rowGroupMode="subheader" groupRowsBy="award_category" [rows]="10" [showCurrentPageReport]="true" styleClass="p-datatable-sm
+            p-datatable-customers" editMode="row" responsiveLayout="scroll" [globalFilterFields]="['company.company_name']">
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width:20%">S No.</th>
+                <th style="width:20%">Company Name</th>
+                <th style="width:20%">Award Name</th>
+                <th style="width:20%">Status</th>
+                <th style="width:20%">Export</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="groupheader" let-customer let-rowIndex="rowIndex" let-expanded="expanded">
+              <tr>
+                <td colspan="5">
+                  <button type="button" pButton pRipple [pRowToggler]="customer"
+                    class="p-button-text p-button-rounded p-button-plain mr-2"
+                    [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                  <span class="font-bold ml-2" style="padding: 8px;display:inline-block;">{{customer?.award_category}}</span>
+                </td>
+              </tr>
+            </ng-template>
+            <!-- <ng-template pTemplate="groupfooter" let-customer>
+              <tr class="p-rowgroup-footer">
+                <td colspan="4" style="text-align: right">Total Customers</td>
+                <td>{{calculateCustomerTotal(customer.representative.name)}}</td>
+              </tr>
+            </ng-template> -->
+            <ng-template pTemplate="rowexpansion" let-customer let-i="rowIndex">
+              <tr>
+                <td>
+                  {{i+1}}
+                </td>
+                <td>
+                  {{customer?.company_name}}
+                </td>
+                <td>
+                  {{customer?.award_name}}
+                </td>
+                <td class="status">
+                  <span class="pending" *ngIf="customer.status == ''">
+                    Pending
+                  </span>
+                  <span class="pending" *ngIf="customer.status == null">
+                    Pending
+                  </span>
+                  <span class="in-progress" *ngIf="customer.status == 'In Progress'">
+                    In Progress
+                  </span>
+                  <span class="approved" *ngIf="customer.status == 'Completed'">
+                    Completed
+                  </span>
+                </td>
+                <td></td>
+              </tr>
+            </ng-template>
+          </p-table>
+
+        </ng-container>
       </div>
     </div>
   </div>
-  <div class="flex-grow-1"></div>
 
   <app-copyrights></app-copyrights>
 </div>
@@ -378,6 +438,18 @@
               <div class="form-group">
                 <label>Award Name :</label>
                 <input readonly class="form-control" [value]="data?.award?.award_name">
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                <label>Achievements :</label>
+                <input readonly class="form-control" [value]="data?.achievements">
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <div class="form-group">
+                <label>Strengths :</label>
+                <input readonly class="form-control" [value]="data?.reason">
               </div>
             </div>
             <!-- <div class="col-lg-6 col-md-12">

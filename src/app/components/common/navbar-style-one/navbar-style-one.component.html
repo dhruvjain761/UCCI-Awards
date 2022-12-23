@@ -10,8 +10,7 @@
             <div class="vesax-responsive-menu" *ngIf="localStorage">
                 <div class="logo">
                     <a class="navbar-brand" routerLink="/">
-                        <img src="https://ucciudaipur.com/wp-content/uploads/2021/11/ucci-logo-update-2.png" alt="logo"
-                            height="180px" width="180px">
+                        <img src="assets/img/UCCI_LOGO.png" alt="logo" height="180px" width="180px">
 
                     </a>
                 </div>
@@ -20,9 +19,8 @@
             </div>
             <div class="vesax-responsive-menu d-flex" *ngIf="!localStorage">
                 <div class="logo" style="width: 82%;">
-                    <a class="navbar-brand" (click)="onLogoClick()"><img
-                            src="https://ucciudaipur.com/wp-content/uploads/2021/11/ucci-logo-update-2.png" alt="logo"
-                            height="180px" width="180px"></a>
+                    <a class="navbar-brand" (click)="onLogoClick()"><img src="assets/img/UCCI_LOGO.png"
+                            alt="logo" height="180px" width="180px"></a>
                 </div>
                 <!-- <a *ngIf="!localStorage" routerLink="/admin-login" class="admin-link">Admin
                     Login</a> -->
@@ -34,7 +32,7 @@
             <nav class="navbar navbar-expand-md navbar-light" style="justify-content: space-between;">
 
                 <a class="navbar-brand" style="padding: 14px 0;" (click)="onLogoClick()"><img
-                        src="https://ucciudaipur.com/wp-content/uploads/2021/11/ucci-logo-update-2.png" alt="logo"></a>
+                        src="assets/img/UCCI_LOGO.png" alt="logo"></a>
                 <!-- <div> -->
                 <!-- <a *ngIf="!localStorage" routerLink="/admin-login" class="admin-link">Admin Login</a> -->
                 <!-- </div> -->
@@ -167,9 +165,26 @@
                             <!-- <li class="nav-item"><a routerLink="/award-configuration" class="nav-link"
                                         routerLinkActive="active" [routerLinkActiveOptions]="{exact:
                                     true}">Award Configuration</a></li> -->
-                            <li class="nav-item"><a routerLink="/registered-user" class="nav-link"
-                                    routerLinkActive="active" [routerLinkActiveOptions]="{exact:
-                                    true}">My Registrations</a></li>
+                            <li class="nav-item" routerLinkActive="active mm-active">
+                                <a href="javascript:void(0)" class="collapsed-nav-link nav-link" aria-expanded="false">
+                                    <span class="icon"><i class='bx bx-layer'></i></span>
+                                    <span class="menu-title">My Registrations</span>
+                                </a>
+                                <ul class="sidemenu-nav-second-level">
+                                    <li class="nav-item" routerLinkActive="active">
+                                        <a routerLink="/registered-user" class="nav-link">
+                                            <span class="menu-title">Stage One</span>
+                                            <!-- <span class="badge">5</span> -->
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" routerLinkActive="active">
+                                        <a routerLink="/stage-two" class="nav-link">
+                                            <span class="menu-title">Stage Two</span>
+                                            <!-- <span class="badge yellow">1</span> -->
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
                             <!-- </ul> -->
                         </ng-container>
 

@@ -4713,6 +4713,16 @@ select {
     font-size: 12px;
     background-color: #64bc36;
   }
+  .pending {
+    border-radius: 30px;
+    color: var(--whiteColor);
+    padding: 3px 10px 3.5px;
+    position: relative;
+    top: -2px;
+    margin-left: 2px;
+    font-size: 12px;
+    background-color: #e5952e;
+  }
 
   .on-hold {
     border-radius: 30px;
@@ -5013,7 +5023,7 @@ select {
 
 // Status Styles
 .pending {
-  background-color: red;
+  background-color: #e5952e;
   border-radius: 30px;
   padding: 3px 10px;
   color: #fff;

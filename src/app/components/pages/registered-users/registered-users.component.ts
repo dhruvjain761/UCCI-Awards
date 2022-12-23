@@ -3,8 +3,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
+import { ObjectUnsubscribedError } from 'rxjs';
 import { CommonClass } from 'src/app/common';
 import { ApiService } from 'src/app/services/api.service';
+import { FormBuilderService } from 'src/app/services/form-builder.service';
 
 @Component({
   selector: 'app-registered-users',
@@ -51,6 +53,7 @@ export class RegisteredUsersComponent implements OnInit {
   localStorage: any;
   selectedUser: any[] = [];
   turnoverAmount: string;
+  formResponse: any = {};
   // emailBoolean: boolean = false;
 
   constructor(
@@ -59,22 +62,42 @@ export class RegisteredUsersComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private messageService: MessageService,
     private commonFunction: CommonClass,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private _formBuilder : FormBuilderService
   ) {}
 
-  ngOnInit(): void {
-    this.spinner.show();
-    this.getUsers();
+  async ngOnInit(): Promise<void> {
     this.localStorage = this.commonFunction.getLocalStorage();
-    this.breadcrumb = [
-      {
-        title:
-          this.localStorage.role == 'User'
-            ? 'My Registrations'
-            : 'Registered Users',
-        subTitle: 'Home',
-      },
-    ];
+    this.spinner.show();
+    if(this.localStorage.role != 'Auditor') {
+      this.getUsers();
+      this.breadcrumb = [
+        {
+          title:
+            this.localStorage.role == 'User'
+              ? 'My Registrations'
+              : 'Registered Users',
+          subTitle: 'Home',
+        },
+      ];
+    }
+    else {
+      // await this._formBuilder.getAPI('response/all').then((res:any)=> {
+      //   this.spinner.hide();
+      //   console.log(res);
+      //   // this.users.push(...res?.data['CSR']);
+      //   // this.users.push(...res?.data['Manufacturing']);
+      //   // this.users.push(...res?.data['Services']);
+      //   // this.users.push(...res?.data['Social Enterprise']);
+      // })
+      console.log(this.users);
+
+      await this._formBuilder.getAPI('response/allData').then((res:any)=> {
+        this.spinner.hide();
+        console.log(res);
+        this.users = res?.data;
+      })
+    }
     this.currentYear = this.date.getFullYear();
     this.preYear = this.currentYear - 1;
   }
@@ -84,7 +107,7 @@ export class RegisteredUsersComponent implements OnInit {
   getUsers() {
     this.apiService.getRegisteredUsers().subscribe((res: any) => {
       console.log(res);
-      let users: any = res.data;
+      let users: any = res?.data;
       this.users = users.reverse();
       this.spinner.hide();
     });

@@ -55,7 +55,7 @@
         <p-button type="button" class="ml-2" (click)="reset()" [(ngModel)]="filterVal" icon="bx
           bx-reset"></p-button>
       </div>
-      <div class="d-flex btn-box" *ngIf="localStorage?.role=='Admin'">
+      <!-- <div class="d-flex btn-box" *ngIf="localStorage?.role=='Admin'">
         <div class="d-flex">
           <div class="add-listings-btn mr-2">
             <button type="button" (click)="bulkApproval()"> Approve</button>
@@ -67,7 +67,7 @@
         <div class="add-listings-btn ml-2">
           <button type="button" (click)="sendEmail('bulk', 'bulk')"> Send Email</button>
         </div>
-      </div>
+      </div> -->
     </div>
 
     <div class="row">
@@ -94,7 +94,7 @@
                 <th style="max-width: 150px; width: 150px; white-space:
                   no-wrap;">Status</th>
                 <th style="min-width: 150px; white-space: no-wrap;">Award Name</th>
-                <th style="min-width: 150px; white-space: no-wrap;">Category</th>
+                <th style="min-width: 150px; white-space: no-wrap;">Award Category</th>
                 <!-- <th style="min-width: 150px; white-space: no-wrap;">Contact
                   Person</th> -->
                 <!-- <th style="min-width: 200px; white-space: no-wrap;">Organization
@@ -125,9 +125,9 @@
                 <td style="text-align: center;"></td>
                 <td style="text-align: center;"></td>
                 <td style="text-align: center;">
-                  <button pButton pRipple icon="bx bx-pencil" [disabled]="item.status == 'completed'"
+                  <button pButton pRipple icon="bx bx-pencil" [disabled]="item.status == 'Completed'"
                     class="p-button-rounded p-button-text p-button-primary mr-2"
-                    (click)="editForm(item.slug, item.status, i)"></button>
+                    (click)="editForm(item.slug, item.status, item.company_name, item.registration_id)"></button>
                 </td>
                 <td class="stage-status">
                   <span class="pending" *ngIf="item.status == ''">
@@ -136,7 +136,7 @@
                   <span class="in-progress" *ngIf="item.status == 'In Progress'">
                     {{item.status}}
                   </span>
-                  <span class="approved" *ngIf="item.status == 'completed'">
+                  <span class="approved" *ngIf="item.status == 'Completed'">
                     {{item.status}}
                   </span>
                 </td>
@@ -153,6 +153,67 @@
             </ng-template>
           </p-table>
         </ng-container>
+
+        <ng-container *ngIf="localStorage.role == 'Admin'">
+          
+          <p-table #dt1 [value]="users" sortField="award_category" sortMode="single" dataKey="award_category"
+            rowGroupMode="subheader" groupRowsBy="award_category" [rows]="10" [showCurrentPageReport]="true" styleClass="p-datatable-sm
+            p-datatable-customers" editMode="row" responsiveLayout="scroll" [globalFilterFields]="['company.company_name']">
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width:20%">S No.</th>
+                <th style="width:20%">Company Name</th>
+                <th style="width:20%">Award Name</th>
+                <th style="width:20%">Status</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="groupheader" let-customer let-rowIndex="rowIndex" let-expanded="expanded">
+              <tr>
+                <td colspan="5">
+                  <button type="button" pButton pRipple [pRowToggler]="customer"
+                    class="p-button-text p-button-rounded p-button-plain mr-2"
+                    [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+                  <span class="font-bold ml-2" style="padding: 8px;display:inline-block;">{{customer?.award_category}}</span>
+                </td>
+              </tr>
+            </ng-template>
+            <!-- <ng-template pTemplate="groupfooter" let-customer>
+              <tr class="p-rowgroup-footer">
+                <td colspan="4" style="text-align: right">Total Customers</td>
+                <td>{{calculateCustomerTotal(customer.representative.name)}}</td>
+              </tr>
+            </ng-template> -->
+            <ng-template pTemplate="rowexpansion" let-customer let-i="rowIndex">
+              <tr>
+                <td>
+                  {{i+1}}
+                </td>
+                <td>
+                  {{customer?.company_name}}
+                </td>
+                <td>
+                  {{customer?.award_name}}
+                </td>
+                <td class="status">
+                  <span class="pending" *ngIf="customer.status == ''">
+                    Pending
+                  </span>
+                  <span class="pending" *ngIf="customer.status == null">
+                    Pending
+                  </span>
+                  <span class="in-progress" *ngIf="customer.status == 'In Progress'">
+                    In Progress
+                  </span>
+                  <span class="approved" *ngIf="customer.status == 'Completed'">
+                    Completed
+                  </span>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+
+        </ng-container>
+
       </div>
     </div>
   </div>

@@ -33,7 +33,6 @@ export class HTTPApi {
   get(endPoint: any) {
     return this.http.get(`${this._baseurl}/${endPoint}`);
   }
-
   //Post
   post(endPoint: any, model?: any) {
     return this.http.post(`${this._baseurl}/${endPoint}`, model);

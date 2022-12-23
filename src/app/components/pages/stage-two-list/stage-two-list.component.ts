@@ -64,19 +64,27 @@ export class StageTwoListComponent implements OnInit {
     private commonFunction: CommonClass,
     private confirmationService: ConfirmationService,
     private formService: FormBuilderService,
-    private route: Router
+    private route: Router,
+    private _formBuilder : FormBuilderService
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.spinner.show();
-    this.getUsers();
     this.localStorage = this.commonFunction.getLocalStorage();
+    this.getUsers();
     this.breadcrumb = [
       {
         title: 'Stage Two',
         subTitle: 'Home',
       },
     ];
+    if(this.localStorage.role == 'Admin') {
+      await this._formBuilder.getAPI('response/allData').then((res:any)=> {
+        this.spinner.hide();
+        console.log(res);
+        this.users = res?.data;
+      })
+    }
     this.currentYear = this.date.getFullYear();
     this.preYear = this.currentYear - 1;
   }
@@ -89,18 +97,35 @@ export class StageTwoListComponent implements OnInit {
     //   let users: any = res.data;
     //   this.users = users.reverse();
     // });
-    this.formService.getAPI('formData').then((res: any) => {
-      this.users = res.data;
-      console.log(this.users);
-      this.spinner.hide();
-    });
+      this.formService.getAPI('formData').then((res: any) => {
+        this.users = res?.data;
+        console.log(this.users);
+        this.spinner.hide();
+      });
   }
 
   // On edit form Press
-  editForm(slug, status, i) {
+  editForm(slug, status,company_name, res_id) {
     // console.log(i);
     if (status != 'completed') {
-      this.route.navigateByUrl(`/form-lib/${slug}/${i}`);
+      // let array = this.users.filter(x => x.award_category == category && x.status == "In Progress");
+      // let routeIndex:any = 0;
+      // array.forEach((form:any, index:any) => {
+      //   if(form.company_name == company_name && slug == form.slug) {
+      //     routeIndex = index;
+      //     console.log("routeIndex",routeIndex)
+      //   }
+      // });
+      // if(status == "") {
+      //   routeIndex = 0;
+      // }
+      // else {
+
+      // }
+      // console.log(array);
+      localStorage.setItem('company',company_name);
+      localStorage.setItem('res_id',res_id);
+      this.route.navigateByUrl(`/form-lib/${slug}`);
     }
     // localStorage.setItem('companyName', name);
   }

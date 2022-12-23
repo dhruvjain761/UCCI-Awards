@@ -24,10 +24,30 @@
                     </a>
                 </li>
                 <li class="nav-item" routerLinkActive="active mm-active">
-                    <a routerLink="/registered-user" class="nav-link">
-                        <span class="icon"><i class="bx bx-home-circle"></i></span>
-                        <span class="menu-title">Registered User</span>
+                    <a href="javascript:void(0)" class="collapsed-nav-link nav-link" aria-expanded="false">
+                        <span class="icon"><i class='bx bx-layer'></i></span>
+                        <span class="menu-title">My Registrations</span>
                     </a>
+                    <ul class="sidemenu-nav-second-level">
+                        <li class="nav-item" routerLinkActive="active">
+                            <a routerLink="/registered-user" class="nav-link">
+                                <span class="menu-title">Stage One</span>
+                                <!-- <span class="badge">5</span> -->
+                            </a>
+                        </li>
+                        <li class="nav-item" routerLinkActive="active">
+                            <a routerLink="/stage-two" class="nav-link">
+                                <span class="menu-title">Stage Two</span>
+                                <!-- <span class="badge yellow">1</span> -->
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item" routerLinkActive="active">
+                            <a routerLink="/dashboard-my-listings" class="nav-link">
+                                <span class="menu-title">Expired</span>
+                                <span class="badge red">2</span>
+                            </a>
+                        </li> -->
+                    </ul>
                 </li>
                 <li class="nav-item" routerLinkActive="active mm-active">
                     <a routerLink="/custom-forms" class="nav-link">
@@ -58,9 +78,33 @@
         </div>
     </div>
 </ng-container>
-<!-- <ng-container *ngIf="localStorage.role == 'Admin'">
 
-</ng-container> -->
+
+<ng-container *ngIf="localStorage.role == 'Auditor'">
+    <div class="sidemenu-area">
+        <div class="sidemenu-header" style="visibility: hidden">
+            <a routerLink="/dashboard" class="navbar-brand d-flex align-items-center">
+                <img src="https://ucciudaipur.com/wp-content/uploads/2021/11/ucci-logo-update-2.png" alt="logo" />
+                <!-- <img src="assets/img/black-logo.png" alt="image"> -->
+            </a>
+            <div class="responsive-burger-menu d-block d-lg-none">
+                <span class="top-bar"></span>
+                <span class="middle-bar"></span>
+                <span class="bottom-bar"></span>
+            </div>
+        </div>
+        <div class="sidemenu-body">
+            <ul class="sidemenu-nav metisMenu h-100" id="sidemenu-nav" data-simplebar>
+                <li class="nav-item" routerLinkActive="active mm-active">
+                    <a routerLink="/registered-user" class="nav-link">
+                        <span class="icon"><i class="bx bx-home-circle"></i></span>
+                        <span class="menu-title">Registered User</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</ng-container>
 
 <!-- =====================  for nominee role dashboard  ======================== -->
 <ng-container *ngIf="localStorage.role == 'User'">
@@ -113,14 +157,14 @@
                         <span class="menu-title">My Registrations</span>
                     </a>
                 </li> -->
-                <ng-container *ngFor="let item of awardForm; index as index">
+                <!-- <ng-container *ngFor="let item of awardForm; index as index">
                     <li class="nav-item" routerLinkActive="active mm-active">
                         <a (click)="navigate('/form-lib/' + item.slug)" class="nav-link">
                             <span class="icon"><i class="bx bx-home-circle"></i></span>
                             <span class="menu-title">{{ item.form_title }}</span>
                         </a>
                     </li>
-                </ng-container>
+                </ng-container> -->
             </ul>
         </div>
     </div>

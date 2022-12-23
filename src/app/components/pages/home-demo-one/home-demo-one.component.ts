@@ -116,7 +116,7 @@ export class HomeDemoOneComponent implements OnInit {
   otpState: boolean = false;
   commonClasifications: any;
   preYear: any;
-  classCheck: boolean = false;
+  classCheck: boolean = true;
   pattern: any = 'S+.*';
   pat = new RegExp('S+.*');
   constructor(
