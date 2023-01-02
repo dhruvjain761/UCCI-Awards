@@ -161,7 +161,7 @@
                                                             class="requierdSign">*</span>:</label>
                                                     <input type="email" formControlName="email" placeholder="Email"
                                                         class="form-control" maxlength="50"
-                                                        pattern="[^@\s]+@[^@\s]+\.[^@\s]+" [class.is-invalid]="(signupForm.submitted
+                                                        pattern="^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$" [class.is-invalid]="(signupForm.submitted
                                                         &&
                                                         registerForm.get('email')?.invalid)
                                                         ||
